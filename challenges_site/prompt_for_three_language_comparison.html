@@ -542,9 +542,9 @@
             <h1 class="lang-en">Translate Trilingual with Notes</h1>
             <h1 class="lang-ja">三言語対照翻訳と注釈追加</h1>
             
-            <p class="lang-zh">本工具能將中文訪談對話轉換為「中、英、日三語對照表格」，並自動偵測台灣農村特有詞彙，為跨國研究隊友在備註欄補充英日文背景解釋。</p>
-            <p class="lang-en">Translates Chinese transcripts into parallel English and Japanese tables, automatically generating cultural footnotes for non-local researchers.</p>
-            <p class="lang-ja">中国語の逐字録を「中・英・日三カ国語対照表」に翻訳し、台湾農村独自の用語の背景解説を英日両言語で備考欄に自動追加します。</p>
+            <p class="lang-zh">本工具能將中文訪談對話轉換為「中、英、日三語對照 HTML 網頁」，並自動偵測台灣農村特有詞彙，為跨國研究隊友補充背景解釋。</p>
+            <p class="lang-en">Translates Chinese transcripts into parallel trilingual HTML pages, automatically generating cultural footnotes for non-local researchers.</p>
+            <p class="lang-ja">中国語の逐字録を「中・英・日三カ国語対照 HTML 網頁」に翻訳し、台湾農村独自の用語の背景解説を英日両言語で備考欄に自動追加します。</p>
         </header>
 
         <div class="container">
@@ -555,17 +555,17 @@
                     <h3 class="lang-en">Usage Guidelines</h3>
                     <h3 class="lang-ja">利用ガイド</h3>
                     
-                    <p class="lang-zh">跨國協作團隊在討論訪談文本時，常因為語言隔閡或文化差異（如不理解什麼是「格外品」、「契作」、「巡田水」）而導致理解落差。此 Prompt 能一鍵產生平行對照表格，並自動在備註欄補上台灣特有詞彙的脈絡背景解釋，是跨國團隊對齊認知、進行協作編碼的核心工具。</p>
-                    <p class="lang-en">Cross-border teams often face communication barriers due to cultural nuances like "ugly produce" or "co-farming." This prompt creates a parallel trilingual table and appends context footnotes, aligning terms and allowing collaborative coding.</p>
-                    <p class="lang-ja">多国籍チームがインタビュー結果を分析する際、台湾農村独自の用語や習慣（「規格外品」、「契約栽培」、「水路の見回り」など）の背景が伝わりにくいことがあります。このプロンプトは対照表を作成し、備考欄で文化的背景を解説することで、チームの共通理解を支援します。</p>
+                    <p class="lang-zh">跨國協作團隊在討論訪談文本時，常因為語言隔閡或文化差異（如不理解什麼是「格外品」、「契作」、「巡田水」）而導致理解落差。此 Prompt 能一鍵產生三語對照的 HTML 網頁代碼，存檔後即可用瀏覽器打開，是跨國團隊對齊認知、進行協作編碼的核心工具。</p>
+                    <p class="lang-en">Cross-border teams often face communication barriers due to cultural nuances. This prompt creates a parallel trilingual HTML page and appends context footnotes, aligning terms and allowing collaborative coding via any browser.</p>
+                    <p class="lang-ja">多国籍チームがインタビュー結果を分析する際、台湾農民独自の用語や習慣の背景が伝わりにくいことがあります。このプロンプトは三言語対照の HTML コードを出力し、備考欄で文化的背景を解説することで、チームの共通理解を支援します。</p>
                     
                     <ul>
-                        <li class="lang-zh"><strong>三語平行對照</strong>：中、英、日並列，方便直接比對語境。</li>
-                        <li class="lang-en"><strong>Trilingual Parallel Table</strong>: Chinese, English, and Japanese side-by-side.</li>
-                        <li class="lang-ja"><strong>三言語対照</strong>：中・英・日を並べて表示し、語彙の違いを視覚的に比較。</li>
+                        <li class="lang-zh"><strong>三語並列 HTML</strong>：中、英、日三欄平行對照，比對語境與翻譯極為流暢。</li>
+                        <li class="lang-en"><strong>Trilingual Column Layout</strong>: Chinese, English, and Japanese side-by-side in responsive grids.</li>
+                        <li class="lang-ja"><strong>三カ国語対照 HTML</strong>：中・英・日を並べて表示し、語彙の違いを視覚的に比較。</li>
                         
-                        <li class="lang-zh"><strong>自動文化備註</strong>：自動為老農、格外品等詞語加上背景註記。</li>
-                        <li class="lang-en"><strong>Cultural Footnotes</strong>: Background explanations for rural terms.</li>
+                        <li class="lang-zh"><strong>自動文化脈絡</strong>：老農、格外品等詞語於最下方附有英日雙語文化解說。</li>
+                        <li class="lang-en"><strong>Cultural Context</strong>: Important Taiwanese terms are parsed and explained in English/Japanese.</li>
                         <li class="lang-ja"><strong>文化的注釈</strong>：台湾独特の農村表現に対し、自動で英日の文脈注釈を追加。</li>
                     </ul>
                 </div>
@@ -605,18 +605,70 @@
 ---
 
 ### 輸出格式與載體要求
-請以 **「純文字 Markdown 表格 (TXT)」** 或 **「HTML 表格」** 格式輸出，表格欄位如下：
+請輸出一份完整的 **「三語並列 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左、中、右三欄完美對稱，在手機上則會自動適應，可讀性極高。請使用以下結構並填入翻譯內容，不要省略任何 CSS 樣式：
 
-| 發言者 | 中文對話 (Chinese) | 英文翻譯 (English) | 日文翻譯 (Japanese) | 備註與文化說明 (Remarks & Cultural Notes) |
-| :--- | :--- | :--- | :--- | :--- |
-| （發言者） | （中文原話） | （對應英文翻譯，保留語氣） | （對應日文翻譯，保留語氣） | （台灣特有詞彙的英日文脈絡解釋，若無則留空） |
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-Hant"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;三語對照訪談手札&lt;/title&gt;
+&lt;style&gt;
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1000px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .meta-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e7e5e4; padding-bottom: 8px; margin-bottom: 12px; }
+  .speaker { font-weight: 700; font-size: 1rem; }
+  .speaker.interviewer { color: #1c3d27; }
+  .speaker.interviewee { color: #b35c24; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 768px) {
+    .grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  }
+  .lang-col { padding: 12px; border-radius: 8px; background: #fafaf9; border: 1px solid #f5f5f4; }
+  .lang-label { font-size: 0.75em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .text { font-size: 0.95em; line-height: 1.7; }
+  .cultural-note { margin-top: 12px; padding: 12px; background: #fffbeb; border-left: 4px solid #d97706; border-radius: 4px; font-size: 0.88em; line-height: 1.6; }
+  .note-title { font-weight: 700; color: #b45309; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div class="header-title"&gt;三語對照訪談手札&lt;/div&gt;
 
----
+  &lt;!-- 對話對照列範例 --&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="meta-header"&gt;
+      &lt;div class="speaker interviewee"&gt;受訪者：賴大哥&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="grid"&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around.&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農（地元の高齢農家）たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="cultural-note"&gt;
+      &lt;div class="note-title"&gt;台灣農村脈絡解說 (Cultural Notes)&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;[老農]&lt;/strong&gt;&lt;br&gt;EN: Refers to elderly traditional farmers in Taiwan.&lt;br&gt;JA: 台湾の伝統的な高齢農家を指す言葉。&lt;br&gt;&lt;br&gt;&lt;strong&gt;[手無縛雞之力]&lt;/strong&gt;&lt;br&gt;EN: A Chinese idiom meaning physically weak or lacking physical strength.&lt;br&gt;JA: 四字熟語。鶏を縛る力もないほど、体力がなくひ弱な様子。&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 
-### 輸出範例
-| 發言者 | 中文對話 (Chinese) | 英文翻譯 (English) | 日文翻譯 (Japanese) | 備註與文化說明 (Remarks & Cultural Notes) |
-| :--- | :--- | :--- | :--- | :--- |
-| 受訪者 | 呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。 | Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. | ええと、こちらは……実は最初は本当に難しかったんですよ。老農（地元の高齢農家）たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。 | **[老農]**&lt;br&gt;EN: Refers to elderly traditional farmers in Taiwan.&lt;br&gt;JA: 台湾の伝統的な高齢農家を指す言葉。&lt;br&gt;&lt;br&gt;**[手無縛雞之力]**&lt;br&gt;EN: A Chinese idiom meaning physically weak or lacking physical strength.&lt;br&gt;JA: 四字熟語。鶏を縛る力もないほど、体力がなくひ弱な様子。 |
+  &lt;!-- 請在此後依據上述範例格式填入所有訪談對話 --&gt;
+
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
 
 ---
 
@@ -641,18 +693,70 @@
 ---
 
 ### 輸出格式與載體要求
-請以 **「純文字 Markdown 表格 (TXT)」** 或 **「HTML 表格」** 格式輸出，表格欄位如下：
+請輸出一份完整的 **「三語並列 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左、中、右三欄完美對稱，在手機上則會自動適應，可讀性極高。請使用以下結構並填入翻譯內容，不要省略任何 CSS 樣式：
 
-| 發言者 | 中文對話 (Chinese) | 英文翻譯 (English) | 日文翻譯 (Japanese) | 備註與文化說明 (Remarks & Cultural Notes) |
-| :--- | :--- | :--- | :--- | :--- |
-| （發言者） | （中文原話） | （對應英文翻譯，保留語氣） | （對應日文翻譯，保留語氣） | （台灣特有詞彙的英日文脈絡解釋，若無則留空） |
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-Hant"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;三語對照訪談手札&lt;/title&gt;
+&lt;style&gt;
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1000px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .meta-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e7e5e4; padding-bottom: 8px; margin-bottom: 12px; }
+  .speaker { font-weight: 700; font-size: 1rem; }
+  .speaker.interviewer { color: #1c3d27; }
+  .speaker.interviewee { color: #b35c24; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 768px) {
+    .grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  }
+  .lang-col { padding: 12px; border-radius: 8px; background: #fafaf9; border: 1px solid #f5f5f4; }
+  .lang-label { font-size: 0.75em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .text { font-size: 0.95em; line-height: 1.7; }
+  .cultural-note { margin-top: 12px; padding: 12px; background: #fffbeb; border-left: 4px solid #d97706; border-radius: 4px; font-size: 0.88em; line-height: 1.6; }
+  .note-title { font-weight: 700; color: #b45309; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div class="header-title"&gt;三語對照訪談手札&lt;/div&gt;
 
----
+  &lt;!-- 對話對照列範例 --&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="meta-header"&gt;
+      &lt;div class="speaker interviewee"&gt;受訪者：賴大哥&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="grid"&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around.&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農（地元の高齢農家）たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="cultural-note"&gt;
+      &lt;div class="note-title"&gt;台灣農村脈絡解說 (Cultural Notes)&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;[老農]&lt;/strong&gt;&lt;br&gt;EN: Refers to elderly traditional farmers in Taiwan.&lt;br&gt;JA: 台湾の伝統的な高齢農家を指す言葉。&lt;br&gt;&lt;br&gt;&lt;strong&gt;[手無縛雞之力]&lt;/strong&gt;&lt;br&gt;EN: A Chinese idiom meaning physically weak or lacking physical strength.&lt;br&gt;JA: 四字熟語。鶏を縛る力もないほど、体力がなくひ弱な様子。&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 
-### 輸出範例
-| 發言者 | 中文對話 (Chinese) | 英文翻譯 (English) | 日文翻譯 (Japanese) | 備註與文化說明 (Remarks & Cultural Notes) |
-| :--- | :--- | :--- | :--- | :--- |
-| 受訪者 | 呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。 | Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. | ええと、こちらは……実は最初は本当に難しかったんですよ。老農（地元の高齢農家）たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。 | **[老農]**&lt;br&gt;EN: Refers to elderly traditional farmers in Taiwan.&lt;br&gt;JA: 台湾の伝統的な高齢農家を指す言葉。&lt;br&gt;&lt;br&gt;**[手無縛雞之力]**&lt;br&gt;EN: A Chinese idiom meaning physically weak or lacking physical strength.&lt;br&gt;JA: 四字熟語。鶏を縛る力もないほど、体力がなくひ弱な様子。 |
+  &lt;!-- 請在此後依據上述範例格式填入所有訪談對話 --&gt;
+
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
 
 ---
 
@@ -737,7 +841,7 @@
                 <a href="challenge_5.html" class="drawer-sub-item">
                     <span class="lang-zh">任務 5 農產原料的華麗變身</span>
                     <span class="lang-en">Task 5 Value Transformation</span>
-                    <span class="lang-ja">任務 5 農産加工品とブランド価値向上</span>
+                    <span class="lang-ja">任務 5 農産加工品とブランド價值向上</span>
                 </a>
                 <a href="challenge_6.html" class="drawer-sub-item">
                     <span class="lang-zh">任務 6 農田變教室的體驗魔法</span>
