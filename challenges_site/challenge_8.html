@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>2026 泰拉學校：地之校｜八大生存挑戰</title>
   <script>
-    if (localStorage.getItem('terra-authorized') !== 'true') {
+    if (localStorage.getItem('terra-authorized') !== 'true' && sessionStorage.getItem('terra-authorized') !== 'true') {
       window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
     }
   </script>
