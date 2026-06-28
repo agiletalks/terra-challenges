@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <script>
+        if (localStorage.getItem('terra-authorized') !== 'true' && sessionStorage.getItem('terra-authorized') !== 'true') {
+            window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰拉學校｜語音轉逐字稿 Prompt (STT to Transcript Prompt)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-card: #ffffff;
+            --text-primary: #1C2421;
+            --text-secondary: #6B7280;
+            --accent-color: #B35C24; /* clay terracotta */
+            --accent-hover: #A04B19;
+            --accent-green: #0F2A1C; /* deep forest green */
+            --accent-green-hover: #1A3D2C;
+            --border-color: rgba(15, 42, 28, 0.08);
+            --code-bg: #F3F6F4;
+            --shadow-sm: 0 4px 12px rgba(15, 42, 28, 0.03);
+            --shadow-md: 0 20px 40px rgba(15, 42, 28, 0.03);
+            --header-bg: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&q=80&w=1200');
+            --badge-bg: #FAF5F0;
+            --badge-text: #B35C24;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0F2A1C;
+            --bg-card: #153A27;
+            --text-primary: #FAF8F5;
+            --text-secondary: #94A3B8;
+            --accent-color: #F59E0B;
+            --accent-hover: #D97706;
+            --accent-green: #4ADE80;
+            --accent-green-hover: #22C55E;
+            --border-color: rgba(250, 248, 245, 0.1);
+            --code-bg: #1c3527;
+            --header-bg: linear-gradient(135deg, rgba(9, 31, 17, 0.9) 0%, rgba(6, 17, 11, 0.98) 100%), url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&q=80&w=1200');
+            --badge-bg: rgba(74, 222, 128, 0.1);
+            --badge-text: #4ADE80;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+
+        /* Header */
+        header {
+            background: var(--header-bg);
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Controls */
+        .theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                grid-template-columns: 350px 1fr;
+            }
+        }
+
+        /* Sidebar / Sidebar Cards */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-card h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .info-card p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info-card li {
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 18px;
+            color: var(--text-secondary);
+        }
+
+        .info-card li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Right Content Panel */
+        .content-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .panel-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .panel-card h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .prompt-container {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            white-space: pre-wrap;
+            word-break: break-all;
+            position: relative;
+            margin-bottom: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .copy-btn {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Header Actions */
+        .header-actions {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .hamburger-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lang-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2px;
+            backdrop-filter: blur(4px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4px 12px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: #ffffff;
+            color: #123c24;
+        }
+
+        /* Multi-Language Visibility */
+        body[lang-select="zh"] .lang-zh { display: block; }
+        body[lang-select="zh"] .lang-en { display: none; }
+        body[lang-select="zh"] .lang-ja { display: none; }
+        body[lang-select="zh"] span.lang-zh { display: inline; }
+        body[lang-select="zh"] span.lang-en { display: none; }
+        body[lang-select="zh"] span.lang-ja { display: none; }
+
+        body[lang-select="en"] .lang-zh { display: none; }
+        body[lang-select="en"] .lang-en { display: block; }
+        body[lang-select="en"] .lang-ja { display: none; }
+        body[lang-select="en"] span.lang-zh { display: none; }
+        body[lang-select="en"] span.lang-en { display: inline; }
+        body[lang-select="en"] span.lang-ja { display: none; }
+
+        body[lang-select="ja"] .lang-zh { display: none; }
+        body[lang-select="ja"] .lang-en { display: none; }
+        body[lang-select="ja"] .lang-ja { display: block; }
+        body[lang-select="ja"] span.lang-zh { display: none; }
+        body[lang-select="ja"] span.lang-en { display: none; }
+        body[lang-select="ja"] span.lang-ja { display: inline; }
+
+        /* Navigation Drawer Overlay */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10000;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-drawer.open {
+            visibility: visible;
+        }
+
+        .nav-drawer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 42, 28, 0.4);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-drawer.open .nav-drawer-overlay {
+            opacity: 1;
+        }
+
+        .nav-drawer-content {
+            position: absolute;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100%;
+            background: #0f2a1c; /* solid dark green matching other drawers */
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+            transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            overflow-y: auto;
+            color: #ffffff;
+        }
+
+        .nav-drawer.open .nav-drawer-content {
+            left: 0;
+        }
+
+        .drawer-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .drawer-close-btn:hover {
+            color: #ffffff;
+        }
+
+        .drawer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 10px;
+        }
+
+        .drawer-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
+        .drawer-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer-brand-text .brand-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .drawer-brand-text .brand-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        .drawer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .drawer-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        .drawer-nav-item.active {
+            background: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .drawer-sub-item {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 16px 10px 48px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .drawer-sub-item::before {
+            content: "";
+            position: absolute;
+            left: 28px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .drawer-sub-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+        }
+
+        .drawer-sub-item.active {
+            color: var(--accent-color);
+            font-weight: 700;
+            background: rgba(179, 92, 36, 0.08);
+        }
+
+        .drawer-sub-item.active::before {
+            background: var(--accent-color);
+        }
+
+        .nav-icon {
+            opacity: 0.8;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body lang-select="zh" data-theme="light">
+
+    <!-- Header Actions (Hamburger & Lang Switcher) -->
+    <div class="header-actions">
+        <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="zh" onclick="setLanguage('zh')">繁中</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="lang-zh">深色模式</span>
+            <span class="lang-en">Dark Mode</span>
+            <span class="lang-ja">ダークモード</span>
+        </button>
+
+        <h1 class="lang-zh">語音轉逐字稿 Prompt</h1>
+        <h1 class="lang-en">Voice to Transcript Prompt</h1>
+        <h1 class="lang-ja">音声文字起こしプロンプト</h1>
+        
+        <p class="lang-zh">本工具專為整理訪談原始語音/文字（STT）所設計。一鍵複製提示詞，貼入大型語言模型即可生成整齊的高品質逐字稿。</p>
+        <p class="lang-en">This tool is designed to clean up raw interview transcripts. Copy the prompt to organize raw STT text into formatted transcripts via AI.</p>
+        <p class="lang-ja">インタビューの音声認識（STT）テキストを整理するために設計されています。プロンプトをコピーしてAIに入力し、高品質な逐字録を作成できます。</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Left Sidebar: Guide -->
+        <div class="sidebar">
+            <div class="info-card">
+                <h3 class="lang-zh">💡 使用指引</h3>
+                <h3 class="lang-en">💡 Usage Guidelines</h3>
+                <h3 class="lang-ja">💡 利用ガイド</h3>
+                
+                <p class="lang-zh">在進行田野訪談時，錄音檔經由語音轉文字（STT）軟體產生的原始文字通常雜亂無章。此 Prompt 能引導 AI 梳理說話者、修正錯字、補上標點，且忠實保留贅詞與口語感，是進行質性分析編碼（Qualitative Coding）前的必要準備步驟。</p>
+                <p class="lang-en">When conducting field interviews, raw text generated by speech-to-text (STT) software is often messy. This prompt guides AI to distinguish speakers, correct typos, insert punctuation, while faithfully preserving colloquial tones—essential before qualitative coding.</p>
+                <p class="lang-ja">フィールドワークで得た録音データを音声認識ソフトでテキスト化した際、段落分けや句読点がないなど乱雑になりがちです。このプロンプトは、発言者の区別、誤字修正、句読点挿入をAIに指示しつつ、口癖やニュアンスを忠実に残した逐字録を作成します。</p>
+                
+                <ul>
+                    <li class="lang-zh"><strong>保留口語詞</strong>：不刻意美化，保留贅詞（呃、那個）以分析口氣。</li>
+                    <li class="lang-en"><strong>Colloquialism</strong>: Preserve filler words for authentic tone analysis.</li>
+                    <li class="lang-ja"><strong>話し言葉の維持</strong>：相槌や口癖を残し、語り手のニュアンスを保存します。</li>
+                    
+                    <li class="lang-zh"><strong>泰拉訪談範例</strong>：以穀東俱樂部與老農溝通為範本對接情境。</li>
+                    <li class="lang-en"><strong>Terra Context</strong>: Example utilizes farmers and community contracts.</li>
+                    <li class="lang-ja"><strong>テラ文脈</strong>：地元の老農と新規移住者の交渉を元に例文を設計。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Content Panel -->
+        <div class="content-panel">
+            <div class="panel-card">
+                <h2 class="lang-zh">🤖 語音轉逐字稿提示詞範本</h2>
+                <h2 class="lang-en">🤖 Voice to Transcript Template</h2>
+                <h2 class="lang-ja">🤖 テンプレート</h2>
+                
+                <p class="lang-zh" style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 16px;">
+                    請複製下方區塊的完整提示詞，並將其貼入大型語言模型中（如 Gemini 2.5 或 ChatGPT）。
+                </p>
+                <p class="lang-en" style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 16px;">
+                    Copy the complete prompt in the container below and paste it into your AI model (e.g. Gemini or ChatGPT).
+                </p>
+                <p class="lang-ja" style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 16px;">
+                    コンテナ内のプロンプト全体をコピーし、AIモデル（GeminiやChatGPTなど）に入力してください。
+                </p>
+                
+                <div class="prompt-container" id="promptTextContainer"><template id="rawPromptText">你現在是一位資深的質化研究專家與學術編輯。我將提供你一段由語音轉文字（STT）軟體產生的原始訪談文本。這段文本目前缺乏標點符號、沒有區分發言者，且包含部分錯字。
+
+請幫我完成以下任務，並嚴格遵循後續的格式要求：
+
+### 任務說明
+1. **區分發言者與重整語氣**：將文本區分為「訪談者：研究員」與「受訪者」。
+2. **保留真實口語感（不要過度美化）**：為了讓研究者理解真實的逐字稿樣貌，請保留受訪者語音中的贅詞（如：呃、那個、其實、就是說）、猶豫停頓（用「……」表示）、自我修正與回頭補充的口語語調。
+
+---
+
+### 輸出格式與載體要求
+請選擇以 **「純文字 Markdown 表格 (TXT)」** 或 **「HTML 表格」** 格式輸出，以便複製與排版。表格欄位如下：
+
+| 發言者 | 訪談對話 (Transcript) | 備註 (Remarks) |
+| :--- | :--- | :--- |
+| 訪談者 | （訪談者的提問或引言） | （此欄留空） |
+| 受訪者 | （受訪者的口語原話，包含原始語氣與贅詞） | （此欄留空，或標記受訪者當時的語氣/動作，例如：笑、嘆氣） |
+
+---
+
+### 輸出範例（以純文字 Markdown 表格/TXT 為例）
+| 發言者 | 訪談對話 (Transcript) | 備註 (Remarks) |
+| :--- | :--- | :--- |
+| 訪談者 | 賴大哥您好，想請教您當初決定在深溝村推動「穀東俱樂部」時，一開始是怎麼跟當地的老農溝通，讓他們願意把農地租給你們這群都市來的年輕人？ | |
+| 受訪者 | 呃，這個……其實一開始真的非常難啦。老農他們看我們就是……那個都市來的書生，手無毀雞之力嘛，覺得我們只是來玩玩的、根本待不久。所以我那時候就是天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作，其實就是說……用行動證明啦。後來大家熟了，他看我們是玩真的，才慢慢願意開口跟我們聊，願意把地交給我們。 | (受訪者回憶早期溝通，語帶感慨) |
+
+---
+
+### 原始訪談文本輸入
+
+請根據上述規則，重構以下原始文本：
+
+【請在此處貼上您的 STT 原始文字】</template>你現在是一位資深的質化研究專家與學術編輯。我將提供你一段由語音轉文字（STT）軟體產生的原始訪談文本。這段文本目前缺乏標點符號、沒有區分發言者，且包含部分錯字。
+
+請幫我完成以下任務，並嚴格遵循後續的格式要求：
+
+### 任務說明
+1. **區分發言者與重整語氣**：將文本區分為「訪談者：研究員」與「受訪者」。
+2. **保留真實口語感（不要過度美化）**：為了讓研究者理解真實的逐字稿樣貌，請保留受訪者語音中的贅詞（如：呃、那個、其實、就是說）、猶豫停頓（用「……」表示）、自我修正與回頭補充的口語語調。
+
+---
+
+### 輸出格式與載體要求
+請選擇以 **「純文字 Markdown 表格 (TXT)」** 或 **「HTML 表格」** 格式輸出，以便複製與排版。表格欄位如下：
+
+| 發言者 | 訪談對話 (Transcript) | 備註 (Remarks) |
+| :--- | :--- | :--- |
+| 訪談者 | （訪談者的提問或引言） | （此欄留空） |
+| 受訪者 | （受訪者的口語原話，包含原始語氣與贅詞） | （此欄留空，或標記受訪者當時的語氣/動作，例如：笑、嘆氣） |
+
+---
+
+### 輸出範例（以純文字 Markdown 表格/TXT 為例）
+| 發言者 | 訪談對話 (Transcript) | 備註 (Remarks) |
+| :--- | :--- | :--- |
+| 訪談者 | 賴大哥您好，想請教您當初決定在深溝村推動「穀東俱樂部」時，一開始是怎麼跟當地的老農溝通，讓他們願意把農地租給你們這群都市來的年輕人？ | |
+| 受訪者 | 呃，這個……其實一開始真的非常難啦。老農他們看我們就是……那個都市來的書生，手無毀雞之力嘛，覺得我們只是來玩玩的、根本待不久。所以我那時候就是天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作，其實就是說……用行動證明啦。後來大家熟了，他看我們是玩真的，才慢慢願意開口跟我們聊，願意把地交給我們。 | (受訪者回憶早期溝通，語帶感慨) |
+
+---
+
+### 原始訪談文本輸入
+
+請根據上述規則，重構以下原始文本：
+
+【請在此處貼上您的 STT 原始文字】</div>
+                
+                <button class="copy-btn" onclick="copyPrompt()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="lang-zh" id="copyBtnText">複製提示詞</span>
+                    <span class="lang-en" id="copyBtnTextEn">Copy Prompt</span>
+                    <span class="lang-ja" id="copyBtnTextJa">プロンプトをコピー</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Drawer Overlay -->
+    <div class="nav-drawer" id="navDrawer">
+        <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+        <div class="nav-drawer-content">
+            <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu" style="padding: 10px; background: transparent; border: none; cursor: pointer;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="drawer-brand">
+                <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="drawer-logo">
+                <div class="drawer-brand-text">
+                    <span class="brand-title">TERRA</span>
+                    <span class="brand-subtitle lang-zh">地之校手冊</span>
+                    <span class="brand-subtitle lang-en">Manual</span>
+                    <span class="brand-subtitle lang-ja">マニュアル</span>
+                </div>
+            </div>
+            <nav class="drawer-nav">
+                <a href="index.html" class="drawer-nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span class="lang-zh">行程指南</span>
+                    <span class="lang-en">Itinerary</span>
+                    <span class="lang-ja">日程ガイド</span>
+                </a>
+                <a href="members.html" class="drawer-nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span class="lang-zh">分組名冊</span>
+                    <span class="lang-en">Roster</span>
+                    <span class="lang-ja">名簿</span>
+                </a>
+                <a href="eight_challenges.html" class="drawer-nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <span class="lang-zh">生存挑戰</span>
+                    <span class="lang-en">Challenge Quests</span>
+                    <span class="lang-ja">生存課題</span>
+                </a>
+                <a href="challenge_1.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 1 落腳的第一坪空間</span>
+                    <span class="lang-en">Task 1 Housing & Utilities</span>
+                    <span class="lang-ja">任務 1 生活立脚の第一步</span>
+                </a>
+                <a href="challenge_2.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 2 打入庄頭的隱形鑰匙</span>
+                    <span class="lang-en">Task 2 Community Integration</span>
+                    <span class="lang-ja">任務 2 コミュニティ信頼構築</span>
+                </a>
+                <a href="challenge_3.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 3 農作起步的探索指針</span>
+                    <span class="lang-en">Task 3 Farming Operations</span>
+                    <span class="lang-ja">任務 3 農業展開の探索指標</span>
+                </a>
+                <a href="challenge_4.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 4 農村職人的家之課題</span>
+                    <span class="lang-en">Task 4 Rural Artisans & Housing</span>
+                    <span class="lang-ja">任務 4 農村職人の住環境</span>
+                </a>
+                <a href="challenge_5.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 5 農產原料的華麗變身</span>
+                    <span class="lang-en">Task 5 Value Transformation</span>
+                    <span class="lang-ja">任務 5 農産加工品とブランド價值向上</span>
+                </a>
+                <a href="challenge_6.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 6 農田變教室的體驗魔法</span>
+                    <span class="lang-en">Task 6 Farm to Classroom</span>
+                    <span class="lang-ja">任務 6 體驗魔法與食農教育服務</span>
+                </a>
+                <a href="challenge_7.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 7 穀東盟約的終身鐵粉</span>
+                    <span class="lang-en">Task 7 The Supporter Covenant</span>
+                    <span class="lang-ja">任務 7 CSAとコミュニティ支援型農業</span>
+                </a>
+                <a href="challenge_8.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 8 都市青年的第二身分</span>
+                    <span class="lang-en">Task 8 The Second Identity</span>
+                    <span class="lang-ja">任務 8 「半農半X」と複業キャリアデザイン</span>
+                </a>
+                <a href="../design-thinking/design-thinking.html" class="drawer-nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="3" y1="9" x2="9" y2="9"></line></svg>
+                    <span class="lang-zh">工具箱</span>
+                    <span class="lang-en">Toolbox</span>
+                    <span class="lang-ja">ツールボックス</span>
+                </a>
+                <div class="drawer-category-header" style="padding: 10px 16px 4px 48px; font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
+                    <span class="lang-zh">📁 檔案下載</span>
+                    <span class="lang-en">📁 Files</span>
+                    <span class="lang-ja">📁 ファイル</span>
+                </div>
+                <a href="../design-thinking/design-thinking.html" class="drawer-sub-item">
+                    <span class="lang-zh">design-thinking-101</span>
+                    <span class="lang-en">design-thinking-101</span>
+                    <span class="lang-ja">design-thinking-101</span>
+                </a>
+                <div class="drawer-category-header" style="padding: 12px 16px 4px 48px; font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
+                    <span class="lang-zh">🤖 AI 提示詞</span>
+                    <span class="lang-en">🤖 AI Prompts</span>
+                    <span class="lang-ja">🤖 AIプロンプト</span>
+                </div>
+                <a href="prompt_for_ai_desk_research.html" class="drawer-sub-item">
+                    <span class="lang-zh">案頭研究prompt</span>
+                    <span class="lang-en">Desk Research Prompt</span>
+                    <span class="lang-ja">デスク研究プロンプト</span>
+                </a>
+                <a href="prompt_for_voice_to_transcript.html" class="drawer-sub-item active">
+                    <span class="lang-zh">語音轉逐字稿prompt</span>
+                    <span class="lang-en">Voice to Transcript Prompt</span>
+                    <span class="lang-ja">音声文字起こしプロンプト</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Set default language from localStorage or default
+        const savedLang = localStorage.getItem('terra-lang') || 'zh';
+        document.body.setAttribute('lang-select', savedLang);
+        
+        function setLanguage(lang) {
+            document.body.setAttribute('lang-select', lang);
+            localStorage.setItem('terra-lang', lang);
+            
+            // Sync all active language buttons
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        // Initialize Lang Selector active state on load
+        setLanguage(savedLang);
+
+        // Theme management
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Hamburger Drawer Menu Controller
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerClose = document.getElementById('drawerClose');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        if (menuToggle && navDrawer) {
+            menuToggle.addEventListener('click', () => navDrawer.classList.add('open'));
+            drawerClose.addEventListener('click', () => navDrawer.classList.remove('open'));
+            drawerOverlay.addEventListener('click', () => navDrawer.classList.remove('open'));
+        }
+
+        // Copy functionality
+        function copyPrompt() {
+            const rawText = document.getElementById('rawPromptText').innerHTML;
+            
+            navigator.clipboard.writeText(rawText).then(() => {
+                const zhText = document.getElementById('copyBtnText');
+                const enText = document.getElementById('copyBtnTextEn');
+                const jaText = document.getElementById('copyBtnTextJa');
+                
+                // Save original values
+                const origZh = zhText.innerText;
+                const origEn = enText.innerText;
+                const origJa = jaText.innerText;
+                
+                // Show success
+                zhText.innerText = "已複製！";
+                enText.innerText = "Copied!";
+                jaText.innerText = "コピー完了！";
+                
+                setTimeout(() => {
+                    zhText.innerText = origZh;
+                    enText.innerText = origEn;
+                    jaText.innerText = origJa;
+                }, 2000);
+            }).catch(err => {
+                alert("Failed to copy: " + err);
+            });
+        }
+    </script>
+</body>
+</html>
