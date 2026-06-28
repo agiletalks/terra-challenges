@@ -309,9 +309,16 @@
             word-break: break-all;
             position: relative;
             margin-bottom: 20px;
-            max-height: 600px;
+            max-height: 400px;
             overflow-y: auto;
             border-left: 4px solid var(--accent-color);
+        }
+
+        .actions-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .copy-btn {
@@ -332,6 +339,58 @@
         .copy-btn:hover {
             background-color: var(--accent-hover);
             transform: translateY(-1px);
+        }
+
+        .secondary-btn {
+            background-color: var(--accent-green);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--accent-green-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Sandbox Styles */
+        .sandbox-textarea {
+            width: 100%;
+            height: 150px;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+            margin-bottom: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .sandbox-textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 500px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: white;
+            margin-top: 20px;
+            display: none;
+            box-shadow: var(--shadow-sm);
         }
 
         /* Navigation Drawer */
@@ -555,24 +614,26 @@
                     <h3 class="lang-en">Usage Guidelines</h3>
                     <h3 class="lang-ja">利用ガイド</h3>
                     
-                    <p class="lang-zh">跨國協作團隊在討論訪談文本時，常因為語言隔閡或文化差異（如不理解什麼是「格外品」、「契作」、「巡田水」）而導致理解落差。此 Prompt 能一鍵產生三語對照的 HTML 網頁代碼，存檔後即可用瀏覽器打開，是跨國團隊對齊認知、進行協作編碼的核心工具。</p>
-                    <p class="lang-en">Cross-border teams often face communication barriers due to cultural nuances. This prompt creates a parallel trilingual HTML page and appends context footnotes, aligning terms and allowing collaborative coding via any browser.</p>
-                    <p class="lang-ja">多国籍チームがインタビュー結果を分析する際、台湾農民独自の用語や習慣の背景が伝わりにくいことがあります。このプロンプトは三言語対照の HTML コードを出力し、備考欄で文化的背景を解説することで、チームの共通理解を支援します。</p>
+                    <p class="lang-zh">跨國協作團隊在討論訪談文本時，常因為語言隔閡或文化差異（如不理解什麼是「格外品」、「契作」、「巡田水」）而導致理解落差。此 Prompt 能一鍵產生三語對照的 HTML 網頁代碼。您也可以使用下方的工具，將 AI 生成的 HTML 代碼進行即時預覽與一鍵下載！</p>
+                    <p class="lang-en">Cross-border teams often face communication barriers due to cultural nuances. This prompt creates a parallel trilingual HTML page. You can also use the tool below to preview and download your AI-generated HTML.</p>
+                    <p class="lang-ja">多国籍チームがインタビュー結果を分析する際、台湾農民独自の用語や習慣の背景が伝わりにくいことがあります。このプロンプトは三言語対照の HTML コードを出力します。下部のツールを使用しプレビューとダウンロードも可能です。</p>
                     
                     <ul>
                         <li class="lang-zh"><strong>三語並列 HTML</strong>：中、英、日三欄平行對照，比對語境與翻譯極為流暢。</li>
                         <li class="lang-en"><strong>Trilingual Column Layout</strong>: Chinese, English, and Japanese side-by-side in responsive grids.</li>
                         <li class="lang-ja"><strong>三カ国語対照 HTML</strong>：中・英・日を並べて表示し、語彙の違いを視覚的に比較。</li>
                         
-                        <li class="lang-zh"><strong>自動文化脈絡</strong>：老農、格外品等詞語於最下方附有英日雙語文化解說。</li>
-                        <li class="lang-en"><strong>Cultural Context</strong>: Important Taiwanese terms are parsed and explained in English/Japanese.</li>
-                        <li class="lang-ja"><strong>文化的注釈</strong>：台湾独特の農村表現に対し、自動で英日の文脈注釈を追加。</li>
+                        <li class="lang-zh"><strong>即時預覽與下載</strong>：無須記事本，直接貼入下方工具，即時渲染並一鍵打包為 .html 檔案。</li>
+                        <li class="lang-en"><strong>Preview & Download</strong>: No Notepad needed. Paste code below to render instantly and download with one click.</li>
+                        <li class="lang-ja"><strong>プレビューとDL</strong>：下部のツールに貼り付けるだけで、即座にプレビュー・ワンクリックで .html 保存。</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Right Content Panel -->
             <div class="content-panel">
+                
+                <!-- Card 1: Prompt Template -->
                 <div class="panel-card">
                     <h2 class="lang-zh">提示詞範本</h2>
                     <h2 class="lang-en">Prompt Template</h2>
@@ -605,7 +666,7 @@
 ---
 
 ### 輸出格式與載體要求
-請輸出一份完整的 **「三語並列 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左、中、右三欄完美對稱，在手機上則會自動適應，可讀性極高。請使用以下結構並填入翻譯內容，不要省略任何 CSS 樣式：
+請輸出一份完整的 **「三語並列 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左、中、右三欄完美對稱，在手機上則會自動適應，可讀性極高。請使用以下結構並填入翻譯內容，不要省略 any CSS 樣式：
 
 ```html
 &lt;!DOCTYPE html&gt;
@@ -638,7 +699,6 @@
 &lt;div class="container"&gt;
   &lt;div class="header-title"&gt;三語對照訪談手札&lt;/div&gt;
 
-  &lt;!-- 對話對照列範例 --&gt;
   &lt;div class="row"&gt;
     &lt;div class="meta-header"&gt;
       &lt;div class="speaker interviewee"&gt;受訪者：賴大哥&lt;/div&gt;
@@ -662,8 +722,6 @@
       &lt;div&gt;&lt;strong&gt;[老農]&lt;/strong&gt;&lt;br&gt;EN: Refers to elderly traditional farmers in Taiwan.&lt;br&gt;JA: 台湾の伝統的な高齢農家を指す言葉。&lt;br&gt;&lt;br&gt;&lt;strong&gt;[手無縛雞之力]&lt;/strong&gt;&lt;br&gt;EN: A Chinese idiom meaning physically weak or lacking physical strength.&lt;br&gt;JA: 四字熟語。鶏を縛る力もないほど、体力がなくひ弱な様子。&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
-  &lt;!-- 請在此後依據上述範例格式填入所有訪談對話 --&gt;
 
 &lt;/div&gt;
 &lt;/body&gt;
@@ -693,7 +751,7 @@
 ---
 
 ### 輸出格式與載體要求
-請輸出一份完整的 **「三語並列 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左、中、右三欄完美對稱，在手機上則會自動適應，可讀性極高。請使用以下結構並填入翻譯內容，不要省略任何 CSS 樣式：
+請輸出一份完整的 **「三語並列 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左、中、右三欄完美對稱，在手機上則會自動適應，可讀性極高。請使用以下結構並填入翻譯內容，不要省略 any CSS 樣式：
 
 ```html
 &lt;!DOCTYPE html&gt;
@@ -726,7 +784,6 @@
 &lt;div class="container"&gt;
   &lt;div class="header-title"&gt;三語對照訪談手札&lt;/div&gt;
 
-  &lt;!-- 對話對照列範例 --&gt;
   &lt;div class="row"&gt;
     &lt;div class="meta-header"&gt;
       &lt;div class="speaker interviewee"&gt;受訪者：賴大哥&lt;/div&gt;
@@ -751,8 +808,6 @@
     &lt;/div&gt;
   &lt;/div&gt;
 
-  &lt;!-- 請在此後依據上述範例格式填入所有訪談對話 --&gt;
-
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -766,15 +821,79 @@
 
 【請在此處貼上您的中文逐字稿】</div>
                     
-                    <button class="copy-btn" onclick="copyPrompt()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        <span class="lang-zh" id="copyBtnText">複製提示詞</span>
-                        <span class="lang-en" id="copyBtnTextEn">Copy Prompt</span>
-                        <span class="lang-ja" id="copyBtnTextJa">プロンプトをコピー</span>
-                    </button>
+                    <div class="actions-row">
+                        <button class="copy-btn" onclick="copyPrompt()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span class="lang-zh" id="copyBtnText">複製提示詞</span>
+                            <span class="lang-en" id="copyBtnTextEn">Copy Prompt</span>
+                            <span class="lang-ja" id="copyBtnTextJa">プロンプトをコピー</span>
+                        </button>
+                        
+                        <button class="secondary-btn" onclick="downloadSampleFile()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span class="lang-zh">下載範例網頁</span>
+                            <span class="lang-en">Download Sample HTML</span>
+                            <span class="lang-ja">サンプルDL</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: HTML Sandbox Tool -->
+                <div class="panel-card">
+                    <h2 class="lang-zh">🛠️ HTML 即時預覽與下載工具</h2>
+                    <h2 class="lang-en">🛠️ HTML Live Preview & Download</h2>
+                    <h2 class="lang-ja">🛠️ プレビュー＆ダウンロードツール</h2>
+                    
+                    <p class="lang-zh" style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 16px;">
+                        請將 AI (Gemini / ChatGPT) 生成出來的 HTML 代碼完整貼在下方，即可點選「即時預覽」觀看精美網頁，或點選「下載網頁檔案」直接儲存為網頁檔！
+                    </p>
+                    <p class="lang-en" style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 16px;">
+                        Paste the HTML code generated by your AI below to preview it instantly, or download it directly as an HTML file!
+                    </p>
+                    <p class="lang-ja" style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 16px;">
+                        AIが生成したHTMLコードを以下に貼り付けると、その場でプレビュー確認やファイル保存ができます！
+                    </p>
+                    
+                    <textarea class="sandbox-textarea" id="sandboxCode" placeholder="<!-- 貼上 AI 生成的 HTML 代碼... -->"></textarea>
+                    
+                    <div class="actions-row">
+                        <button class="copy-btn" onclick="previewHTML()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <span class="lang-zh">即時預覽</span>
+                            <span class="lang-en">Live Preview</span>
+                            <span class="lang-ja">プレビュー</span>
+                        </button>
+                        
+                        <button class="secondary-btn" onclick="downloadSandboxFile()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span class="lang-zh">下載網頁檔案</span>
+                            <span class="lang-en">Download HTML File</span>
+                            <span class="lang-ja">ファイル保存</span>
+                        </button>
+                        
+                        <button class="secondary-btn" style="background-color: #6b7280;" onclick="clearSandbox()">
+                            <span class="lang-zh">清空</span>
+                            <span class="lang-en">Clear</span>
+                            <span class="lang-ja">クリア</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Preview Render Frame -->
+                    <iframe class="preview-frame" id="previewFrame"></iframe>
                 </div>
             </div>
         </div>
@@ -896,6 +1015,63 @@
         </div>
     </div>
 
+    <!-- Raw HTML Data Templates for Downloader -->
+    <template id="sampleHtmlTemplate">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-Hant"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;三語對照訪談手札範例&lt;/title&gt;
+&lt;style&gt;
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1000px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .meta-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e7e5e4; padding-bottom: 8px; margin-bottom: 12px; }
+  .speaker { font-weight: 700; font-size: 1rem; }
+  .speaker.interviewer { color: #1c3d27; }
+  .speaker.interviewee { color: #b35c24; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 768px) {
+    .grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  }
+  .lang-col { padding: 12px; border-radius: 8px; background: #fafaf9; border: 1px solid #f5f5f4; }
+  .lang-label { font-size: 0.75em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .text { font-size: 0.95em; line-height: 1.7; }
+  .cultural-note { margin-top: 12px; padding: 12px; background: #fffbeb; border-left: 4px solid #d97706; border-radius: 4px; font-size: 0.88em; line-height: 1.6; }
+  .note-title { font-weight: 700; color: #b45309; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div class="header-title"&gt;三語對照訪談手札 (範例)&lt;/div&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="meta-header"&gt;
+      &lt;div class="speaker interviewee"&gt;受訪者：賴大哥&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="grid"&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around.&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-col"&gt;
+        &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農（地元の高齢農家）たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="cultural-note"&gt;
+      &lt;div class="note-title"&gt;台灣農村脈絡解說 (Cultural Notes)&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;[老農]&lt;/strong&gt;&lt;br&gt;EN: Refers to elderly traditional farmers in Taiwan.&lt;br&gt;JA: 台湾の伝統的な高齢農家を指す言葉。&lt;br&gt;&lt;br&gt;&lt;strong&gt;[手無縛雞之力]&lt;/strong&gt;&lt;br&gt;EN: A Chinese idiom meaning physically weak or lacking physical strength.&lt;br&gt;JA: 四字熟語。鶏を縛る力もないほど、体力がなくひ弱な様子。&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</template>
+
     <script>
         // Set default language from localStorage or default
         const savedLang = localStorage.getItem('terra-lang') || 'zh';
@@ -946,12 +1122,10 @@
                 const enText = document.getElementById('copyBtnTextEn');
                 const jaText = document.getElementById('copyBtnTextJa');
                 
-                // Save original values
                 const origZh = zhText.innerText;
                 const origEn = enText.innerText;
                 const origJa = jaText.innerText;
                 
-                // Show success
                 zhText.innerText = "已複製！";
                 enText.innerText = "Copied!";
                 jaText.innerText = "コピー完了！";
@@ -964,6 +1138,68 @@
             }).catch(err => {
                 alert("Failed to copy: " + err);
             });
+        }
+
+        // Download static template sample file
+        function downloadSampleFile() {
+            const rawTemplate = document.getElementById('sampleHtmlTemplate').innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawTemplate, 'text/html').body.textContent;
+            
+            const blob = new Blob([decodedString], { type: 'text/html;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'trilingual_sample.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Sandbox Preview HTML function
+        function previewHTML() {
+            const code = document.getElementById('sandboxCode').value.trim();
+            const frame = document.getElementById('previewFrame');
+            
+            if (!code) {
+                alert("請先貼上 AI 生成的 HTML 代碼！\nPlease paste HTML code first!");
+                return;
+            }
+            
+            frame.style.display = 'block';
+            frame.srcdoc = code;
+            
+            // Scroll smoothly to preview
+            frame.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Sandbox Download HTML function
+        function downloadSandboxFile() {
+            const code = document.getElementById('sandboxCode').value.trim();
+            
+            if (!code) {
+                alert("請先貼上 AI 生成的 HTML 代碼！\nPlease paste HTML code first!");
+                return;
+            }
+            
+            const blob = new Blob([code], { type: 'text/html;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'trilingual_transcript.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Clear Sandbox
+        function clearSandbox() {
+            document.getElementById('sandboxCode').value = '';
+            const frame = document.getElementById('previewFrame');
+            frame.srcdoc = '';
+            frame.style.display = 'none';
         }
     </script>
 </body>
