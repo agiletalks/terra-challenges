@@ -1975,7 +1975,7 @@
       const hashedVal = await sha256(inputVal);
       if (correctHashes.includes(hashedVal)) {
         // Access granted!
-        sessionStorage.setItem('terra-authorized', 'true');
+        localStorage.setItem('terra-authorized', 'true');
         document.body.style.overflow = '';
         
         // Check for redirect param
@@ -2060,7 +2060,7 @@
             localStorage.setItem('theme', 'light');
             
       // Check auth status first
-      if (sessionStorage.getItem('terra-authorized') === 'true') {
+      if (localStorage.getItem('terra-authorized') === 'true') {
         const overlay = document.getElementById('gating-overlay');
         if (overlay) overlay.remove();
       } else {

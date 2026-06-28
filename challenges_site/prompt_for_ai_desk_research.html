@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+    <script>
+        if (localStorage.getItem('terra-authorized') !== 'true') {
+            window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>泰拉學校｜背景資訊生成器 (Background Brief Generator)</title>
