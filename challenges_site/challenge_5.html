@@ -1,0 +1,1492 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 泰拉學校：地之校｜八大生存挑戰</title>
+  <script>
+    if (sessionStorage.getItem('terra-authorized') !== 'true') {
+      window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;700;900&display=swap');
+    
+    :root {
+      --bg: #FAF8F5;
+      --card: #ffffff;
+      --ink: #1C2421;
+      --muted: #6B7280;
+      --line: rgba(15, 42, 28, 0.08);
+      --accent: #0F2A1C;
+      --accent-hover: #1A3D2C;
+      --accent-2: #B35C24;
+      --soft: #F3F6F4;
+      --soft-2: #FAF5F0;
+      --shadow: 0 20px 40px rgba(15, 42, 28, 0.03);
+      --radius: 16px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F2A1C;
+      --card: #153A27;
+      --ink: #FAF8F5;
+      --muted: #94A3B8;
+      --line: rgba(250, 248, 245, 0.1);
+      --accent: #4ADE80;
+      --accent-hover: #22C55E;
+      --accent-2: #F59E0B;
+      --soft: rgba(74, 222, 128, 0.1);
+      --soft-2: #2E2214;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 64px 32px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(22, 101, 52, 0.12);
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      margin: 16px auto 0;
+      max-width: 720px;
+      color: rgba(255,255,255,0.92);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .quest-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .quest-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(22, 101, 52, 0.08);
+    }
+    .quest-tag {
+      align-self: flex-start;
+      background: var(--soft-2);
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .quest-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .quest-subtitle {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 18px;
+      letter-spacing: 0.3px;
+    }
+    .quest-scenario {
+      background: var(--soft);
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      color: var(--ink);
+      font-style: italic;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--accent);
+      line-height: 1.5;
+    }
+    .quest-desc {
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .quest-desc p {
+      margin: 0;
+      line-height: 1.6;
+    }
+    .quest-output {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+    .quest-output-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent-2);
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+    
+    .rule-notice-box {
+      background: var(--soft-2);
+      border-left: 4px solid var(--accent-2);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 36px;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* Floating Switchers Styles */
+    
+    /* Brand Lockup (Logo + Typography) */
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 20px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .brand-icon {
+      height: 38px;
+      filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255,255,255,0.1));
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+    }
+    .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 2px;
+      margin-top: 2px;
+    }
+
+    /* Desktop Navigation styles */
+    
+    @media (min-width: 769px) {
+      
+    }
+    
+    
+    
+
+    /* Contextual Page Flow Navigation */
+    .page-flow-nav {
+      margin: 48px auto 24px auto;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-align: center;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+    .page-flow-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .page-flow-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .page-flow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 99px;
+      background: var(--bg-card, rgba(0,0,0,0.03));
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .page-flow-btn:hover {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    
+    
+    
+    
+    
+    
+
+    /* Language display overrides */
+    body[lang-select="zh"] .lang-en, body[lang-select="zh"] .lang-ja { display: none !important; }
+    body[lang-select="en"] .lang-zh, body[lang-select="en"] .lang-ja { display: none !important; }
+    body[lang-select="ja"] .lang-zh, body[lang-select="ja"] .lang-en { display: none !important; }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+  
+    /* Hero/Header Navigation Row Refactoring */
+    .hero-
+    
+    @media (min-width: 769px) {
+      .hero-
+      .hero-header 
+    }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Responsive Header & Actions Refactoring */
+    .hero-
+    
+    
+    @media (min-width: 769px) {
+      
+    }
+    @media (min-width: 1024px) {
+      .hero-
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    
+    
+    
+    
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Unified Layout & Wrap System */
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      background: var(--bg, var(--bg-primary, #FAF8F5));
+      color: var(--ink, var(--text-primary, #1C2421));
+      margin: 0;
+      padding: 0 !important;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 32px 24px 80px 24px;
+      position: relative;
+    }
+    
+    /* Header/Hero Styling */
+    header.hero, header {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      color: #ffffff !important;
+      padding: 64px 32px !important;
+      border-radius: 24px !important;
+      box-shadow: 0 20px 40px rgba(15, 42, 28, 0.03) !important;
+      margin-bottom: 40px !important;
+      text-align: center !important;
+      position: relative !important;
+      width: auto !important;
+      border: none !important;
+    }
+
+    /* Reconstructed Header & Actions Bar */
+    .hero-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+      width: 100%;
+    }
+    .hero-header .brand-lockup {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: auto;
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 4px;
+      border-radius: 99px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      width: fit-content;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .lang-btn.active {
+      background: var(--accent-2, var(--accent-color, #B35C24));
+      color: #ffffff;
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      width: 40px;
+      height: 40px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hamburger-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: scale(1.05);
+    }
+    .hamburger-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Navigation Drawer (Drawer & Overlay) */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      pointer-events: none;
+      visibility: hidden;
+      transition: visibility 0.3s;
+    }
+    .nav-drawer.open {
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .nav-drawer-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 42, 28, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .nav-drawer.open .nav-drawer-overlay {
+      opacity: 1;
+    }
+    .nav-drawer-content {
+      position: absolute;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100%;
+      background: rgba(28, 36, 33, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .nav-drawer.open .nav-drawer-content {
+      right: 0;
+    }
+
+    /* Drawer Branding & Elements */
+    .drawer-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .drawer-close-btn:hover {
+      color: #ffffff;
+    }
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 20px;
+    }
+    .drawer-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .drawer-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .drawer-brand-text .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+    .drawer-brand-text .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    /* Drawer Menu Links */
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .drawer-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+    .drawer-nav-item .nav-icon {
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+      color: currentColor;
+    }
+    .drawer-nav-item:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .drawer-nav-item:hover .nav-icon {
+      opacity: 1;
+    }
+    .drawer-nav-item.active {
+      color: #ffffff;
+      background: var(--accent-2, var(--accent-color, #B35C24));
+    }
+    .drawer-nav-item.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* Standalone Challenge Page Alignments */
+    .wrap {
+      max-width: 800px !important;
+      margin: 0 auto !important;
+      padding: 40px 24px !important;
+      box-sizing: border-box !important;
+    }
+    
+    .single-card-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 40px 0 20px 0 !important;
+      padding: 0 !important;
+      perspective: 1500px;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-front, .card-back {
+      width: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      box-sizing: border-box;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card-back {
+      transform: rotateY(180deg);
+    }
+    
+    /* Dynamic height management based on flipped state */
+    .card-inner:not(.flipped) .card-front {
+      position: relative;
+      z-index: 2;
+    }
+    .card-inner:not(.flipped) .card-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+    .card-inner.flipped .card-front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .card-inner.flipped .card-back {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .card-action-bar {
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      margin-top: 32px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .flip-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--accent);
+      color: #ffffff !important;
+      border: none;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(15, 42, 28, 0.1);
+    }
+    .flip-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 42, 28, 0.15);
+    }
+    .flip-btn:active {
+      transform: translateY(0);
+    }
+    
+    .flip-to-front-btn {
+      background: var(--muted);
+    }
+    .flip-to-front-btn:hover {
+      background: var(--ink);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Internal Layout & Typography */
+    .card-front .quest-tag {
+      background-color: var(--soft-2);
+      color: var(--accent-2);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border: 1px solid rgba(217, 119, 6, 0.15);
+      width: fit-content;
+      margin-bottom: 16px;
+    }
+    .card-front .quest-title {
+      font-size: 1.6rem !important;
+      font-weight: 900;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .card-front .quest-subtitle {
+      font-size: 1.1rem !important;
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+    .card-front .quest-scenario {
+      font-style: italic;
+      color: var(--muted);
+      border-left: 3px solid var(--accent-2);
+      padding-left: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+      font-size: 0.98rem;
+    }
+    .card-front .quest-desc {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .card-front .quest-output {
+      background: var(--soft);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      margin-bottom: 32px;
+    }
+    
+    .dossier-section-title {
+      font-size: 1.25rem !important;
+      font-weight: 850;
+      color: var(--accent);
+      border-top: 2px solid var(--line);
+      padding-top: 28px;
+      margin-top: 28px;
+      margin-bottom: 20px;
+    }
+
+    .section-card {
+        background-color: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+    }
+    .section-card h2 {
+        display: none !important;
+    }
+    .section-card h3 {
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+        color: var(--ink) !important;
+        margin: 28px 0 12px !important;
+    }
+    .purpose-text {
+        font-size: 1.0rem !important;
+        color: var(--ink);
+        margin-bottom: 16px;
+        line-height: 1.75;
+    }
+    .dossier-tag {
+        background-color: var(--soft-2);
+        color: var(--accent-2);
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem !important;
+        font-weight: 800;
+        border: 1px solid rgba(217, 119, 6, 0.15);
+    }
+    .sdg-badge {
+        background-color: rgba(22, 101, 52, 0.05);
+        color: var(--accent);
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem !important;
+        font-weight: 800;
+        border: 1px solid rgba(22, 101, 52, 0.15);
+    }
+    .pre-requisite-box {
+        background-color: rgba(217, 119, 6, 0.03);
+        border-left: 4px solid var(--accent-2);
+        border-radius: 4px 10px 10px 4px;
+        padding: 20px;
+        margin-bottom: 24px;
+        font-size: 0.98rem !important;
+        color: var(--ink);
+    }
+    .focus-area-block {
+        margin-top: 24px;
+        padding: 20px;
+        background-color: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+    }
+    .focus-area-header {
+        font-size: 1.1rem !important;
+        font-weight: 800;
+        color: var(--accent);
+        margin-bottom: 12px;
+    }
+    .focus-area-header .badge {
+        display: none !important;
+    }
+    .dimensions-label {
+      font-size: 0.95rem !important;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .dimensions-list {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .dimensions-list li {
+        position: relative;
+        padding-left: 18px;
+        font-size: 0.98rem !important;
+        line-height: 1.6;
+        color: var(--ink);
+    }
+    .dimensions-list li::before {
+        content: "•";
+        color: var(--accent-2);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+        line-height: 1.2;
+    }
+    .pfs-guide-box {
+        margin-top: 24px;
+        background-color: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 24px;
+    }
+    .pfs-guide-box h4 {
+        font-size: 1.0rem !important;
+        font-weight: 700 !important;
+        color: var(--accent) !important;
+        margin-bottom: 12px !important;
+    }
+    .pfs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    @media (max-width: 600px) {
+        .pfs-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .pfs-grid-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: var(--card);
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+    }
+    .pfs-grid-item strong {
+        font-size: 0.9rem !important;
+        color: var(--accent-2);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .pfs-grid-item span {
+        font-size: 0.95rem !important;
+        line-height: 1.6;
+        color: var(--ink);
+    }
+
+    /* Horizontal Nav Controls */
+    .challenge-nav-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 32px 0 60px 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box;
+    }
+    .nav-control-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-control-btn:hover {
+      background: var(--accent);
+      color: #ffffff !important;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .nav-control-btn.overview-btn {
+      background: var(--soft);
+      color: var(--accent);
+      border: 1px solid rgba(22, 101, 52, 0.15);
+    }
+    .nav-control-btn.overview-btn:hover {
+      background: var(--accent);
+      color: #ffffff !important;
+    }
+
+    /* Sub-item styling in drawer menu */
+    .drawer-sub-item {
+      display: flex !important;
+      align-items: center !important;
+      padding: 10px 16px 10px 48px !important;
+      color: rgba(255, 255, 255, 0.65) !important;
+      text-decoration: none !important;
+      border-radius: 8px !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 4px !important;
+      box-sizing: border-box !important;
+    }
+    .drawer-sub-item:hover {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+    }
+    .drawer-sub-item.active {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    /* Custom scrollbar and overflow fixes for drawer menu */
+    .nav-drawer-content {
+      overflow: hidden !important;
+    }
+    .drawer-nav {
+      flex: 1 !important;
+      overflow-y: auto !important;
+      padding-right: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar {
+      width: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border-radius: 99px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+    }
+</style>
+</head>
+<body lang-select="zh" data-theme="light">
+
+  
+
+  
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-header">
+        <div class="brand-lockup">
+          <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
+          <div class="brand-text">
+            <span class="brand-title">TERRA</span>
+            <span class="brand-subtitle lang-zh">地之校</span>
+            <span class="brand-subtitle lang-en">Earth School</span>
+            <span class="brand-subtitle lang-ja">地の校</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="zh">繁中</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+          </div>
+          <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <h1 class="lang-zh">八大生存挑戰任務</h1>
+<h1 class="lang-en">8 Livelihood Challenges</h1>
+<h1 class="lang-ja">8大サバイバルミッション</h1>
+      <p class="lang-zh">以下為新進移居青年在農村生存所必須克服的八大核心課題。請點擊卡片以展開閱讀詳細的挑戰背景與訪談指南。</p>
+<p class="lang-en">The following are the 8 core challenges that new youth migrants must overcome. Click on the cards to explore the detailed briefs and interview guidelines.</p>
+<p class="lang-ja">以下は、移住した若者が農村で生き抜くために乗り越えるべき8つの重要課題です。カードをクリックして詳細な背景やインタビュー要綱を探索しましょう。</p>
+    </header>
+
+    <!-- Rule Notice Box -->
+    <div class="rule-notice-box">
+      <div class="lang-zh">
+        <strong>💡 生存挑戰引導說明</strong>
+        本手冊整理了八大最關鍵的農村生存挑戰。各位學員可以透過本頁面的卡片初步探索各項挑戰的主題，並點擊卡片底部的連結查看該挑戰的「田野訪談大綱」與「宏觀法規背景」，為接下來兩天的實地訪談做好案頭準備。
+      </div>
+      <div class="lang-en">
+        <strong>💡 Livelihood Challenges Overview</strong>
+        This manual compiles the 8 critical rural survival challenges. Explore the cards to understand each theme, and click the links at the bottom of each card to view its Qualitative Interview Dossier and Macro Regulatory Background for your field research preparation.
+      </div>
+      <div class="lang-ja">
+        <strong>💡 サバイバルミッションガイドライン</strong>
+        このマニュアルは、農村における8大サバイバルミッションをまとめたものです。各カードをクリックしてテーマを探索し、カード下部のリンクから「質的インタビュー要綱」と「マクロ規制背景」を参照し、フィールドワークの準備を進めましょう。
+      </div>
+    </div>
+
+    
+      <div class="single-card-container">
+        <div class="card-inner" id="card-inner-5">
+          <div class="card-front" id="card-front-5">
+            <div id="quest-card-5" class="quest-card-container" >
+        <div class="quest-tag">
+          <span class="lang-zh">任務五</span>
+          <span class="lang-en">Task 5</span>
+          <span class="lang-ja">ミッション 5</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">農產原料的華麗變身</span>
+          <span class="lang-en">Value Transformation</span>
+          <span class="lang-ja">農産加工品とブランド価値向上</span>
+        </div>
+        <div class="quest-subtitle">
+          <span class="lang-zh">農產加工與品牌行銷</span>
+          <span class="lang-en">Processing & Branding Strategy</span>
+          <span class="lang-ja">加工商品開発とブランド化</span>
+        </div>
+        <div class="quest-scenario">
+          <span class="lang-zh">「直接賣稻米價錢很低，如果把它加工成米蛋糕、米餅，並打上精美品牌，可以創造什麼新價值？」</span>
+          <span class="lang-en">"Selling raw rice brings low returns. What if we process it into rice cakes or crackers and build a beautiful brand to unlock premium value?"</span>
+          <span class="lang-ja">「直接お米を売るだけでは利益が少ない。米粉スイーツや米菓に加工し、ブランド化することでどんな新しい価値が生まれますか？」</span>
+        </div>
+        <div class="quest-desc">
+          <p class="lang-zh"><strong>探索任務：</strong>研究農產品初級加工的產品定位與品牌行銷策略，評估如何透過包裝與故事包裝提升附加價值，並跨越食品衛生法規、設備投資與產線設計的門檻。</p>
+          <p class="lang-en"><strong>Task Mission:</strong> Study agro-processing positioning, packaging, and brand storytelling to build premium value while navigating food safety laws and equipment costs.</p>
+          <p class="lang-ja"><strong>探求ミッション：</strong>農産品の加工におけるターゲット設定、ブランディング、パッケージデザインを研究し、食品安全規制や設備投資の壁をどう乗り越えるかを分析します。</p>
+        </div>
+        <div class="quest-output">
+          <strong>
+            <span class="lang-zh">預期產出</span>
+            <span class="lang-en">Deliverable</span>
+            <span class="lang-ja">成果物</span>
+          </strong>
+          <span class="quest-output-name">
+            <span class="lang-zh">「加工品牌故事提案」</span>
+            <span class="lang-en">"Brand Storytelling Pitch"</span>
+            <span class="lang-ja">「加工品ブランドストーリー提案書」</span>
+          </span>
+          
+        </div>
+      </div>
+          <div class="dossier-section-title">
+            <span class="lang-zh">研究大綱</span>
+            <span class="lang-en">Research Outline</span>
+            <span class="lang-ja">研究要綱</span>
+          </div>
+          <div class="pre-requisite-box">
+                <strong>
+                    <span class="lang-zh"> 現況導讀</span>
+                    <span class="lang-en"> Context Orientation</span>
+                    <span class="lang-ja"> 現状の導入</span>
+                </strong>
+                <p class="lang-zh" style="margin-top: 8px;">初級農產品價格低。加工可調節剩食並解決產期過剩，但面臨食品安全衛生法規限制、工廠登記以及包裝美學與行銷故事的跨界挑戰。</p>
+                <p class="lang-en" style="margin-top: 8px;">Raw crop margins are low. Value-added processing curbs waste but faces strict food safety registries, packaging design hurdles, and pricing choices.</p>
+                <p class="lang-ja" style="margin-top: 8px;">生の農産物は単価が低く、収穫量過多時の価格暴落リスクがあります。加工はフードロスを抑えますが、食品衛生基準、工場登記、パッケージデザインのスキルが求められます。</p>
+            </div>
+
+            
+            <div class="focus-area-block">
+                
+                <div class="focus-area-header">
+                    <span class="lang-zh">探索重點</span>
+                    <span class="lang-en">Key Focus Areas</span>
+                    <span class="lang-ja">探求の要点</span>
+                </div>
+                
+                <ul class="dimensions-list">
+                    <li class="lang-zh">評估現有加工品的產品定位、包裝美學與定價策略，及其在目標客群中的差異化競爭力。</li>
+                    <li class="lang-zh">釐清加工原料的季節性供應、剩食轉化效率與微型加工設備的產能控制痛點。</li>
+                    <li class="lang-zh">找出在符合食品安全法規、工廠登記與衛生檢驗等門檻時，所面臨的主要合規阻礙與應對心路歷程。</li>
+                    <li class="lang-zh">挖掘品牌的「故事提煉」過程，釐清經營者如何將土地情感、生產工藝轉化為吸引消費者付費的品牌溢價。</li>
+                    <li class="lang-zh">評估微型加工在物流配送、保存期限管理以及銷售管道拓展上面臨的主要物流與通路瓶頸。</li>
+                    <li class="lang-en">Assess current product positioning, packaging aesthetics, and pricing strategies for competitive differentiation.</li>
+                    <li class="lang-en">Clarify issues in raw material seasonal supply, waste utilization, and micro-processing equipment capacity.</li>
+                    <li class="lang-en">Identify key regulatory hurdles and compliance steps (food safety registry, health checks, lab tests) and how they were solved.</li>
+                    <li class="lang-en">Uncover the "story" process, analyzing how owners translate land connection and craftsmanship into brand premiums.</li>
+                    <li class="lang-en">Assess micro-processing logistics, shelf-life management, and bottlenecks in expanding sales channels.</li>
+                    <li class="lang-ja">既存加工商品のポジショニング、デザイン性、価格戦略を分析し、競合との差異化ポイントを整理する。</li>
+                    <li class="lang-ja">原料調達の季節変動、食品ロス削減効率、小規模加工設備の生産管理上の課題を特定する。</li>
+                    <li class="lang-ja">食品衛生法、工場登録、製品検査などの法規制への適合における具体的なハードルと対応策を評価する。</li>
+                    <li class="lang-ja">土地への思いやこだわりを、消費者が価値を感じる「ブランドストーリー」にどう昇華させたかのプロセスを調査する。</li>
+                    <li class="lang-ja">配送ロジスティクス、消費期限管理、新規販路（セレクトショップや通販）開拓における課題を分析する。</li>
+                </ul>
+            </div>
+
+            <div class="pfs-guide-box">
+                <h4 class="lang-zh"> PFS ESG 提案對接建議</h4>
+                <h4 class="lang-en"> PFS ESG Alignment</h4>
+                <h4 class="lang-ja"> PFS ESG 提案モデル</h4>
+                <div class="pfs-grid">
+                    <div class="pfs-grid-item">
+                        <strong class="lang-zh">成果買單者 (TA)</strong>
+                        <strong class="lang-en">Outcome Buyer (TA)</strong>
+                        <strong class="lang-ja">成果買手 (TA)</strong>
+                        <span class="lang-zh">重視「責任消費與生產」、「循環經濟」之大型民生消費品牌或餐飲通路。</span>
+                        <span class="lang-en">Consumer good brands or food conglomerates backing circular economies.</span>
+                        <span class="lang-ja">「つくる責任、つかう責任」「循環経済」を推進する消費財メーカー、飲食チェーン。</span>
+                    </div>
+                    <div class="pfs-grid-item">
+                        <strong class="lang-zh">PFS 建議成效指標</strong>
+                        <strong class="lang-en">PFS KPI Recommendation</strong>
+                        <strong class="lang-ja">PFS 成果指標</strong>
+                        <span class="lang-zh">「專案消耗/轉化在地剩餘農產之噸數」、「小農加工商品在地採購總額」。</span>
+                        <span class="lang-en">Tons of surplus produce upcycled; growth in local sourcing values ($).</span>
+                        <span class="lang-ja">「アップサイクルにより商品化された余剰農産物の重量（トン）」「小農加工品の調達総額」。</span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="card-action-bar">
+              <button class="flip-btn flip-to-back-btn" data-card-id="5">
+                <span class="lang-zh">閱讀背景資訊</span>
+                <span class="lang-en">Read Background Brief</span>
+                <span class="lang-ja">背景情報を見る</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-back" id="card-back-5">
+            <div class="card-back-header" style="margin-bottom: 24px;">
+            <div class="quest-tag" style="background-color: var(--soft-2); color: var(--accent-2); border: 1px solid rgba(217, 119, 6, 0.15); width: fit-content; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 800; margin-bottom: 16px;">
+              <span class="lang-zh">任務 5 背景資訊</span>
+              <span class="lang-en">Task 5 Background</span>
+              <span class="lang-ja">任務 5 背景情報</span>
+            </div>
+            <h2 style="font-size: 1.6rem; font-weight: 900; color: var(--accent); margin: 0;">
+              <span class="lang-zh">農產原料的華麗變身</span>
+              <span class="lang-en">Value Transformation</span>
+              <span class="lang-ja">農産加工品とブランド価値向上</span>
+            </h2>
+          </div>
+          <div class="dossier-meta">
+                <span class="sdg-badge">SDG 12.3 減少農後損失</span>
+                <span class="sdg-badge">SDG 8.3 支持微型企業與創業</span>
+                <span class="dossier-tag">GRI 306: Waste (Food Loss & Waste)</span>
+            </div>
+
+            <h3>一、背景現況與數據 (Background & Data)</h3>
+            <p class="purpose-text lang-zh">台灣農產常因季節性盛產（如文旦柚、香蕉、鳳梨）導致產銷失衡、價格崩跌，造成大量食材在產地直接廢棄。初級加工（如低溫乾燥、釀造、熬醬）能將保存期限由數天延長至數月甚至數年。但微型農夫若想合法加工，過去必須在工業區設立大型食品工廠，這對於小規模耕作者（資本額低於 100 萬台幣）而言是完全無法跨越的門檻，導致多數人只能在自家廚房私下加工，無法上架合法大型通路。</p>
+
+            <h3>二、法規與政策限制 (Regulations & Policies)</h3>
+            <div class="research-grid">
+                <div class="research-item">
+                    <strong class="lang-zh">農產品初級加工場管理辦法 (2020)</strong>
+                    <strong class="lang-en">MOA Primary Processing Factory Regulations (2020)</strong>
+                    <p class="lang-zh">為解決上述困境，政府於2020年頒布此辦法，打通了「農地容許使用加工設施」到「食品廠登記」的限制。小農只要符合：1. 原料為國產溯源農產；2. 加工室面積在 200 平方公尺以下；3. 通過 40 小時食安培訓並符合食安 GHP 規範，即可向農業部申請「農產品初級加工場登記證」，具備合法製造出貨資格。這是台灣微型農企業合法上架（全聯、里仁等通路）的關鍵綠色通道。</p>
+                </div>
+            </div>
+
+            <h3>三、SDGs 永續規範說明與 GRI 指標對接 (SDGs & GRI Mapping)</h3>
+            <div class="sdg-explain-box">
+                <div class="sdg-explain-title">
+                    <span class="lang-zh">🍎 SDG 12.3：減少生產與供應鏈中的糧食損失</span>
+                    <span class="lang-en">🍎 SDG 12.3: Reduce Food Losses along Production & Supply Chains</span>
+                    <span class="lang-ja">🍎 SDG 12.3: 生産・流通チェーンにおける食料損失の削減</span>
+                </div>
+                <div class="sdg-explain-desc">
+                    <span class="lang-zh"><strong>規範說明：</strong>聯合國要求減少零售和消費環節的全球人均糧食浪費，並減少生產和供應鏈中的糧食損失（包括收穫後損失）。初級加工能將產地賣相不佳但安全營養的「格外品（Ugly Produce）」轉化為商品，延長保存期，是減少產地剩食的核心手段。</span>
+                    <span class="lang-en"><strong>Standard Specification:</strong> The UN target demands halving global food waste at retail/consumer levels and reducing food losses along production and supply chains, including post-harvest losses. Primary processing salvages aesthetic-deficient yet nutritious "ugly produce" to extend shelf life.</span>
+                    <span class="lang-ja"><strong>規範の解説：</strong>小売・消費段階での世界の食料廃棄を半減させ、収穫後損失を含む生産・流通チェーンにおける食料損失の削減を求めています。一次加工は、規格外野菜（格外品）を商品化し保存期間を延ばすことで、産地廃棄を減らす核心的手法です。</span>
+                </div>
+                <div class="sdg-explain-spec">
+                    <span class="lang-zh"> <strong>企業 ESG/PFS 連結點：</strong>企業可直接採購由格外品製成的加工禮品，或資助格外品加工研發以降低廢棄物（對接 <strong>GRI 306-4</strong> 廢棄物減量）。PFS 指標可為「年收購格外品蔬果總重量（噸）」或「格外品轉化商品之減碳當量」。</span>
+                    <span class="lang-en"> <strong>ESG/PFS Connection:</strong> Corporations purchase gift boxes made from ugly produce or fund processing R&D to minimize waste (aligns with <strong>GRI 306-4</strong>). PFS metrics include "annual tons of salvaged ugly produce purchased" or "carbon reduction equivalent of converted food."</span>
+                    <span class="lang-ja"> <strong>企業ESG/PFS連携：</strong>企業は規格外品から作られた加工品を贈答品として調達したり、廃棄物削減のために加工R&Dを支援できます（<strong>GRI 306-4</strong>）。PFS指標には「年間規格外農産物回収重量（トン）」や「加工化による二酸化炭素削減当量」が使用されます。</span>
+                </div>
+            </div>
+            <div class="sdg-explain-box">
+                <div class="sdg-explain-title">
+                    <span class="lang-zh">🚀 SDG 8.3：支持微型企業的正式化與成長</span>
+                    <span class="lang-en">🚀 SDG 8.3: Support Formalization & Growth of Micro-Enterprises</span>
+                    <span class="lang-ja">🚀 SDG 8.3: マイクロ企業のフォーマル化と成長の支援</span>
+                </div>
+                <div class="sdg-explain-desc">
+                    <span class="lang-zh"><strong>規範說明：</strong>促進政策支持生產性活動、創造體面就業、創業及創新，並鼓勵微型及中小企業的正式化（如取得合法登記）與成長。協助家庭式小農取得「農產品初級加工場登記證」，使其符合食安 GHP 並合法進入主流通路，完全符合此項指標。</span>
+                    <span class="lang-en"><strong>Standard Specification:</strong> Promote development-oriented policies that support productive activities, decent job creation, entrepreneurship, creativity and innovation, and encourage the formalization and growth of micro-, small- and medium-sized enterprises. Supporting smallholders to obtain legal registration is a perfect example.</span>
+                    <span class="lang-ja"><strong>規範の解説：</strong>生産活動、雇用の創出、起業、イノベーションを支援する政策を推進し、零細・中小企業のフォーマル化（法的登記など）と成長を促します。個人農家が「農産物一次加工場登記証」を取得し、合法的に主要販路に参入できるようにすることは、本指標に合致しています。</span>
+                </div>
+            </div>
+
+            <h3>四、國內外標竿案例 (Case Studies)</h3>
+            <div class="case-study-box">
+                <div class="case-study-item">
+                    <strong class="lang-zh">台灣：春一枝商行（格外品水果冰棒）</strong>
+                    <strong class="lang-en">Taiwan: ICE SPRING Fruit Popsicles</strong>
+                    <p class="lang-zh">創辦人李銘煌在台東鹿野發現大批因熟透無法進入市場的格外品水果，遂創立「春一枝」，以高於市場的價格收購格外品水果，加工製成無添加水果冰棒，成功將農村廢棄物轉化為高附加價值品牌，實現農村經濟支持與剩食減量。</p>
+                </div>
+            </div>
+
+            <h3>五、推薦文獻與報導 (References)</h3>
+            <ul class="reference-list">
+                <li>上下游新聞網專題：《農產初級加工場上路，小農的食品合法化之路怎麼走？》。</li>
+                <li>徐重仁（2018），《商機在農村：台灣農業的六次產業化革命》，天下雜誌。</li>
+            </ul>
+            <div class="card-action-bar">
+              <button class="flip-btn flip-to-front-btn" data-card-id="5">
+                <span class="lang-zh">返回任務與大綱</span>
+                <span class="lang-en">Back to Quest & Dossier</span>
+                <span class="lang-ja">ミッションに戻る</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="challenge-nav-controls">
+        
+         <a href="challenge_4.html" class="nav-control-btn prev-btn">
+           <span class="lang-zh">← 上一個任務</span>
+           <span class="lang-en">← Previous Task</span>
+           <span class="lang-ja">← 前のミッション</span>
+         </a>
+        <a href="eight_challenges.html" class="nav-control-btn overview-btn">
+          <span class="lang-zh">生存挑戰總覽</span>
+          <span class="lang-en">Quests Overview</span>
+          <span class="lang-ja">ミッション一覧</span>
+        </a>
+        
+         <a href="challenge_6.html" class="nav-control-btn next-btn">
+           <span class="lang-zh">下一個任務 →</span>
+           <span class="lang-en">Next Task →</span>
+           <span class="lang-ja">次のミッション →</span>
+         </a>
+      </div>
+      </div>
+
+    
+
+  <script>
+    const bodyEl = document.body;
+
+    // Theme toggler logic
+    // Force theme to light mode
+            bodyEl.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+
+    // Language switcher logic
+    function setLanguage(lang) {
+      bodyEl.setAttribute('lang-select', lang);
+      localStorage.setItem('terra-lang', lang);
+      
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+            // Force theme to light mode
+            document.body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            
+        // Hamburger Drawer Menu Controller
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerClose = document.getElementById('drawerClose');
+        
+        function openMenu() {
+            navDrawer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            navDrawer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        if (menuToggle) menuToggle.addEventListener('click', openMenu);
+        if (drawerOverlay) drawerOverlay.addEventListener('click', closeMenu);
+        if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+    
+        
+      const savedLang = localStorage.getItem('terra-lang');
+      const browserLang = navigator.language || navigator.userLanguage;
+      let defaultLang = 'zh';
+      
+      if (savedLang) {
+        defaultLang = savedLang;
+      } else if (browserLang.startsWith('ja')) {
+        defaultLang = 'ja';
+      } else if (browserLang.startsWith('en')) {
+        defaultLang = 'en';
+      }
+      
+      setLanguage(defaultLang);
+      
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          setLanguage(lang);
+        });
+      });
+    });
+  </script>
+
+  <!-- Navigation Drawer Overlay -->
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+    <div class="nav-drawer-content">
+      <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="drawer-brand">
+        <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="drawer-logo">
+        <div class="drawer-brand-text">
+          <span class="brand-title">TERRA</span>
+          <span class="brand-subtitle lang-zh">地之校手冊</span>
+          <span class="brand-subtitle lang-en">Manual</span>
+          <span class="brand-subtitle lang-ja">マニュアル</span>
+        </div>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span class="lang-zh">行程指南</span>
+          <span class="lang-en">Itinerary</span>
+          <span class="lang-ja">日程ガイド</span>
+        </a>
+        <a href="members.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span class="lang-zh">分組名冊</span>
+          <span class="lang-en">Roster</span>
+          <span class="lang-ja">名簿</span>
+        </a>
+        <a href="eight_challenges.html" class="drawer-nav-item" style="font-weight: 800;">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span class="lang-zh">生存挑戰</span>
+          <span class="lang-en">Challenge Quests</span>
+          <span class="lang-ja">生存課題</span>
+        </a>
+        <a href="challenge_1.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 1 落腳的第一坪空間</span>
+          <span class="lang-en">Task 1 Housing & Utilities</span>
+          <span class="lang-ja">任務 1 生活立脚の第一步</span>
+        </a>
+        <a href="challenge_2.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 2 打入庄頭的隱形鑰匙</span>
+          <span class="lang-en">Task 2 Community Integration</span>
+          <span class="lang-ja">任務 2 コミュニティ信頼構築</span>
+        </a>
+        <a href="challenge_3.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 3 農作起步的探索指針</span>
+          <span class="lang-en">Task 3 Farming Operations</span>
+          <span class="lang-ja">任務 3 農業展開の探索指標</span>
+        </a>
+        <a href="challenge_4.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 4 農村職人的家之課題</span>
+          <span class="lang-en">Task 4 Rural Artisans & Housing</span>
+          <span class="lang-ja">任務 4 農村職人の住環境</span>
+        </a>
+        <a href="challenge_5.html" class="drawer-sub-item active">
+          <span class="lang-zh">任務 5 翻越資金的無形高牆</span>
+          <span class="lang-en">Task 5 Financing Obstacles</span>
+          <span class="lang-ja">任務 5 資金調達の見えない壁</span>
+        </a>
+        <a href="challenge_6.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 6 尋找水路外的灌溉綠洲</span>
+          <span class="lang-en">Task 6 Water Infrastructure</span>
+          <span class="lang-ja">任務 6 インフレ整備と灌漑</span>
+        </a>
+        <a href="challenge_7.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 7 點土成金的行銷密碼</span>
+          <span class="lang-en">Task 7 Agricultural Marketing</span>
+          <span class="lang-ja">任務 7 農産物マーケティング</span>
+        </a>
+        <a href="challenge_8.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 8 農業之外的價值鏈結</span>
+          <span class="lang-en">Task 8 Non-Agri Value Chains</span>
+          <span class="lang-ja">任務 8 農業以外の価値連鎖</span>
+        </a>
+                <a href="../design-thinking/design-thinking.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="3" y1="9" x2="9" y2="9"></line></svg>
+          <span class="lang-zh">工具箱</span>
+          <span class="lang-en">Toolbox</span>
+          <span class="lang-ja">ツールボックス</span>
+        </a>
+        <a href="../design-thinking/design-thinking.html" class="drawer-sub-item">
+          <span class="lang-zh">design-thinking-101</span>
+          <span class="lang-en">design-thinking-101</span>
+          <span class="lang-ja">design-thinking-101</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+    
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cardInner = document.getElementById('card-inner-5');
+        const flipToBack = document.querySelector('.flip-to-back-btn');
+        const flipToFront = document.querySelector('.flip-to-front-btn');
+        
+        if (flipToBack && cardInner) {
+            flipToBack.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                cardInner.classList.add('flipped');
+                history.replaceState(null, null, '#briefs');
+                // Scroll smoothly to start reading point of card
+                document.querySelector('.single-card-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+        
+        if (flipToFront && cardInner) {
+            flipToFront.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                cardInner.classList.remove('flipped');
+                history.replaceState(null, null, '#dossier');
+                // Scroll smoothly to start reading point of card
+                document.querySelector('.single-card-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+
+        // Handle URL hash on load
+        if (window.location.hash === '#briefs') {
+            cardInner.classList.add('flipped');
+        }
+    });
+    </script>
+    </body>
+</html>

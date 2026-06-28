@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 泰拉學校：地之校｜分組名冊</title>
+  <script>
+    if (sessionStorage.getItem('terra-authorized') !== 'true') {
+      window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;700;900&display=swap');
+    
+    :root {
+      --bg: #FAF8F5;
+      --card: #ffffff;
+      --ink: #1C2421;
+      --muted: #6B7280;
+      --line: rgba(15, 42, 28, 0.08);
+      --accent: #0F2A1C;
+      --accent-hover: #1A3D2C;
+      --accent-2: #B35C24;
+      --soft: #F3F6F4;
+      --soft-2: #FAF5F0;
+      --shadow: 0 20px 40px rgba(15, 42, 28, 0.03);
+      --radius: 16px;
+      
+      --color-a: #16a34a;
+      --color-a-bg: rgba(22, 163, 74, 0.04);
+      --color-b: #0284c7;
+      --color-b-bg: rgba(2, 132, 199, 0.04);
+      --color-c: #d97706;
+      --color-c-bg: rgba(217, 119, 6, 0.04);
+      --color-d: #db2777;
+      --color-d-bg: rgba(219, 39, 119, 0.04);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F2A1C;
+      --card: #153A27;
+      --ink: #FAF8F5;
+      --muted: #94A3B8;
+      --line: rgba(250, 248, 245, 0.1);
+      --accent: #4ADE80;
+      --accent-hover: #22C55E;
+      --accent-2: #F59E0B;
+      --soft: rgba(74, 222, 128, 0.1);
+      --soft-2: #2E2214;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      
+      --color-a: #4ade80;
+      --color-a-bg: rgba(74, 222, 128, 0.06);
+      --color-b: #38bdf8;
+      --color-b-bg: rgba(56, 189, 248, 0.06);
+      --color-c: #fbbf24;
+      --color-c-bg: rgba(251, 191, 36, 0.06);
+      --color-d: #f472b6;
+      --color-d-bg: rgba(244, 114, 182, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+    
+    
+
+    
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* Controls Panel */
+    
+
+    /* Brand Lockup (Logo + Typography) */
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 20px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .brand-icon {
+      height: 38px;
+      filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255,255,255,0.1));
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+    }
+    .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 2px;
+      margin-top: 2px;
+    }
+
+    /* Desktop Navigation styles */
+    
+    @media (min-width: 769px) {
+      
+    }
+    
+    
+    
+
+    /* Contextual Page Flow Navigation */
+    .page-flow-nav {
+      margin: 48px auto 24px auto;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-align: center;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+    .page-flow-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .page-flow-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .page-flow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 99px;
+      background: var(--bg-card, rgba(0,0,0,0.03));
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .page-flow-btn:hover {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    
+
+    
+
+    
+    
+    
+    
+
+    /* Notice Card */
+    .notice-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    /* Grid of Teams */
+    .teams-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 768px) {
+      .teams-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .team-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+
+    /* Specific Border styling */
+    .team-a { border: 1.5px solid var(--color-a); border-top: 6px solid var(--color-a); background-color: var(--color-a-bg); }
+    .team-b { border: 1.5px solid var(--color-b); border-top: 6px solid var(--color-b); background-color: var(--color-b-bg); }
+    .team-c { border: 1.5px solid var(--color-c); border-top: 6px solid var(--color-c); background-color: var(--color-c-bg); }
+    .team-d { border: 1.5px solid var(--color-d); border-top: 6px solid var(--color-d); background-color: var(--color-d-bg); }
+
+    .team-
+    .team-name {
+      font-size: 20px;
+      font-weight: 900;
+      margin: 0;
+      color: var(--ink);
+    }
+    .team-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 4px 0 0;
+    }
+
+    /* Members listing inside cards */
+    .role-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .role-label-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .role-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .role-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .members-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .member-badge {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 6px 14px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Language display overrides */
+    body[lang-select="zh"] .lang-en, body[lang-select="zh"] .lang-ja { display: none !important; }
+    body[lang-select="en"] .lang-zh, body[lang-select="en"] .lang-ja { display: none !important; }
+    body[lang-select="ja"] .lang-zh, body[lang-select="ja"] .lang-en { display: none !important; }
+  
+    /* Hero/Header Navigation Row Refactoring */
+    .hero-
+    
+    @media (min-width: 769px) {
+      .hero-
+      .hero-header 
+    }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Responsive Header & Actions Refactoring */
+    .hero-
+    
+    
+    @media (min-width: 769px) {
+      
+    }
+    @media (min-width: 1024px) {
+      .hero-
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    
+    
+    
+    
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Unified Layout & Wrap System */
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      background: var(--bg, var(--bg-primary, #FAF8F5));
+      color: var(--ink, var(--text-primary, #1C2421));
+      margin: 0;
+      padding: 0 !important;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 32px 24px 80px 24px;
+      position: relative;
+    }
+    
+    /* Header/Hero Styling */
+    header.hero, header {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      color: #ffffff !important;
+      padding: 64px 32px !important;
+      border-radius: 24px !important;
+      box-shadow: 0 20px 40px rgba(15, 42, 28, 0.03) !important;
+      margin-bottom: 40px !important;
+      text-align: center !important;
+      position: relative !important;
+      width: auto !important;
+      border: none !important;
+    }
+
+    /* Reconstructed Header & Actions Bar */
+    .hero-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+      width: 100%;
+    }
+    .hero-header .brand-lockup {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: auto;
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 4px;
+      border-radius: 99px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      width: fit-content;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .lang-btn.active {
+      background: var(--accent-2, var(--accent-color, #B35C24));
+      color: #ffffff;
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      width: 40px;
+      height: 40px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hamburger-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: scale(1.05);
+    }
+    .hamburger-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Navigation Drawer (Drawer & Overlay) */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      pointer-events: none;
+      visibility: hidden;
+      transition: visibility 0.3s;
+    }
+    .nav-drawer.open {
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .nav-drawer-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 42, 28, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .nav-drawer.open .nav-drawer-overlay {
+      opacity: 1;
+    }
+    .nav-drawer-content {
+      position: absolute;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100%;
+      background: rgba(28, 36, 33, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .nav-drawer.open .nav-drawer-content {
+      right: 0;
+    }
+
+    /* Drawer Branding & Elements */
+    .drawer-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .drawer-close-btn:hover {
+      color: #ffffff;
+    }
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 20px;
+    }
+    .drawer-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .drawer-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .drawer-brand-text .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+    .drawer-brand-text .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    /* Drawer Menu Links */
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .drawer-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+    .drawer-nav-item .nav-icon {
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+      color: currentColor;
+    }
+    .drawer-nav-item:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .drawer-nav-item:hover .nav-icon {
+      opacity: 1;
+    }
+    .drawer-nav-item.active {
+      color: #ffffff;
+      background: var(--accent-2, var(--accent-color, #B35C24));
+    }
+    .drawer-nav-item.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* Nested Hamburger Drawer Sub-items */
+    
+    
+    
+    
+    
+    
+
+    /* Sub-item styling in drawer menu */
+    
+    
+    
+
+    /* Sub-item styling in drawer menu */
+    
+    
+    
+
+    /* Sub-item styling in drawer menu */
+    
+    
+    
+
+    /* Sub-item styling in drawer menu */
+    
+    
+    
+
+    
+
+    /* Sub-item styling in drawer menu */
+    .drawer-sub-item {
+      display: flex !important;
+      align-items: center !important;
+      padding: 10px 16px 10px 48px !important;
+      color: rgba(255, 255, 255, 0.65) !important;
+      text-decoration: none !important;
+      border-radius: 8px !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 4px !important;
+      box-sizing: border-box !important;
+    }
+    .drawer-sub-item:hover {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+    }
+    .drawer-sub-item.active {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    /* Custom scrollbar and overflow fixes for drawer menu */
+    .nav-drawer-content {
+      overflow: hidden !important;
+    }
+    .drawer-nav {
+      flex: 1 !important;
+      overflow-y: auto !important;
+      padding-right: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar {
+      width: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border-radius: 99px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+    }
+</style>
+</head>
+<body lang-select="zh" data-theme="light">
+
+  <div class="wrap">
+    
+    <header>
+      <div class="hero-header">
+        <div class="brand-lockup">
+          <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
+          <div class="brand-text">
+            <span class="brand-title">TERRA</span>
+            <span class="brand-subtitle lang-zh">地之校</span>
+            <span class="brand-subtitle lang-en">Earth School</span>
+            <span class="brand-subtitle lang-ja">地の校</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="zh">繁中</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+          </div>
+          <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <h1 class="lang-zh">分組與工作人員名冊</h1>
+<h1 class="lang-en">Team Roster & Staff</h1>
+<h1 class="lang-ja">チーム名簿とスタッフ</h1>
+      <p class="lang-zh">地之校學員分組名單。提供各小隊與隨隊引導人、地方夥伴資訊。</p>
+<p class="lang-en">Official team groupings and staff directory. Check your team details and facilitators.</p>
+<p class="lang-ja">地の校のチーム名簿と公式スタッフです。各小隊とメンターの情報を確認できます。</p>
+    </header>
+
+    <div class="notice-card">
+      <span class="lang-zh">為保護學員與夥伴隱私，本名冊姓名已做安全去識別化處理。</span>
+      <span class="lang-en">To protect privacy, participant and staff names are partially masked.</span>
+      <span class="lang-ja">プライバシー保護のため、氏名は一部非表示にしています。</span>
+    </div>
+
+    <!-- Roster Grid -->
+    <div class="teams-grid">
+      
+      <!-- ================= Team A ================= -->
+      <div class="team-card team-a">
+        <div class="team-header">
+          <h3 class="team-name">Team A</h3>
+          <p class="team-desc lang-zh">空間、民生與居住（落腳的第一坪空間）</p>
+          <p class="team-desc lang-en">Housing & Livelihood Utilities (First-Footing Space)</p>
+          <p class="team-desc lang-ja">居住空間と生活インフラ（生活立脚の第一歩）</p>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">隨隊引導人</span>
+            <span class="role-label lang-en">Facilitator</span>
+            <span class="role-label lang-ja">ファシリテーター</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">林*怡</span>
+          </div>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">地方夥伴</span>
+            <span class="role-label lang-en">Local Buddy</span>
+            <span class="role-label lang-ja">地域バディ</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">林*儒</span>
+          </div>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">小隊成員</span>
+            <span class="role-label lang-en">Members</span>
+            <span class="role-label lang-ja">メンバー</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">Sho I.*</span>
+            <span class="member-badge">Sumire A.*</span>
+            <span class="member-badge">鄧*脩</span>
+            <span class="member-badge">丁*蕾</span>
+            <span class="member-badge">刁*廷</span>
+            <span class="member-badge">張*勻</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= Team B ================= -->
+      <div class="team-card team-b">
+        <div class="team-header">
+          <h3 class="team-name">Team B</h3>
+          <p class="team-desc lang-zh">地方信任與社區融入（打入庄頭的隱形鑰匙）</p>
+          <p class="team-desc lang-en">Trust & Community Integration (The Invisible Key)</p>
+          <p class="team-desc lang-ja">信頼獲得と地域融合（地方の信頼への鍵）</p>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">隨隊引導人</span>
+            <span class="role-label lang-en">Facilitator</span>
+            <span class="role-label lang-ja">ファシリテーター</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">陳*諭</span>
+          </div>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">地方夥伴</span>
+            <span class="role-label lang-en">Local Buddy</span>
+            <span class="role-label lang-ja">地域バディ</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">林*芬</span>
+          </div>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">小隊成員</span>
+            <span class="role-label lang-en">Members</span>
+            <span class="role-label lang-ja">メンバー</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">Tenshow T.*</span>
+            <span class="member-badge">Wakana H.*</span>
+            <span class="member-badge">Sarah C.*</span>
+            <span class="member-badge">楊*喬</span>
+            <span class="member-badge">招*珊</span>
+            <span class="member-badge">江*汾</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= Team C ================= -->
+      <div class="team-card team-c">
+        <div class="team-header">
+          <h3 class="team-name">Team C</h3>
+          <p class="team-desc lang-zh">生產入門與租地（農作起步的探索指針）</p>
+          <p class="team-desc lang-en">Land Lease & Entry (Farming Navigation)</p>
+          <p class="team-desc lang-ja">生産入門と農地借地（農の起歩ナビ）</p>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">隨隊引導人與夥伴</span>
+            <span class="role-label lang-en">Facilitator & Buddy</span>
+            <span class="role-label lang-ja">ファシリテーター＆バディ</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">李*昱</span>
+          </div>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">小隊成員</span>
+            <span class="role-label lang-en">Members</span>
+            <span class="role-label lang-ja">メンバー</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">Shuya K.*</span>
+            <span class="member-badge">Nozomi H.*</span>
+            <span class="member-badge">謝*丞</span>
+            <span class="member-badge">賴*雯</span>
+            <span class="member-badge">賴*芸</span>
+            <span class="member-badge">王*然</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= Team D ================= -->
+      <div class="team-card team-d">
+        <div class="team-header">
+          <h3 class="team-name">Team D</h3>
+          <p class="team-desc lang-zh">家庭支持與生活平衡（農村職人的家之課題）</p>
+          <p class="team-desc lang-en">Family Support & Balance (Craftsman's Family)</p>
+          <p class="team-desc lang-ja">家族支持とバランス（職人の家族）</p>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">隨隊引導人與夥伴</span>
+            <span class="role-label lang-en">Facilitator & Buddy</span>
+            <span class="role-label lang-ja">ファシリテーター＆バディ</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">吳*龍</span>
+          </div>
+        </div>
+
+        <div class="role-section">
+          <div class="role-label-container">
+            <span class="role-label lang-zh">小隊成員</span>
+            <span class="role-label lang-en">Members</span>
+            <span class="role-label lang-ja">メンバー</span>
+            <div class="role-divider"></div>
+          </div>
+          <div class="members-list">
+            <span class="member-badge">Megumi J. W.*</span>
+            <span class="member-badge">Kokoro S.*</span>
+            <span class="member-badge">Yuzuki I.*</span>
+            <span class="member-badge">蔡*津</span>
+            <span class="member-badge">呂*安</span>
+            <span class="member-badge">鄭*弘</span>
+          </div>
+        </div>
+      </div>
+</div>
+  </div>
+
+  
+
+  <script>
+    const bodyEl = document.body;
+
+    // Theme toggler logic
+    // Force theme to light mode
+            bodyEl.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+
+    // Language switcher logic
+    function setLanguage(lang) {
+      bodyEl.setAttribute('lang-select', lang);
+      localStorage.setItem('terra-lang', lang);
+      
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+            // Force theme to light mode
+            document.body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            
+        // Hamburger Drawer Menu Controller
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerClose = document.getElementById('drawerClose');
+        
+        function openMenu() {
+            navDrawer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            navDrawer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        if (menuToggle) menuToggle.addEventListener('click', openMenu);
+        if (drawerOverlay) drawerOverlay.addEventListener('click', closeMenu);
+        if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+    
+        
+      const savedLang = localStorage.getItem('terra-lang');
+      const browserLang = navigator.language || navigator.userLanguage;
+      let defaultLang = 'zh'; // default
+      
+      if (savedLang) {
+        defaultLang = savedLang;
+      } else if (browserLang.startsWith('ja')) {
+        defaultLang = 'ja';
+      } else if (browserLang.startsWith('en')) {
+        defaultLang = 'en';
+      }
+      
+      setLanguage(defaultLang);
+      
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          setLanguage(lang);
+        });
+      });
+    });
+  </script>
+
+  <!-- Navigation Drawer Overlay -->
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+    <div class="nav-drawer-content">
+      <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="drawer-brand">
+        <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="drawer-logo">
+        <div class="drawer-brand-text">
+          <span class="brand-title">TERRA</span>
+          <span class="brand-subtitle lang-zh">地之校手冊</span>
+          <span class="brand-subtitle lang-en">Manual</span>
+          <span class="brand-subtitle lang-ja">マニュアル</span>
+        </div>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span class="lang-zh">行程指南</span>
+          <span class="lang-en">Itinerary</span>
+          <span class="lang-ja">日程ガイド</span>
+        </a>
+        <a href="members.html" class="drawer-nav-item active">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span class="lang-zh">分組名冊</span>
+          <span class="lang-en">Roster</span>
+          <span class="lang-ja">名簿</span>
+        </a>
+        <a href="eight_challenges.html" class="drawer-nav-item" style="font-weight: 800;">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span class="lang-zh">生存挑戰</span>
+          <span class="lang-en">Challenge Quests</span>
+          <span class="lang-ja">生存課題</span>
+        </a>
+        <a href="challenge_1.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 1 落腳的第一坪空間</span>
+          <span class="lang-en">Task 1 Housing & Utilities</span>
+          <span class="lang-ja">任務 1 生活立脚の第一步</span>
+        </a>
+        <a href="challenge_2.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 2 打入庄頭的隱形鑰匙</span>
+          <span class="lang-en">Task 2 Community Integration</span>
+          <span class="lang-ja">任務 2 コミュニティ信頼構築</span>
+        </a>
+        <a href="challenge_3.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 3 農作起步的探索指針</span>
+          <span class="lang-en">Task 3 Farming Operations</span>
+          <span class="lang-ja">任務 3 農業展開の探索指標</span>
+        </a>
+        <a href="challenge_4.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 4 農村職人的家之課題</span>
+          <span class="lang-en">Task 4 Rural Artisans & Housing</span>
+          <span class="lang-ja">任務 4 農村職人の住環境</span>
+        </a>
+        <a href="challenge_5.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 5 翻越資金的無形高牆</span>
+          <span class="lang-en">Task 5 Financing Obstacles</span>
+          <span class="lang-ja">任務 5 資金調達の見えない壁</span>
+        </a>
+        <a href="challenge_6.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 6 尋找水路外的灌溉綠洲</span>
+          <span class="lang-en">Task 6 Water Infrastructure</span>
+          <span class="lang-ja">任務 6 インフレ整備と灌漑</span>
+        </a>
+        <a href="challenge_7.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 7 點土成金的行銷密碼</span>
+          <span class="lang-en">Task 7 Agricultural Marketing</span>
+          <span class="lang-ja">任務 7 農産物マーケティング</span>
+        </a>
+        <a href="challenge_8.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 8 農業之外的價值鏈結</span>
+          <span class="lang-en">Task 8 Non-Agri Value Chains</span>
+          <span class="lang-ja">任務 8 農業以外の価値連鎖</span>
+        </a>
+                <a href="../design-thinking/design-thinking.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="3" y1="9" x2="9" y2="9"></line></svg>
+          <span class="lang-zh">工具箱</span>
+          <span class="lang-en">Toolbox</span>
+          <span class="lang-ja">ツールボックス</span>
+        </a>
+        <a href="../design-thinking/design-thinking.html" class="drawer-sub-item">
+          <span class="lang-zh">design-thinking-101</span>
+          <span class="lang-en">design-thinking-101</span>
+          <span class="lang-ja">design-thinking-101</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+    
+</body>
+</html>

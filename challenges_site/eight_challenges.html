@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 泰拉學校：地之校｜八大生存挑戰</title>
+  <script>
+    if (sessionStorage.getItem('terra-authorized') !== 'true') {
+      window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;700;900&display=swap');
+    
+    :root {
+      --bg: #FAF8F5;
+      --card: #ffffff;
+      --ink: #1C2421;
+      --muted: #6B7280;
+      --line: rgba(15, 42, 28, 0.08);
+      --accent: #0F2A1C;
+      --accent-hover: #1A3D2C;
+      --accent-2: #B35C24;
+      --soft: #F3F6F4;
+      --soft-2: #FAF5F0;
+      --shadow: 0 20px 40px rgba(15, 42, 28, 0.03);
+      --radius: 16px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F2A1C;
+      --card: #153A27;
+      --ink: #FAF8F5;
+      --muted: #94A3B8;
+      --line: rgba(250, 248, 245, 0.1);
+      --accent: #4ADE80;
+      --accent-hover: #22C55E;
+      --accent-2: #F59E0B;
+      --soft: rgba(74, 222, 128, 0.1);
+      --soft-2: #2E2214;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 64px 32px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(22, 101, 52, 0.12);
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      margin: 16px auto 0;
+      max-width: 720px;
+      color: rgba(255,255,255,0.92);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .quest-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .quest-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(22, 101, 52, 0.08);
+    }
+    .quest-tag {
+      align-self: flex-start;
+      background: var(--soft-2);
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .quest-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .quest-subtitle {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 18px;
+      letter-spacing: 0.3px;
+    }
+    .quest-scenario {
+      background: var(--soft);
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      color: var(--ink);
+      font-style: italic;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--accent);
+      line-height: 1.5;
+    }
+    .quest-desc {
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .quest-desc p {
+      margin: 0;
+      line-height: 1.6;
+    }
+    .quest-output {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+    .quest-output-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent-2);
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+    
+    .rule-notice-box {
+      background: var(--soft-2);
+      border-left: 4px solid var(--accent-2);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 36px;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* Floating Switchers Styles */
+    
+    /* Brand Lockup (Logo + Typography) */
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 20px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .brand-icon {
+      height: 38px;
+      filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255,255,255,0.1));
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+    }
+    .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 2px;
+      margin-top: 2px;
+    }
+
+    /* Desktop Navigation styles */
+    
+    @media (min-width: 769px) {
+      
+    }
+    
+    
+    
+
+    /* Contextual Page Flow Navigation */
+    .page-flow-nav {
+      margin: 48px auto 24px auto;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-align: center;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+    .page-flow-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .page-flow-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .page-flow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 99px;
+      background: var(--bg-card, rgba(0,0,0,0.03));
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .page-flow-btn:hover {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    
+    
+    
+    
+    
+    
+
+    /* Language display overrides */
+    body[lang-select="zh"] .lang-en, body[lang-select="zh"] .lang-ja { display: none !important; }
+    body[lang-select="en"] .lang-zh, body[lang-select="en"] .lang-ja { display: none !important; }
+    body[lang-select="ja"] .lang-zh, body[lang-select="ja"] .lang-en { display: none !important; }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+  
+    /* Hero/Header Navigation Row Refactoring */
+    .hero-
+    
+    @media (min-width: 769px) {
+      .hero-
+      .hero-header 
+    }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Responsive Header & Actions Refactoring */
+    .hero-
+    
+    
+    @media (min-width: 769px) {
+      
+    }
+    @media (min-width: 1024px) {
+      .hero-
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    
+    
+    
+    
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Unified Layout & Wrap System */
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      background: var(--bg, var(--bg-primary, #FAF8F5));
+      color: var(--ink, var(--text-primary, #1C2421));
+      margin: 0;
+      padding: 0 !important;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 32px 24px 80px 24px;
+      position: relative;
+    }
+    
+    /* Header/Hero Styling */
+    header.hero, header {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      color: #ffffff !important;
+      padding: 64px 32px !important;
+      border-radius: 24px !important;
+      box-shadow: 0 20px 40px rgba(15, 42, 28, 0.03) !important;
+      margin-bottom: 40px !important;
+      text-align: center !important;
+      position: relative !important;
+      width: auto !important;
+      border: none !important;
+    }
+
+    /* Reconstructed Header & Actions Bar */
+    .hero-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+      width: 100%;
+    }
+    .hero-header .brand-lockup {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: auto;
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 4px;
+      border-radius: 99px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      width: fit-content;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .lang-btn.active {
+      background: var(--accent-2, var(--accent-color, #B35C24));
+      color: #ffffff;
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      width: 40px;
+      height: 40px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hamburger-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: scale(1.05);
+    }
+    .hamburger-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Navigation Drawer (Drawer & Overlay) */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      pointer-events: none;
+      visibility: hidden;
+      transition: visibility 0.3s;
+    }
+    .nav-drawer.open {
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .nav-drawer-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 42, 28, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .nav-drawer.open .nav-drawer-overlay {
+      opacity: 1;
+    }
+    .nav-drawer-content {
+      position: absolute;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100%;
+      background: rgba(28, 36, 33, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .nav-drawer.open .nav-drawer-content {
+      right: 0;
+    }
+
+    /* Drawer Branding & Elements */
+    .drawer-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .drawer-close-btn:hover {
+      color: #ffffff;
+    }
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 20px;
+    }
+    .drawer-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .drawer-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .drawer-brand-text .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+    .drawer-brand-text .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    /* Drawer Menu Links */
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .drawer-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+    .drawer-nav-item .nav-icon {
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+      color: currentColor;
+    }
+    .drawer-nav-item:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .drawer-nav-item:hover .nav-icon {
+      opacity: 1;
+    }
+    .drawer-nav-item.active {
+      color: #ffffff;
+      background: var(--accent-2, var(--accent-color, #B35C24));
+    }
+    .drawer-nav-item.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* Portal Lobby Alignments */
+    .wrap {
+      max-width: 1000px !important;
+      margin: 0 auto !important;
+      padding: 40px 24px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Sub-item styling in drawer menu */
+    .drawer-sub-item {
+      display: flex !important;
+      align-items: center !important;
+      padding: 10px 16px 10px 48px !important;
+      color: rgba(255, 255, 255, 0.65) !important;
+      text-decoration: none !important;
+      border-radius: 8px !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 4px !important;
+      box-sizing: border-box !important;
+    }
+    .drawer-sub-item:hover {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+    }
+    .drawer-sub-item.active {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    /* Custom scrollbar and overflow fixes for drawer menu */
+    .nav-drawer-content {
+      overflow: hidden !important;
+    }
+    .drawer-nav {
+      flex: 1 !important;
+      overflow-y: auto !important;
+      padding-right: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar {
+      width: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border-radius: 99px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+    }
+</style>
+</head>
+<body lang-select="zh" data-theme="light">
+
+  
+
+  
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-header">
+        <div class="brand-lockup">
+          <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
+          <div class="brand-text">
+            <span class="brand-title">TERRA</span>
+            <span class="brand-subtitle lang-zh">地之校</span>
+            <span class="brand-subtitle lang-en">Earth School</span>
+            <span class="brand-subtitle lang-ja">地の校</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="zh">繁中</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+          </div>
+          <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <h1 class="lang-zh">八大生存挑戰任務</h1>
+<h1 class="lang-en">8 Livelihood Challenges</h1>
+<h1 class="lang-ja">8大サバイバルミッション</h1>
+      <p class="lang-zh">以下為新進移居青年在農村生存所必須克服的八大核心課題。請點擊卡片以展開閱讀詳細的挑戰背景與訪談指南。</p>
+<p class="lang-en">The following are the 8 core challenges that new youth migrants must overcome. Click on the cards to explore the detailed briefs and interview guidelines.</p>
+<p class="lang-ja">以下は、移住した若者が農村で生き抜くために乗り越えるべき8つの重要課題です。カードをクリックして詳細な背景やインタビュー要綱を探索しましょう。</p>
+    </header>
+
+    <!-- Rule Notice Box -->
+    
+
+    
+    <div class="grid-2" style="margin-top: 32px;">
+      <a href="challenge_1.html" class="quest-card" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+        <div class="quest-tag">
+          <span class="lang-zh">任務 1</span>
+          <span class="lang-en">Task 1</span>
+          <span class="lang-ja">ミッション 1</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">落腳的第一坪空間</span>
+          <span class="lang-en">First-Footing Space</span>
+          <span class="lang-ja">生活立脚の第一歩</span>
+        </div>
+        <div class="quest-subtitle" style="margin-bottom: 16px;">
+          <span class="lang-zh">空間、民生與居住</span>
+          <span class="lang-en">Housing & Livelihood Utilities</span>
+          <span class="lang-ja">居住空間と生活インフラ</span>
+        </div>
+        <div class="quest-scenario" style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 16px; font-size: 0.95rem;">
+          <span class="lang-zh">"「想搬來村子長住，該如何買下或租下第一坪落腳空間？水、電、網路和垃圾等各種日常生活民生問題，又要怎麼解決？」"</span>
+          <span class="lang-en">""Moving to a village: How do I lease/acquire my first square meter of living space? How do I resolve basic utilities like water, electricity, internet, and waste disposal?""</span>
+          <span class="lang-ja">"「村に移住して暮らすための最初の居住空間をどう確保しますか？電気、水道、インターネット、ゴミ回収などの生活インフラをどうクリアしますか？」"</span>
+        </div>
+        <div style="margin-top: 20px; text-align: right; color: var(--accent); font-weight: 800; font-size: 0.9rem;">
+          <span class="lang-zh">進入挑戰 →</span>
+          <span class="lang-en">Enter Challenge →</span>
+          <span class="lang-ja">ミッションに入る →</span>
+        </div>
+      </a>
+      <a href="challenge_2.html" class="quest-card" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+        <div class="quest-tag">
+          <span class="lang-zh">任務 2</span>
+          <span class="lang-en">Task 2</span>
+          <span class="lang-ja">ミッション 2</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">打入庄頭的隱形鑰匙</span>
+          <span class="lang-en">The Invisible Key</span>
+          <span class="lang-ja">コミュニティ信頼構築の見えない鍵</span>
+        </div>
+        <div class="quest-subtitle" style="margin-bottom: 16px;">
+          <span class="lang-zh">地方信任與社區融入</span>
+          <span class="lang-en">Community Trust & Integration</span>
+          <span class="lang-ja">信頼獲得と地域融合</span>
+        </div>
+        <div class="quest-scenario" style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 16px; font-size: 0.95rem;">
+          <span class="lang-zh">"「我是一個外地來的年輕人，隔壁阿伯種田種了一輩子，我該怎麼跟他聊天，甚至借到便宜的田？」"</span>
+          <span class="lang-en">""As a young outsider, how do I start conversations with local elders who farmed their whole lives, and build mutual trust to borrow land or integrate?""</span>
+          <span class="lang-ja">"「外から来た若者として、生涯農業一筋の近所のオジサンとどう会話を始め、信頼を得て耕作地を借りたり仲良くなったりしますか？」"</span>
+        </div>
+        <div style="margin-top: 20px; text-align: right; color: var(--accent); font-weight: 800; font-size: 0.9rem;">
+          <span class="lang-zh">進入挑戰 →</span>
+          <span class="lang-en">Enter Challenge →</span>
+          <span class="lang-ja">ミッションに入る →</span>
+        </div>
+      </a>
+      <a href="challenge_3.html" class="quest-card" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+        <div class="quest-tag">
+          <span class="lang-zh">任務 3</span>
+          <span class="lang-en">Task 3</span>
+          <span class="lang-ja">ミッション 3</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">農作起步的探索指針</span>
+          <span class="lang-en">Farming Navigation</span>
+          <span class="lang-ja">農の第一歩と耕作意思決定</span>
+        </div>
+        <div class="quest-subtitle" style="margin-bottom: 16px;">
+          <span class="lang-zh">生產入門與耕作決策</span>
+          <span class="lang-en">Land Lease & Crop Selection</span>
+          <span class="lang-ja">農地選定と作物の決定</span>
+        </div>
+        <div class="quest-scenario" style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 16px; font-size: 0.95rem;">
+          <span class="lang-zh">"「沒有務農經驗，我該怎麼決定種什麼作物？去哪裡租地？又該如何學會種植技術？」"</span>
+          <span class="lang-en">""With no farming experience, how do I decide what crop to grow, where to lease land, and how to learn farming techniques?""</span>
+          <span class="lang-ja">"「栽培技術もノウハウも無い初心者が、どうやって育てる作物を選び、農地を借り、技術を習得すれば良いでしょうか？」"</span>
+        </div>
+        <div style="margin-top: 20px; text-align: right; color: var(--accent); font-weight: 800; font-size: 0.9rem;">
+          <span class="lang-zh">進入挑戰 →</span>
+          <span class="lang-en">Enter Challenge →</span>
+          <span class="lang-ja">ミッションに入る →</span>
+        </div>
+      </a>
+      <a href="challenge_4.html" class="quest-card" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+        <div class="quest-tag">
+          <span class="lang-zh">任務 4</span>
+          <span class="lang-en">Task 4</span>
+          <span class="lang-ja">ミッション 4</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">農村職人的家之課題</span>
+          <span class="lang-en">Craftsman's Family Equation</span>
+          <span class="lang-ja">農村職人の家族方程式</span>
+        </div>
+        <div class="quest-subtitle" style="margin-bottom: 16px;">
+          <span class="lang-zh">家庭支持與生活平衡</span>
+          <span class="lang-en">Family Support & Rural Balance</span>
+          <span class="lang-ja">家族の絆とライフバランス</span>
+        </div>
+        <div class="quest-scenario" style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 16px; font-size: 0.95rem;">
+          <span class="lang-zh">"「來到農村發展，家人是助力還是阻力？孩子要就讀在地森林小學，還是留在都市？老人家誰來照顧？我們該如何在事業與家庭間找到平衡點？」"</span>
+          <span class="lang-en">""Moving to a village: Is family a support or a challenge? Should kids study in rural forest schools or stay in the city? How are elders cared for while we balance career and home?""</span>
+          <span class="lang-ja">"「農村への移住、家族は支えですか、それとも壁ですか？子供の教育は田舎が良いか都会が良いか？長輩の介護と医療はどう整えますか？」"</span>
+        </div>
+        <div style="margin-top: 20px; text-align: right; color: var(--accent); font-weight: 800; font-size: 0.9rem;">
+          <span class="lang-zh">進入挑戰 →</span>
+          <span class="lang-en">Enter Challenge →</span>
+          <span class="lang-ja">ミッションに入る →</span>
+        </div>
+      </a>
+      <a href="challenge_5.html" class="quest-card" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+        <div class="quest-tag">
+          <span class="lang-zh">任務 5</span>
+          <span class="lang-en">Task 5</span>
+          <span class="lang-ja">ミッション 5</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">農產原料的華麗變身</span>
+          <span class="lang-en">Value Transformation</span>
+          <span class="lang-ja">農産加工品とブランド価値向上</span>
+        </div>
+        <div class="quest-subtitle" style="margin-bottom: 16px;">
+          <span class="lang-zh">農產加工與品牌行銷</span>
+          <span class="lang-en">Processing & Branding Strategy</span>
+          <span class="lang-ja">加工商品開発とブランド化</span>
+        </div>
+        <div class="quest-scenario" style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 16px; font-size: 0.95rem;">
+          <span class="lang-zh">"「直接賣稻米價錢很低，如果把它加工成米蛋糕、米餅，並打上精美品牌，可以創造什麼新價值？」"</span>
+          <span class="lang-en">""Selling raw rice brings low returns. What if we process it into rice cakes or crackers and build a beautiful brand to unlock premium value?""</span>
+          <span class="lang-ja">"「直接お米を売るだけでは利益が少ない。米粉スイーツや米菓に加工し、ブランド化することでどんな新しい価値が生まれますか？」"</span>
+        </div>
+        <div style="margin-top: 20px; text-align: right; color: var(--accent); font-weight: 800; font-size: 0.9rem;">
+          <span class="lang-zh">進入挑戰 →</span>
+          <span class="lang-en">Enter Challenge →</span>
+          <span class="lang-ja">ミッションに入る →</span>
+        </div>
+      </a>
+      <a href="challenge_6.html" class="quest-card" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+        <div class="quest-tag">
+          <span class="lang-zh">任務 6</span>
+          <span class="lang-en">Task 6</span>
+          <span class="lang-ja">ミッション 6</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">農田變教室的體驗魔法</span>
+          <span class="lang-en">Farm to Classroom</span>
+          <span class="lang-ja">體驗魔法與食農教育服務</span>
+        </div>
+        <div class="quest-subtitle" style="margin-bottom: 16px;">
+          <span class="lang-zh">體驗設計與教育傳播</span>
+          <span class="lang-en">Experience Design & Agri-Education</span>
+          <span class="lang-ja">体験型プログラム設計</span>
+        </div>
+        <div class="quest-scenario" style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 16px; font-size: 0.95rem;">
+          <span class="lang-zh">"「都市人想來體驗拔草 and 插秧，要怎麼設計流程，才能讓他們玩得開心、學到東西，又願意付費？」"</span>
+          <span class="lang-en">""Urban visitors want to experience weeding and planting. How do we design a service flow that is fun, educational, and high-yielding?""</span>
+          <span class="lang-ja">"「都会の人が草むしりや田植えを体験したがっている。楽しく学びがあり、かつ喜んでお金を払ってもらうためのプログラム設計は？」"</span>
+        </div>
+        <div style="margin-top: 20px; text-align: right; color: var(--accent); font-weight: 800; font-size: 0.9rem;">
+          <span class="lang-zh">進入挑戰 →</span>
+          <span class="lang-en">Enter Challenge →</span>
+          <span class="lang-ja">ミッションに入る →</span>
+        </div>
+      </a>
+      <a href="challenge_7.html" class="quest-card" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+        <div class="quest-tag">
+          <span class="lang-zh">任務 7</span>
+          <span class="lang-en">Task 7</span>
+          <span class="lang-ja">ミッション 7</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">穀東盟約的終身鐵粉</span>
+          <span class="lang-en">The Supporter Covenant</span>
+          <span class="lang-ja">CSAとコミュニティ支援型農業</span>
+        </div>
+        <div class="quest-subtitle" style="margin-bottom: 16px;">
+          <span class="lang-zh">支持者社群與風險共擔</span>
+          <span class="lang-en">Supporter Relations & CSA</span>
+          <span class="lang-ja">ファンとの誓約と絆設計</span>
+        </div>
+        <div class="quest-scenario" style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 16px; font-size: 0.95rem;">
+          <span class="lang-zh">"「不把農作物賣給大盤商被剝削，我怎麼找到一群願意提前付我錢、陪我承擔天候風險的鐵粉消費者？」"</span>
+          <span class="lang-en">""Instead of being squeezed by middlemen, how do I find loyal supporters who pay upfront and share farming risks under extreme weather?""</span>
+          <span class="lang-ja">"「仲介業者に買い叩かれることなく、前払いで台風などの作柄リスクも共にする熱狂的なサポーターをどう集めますか？」"</span>
+        </div>
+        <div style="margin-top: 20px; text-align: right; color: var(--accent); font-weight: 800; font-size: 0.9rem;">
+          <span class="lang-zh">進入挑戰 →</span>
+          <span class="lang-en">Enter Challenge →</span>
+          <span class="lang-ja">ミッションに入る →</span>
+        </div>
+      </a>
+      <a href="challenge_8.html" class="quest-card" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+        <div class="quest-tag">
+          <span class="lang-zh">任務 8</span>
+          <span class="lang-en">Task 8</span>
+          <span class="lang-ja">ミッション 8</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">都市青年的第二身分</span>
+          <span class="lang-en">The Second Identity</span>
+          <span class="lang-ja">「半農半X」と複業キャリアデザイン</span>
+        </div>
+        <div class="quest-subtitle" style="margin-bottom: 16px;">
+          <span class="lang-zh">半農半 X 與技能轉譯</span>
+          <span class="lang-en">"Half-Farming, Half-X" Livelihoods</span>
+          <span class="lang-ja">都市スキルと農村の融合</span>
+        </div>
+        <div class="quest-scenario" style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 16px; font-size: 0.95rem;">
+          <span class="lang-zh">"「除了種田，我還會寫程式、做設計、經營社群。這些都市技能，在農村能幫我養活自己嗎？」"</span>
+          <span class="lang-en">""Besides farming, I can code, design, and manage social media. How can these urban skills help me sustain myself in a rural area?""</span>
+          <span class="lang-ja">"「農業の他に、プログラミングやデザイン、広報のスキルがある。これらのスキルは地方で生計を支える役に立ちますか？」"</span>
+        </div>
+        <div style="margin-top: 20px; text-align: right; color: var(--accent); font-weight: 800; font-size: 0.9rem;">
+          <span class="lang-zh">進入挑戰 →</span>
+          <span class="lang-en">Enter Challenge →</span>
+          <span class="lang-ja">ミッションに入る →</span>
+        </div>
+      </a>
+    </div>
+</div>
+
+    
+
+  <script>
+    const bodyEl = document.body;
+
+    // Theme toggler logic
+    // Force theme to light mode
+            bodyEl.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+
+    // Language switcher logic
+    function setLanguage(lang) {
+      bodyEl.setAttribute('lang-select', lang);
+      localStorage.setItem('terra-lang', lang);
+      
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+            // Force theme to light mode
+            document.body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            
+        // Hamburger Drawer Menu Controller
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerClose = document.getElementById('drawerClose');
+        
+        function openMenu() {
+            navDrawer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            navDrawer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        if (menuToggle) menuToggle.addEventListener('click', openMenu);
+        if (drawerOverlay) drawerOverlay.addEventListener('click', closeMenu);
+        if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+    
+        
+      const savedLang = localStorage.getItem('terra-lang');
+      const browserLang = navigator.language || navigator.userLanguage;
+      let defaultLang = 'zh';
+      
+      if (savedLang) {
+        defaultLang = savedLang;
+      } else if (browserLang.startsWith('ja')) {
+        defaultLang = 'ja';
+      } else if (browserLang.startsWith('en')) {
+        defaultLang = 'en';
+      }
+      
+      setLanguage(defaultLang);
+      
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          setLanguage(lang);
+        });
+      });
+    });
+  </script>
+
+  <!-- Navigation Drawer Overlay -->
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+    <div class="nav-drawer-content">
+      <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="drawer-brand">
+        <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="drawer-logo">
+        <div class="drawer-brand-text">
+          <span class="brand-title">TERRA</span>
+          <span class="brand-subtitle lang-zh">地之校手冊</span>
+          <span class="brand-subtitle lang-en">Manual</span>
+          <span class="brand-subtitle lang-ja">マニュアル</span>
+        </div>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span class="lang-zh">行程指南</span>
+          <span class="lang-en">Itinerary</span>
+          <span class="lang-ja">日程ガイド</span>
+        </a>
+        <a href="members.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span class="lang-zh">分組名冊</span>
+          <span class="lang-en">Roster</span>
+          <span class="lang-ja">名簿</span>
+        </a>
+        <a href="eight_challenges.html" class="drawer-nav-item active" style="font-weight: 800;">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span class="lang-zh">生存挑戰</span>
+          <span class="lang-en">Challenge Quests</span>
+          <span class="lang-ja">生存課題</span>
+        </a>
+        <a href="challenge_1.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 1 落腳的第一坪空間</span>
+          <span class="lang-en">Task 1 Housing & Utilities</span>
+          <span class="lang-ja">任務 1 生活立脚の第一步</span>
+        </a>
+        <a href="challenge_2.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 2 打入庄頭的隱形鑰匙</span>
+          <span class="lang-en">Task 2 Community Integration</span>
+          <span class="lang-ja">任務 2 コミュニティ信頼構築</span>
+        </a>
+        <a href="challenge_3.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 3 農作起步的探索指針</span>
+          <span class="lang-en">Task 3 Farming Operations</span>
+          <span class="lang-ja">任務 3 農業展開の探索指標</span>
+        </a>
+        <a href="challenge_4.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 4 農村職人的家之課題</span>
+          <span class="lang-en">Task 4 Rural Artisans & Housing</span>
+          <span class="lang-ja">任務 4 農村職人の住環境</span>
+        </a>
+        <a href="challenge_5.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 5 翻越資金的無形高牆</span>
+          <span class="lang-en">Task 5 Financing Obstacles</span>
+          <span class="lang-ja">任務 5 資金調達の見えない壁</span>
+        </a>
+        <a href="challenge_6.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 6 尋找水路外的灌溉綠洲</span>
+          <span class="lang-en">Task 6 Water Infrastructure</span>
+          <span class="lang-ja">任務 6 インフレ整備と灌漑</span>
+        </a>
+        <a href="challenge_7.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 7 點土成金的行銷密碼</span>
+          <span class="lang-en">Task 7 Agricultural Marketing</span>
+          <span class="lang-ja">任務 7 農産物マーケティング</span>
+        </a>
+        <a href="challenge_8.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 8 農業之外的價值鏈結</span>
+          <span class="lang-en">Task 8 Non-Agri Value Chains</span>
+          <span class="lang-ja">任務 8 農業以外の価値連鎖</span>
+        </a>
+                <a href="../design-thinking/design-thinking.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="3" y1="9" x2="9" y2="9"></line></svg>
+          <span class="lang-zh">工具箱</span>
+          <span class="lang-en">Toolbox</span>
+          <span class="lang-ja">ツールボックス</span>
+        </a>
+        <a href="../design-thinking/design-thinking.html" class="drawer-sub-item">
+          <span class="lang-zh">design-thinking-101</span>
+          <span class="lang-en">design-thinking-101</span>
+          <span class="lang-ja">design-thinking-101</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+    
+</body>
+</html>

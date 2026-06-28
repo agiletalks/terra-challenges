@@ -1,0 +1,1505 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 泰拉學校：地之校｜八大生存挑戰</title>
+  <script>
+    if (sessionStorage.getItem('terra-authorized') !== 'true') {
+      window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;700;900&display=swap');
+    
+    :root {
+      --bg: #FAF8F5;
+      --card: #ffffff;
+      --ink: #1C2421;
+      --muted: #6B7280;
+      --line: rgba(15, 42, 28, 0.08);
+      --accent: #0F2A1C;
+      --accent-hover: #1A3D2C;
+      --accent-2: #B35C24;
+      --soft: #F3F6F4;
+      --soft-2: #FAF5F0;
+      --shadow: 0 20px 40px rgba(15, 42, 28, 0.03);
+      --radius: 16px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F2A1C;
+      --card: #153A27;
+      --ink: #FAF8F5;
+      --muted: #94A3B8;
+      --line: rgba(250, 248, 245, 0.1);
+      --accent: #4ADE80;
+      --accent-hover: #22C55E;
+      --accent-2: #F59E0B;
+      --soft: rgba(74, 222, 128, 0.1);
+      --soft-2: #2E2214;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 64px 32px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(22, 101, 52, 0.12);
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      margin: 16px auto 0;
+      max-width: 720px;
+      color: rgba(255,255,255,0.92);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .quest-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .quest-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(22, 101, 52, 0.08);
+    }
+    .quest-tag {
+      align-self: flex-start;
+      background: var(--soft-2);
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .quest-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .quest-subtitle {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 18px;
+      letter-spacing: 0.3px;
+    }
+    .quest-scenario {
+      background: var(--soft);
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      color: var(--ink);
+      font-style: italic;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--accent);
+      line-height: 1.5;
+    }
+    .quest-desc {
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .quest-desc p {
+      margin: 0;
+      line-height: 1.6;
+    }
+    .quest-output {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+    .quest-output-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent-2);
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+    
+    .rule-notice-box {
+      background: var(--soft-2);
+      border-left: 4px solid var(--accent-2);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 36px;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* Floating Switchers Styles */
+    
+    /* Brand Lockup (Logo + Typography) */
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 20px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .brand-icon {
+      height: 38px;
+      filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255,255,255,0.1));
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+    }
+    .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 2px;
+      margin-top: 2px;
+    }
+
+    /* Desktop Navigation styles */
+    
+    @media (min-width: 769px) {
+      
+    }
+    
+    
+    
+
+    /* Contextual Page Flow Navigation */
+    .page-flow-nav {
+      margin: 48px auto 24px auto;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-align: center;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+    .page-flow-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .page-flow-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .page-flow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 99px;
+      background: var(--bg-card, rgba(0,0,0,0.03));
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .page-flow-btn:hover {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    
+    
+    
+    
+    
+    
+
+    /* Language display overrides */
+    body[lang-select="zh"] .lang-en, body[lang-select="zh"] .lang-ja { display: none !important; }
+    body[lang-select="en"] .lang-zh, body[lang-select="en"] .lang-ja { display: none !important; }
+    body[lang-select="ja"] .lang-zh, body[lang-select="ja"] .lang-en { display: none !important; }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+  
+    /* Hero/Header Navigation Row Refactoring */
+    .hero-
+    
+    @media (min-width: 769px) {
+      .hero-
+      .hero-header 
+    }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Responsive Header & Actions Refactoring */
+    .hero-
+    
+    
+    @media (min-width: 769px) {
+      
+    }
+    @media (min-width: 1024px) {
+      .hero-
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    
+    
+    
+    
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Unified Layout & Wrap System */
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      background: var(--bg, var(--bg-primary, #FAF8F5));
+      color: var(--ink, var(--text-primary, #1C2421));
+      margin: 0;
+      padding: 0 !important;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 32px 24px 80px 24px;
+      position: relative;
+    }
+    
+    /* Header/Hero Styling */
+    header.hero, header {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      color: #ffffff !important;
+      padding: 64px 32px !important;
+      border-radius: 24px !important;
+      box-shadow: 0 20px 40px rgba(15, 42, 28, 0.03) !important;
+      margin-bottom: 40px !important;
+      text-align: center !important;
+      position: relative !important;
+      width: auto !important;
+      border: none !important;
+    }
+
+    /* Reconstructed Header & Actions Bar */
+    .hero-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+      width: 100%;
+    }
+    .hero-header .brand-lockup {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: auto;
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 4px;
+      border-radius: 99px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      width: fit-content;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .lang-btn.active {
+      background: var(--accent-2, var(--accent-color, #B35C24));
+      color: #ffffff;
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      width: 40px;
+      height: 40px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hamburger-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: scale(1.05);
+    }
+    .hamburger-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Navigation Drawer (Drawer & Overlay) */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      pointer-events: none;
+      visibility: hidden;
+      transition: visibility 0.3s;
+    }
+    .nav-drawer.open {
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .nav-drawer-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 42, 28, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .nav-drawer.open .nav-drawer-overlay {
+      opacity: 1;
+    }
+    .nav-drawer-content {
+      position: absolute;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100%;
+      background: rgba(28, 36, 33, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .nav-drawer.open .nav-drawer-content {
+      right: 0;
+    }
+
+    /* Drawer Branding & Elements */
+    .drawer-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .drawer-close-btn:hover {
+      color: #ffffff;
+    }
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 20px;
+    }
+    .drawer-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .drawer-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .drawer-brand-text .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+    .drawer-brand-text .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    /* Drawer Menu Links */
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .drawer-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+    .drawer-nav-item .nav-icon {
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+      color: currentColor;
+    }
+    .drawer-nav-item:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .drawer-nav-item:hover .nav-icon {
+      opacity: 1;
+    }
+    .drawer-nav-item.active {
+      color: #ffffff;
+      background: var(--accent-2, var(--accent-color, #B35C24));
+    }
+    .drawer-nav-item.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* Standalone Challenge Page Alignments */
+    .wrap {
+      max-width: 800px !important;
+      margin: 0 auto !important;
+      padding: 40px 24px !important;
+      box-sizing: border-box !important;
+    }
+    
+    .single-card-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 40px 0 20px 0 !important;
+      padding: 0 !important;
+      perspective: 1500px;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-front, .card-back {
+      width: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      box-sizing: border-box;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card-back {
+      transform: rotateY(180deg);
+    }
+    
+    /* Dynamic height management based on flipped state */
+    .card-inner:not(.flipped) .card-front {
+      position: relative;
+      z-index: 2;
+    }
+    .card-inner:not(.flipped) .card-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+    .card-inner.flipped .card-front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .card-inner.flipped .card-back {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .card-action-bar {
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      margin-top: 32px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .flip-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--accent);
+      color: #ffffff !important;
+      border: none;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(15, 42, 28, 0.1);
+    }
+    .flip-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 42, 28, 0.15);
+    }
+    .flip-btn:active {
+      transform: translateY(0);
+    }
+    
+    .flip-to-front-btn {
+      background: var(--muted);
+    }
+    .flip-to-front-btn:hover {
+      background: var(--ink);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Internal Layout & Typography */
+    .card-front .quest-tag {
+      background-color: var(--soft-2);
+      color: var(--accent-2);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border: 1px solid rgba(217, 119, 6, 0.15);
+      width: fit-content;
+      margin-bottom: 16px;
+    }
+    .card-front .quest-title {
+      font-size: 1.6rem !important;
+      font-weight: 900;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .card-front .quest-subtitle {
+      font-size: 1.1rem !important;
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+    .card-front .quest-scenario {
+      font-style: italic;
+      color: var(--muted);
+      border-left: 3px solid var(--accent-2);
+      padding-left: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+      font-size: 0.98rem;
+    }
+    .card-front .quest-desc {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .card-front .quest-output {
+      background: var(--soft);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      margin-bottom: 32px;
+    }
+    
+    .dossier-section-title {
+      font-size: 1.25rem !important;
+      font-weight: 850;
+      color: var(--accent);
+      border-top: 2px solid var(--line);
+      padding-top: 28px;
+      margin-top: 28px;
+      margin-bottom: 20px;
+    }
+
+    .section-card {
+        background-color: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+    }
+    .section-card h2 {
+        display: none !important;
+    }
+    .section-card h3 {
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+        color: var(--ink) !important;
+        margin: 28px 0 12px !important;
+    }
+    .purpose-text {
+        font-size: 1.0rem !important;
+        color: var(--ink);
+        margin-bottom: 16px;
+        line-height: 1.75;
+    }
+    .dossier-tag {
+        background-color: var(--soft-2);
+        color: var(--accent-2);
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem !important;
+        font-weight: 800;
+        border: 1px solid rgba(217, 119, 6, 0.15);
+    }
+    .sdg-badge {
+        background-color: rgba(22, 101, 52, 0.05);
+        color: var(--accent);
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem !important;
+        font-weight: 800;
+        border: 1px solid rgba(22, 101, 52, 0.15);
+    }
+    .pre-requisite-box {
+        background-color: rgba(217, 119, 6, 0.03);
+        border-left: 4px solid var(--accent-2);
+        border-radius: 4px 10px 10px 4px;
+        padding: 20px;
+        margin-bottom: 24px;
+        font-size: 0.98rem !important;
+        color: var(--ink);
+    }
+    .focus-area-block {
+        margin-top: 24px;
+        padding: 20px;
+        background-color: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+    }
+    .focus-area-header {
+        font-size: 1.1rem !important;
+        font-weight: 800;
+        color: var(--accent);
+        margin-bottom: 12px;
+    }
+    .focus-area-header .badge {
+        display: none !important;
+    }
+    .dimensions-label {
+      font-size: 0.95rem !important;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .dimensions-list {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .dimensions-list li {
+        position: relative;
+        padding-left: 18px;
+        font-size: 0.98rem !important;
+        line-height: 1.6;
+        color: var(--ink);
+    }
+    .dimensions-list li::before {
+        content: "•";
+        color: var(--accent-2);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+        line-height: 1.2;
+    }
+    .pfs-guide-box {
+        margin-top: 24px;
+        background-color: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 24px;
+    }
+    .pfs-guide-box h4 {
+        font-size: 1.0rem !important;
+        font-weight: 700 !important;
+        color: var(--accent) !important;
+        margin-bottom: 12px !important;
+    }
+    .pfs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    @media (max-width: 600px) {
+        .pfs-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .pfs-grid-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: var(--card);
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+    }
+    .pfs-grid-item strong {
+        font-size: 0.9rem !important;
+        color: var(--accent-2);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .pfs-grid-item span {
+        font-size: 0.95rem !important;
+        line-height: 1.6;
+        color: var(--ink);
+    }
+
+    /* Horizontal Nav Controls */
+    .challenge-nav-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 32px 0 60px 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box;
+    }
+    .nav-control-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-control-btn:hover {
+      background: var(--accent);
+      color: #ffffff !important;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .nav-control-btn.overview-btn {
+      background: var(--soft);
+      color: var(--accent);
+      border: 1px solid rgba(22, 101, 52, 0.15);
+    }
+    .nav-control-btn.overview-btn:hover {
+      background: var(--accent);
+      color: #ffffff !important;
+    }
+
+    /* Sub-item styling in drawer menu */
+    .drawer-sub-item {
+      display: flex !important;
+      align-items: center !important;
+      padding: 10px 16px 10px 48px !important;
+      color: rgba(255, 255, 255, 0.65) !important;
+      text-decoration: none !important;
+      border-radius: 8px !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 4px !important;
+      box-sizing: border-box !important;
+    }
+    .drawer-sub-item:hover {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+    }
+    .drawer-sub-item.active {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    /* Custom scrollbar and overflow fixes for drawer menu */
+    .nav-drawer-content {
+      overflow: hidden !important;
+    }
+    .drawer-nav {
+      flex: 1 !important;
+      overflow-y: auto !important;
+      padding-right: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar {
+      width: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border-radius: 99px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+    }
+</style>
+</head>
+<body lang-select="zh" data-theme="light">
+
+  
+
+  
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-header">
+        <div class="brand-lockup">
+          <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
+          <div class="brand-text">
+            <span class="brand-title">TERRA</span>
+            <span class="brand-subtitle lang-zh">地之校</span>
+            <span class="brand-subtitle lang-en">Earth School</span>
+            <span class="brand-subtitle lang-ja">地の校</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="zh">繁中</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+          </div>
+          <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <h1 class="lang-zh">八大生存挑戰任務</h1>
+<h1 class="lang-en">8 Livelihood Challenges</h1>
+<h1 class="lang-ja">8大サバイバルミッション</h1>
+      <p class="lang-zh">以下為新進移居青年在農村生存所必須克服的八大核心課題。請點擊卡片以展開閱讀詳細的挑戰背景與訪談指南。</p>
+<p class="lang-en">The following are the 8 core challenges that new youth migrants must overcome. Click on the cards to explore the detailed briefs and interview guidelines.</p>
+<p class="lang-ja">以下は、移住した若者が農村で生き抜くために乗り越えるべき8つの重要課題です。カードをクリックして詳細な背景やインタビュー要綱を探索しましょう。</p>
+    </header>
+
+    <!-- Rule Notice Box -->
+    <div class="rule-notice-box">
+      <div class="lang-zh">
+        <strong>💡 生存挑戰引導說明</strong>
+        本手冊整理了八大最關鍵的農村生存挑戰。各位學員可以透過本頁面的卡片初步探索各項挑戰的主題，並點擊卡片底部的連結查看該挑戰的「田野訪談大綱」與「宏觀法規背景」，為接下來兩天的實地訪談做好案頭準備。
+      </div>
+      <div class="lang-en">
+        <strong>💡 Livelihood Challenges Overview</strong>
+        This manual compiles the 8 critical rural survival challenges. Explore the cards to understand each theme, and click the links at the bottom of each card to view its Qualitative Interview Dossier and Macro Regulatory Background for your field research preparation.
+      </div>
+      <div class="lang-ja">
+        <strong>💡 サバイバルミッションガイドライン</strong>
+        このマニュアルは、農村における8大サバイバルミッションをまとめたものです。各カードをクリックしてテーマを探索し、カード下部のリンクから「質的インタビュー要綱」と「マクロ規制背景」を参照し、フィールドワークの準備を進めましょう。
+      </div>
+    </div>
+
+    
+      <div class="single-card-container">
+        <div class="card-inner" id="card-inner-4">
+          <div class="card-front" id="card-front-4">
+            <div id="quest-card-4" class="quest-card-container" >
+        <div class="quest-tag">
+          <span class="lang-zh">任務四</span>
+          <span class="lang-en">Task 4</span>
+          <span class="lang-ja">ミッション 4</span>
+        </div>
+        <div class="quest-title">
+          <span class="lang-zh">農村職人的家之課題</span>
+          <span class="lang-en">Craftsman's Family Equation</span>
+          <span class="lang-ja">農村職人の家族方程式</span>
+        </div>
+        <div class="quest-subtitle">
+          <span class="lang-zh">家庭支持與生活平衡</span>
+          <span class="lang-en">Family Support & Rural Balance</span>
+          <span class="lang-ja">家族の絆とライフバランス</span>
+        </div>
+        <div class="quest-scenario">
+          <span class="lang-zh">「來到農村發展，家人是助力還是阻力？孩子要就讀在地森林小學，還是留在都市？老人家誰來照顧？我們該如何在事業與家庭間找到平衡點？」</span>
+          <span class="lang-en">"Moving to a village: Is family a support or a challenge? Should kids study in rural forest schools or stay in the city? How are elders cared for while we balance career and home?"</span>
+          <span class="lang-ja">「農村への移住、家族は支えですか、それとも壁ですか？子供の教育は田舎が良いか都会が良いか？長輩の介護と医療はどう整えますか？」</span>
+        </div>
+        <div class="quest-desc">
+          <p class="lang-zh"><strong>探索任務：</strong>探索移居者與農村職人在踏上食農之路時，如何面對與處理家庭關係。研究他們與伴侶的協作或分工模式、子女在農村或都市受教育的抉擇與適應，以及家中長輩日常安養照顧的調配安排。</p>
+          <p class="lang-en"><strong>Task Mission:</strong> Explore how migrants and rural craftsmen handle family relationships along their farming/food journey. Research collaboration patterns with partners, schooling choices for children, and care arrangements for elderly family members.</p>
+          <p class="lang-ja"><strong>探求ミッション：</strong>移住した若者や職人が、農業や食農ビジネスを展開する中で、家族との関係をどう築き、ライフバランスを保存するかを探求します。パートナーとの協働、子供の教育選択、長輩の介護と医療環境などを調査します。</p>
+        </div>
+        <div class="quest-output">
+          <strong>
+            <span class="lang-zh">預期產出</span>
+            <span class="lang-en">Deliverable</span>
+            <span class="lang-ja">成果物</span>
+          </strong>
+          <span class="quest-output-name">
+            <span class="lang-zh">「家庭生活平衡指南」</span>
+            <span class="lang-en">"Family Balance Guide"</span>
+            <span class="lang-ja">「ファミリーバランスガイド」</span>
+          </span>
+          
+        </div>
+      </div>
+          <div class="dossier-section-title">
+            <span class="lang-zh">研究大綱</span>
+            <span class="lang-en">Research Outline</span>
+            <span class="lang-ja">研究要綱</span>
+          </div>
+          <div class="pre-requisite-box">
+                <strong>
+                    <span class="lang-zh"> 現況導讀</span>
+                    <span class="lang-en"> Context Orientation</span>
+                    <span class="lang-ja"> 現状の導入</span>
+                </strong>
+                <p class="lang-zh" style="margin-top: 8px;">青年在踏上食農之路時，家人關係是穩定的關鍵（伴侶可能一方留守都市維持收入，或共同投入但因農忙分工摩擦）。此外，子女教育（森林小學 vs 都市學校抉擇）與鄉村老人安養醫療也是重大心理包袱。</p>
+                <p class="lang-en" style="margin-top: 8px;">Family stability underpins a farmer's longevity. Friction arises in division of labor, children's schooling choices (rural forest schools vs. urban prep), and eldercare limits.</p>
+                <p class="lang-ja" style="margin-top: 8px;">食農の道に進む若者にとって、家族関係の安定は継続の鍵です（パートナーが都会で働き生計を支えるか、共同経営で衝突するか）。また、教育環境の選定や高齢者の医療・ケア環境も大きな心理的葛藤となります。</p>
+            </div>
+
+            
+            <div class="focus-area-block">
+                
+                <div class="focus-area-header">
+                    <span class="lang-zh">探索重點</span>
+                    <span class="lang-en">Key Focus Areas</span>
+                    <span class="lang-ja">探求の要点</span>
+                </div>
+                
+                <ul class="dimensions-list">
+                    <li class="lang-zh"><strong>釐清</strong>移居家庭中伴侶間日常農事與家事分工的協作模式，以及在共同投入或單方留守下的決策與調整歷程。</li>
+                    <li class="lang-zh"><strong>找出</strong>夫妻或家庭成員因經濟收入波動、農事勞動分配不均所產生的核心矛盾點與衝突妥協機制。</li>
+                    <li class="lang-zh"><strong>評估</strong>學齡子女在鄉村森林學校與都市學校之間受教育的抉擇考量，以及子女對農村生活與同儕社交的真實適應狀況。</li>
+                    <li class="lang-zh"><strong>挖掘</strong>在偏鄉地區取得長輩日間照顧、居服醫療等照護資源的實際管道與應對緊急救護的安全防護措施。</li>
+                    <li class="lang-zh"><strong>彙整</strong>移居者如何面對原生家庭親族的反對阻力，並在農忙期間建立鄰里互助托育或長輩看顧的支持網絡。</li>
+                    <li class="lang-en"><strong>Clarify</strong> the collaborative division of farming and domestic work between partners, and decision-making processes under joint or sole ventures.</li>
+                    <li class="lang-en"><strong>Identify</strong> core conflicts and compromise mechanisms between family members caused by income fluctuations or unequal farm labor distribution.</li>
+                    <li class="lang-en"><strong>Assess</strong> educational trade-offs for children between rural forest schools and urban prep, and their actual adaptation to rural peer environments.</li>
+                    <li class="lang-en"><strong>Uncover</strong> channels for securing elder daycare and home healthcare in remote areas, and safety protocols for emergency medical response.</li>
+                    <li class="lang-en"><strong>Synthesize</strong> strategies to cope with original family skepticism and build local support networks for temporary child or elder care during peak farming seasons.</li>
+                    <li class="lang-ja">夫婦間における農作業と家事の分業パターン、また共同経営や片方都會殘留における意思決定プロセスを<strong>整理する</strong>。</li>
+                    <li class="lang-ja">収入の変動や農作業の負担不均等によって生じる家族内の衝突要因と、意見調整の対話ルールを**特定する**。</li>
+                    <li class="lang-ja">子供の教育環境（田舎の特認校と都會の学校）の選定基準、および子供たちの農村生活や同級生との関係への適應状況を**評価する**。</li>
+                    <li class="lang-ja">農村部における高齢者向けのデイケアや訪問介護醫療サービスの調達ルート、および緊急醫療時の體制を**調査する**。</li>
+                    <li class="lang-ja">親族による移住への反対・懸念をどう乗り越えたか、また農忙期に地域で子供や長老を一時的に預け合う互助網絡を**調査する**。</li>
+                </ul>
+            </div>
+
+            <div class="pfs-guide-box">
+                <h4 class="lang-zh"> PFS ESG 提案對接建議</h4>
+                <h4 class="lang-en"> PFS ESG Alignment</h4>
+                <h4 class="lang-ja"> PFS ESG 提案モデル</h4>
+                <div class="pfs-grid">
+                    <div class="pfs-grid-item">
+                        <strong class="lang-zh">成果買單者 (TA)</strong>
+                        <strong class="lang-en">Outcome Buyer (TA)</strong>
+                        <strong class="lang-ja">成果買手 (TA)</strong>
+                        <span class="lang-zh">重視「友善家庭」、「在地長照/偏鄉支持」之大企業或保險金控 CSR。</span>
+                        <span class="lang-en">Insurance, finance, or corps funding eldercare or family-friendly plans.</span>
+                        <span class="lang-ja">「ファミリーフレンドリー」「地域ケア支援」を進める金融グループ、保険、ヘルスケア企業。</span>
+                    </div>
+                    <div class="pfs-grid-item">
+                        <strong class="lang-zh">PFS 建議成效指標</strong>
+                        <strong class="lang-en">PFS KPI Recommendation</strong>
+                        <strong class="lang-ja">PFS 成果指標</strong>
+                        <span class="lang-zh">「移居家庭在農村穩定安居超過 1.5 年之比例」、「專案協助偏鄉醫療/托育覆蓋人次」。</span>
+                        <span class="lang-en">Retention rate of families staying 1.5+ years; childcare coverage rate.</span>
+                        <span class="lang-ja">「地域に1.5年以上定住した移住世帯の割合」「提供された地域ケアプログラムの受給者数」。</span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="card-action-bar">
+              <button class="flip-btn flip-to-back-btn" data-card-id="4">
+                <span class="lang-zh">閱讀背景資訊</span>
+                <span class="lang-en">Read Background Brief</span>
+                <span class="lang-ja">背景情報を見る</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-back" id="card-back-4">
+            <div class="card-back-header" style="margin-bottom: 24px;">
+            <div class="quest-tag" style="background-color: var(--soft-2); color: var(--accent-2); border: 1px solid rgba(217, 119, 6, 0.15); width: fit-content; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 800; margin-bottom: 16px;">
+              <span class="lang-zh">任務 4 背景資訊</span>
+              <span class="lang-en">Task 4 Background</span>
+              <span class="lang-ja">任務 4 背景情報</span>
+            </div>
+            <h2 style="font-size: 1.6rem; font-weight: 900; color: var(--accent); margin: 0;">
+              <span class="lang-zh">農村職人的家之課題</span>
+              <span class="lang-en">Craftsman's Family Equation</span>
+              <span class="lang-ja">農村職人の家族方程式</span>
+            </h2>
+          </div>
+          <div class="dossier-meta">
+                <span class="sdg-badge">SDG 5.4 評估並承認無償家務</span>
+                <span class="sdg-badge">SDG 4.7 永續發展實驗教育</span>
+                <span class="sdg-badge">SDG 3.8 普及偏鄉醫療照護</span>
+                <span class="dossier-tag">GRI 401: Employment (Family-friendly Work)</span>
+            </div>
+
+            <h3>一、背景現況與數據 (Background & Data)</h3>
+            <p class="purpose-text lang-zh">青年移居農村，面臨的最大隱性張力常來自「家庭內部」。伴侶常因分工（如一方留守都市維持固定月薪，一方在農村耕作創業，造成「假性單親」與長距離通勤）面臨感情疏離；或是雙方共同投入，但因高強度農忙與模糊的家務/事業界線造成衝突。同時，宜蘭等地區因慈心華德福教育而引發了龐大的「實驗教育移居潮」，但也帶來孩子長大後面臨都市升學銜接的適應問題。另外，偏鄉醫療與長照資源不足（如老化指數逐年升高），也讓移居者在兼顧原生家庭長輩安養時蠟燭兩頭燒。</p>
+
+            <h3>二、法規與政策限制 (Regulations & Policies)</h3>
+            <div class="research-grid">
+                <div class="research-item">
+                    <strong class="lang-zh">中華民國《實驗教育三法》</strong>
+                    <strong class="lang-en">Three Acts of Experimental Education in Taiwan</strong>
+                    <p class="lang-zh">2014年通過的《實驗教育三法》（學校型態、非學校型態、公立學校委託私人辦理實驗教育辦法），賦予華德福、蒙特梭利等非傳統教育合法的升學與辦學地位。這是吸引大量都市家長移居宜蘭的關鍵政策。但學員也必須理解，實驗教育體制在面臨傳統國高中學制銜接時，仍存在升學與考試評量制度的適應摩擦。</p>
+                </div>
+            </div>
+
+            <h3>三、SDGs 永續規範說明與 GRI 指標對接 (SDGs & GRI Mapping)</h3>
+            <div class="sdg-explain-box">
+                <div class="sdg-explain-title">
+                    <span class="lang-zh">🏡 SDG 5.4：評估與承認無償照料與家務工作</span>
+                    <span class="lang-en">🏡 SDG 5.4: Value Unpaid Care & Domestic Work</span>
+                    <span class="lang-ja">🏡 SDG 5.4: 無償の育児・介護や家事労働の評価と承認</span>
+                </div>
+                <div class="sdg-explain-desc">
+                    <span class="lang-zh"><strong>規範說明：</strong>聯合國要求認可並重視無償照料和家務工作，並通過提供公共服務、基礎設施和社會保障政策，鼓勵家庭內部的責任分擔。本課題旨在改善農村創業者因事業與家務邊界模糊導致的無償家務過載（特別是女性），並推廣合理化分工。</span>
+                    <span class="lang-en"><strong>Standard Specification:</strong> The UN target requires recognizing and valuing unpaid care and domestic work through public services, infrastructure, and social protection policies, promoting shared responsibility within the household. It addresses the overload of unpaid work among rural entrepreneurs (especially women).</span>
+                    <span class="lang-ja"><strong>規範の解説：</strong>公共サービス、インフラ、社会保障政策の提供を通じて無償のケアや家事労働を認識・評価し、世帯内での責任分担を奨励することを求めています。本課題は、農村起業家（特に女性）の仕事と家事の境界が曖昧になることで発生する無償家事の過積載を緩和し、合理的な分担を推進します。</span>
+                </div>
+                <div class="sdg-explain-spec">
+                    <span class="lang-zh"> <strong>企業 ESG/PFS 連結點：</strong>企業可為員工提供遠距工作的彈性，或資助農村家庭的互助托育與長照網絡（對接 <strong>GRI 401-2</strong> 員工福利與友善家庭措施）。PFS 指標可設計為「參與互助托育/安養服務所節省之無償勞動時數」或「創業者家庭生活滿意度提升率」。</span>
+                    <span class="lang-en"> <strong>ESG/PFS Connection:</strong> Corporations support flexible remote work or sponsor rural mutual-childcare and eldercare networks (aligns with <strong>GRI 401-2</strong>). PFS metrics include "unpaid labor hours saved via cooperative care services" or "entrepreneur family satisfaction index."</span>
+                    <span class="lang-ja"> <strong>企業ESG/PFS連携：</strong>企業はリモートワークの柔軟性を提供したり、農村家族の共同託児・介護ネットワーク（<strong>GRI 401-2</strong> 福利厚生・家族配慮策）を支援できます。PFS指標には「共同ケアサービス利用により節約された無償労働時間」や「起業家家族の生活満足度向上率」が適用されます。</span>
+                </div>
+            </div>
+            <div class="sdg-explain-box">
+                <div class="sdg-explain-title">
+                    <span class="lang-zh">🎒 SDG 4.7：獲得促進永續發展的知識與技能</span>
+                    <span class="lang-en">🎒 SDG 4.7: Knowledge & Skills for Sustainable Development</span>
+                    <span class="lang-ja">🎒 SDG 4.7: 持続可能開発を促進するための知識と技術の習得</span>
+                </div>
+                <div class="sdg-explain-desc">
+                    <span class="lang-zh"><strong>規範說明：</strong>確保所有學習者獲得促進永續發展所需的知識，包含永續生活方式、人權、性別平等及環境教育。農村實驗教育（如華德福）著重與自然的連結，是永續生活方式教育的實踐。</span>
+                    <span class="lang-en"><strong>Standard Specification:</strong> Ensures all learners acquire knowledge for sustainable development, including sustainable lifestyles, human rights, and environmental appreciation. Rural experimental education (e.g., Waldorf) aligns directly with nature-centric sustainable learning.</span>
+                    <span class="lang-ja"><strong>規範の解説：</strong>持続可能なライフスタイル、人権、ジェンダー平等、環境教育など、持続可能な開発を推進するための学習コンテンツの提供を求めています。農村の実験教育（シュタイナー教育など）は、自然とのつながりを重視する持続可能な教育の実践です。</span>
+                </div>
+            </div>
+            <div class="sdg-explain-box">
+                <div class="sdg-explain-title">
+                    <span class="lang-zh">🩺 SDG 3.8：實現全民健康覆蓋與普及偏鄉照護</span>
+                    <span class="lang-en">🩺 SDG 3.8: Achieve Universal Health Coverage & Rural Care Access</span>
+                    <span class="lang-ja">🩺 SDG 3.8: ユニバーサル・ヘルス・カバレッジの達成と地方ケアの普及</span>
+                </div>
+                <div class="sdg-explain-desc">
+                    <span class="lang-zh"><strong>規範說明：</strong>提供人人皆可獲得的優質基本醫療與照護服務，降低因偏遠帶來的就醫阻礙。在農村建立社區共用長照或醫療綠色通道，能減輕移居青年的長者安養負擔。</span>
+                    <span class="lang-en"><strong>Standard Specification:</strong> Ensure access to quality essential health-care services and access to safe, effective, quality and affordable essential medicines. Establishing cooperative eldercare or medical shuttles in rural areas reduces family burdens.</span>
+                    <span class="lang-ja"><strong>規範の解説：</strong>すべての人が、地理的な障壁に阻まれることなく、質の高い基礎的ヘルスケアサービスや介護を受けられるようにすることを目指します。農村における共同介護・医療アクセスの構築は、移住青年の高齢者介護負担を軽減します。</span>
+                </div>
+            </div>
+
+            <h3>四、國內外標竿案例 (Case Studies)</h3>
+            <div class="case-study-box">
+                <div class="case-study-item">
+                    <strong class="lang-zh">日本：神山町「綠谷 (Green Valley)」移居家庭與育兒網絡</strong>
+                    <strong class="lang-en">Japan: Kamiyama Town's Family Support Infrastructure</strong>
+                    <p class="lang-zh">日本德島縣神山町透過建置完善的遠距工作環境（吸引IT青壯年移居），並配套建立在地森林幼兒園、家長共育沙龍，讓年輕父母在移居農村接案的同時，不需要在「事業」與「子女托育、長輩照顧」之間做出犧牲。</p>
+                </div>
+            </div>
+
+            <h3>五、推薦文獻與報導 (References)</h3>
+            <ul class="reference-list">
+                <li>大南信也（2019），《創造性過疏：神山町的奇蹟》，聯經出版。</li>
+                <li>天下雜誌專題報導：《為了孩子，我們搬去宜蘭：實驗教育與島內移民潮背後的家庭大考驗》。</li>
+            </ul>
+            <div class="card-action-bar">
+              <button class="flip-btn flip-to-front-btn" data-card-id="4">
+                <span class="lang-zh">返回任務與大綱</span>
+                <span class="lang-en">Back to Quest & Dossier</span>
+                <span class="lang-ja">ミッションに戻る</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="challenge-nav-controls">
+        
+         <a href="challenge_3.html" class="nav-control-btn prev-btn">
+           <span class="lang-zh">← 上一個任務</span>
+           <span class="lang-en">← Previous Task</span>
+           <span class="lang-ja">← 前のミッション</span>
+         </a>
+        <a href="eight_challenges.html" class="nav-control-btn overview-btn">
+          <span class="lang-zh">生存挑戰總覽</span>
+          <span class="lang-en">Quests Overview</span>
+          <span class="lang-ja">ミッション一覧</span>
+        </a>
+        
+         <a href="challenge_5.html" class="nav-control-btn next-btn">
+           <span class="lang-zh">下一個任務 →</span>
+           <span class="lang-en">Next Task →</span>
+           <span class="lang-ja">次のミッション →</span>
+         </a>
+      </div>
+      </div>
+
+    
+
+  <script>
+    const bodyEl = document.body;
+
+    // Theme toggler logic
+    // Force theme to light mode
+            bodyEl.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+
+    // Language switcher logic
+    function setLanguage(lang) {
+      bodyEl.setAttribute('lang-select', lang);
+      localStorage.setItem('terra-lang', lang);
+      
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+            // Force theme to light mode
+            document.body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            
+        // Hamburger Drawer Menu Controller
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerClose = document.getElementById('drawerClose');
+        
+        function openMenu() {
+            navDrawer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            navDrawer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        if (menuToggle) menuToggle.addEventListener('click', openMenu);
+        if (drawerOverlay) drawerOverlay.addEventListener('click', closeMenu);
+        if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+    
+        
+      const savedLang = localStorage.getItem('terra-lang');
+      const browserLang = navigator.language || navigator.userLanguage;
+      let defaultLang = 'zh';
+      
+      if (savedLang) {
+        defaultLang = savedLang;
+      } else if (browserLang.startsWith('ja')) {
+        defaultLang = 'ja';
+      } else if (browserLang.startsWith('en')) {
+        defaultLang = 'en';
+      }
+      
+      setLanguage(defaultLang);
+      
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          setLanguage(lang);
+        });
+      });
+    });
+  </script>
+
+  <!-- Navigation Drawer Overlay -->
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+    <div class="nav-drawer-content">
+      <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="drawer-brand">
+        <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="drawer-logo">
+        <div class="drawer-brand-text">
+          <span class="brand-title">TERRA</span>
+          <span class="brand-subtitle lang-zh">地之校手冊</span>
+          <span class="brand-subtitle lang-en">Manual</span>
+          <span class="brand-subtitle lang-ja">マニュアル</span>
+        </div>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span class="lang-zh">行程指南</span>
+          <span class="lang-en">Itinerary</span>
+          <span class="lang-ja">日程ガイド</span>
+        </a>
+        <a href="members.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span class="lang-zh">分組名冊</span>
+          <span class="lang-en">Roster</span>
+          <span class="lang-ja">名簿</span>
+        </a>
+        <a href="eight_challenges.html" class="drawer-nav-item" style="font-weight: 800;">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span class="lang-zh">生存挑戰</span>
+          <span class="lang-en">Challenge Quests</span>
+          <span class="lang-ja">生存課題</span>
+        </a>
+        <a href="challenge_1.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 1 落腳的第一坪空間</span>
+          <span class="lang-en">Task 1 Housing & Utilities</span>
+          <span class="lang-ja">任務 1 生活立脚の第一步</span>
+        </a>
+        <a href="challenge_2.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 2 打入庄頭的隱形鑰匙</span>
+          <span class="lang-en">Task 2 Community Integration</span>
+          <span class="lang-ja">任務 2 コミュニティ信頼構築</span>
+        </a>
+        <a href="challenge_3.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 3 農作起步的探索指針</span>
+          <span class="lang-en">Task 3 Farming Operations</span>
+          <span class="lang-ja">任務 3 農業展開の探索指標</span>
+        </a>
+        <a href="challenge_4.html" class="drawer-sub-item active">
+          <span class="lang-zh">任務 4 農村職人的家之課題</span>
+          <span class="lang-en">Task 4 Rural Artisans & Housing</span>
+          <span class="lang-ja">任務 4 農村職人の住環境</span>
+        </a>
+        <a href="challenge_5.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 5 翻越資金的無形高牆</span>
+          <span class="lang-en">Task 5 Financing Obstacles</span>
+          <span class="lang-ja">任務 5 資金調達の見えない壁</span>
+        </a>
+        <a href="challenge_6.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 6 尋找水路外的灌溉綠洲</span>
+          <span class="lang-en">Task 6 Water Infrastructure</span>
+          <span class="lang-ja">任務 6 インフレ整備と灌漑</span>
+        </a>
+        <a href="challenge_7.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 7 點土成金的行銷密碼</span>
+          <span class="lang-en">Task 7 Agricultural Marketing</span>
+          <span class="lang-ja">任務 7 農産物マーケティング</span>
+        </a>
+        <a href="challenge_8.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 8 農業之外的價值鏈結</span>
+          <span class="lang-en">Task 8 Non-Agri Value Chains</span>
+          <span class="lang-ja">任務 8 農業以外の価値連鎖</span>
+        </a>
+                <a href="../design-thinking/design-thinking.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="3" y1="9" x2="9" y2="9"></line></svg>
+          <span class="lang-zh">工具箱</span>
+          <span class="lang-en">Toolbox</span>
+          <span class="lang-ja">ツールボックス</span>
+        </a>
+        <a href="../design-thinking/design-thinking.html" class="drawer-sub-item">
+          <span class="lang-zh">design-thinking-101</span>
+          <span class="lang-en">design-thinking-101</span>
+          <span class="lang-ja">design-thinking-101</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+    
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cardInner = document.getElementById('card-inner-4');
+        const flipToBack = document.querySelector('.flip-to-back-btn');
+        const flipToFront = document.querySelector('.flip-to-front-btn');
+        
+        if (flipToBack && cardInner) {
+            flipToBack.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                cardInner.classList.add('flipped');
+                history.replaceState(null, null, '#briefs');
+                // Scroll smoothly to start reading point of card
+                document.querySelector('.single-card-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+        
+        if (flipToFront && cardInner) {
+            flipToFront.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                cardInner.classList.remove('flipped');
+                history.replaceState(null, null, '#dossier');
+                // Scroll smoothly to start reading point of card
+                document.querySelector('.single-card-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+
+        // Handle URL hash on load
+        if (window.location.hash === '#briefs') {
+            cardInner.classList.add('flipped');
+        }
+    });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,2362 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <script>
+    // Redirect to ensure trailing slash on GitHub Pages subdirectory hosting
+    if (window.location.pathname === '/terra-challenges') {
+      window.location.replace(window.location.origin + '/terra-challenges/' + window.location.search + window.location.hash);
+    }
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 泰拉學校：地之校｜學員首頁</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;700;900&display=swap');
+    :root {
+      --bg: #FAF8F5;
+      --card: #ffffff;
+      --ink: #1C2421;
+      --muted: #6B7280;
+      --line: rgba(15, 42, 28, 0.08);
+      --accent: #0F2A1C;
+      --accent-hover: #1A3D2C;
+      --accent-2: #B35C24;
+      --soft: #F3F6F4;
+      --soft-2: #FAF5F0;
+      --shadow: 0 20px 40px rgba(15, 42, 28, 0.03);
+      --radius: 16px;
+      
+      --category-dining: #D97706;
+      --category-transit: #4B5563;
+      --category-workshop: #2563EB;
+      --category-class: #7C3AED;
+      --category-field: #059669;
+      --category-other: #0F2A1C;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 64px 32px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(22, 101, 52, 0.12);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      margin: 16px auto 0;
+      max-width: 720px;
+      color: rgba(255,255,255,0.92);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .intro-section {
+      background: var(--card);
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px;
+      margin-bottom: 32px;
+      transition: all 0.3s ease;
+    }
+    .intro-section h2 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 24px;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+    }
+    .story-box {
+      background: var(--soft-2);
+      border-left: 4px solid var(--accent-2);
+      padding: 24px;
+      border-radius: 12px;
+      margin: 24px 0 12px;
+    }
+    .story-title {
+      font-weight: 900;
+      color: var(--accent-2);
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+    .timeline {
+      margin: 36px 0 20px;
+      padding-left: 24px;
+      border-left: 2px dashed var(--accent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+      padding-left: 20px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+    }
+    .timeline-day {
+      font-weight: 900;
+      color: var(--accent-2);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .timeline-title {
+      font-weight: 800;
+      font-size: 20px;
+      margin: 4px 0 8px;
+      color: var(--ink);
+    }
+    .timeline-desc {
+      font-size: 15.5px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .cta-container {
+      text-align: center;
+      margin-top: 48px;
+    }
+    .cta-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--accent);
+      color: #fff;
+      padding: 16px 40px;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 999px;
+      box-shadow: 0 6px 20px rgba(22, 101, 52, 0.25);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cta-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(22, 101, 52, 0.35);
+    }
+
+    /* Language Switcher Styling */
+    
+    
+    
+    
+
+    /* Custom Projection Mode Buttons */
+    .proj-toggle-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--accent-2);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+    .proj-toggle-btn:hover {
+      background: #b45309;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.4);
+    }
+
+    /* Projection active state styles */
+    body.projection-active {
+      background: linear-gradient(135deg, #14532d 0%, #064e3b 100%);
+      background-image: none;
+      color: #ffffff;
+    }
+    body.projection-active 
+    body.projection-active .hero,
+    body.projection-active .intro-section,
+    body.projection-active .cta-container,
+    body.projection-active .back-link-container {
+      display: none !important;
+    }
+    
+    /* Team Wall (Shown in both, optimized for projection) */
+    .team-wall-section {
+      background: var(--card);
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px;
+      margin-bottom: 32px;
+      display: block;
+    }
+    body.projection-active .team-wall-section {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+      padding: 0;
+    }
+    
+    .team-wall-title {
+      color: var(--accent);
+      font-size: 24px;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+      font-weight: 900;
+    }
+    body.projection-active .team-wall-title {
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 32px;
+      text-align: center;
+      padding-bottom: 16px;
+      margin-bottom: 36px;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 24px;
+    }
+    body.projection-active .team-grid {
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+    }
+    
+    .team-card {
+      background: rgba(28, 25, 23, 0.015);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s;
+    }
+    body.projection-active .team-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+    body.projection-active .team-card.unlocked-card {
+      border: 2.5px solid var(--accent-2);
+      background: rgba(217, 119, 6, 0.05);
+    }
+    
+    .team-card-
+    body.projection-active .team-card-
+    
+    .team-badge {
+      font-size: 11px;
+      background: var(--muted);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .team-badge.active-badge {
+      background: var(--accent-2);
+      font-size: 12px;
+    }
+    body.projection-active .team-badge.active-badge {
+      box-shadow: 0 4px 10px rgba(217, 119, 6, 0.2);
+    }
+    
+    .role-section-wall {
+      margin-bottom: 14px;
+    }
+    .role-label-wall {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    body.projection-active .role-label-wall {
+      color: #cbd5e1;
+    }
+    
+    .role-list-wall {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    
+    .badge-staff {
+      font-size: 12px;
+      background: rgba(22, 101, 52, 0.08);
+      border: 1px solid rgba(22, 101, 52, 0.15);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    body.projection-active .badge-staff {
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: #34d399;
+    }
+    .badge-buddy {
+      font-size: 12px;
+      background: rgba(217, 119, 6, 0.08);
+      border: 1px solid rgba(217, 119, 6, 0.15);
+      color: var(--accent-2);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    body.projection-active .badge-buddy {
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      color: #fbbf24;
+    }
+    
+    .badge-member {
+      font-size: 12.5px;
+      background: rgba(28, 25, 23, 0.04);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    body.projection-active .badge-member {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      font-size: 13.5px;
+      padding: 4px 10px;
+    }
+
+    /* Modal Backdrop for Presenter Selector */
+    .presenter-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(28, 25, 23, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .presenter-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .presenter-modal {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 36px;
+      max-width: 550px;
+      width: calc(100% - 32px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+      transform: translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      color: var(--ink);
+      text-align: left;
+    }
+    .presenter-backdrop.show .presenter-modal {
+      transform: translateY(0);
+    }
+    .presenter-modal h3 {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font-weight: 950;
+      font-size: 22px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+    .presenter-options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      max-height: 380px;
+      overflow-y: auto;
+      margin-bottom: 24px;
+      padding-right: 4px;
+    }
+    .presenter-opt {
+      padding: 12px 16px;
+      background: #fafaf9;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s;
+      font-size: 14.5px;
+    }
+    .presenter-opt:hover {
+      border-color: var(--accent);
+      background: var(--soft);
+      color: var(--accent);
+    }
+    .presenter-opt.selected {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    
+    .presenter-modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    .presenter-cancel-btn {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 10px 24px;
+      font-weight: 700;
+      border-radius: 99px;
+      cursor: pointer;
+    }
+    .presenter-submit-btn {
+      background: var(--accent-2);
+      color: white;
+      border: none;
+      padding: 10px 28px;
+      font-weight: 700;
+      border-radius: 99px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(217, 119, 6, 0.2);
+    }
+    .presenter-submit-btn:hover {
+      background: #b45309;
+    }
+
+    /* Success unlocked alert Overlay */
+    .success-celebration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(20, 83, 45, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .success-celebration.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .celebration-icon {
+      font-size: 80px;
+      margin-bottom: 24px;
+      animation: bounce 1s infinite;
+    }
+    .celebration-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: white;
+      margin: 0 0 16px;
+      text-align: center;
+    }
+    .celebration-desc {
+      font-size: 20px;
+      color: #a7f3d0;
+      font-weight: 600;
+      margin: 0;
+      text-align: center;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+
+    /* Brand Lockup (Logo + Typography) */
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 20px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .brand-icon {
+      height: 38px;
+      filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255,255,255,0.1));
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+    }
+    .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 2px;
+      margin-top: 2px;
+    }
+
+    /* Desktop Navigation styles */
+    
+    @media (min-width: 769px) {
+      
+    }
+    
+    
+    
+
+    /* Contextual Page Flow Navigation */
+    .page-flow-nav {
+      margin: 48px auto 24px auto;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-align: center;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+    .page-flow-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .page-flow-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .page-flow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 99px;
+      background: var(--bg-card, rgba(0,0,0,0.03));
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .page-flow-btn:hover {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Day Tab Selector */
+    .day-selector {
+      display: flex;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 6px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .day-selector::-webkit-scrollbar {
+      display: none;
+    }
+    .day-tab {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      min-width: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .day-tab:hover {
+      color: var(--accent-2);
+    }
+    .day-tab.active {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .day-tab small {
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    /* Active Day Theme / Overview Card */
+    .day-overview {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--accent-2);
+    }
+    .day-overview h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--accent-2);
+    }
+    .day-overview p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Timeline Cards */
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .day-content {
+      display: none;
+    }
+    .day-content.active {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .schedule-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    @media (min-width: 600px) {
+      .schedule-card {
+        grid-template-columns: 180px 1fr;
+      }
+    }
+    .schedule-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    /* Left col: Time & category badge */
+    .schedule-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .schedule-time {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink);
+      font-family: monospace;
+    }
+    .category-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 99px;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Badge Color Assigments */
+    .badge-dining { background-color: var(--category-dining); }
+    .badge-transit { background-color: var(--category-transit); }
+    .badge-workshop { background-color: var(--category-workshop); }
+    .badge-class { background-color: var(--category-class); }
+    .badge-field { background-color: var(--category-field); }
+    .badge-other { background-color: var(--category-other); }
+
+    /* Right col: Title, location, description */
+    .schedule-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .schedule-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0;
+      color: var(--ink);
+    }
+    .schedule-location {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-2);
+      background: var(--soft-2);
+      padding: 3px 10px;
+      border-radius: 6px;
+      align-self: flex-start;
+    }
+    .schedule-desc {
+      font-size: 14.5px;
+      color: var(--muted);
+      margin: 6px 0 0;
+      line-height: 1.6;
+    }
+
+    /* Gating Passcode Lock overlay styling */
+    .gating-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #0F2A1C 0%, #061A10 100%);
+      color: #FAF8F5;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .gating-overlay.fade-out {
+      opacity: 0;
+      transform: scale(1.05);
+      pointer-events: none;
+    }
+    .gating-card {
+      background: #153A27;
+      border: 1px solid rgba(250, 248, 245, 0.1);
+      border-radius: 24px;
+      padding: 40px 32px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      animation: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .gating-logo {
+      margin-bottom: 24px;
+      height: 64px;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.18));
+    }
+    .gating-title {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      margin-top: 0;
+    }
+    .gating-subtitle {
+      font-size: 14.5px;
+      color: #94A3B8;
+      margin-bottom: 28px;
+      line-height: 1.5;
+      margin-top: 0;
+    }
+    .gating-input-group {
+      position: relative;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .gating-input {
+      width: 100%;
+      background: rgba(15, 42, 28, 0.4);
+      border: 1px solid rgba(250, 248, 245, 0.15);
+      color: #ffffff;
+      padding: 14px 20px;
+      font-size: 16px;
+      border-radius: 12px;
+      text-align: center;
+      outline: none;
+      font-family: inherit;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .gating-input:focus {
+      border-color: #4ADE80;
+      box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
+      background: rgba(15, 42, 28, 0.6);
+    }
+    .gating-btn {
+      width: 100%;
+      background: #B35C24; /* terracotta clay */
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(179, 92, 36, 0.3);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .gating-btn:hover {
+      background: #A04B19;
+      box-shadow: 0 6px 18px rgba(179, 92, 36, 0.4);
+      transform: translateY(-1px);
+    }
+    .gating-error {
+      color: #F87171;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-top: 12px;
+      min-height: 20px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      width: 100%;
+      text-align: center;
+    }
+    .gating-error.show {
+      opacity: 1;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    body[lang-select="zh"] .lang-en, body[lang-select="zh"] .lang-ja { display: none !important; }
+    body[lang-select="en"] .lang-zh, body[lang-select="en"] .lang-ja { display: none !important; }
+    body[lang-select="ja"] .lang-zh, body[lang-select="ja"] .lang-en { display: none !important; }
+  
+    /* Hero/Header Navigation Row Refactoring */
+    .hero-
+    
+    @media (min-width: 769px) {
+      .hero-
+      .hero-header 
+    }
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Responsive Header & Actions Refactoring */
+    .hero-
+    
+    
+    @media (min-width: 769px) {
+      
+    }
+    @media (min-width: 1024px) {
+      .hero-
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    
+    
+    
+    
+
+    /* Mobile bottom navigation styles */
+    
+    .mobile-bottom-nav::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      
+      
+    }
+    
+    
+
+    /* Unified Layout & Wrap System */
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      background: var(--bg, var(--bg-primary, #FAF8F5));
+      color: var(--ink, var(--text-primary, #1C2421));
+      margin: 0;
+      padding: 0 !important;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 32px 24px 80px 24px;
+      position: relative;
+    }
+    
+    /* Header/Hero Styling */
+    header.hero, header {
+      background: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      color: #ffffff !important;
+      padding: 64px 32px !important;
+      border-radius: 24px !important;
+      box-shadow: 0 20px 40px rgba(15, 42, 28, 0.03) !important;
+      margin-bottom: 40px !important;
+      text-align: center !important;
+      position: relative !important;
+      width: auto !important;
+      border: none !important;
+    }
+
+    /* Reconstructed Header & Actions Bar */
+    .hero-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+      width: 100%;
+    }
+    .hero-header .brand-lockup {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: auto;
+    }
+
+    /* Unified Glassmorphic Language Switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 4px;
+      border-radius: 99px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      width: fit-content;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .lang-btn.active {
+      background: var(--accent-2, var(--accent-color, #B35C24));
+      color: #ffffff;
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      width: 40px;
+      height: 40px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hamburger-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: scale(1.05);
+    }
+    .hamburger-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Navigation Drawer (Drawer & Overlay) */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      pointer-events: none;
+      visibility: hidden;
+      transition: visibility 0.3s;
+    }
+    .nav-drawer.open {
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .nav-drawer-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 42, 28, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .nav-drawer.open .nav-drawer-overlay {
+      opacity: 1;
+    }
+    .nav-drawer-content {
+      position: absolute;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100%;
+      background: rgba(28, 36, 33, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .nav-drawer.open .nav-drawer-content {
+      right: 0;
+    }
+
+    /* Drawer Branding & Elements */
+    .drawer-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .drawer-close-btn:hover {
+      color: #ffffff;
+    }
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 20px;
+    }
+    .drawer-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .drawer-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .drawer-brand-text .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+    .drawer-brand-text .brand-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    /* Drawer Menu Links */
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .drawer-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+    .drawer-nav-item .nav-icon {
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+      color: currentColor;
+    }
+    .drawer-nav-item:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .drawer-nav-item:hover .nav-icon {
+      opacity: 1;
+    }
+    .drawer-nav-item.active {
+      color: #ffffff;
+      background: var(--accent-2, var(--accent-color, #B35C24));
+    }
+    .drawer-nav-item.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* Nested Hamburger Drawer Sub-items */
+    
+    
+    
+    
+    
+    
+
+    /* Sub-item styling in drawer menu */
+    
+    
+    
+
+    /* Sub-item styling in drawer menu */
+    
+    
+    
+
+    /* Sub-item styling in drawer menu */
+    
+    
+    
+
+    /* Sub-item styling in drawer menu */
+    
+    
+    
+
+    
+
+    /* Sub-item styling in drawer menu */
+    .drawer-sub-item {
+      display: flex !important;
+      align-items: center !important;
+      padding: 10px 16px 10px 48px !important;
+      color: rgba(255, 255, 255, 0.65) !important;
+      text-decoration: none !important;
+      border-radius: 8px !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 4px !important;
+      box-sizing: border-box !important;
+    }
+    .drawer-sub-item:hover {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+    }
+    .drawer-sub-item.active {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    /* Custom scrollbar and overflow fixes for drawer menu */
+    .nav-drawer-content {
+      overflow: hidden !important;
+    }
+    .drawer-nav {
+      flex: 1 !important;
+      overflow-y: auto !important;
+      padding-right: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar {
+      width: 4px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border-radius: 99px !important;
+    }
+    .drawer-nav::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+    }
+</style>
+</head>
+<body lang-select="zh">
+
+  <!-- Gating Overlay Lock Screen -->
+  <div id="gating-overlay" class="gating-overlay">
+    <!-- Language Switcher inside Gating Page -->
+    <div class="lang-switcher" style="position: absolute; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.1); border-color: rgba(255,255,255,0.15);">
+      <button class="lang-btn active" data-lang="zh" style="color: rgba(255,255,255,0.8);">繁中</button>
+      <button class="lang-btn" data-lang="en" style="color: rgba(255,255,255,0.8);">EN</button>
+      <button class="lang-btn" data-lang="ja" style="color: rgba(255,255,255,0.8);">日本語</button>
+    </div>
+
+    <div class="gating-card">
+      <!-- Brand Lockup with brightness filter -->
+      <div class="brand-lockup" style="margin-top: 0; margin-bottom: 24px; width: auto; background: rgba(255, 255, 255, 0.04);">
+        <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
+        <div class="brand-text">
+          <span class="brand-title">TERRA</span>
+          <span class="brand-subtitle lang-zh">地之校</span>
+          <span class="brand-subtitle lang-en">Earth School</span>
+          <span class="brand-subtitle lang-ja">地の校</span>
+        </div>
+      </div>
+      
+      <h2 class="gating-title lang-zh">泰拉學校：地之校</h2>
+      <h2 class="gating-title lang-en">Terra School: Earth School</h2>
+      <h2 class="gating-title lang-ja">テラ学校：地の校</h2>
+      
+      <p class="gating-subtitle lang-zh">本頁面為學員與工作人員專屬手冊網站。請輸入隨隊助教提供之金鑰解鎖存取。</p>
+      <p class="gating-subtitle lang-en">This manual is exclusive to participants and staff. Please enter the passkey provided by your facilitator to unlock access.</p>
+      <p class="gating-subtitle lang-ja">このマニュアルは参加者・スタッフ専用です。ファシリテーターから提供されたパスキーを入力してアクセスを解除してください。</p>
+      
+      <div class="gating-input-group">
+        <input type="password" id="gating-input" class="gating-input" placeholder="Passkey" onkeydown="if(event.key==='Enter') verifyPasskey()">
+      </div>
+      
+      <button class="gating-btn" onclick="verifyPasskey()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <span class="lang-zh">解鎖手冊</span>
+        <span class="lang-en">Unlock Manual</span>
+        <span class="lang-ja">アクセス解除</span>
+      </button>
+      
+      <div id="gating-error" class="gating-error"></div>
+    </div>
+  </div>
+
+  
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-header">
+        <div class="brand-lockup">
+          <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
+          <div class="brand-text">
+            <span class="brand-title">TERRA</span>
+            <span class="brand-subtitle lang-zh">地之校</span>
+            <span class="brand-subtitle lang-en">Earth School</span>
+            <span class="brand-subtitle lang-ja">地の校</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="zh">繁中</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+          </div>
+          <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <h1 class="lang-zh">五天四夜行程指南</h1>
+<h1 class="lang-en">5-Day Itinerary Guide</h1>
+<h1 class="lang-ja">5泊4日日程ガイド</h1>
+      <p class="lang-zh">歡迎來到泰拉學校。本手冊引導學員進行五天四夜學習工作坊、田野訪查與跨文化交流活動。</p>
+<p class="lang-en">Welcome to Terra School. This manual guides participants through the 5-day workshops, fieldwork, and cultural exchanges.</p>
+<p class="lang-ja">テラ学校へようこそ。本マニュアルは参加者の5日間のワークショップ、フィールドワーク、文化交流のスケジュールをご案内します。</p>
+    </header>
+
+    <section class="intro-section">
+      <h2 class="lang-zh">專案背景與角色使命</h2>
+      <h2 class="lang-en">Project Context & Mission</h2>
+      <h2 class="lang-ja">プロジェクトの背景とミッション</h2>
+      
+      <p class="lang-zh">在面對台日兩國農村人口老化與流失的共同挑戰下，各位將化身為「社會創新顧問」。你們的任務是前往宜蘭農村進行實地觀察與同理心訪談，探索新進移居者如何在此克服重重難關，設計出能活下去、活得久、且有擴散性的生活與運作模式。</p>
+      <p class="lang-en">Facing the shared challenge of rural depopulation in Taiwan and Japan, you are acting as "Social Innovation Consultants." Your mission is to conduct empathy interviews in Yilan and discover how youth can establish sustainable, viable livelihood and business models in rural communities.</p>
+      <p class="lang-ja">台湾と日本における地方部の過疎化や高齢化という共通の課題に対し、皆さんは「社会起業家・コンサルタント」として行動します。宜蘭の農村で共感インタビューを行い、移住者が困難を乗り越えて持続可能で自立したライフスタイルとビジネスモデルをどのように構築できるかを探求します。</p>
+    </section>
+
+    <section class="intro-section">
+      <h2 class="lang-zh">你的冒險情境設定</h2>
+      <h2 class="lang-en">Your Adventure Scenario</h2>
+      <h2 class="lang-ja">サバイバルシナリオの設定</h2>
+      
+      <div class="story-box">
+        <div class="story-title lang-zh">生存挑戰</div>
+        <div class="story-title lang-en">The Survival Challenge</div>
+        <div class="story-title lang-ja">サバイバルチャレンジ</div>
+        
+        <p class="lang-zh" style="font-style: italic; margin: 0;">「想像你今年 25 歲，沒有農業背景，手裡沒有買地的資金，更不符合蓋農舍的資格。但你內心深處渴望遠離都市，在宜蘭鄉村建立一種 cool、可持續、且能養活自己的生活方式。你該怎麼開始？要怎麼在村子裡住下來？又靠什麼活下去？」</p>
+        <p class="lang-en" style="font-style: italic; margin: 0;">"Imagine you are 25 years old, with no agricultural background, no money to buy land, and unqualified to build a farmhouse. Yet you desire to build a cool, sustainable, and self-sufficient life in Yilan. How do you start? How do you settle down? And how do you survive?"</p>
+        <p class="lang-ja" style="font-style: italic; margin: 0;">「あなたが25歳で、農業の経験がなく、土地購入の資金もなく、農家住宅を建てる資格もないと想像してみてください。それでも都会を離れ、宜蘭の田舎でかっこよく、持続可能で、自立した生活を築きたいと切望しています。どのように始め、どのように住み着き、どうやって生計を立てますか？」</p>
+      </div>
+    </section>
+
+    <!-- Day Tab Selector -->
+    <div class="day-selector">
+      <button class="day-tab active" onclick="showDay(1)">
+        <span>Day 1</span>
+        <small class="lang-zh">破冰與起步</small>
+        <small class="lang-en">Kickoff</small>
+        <small class="lang-ja">チーム結成</small>
+      </button>
+      <button class="day-tab" onclick="showDay(2)">
+        <span>Day 2</span>
+        <small class="lang-zh">感知覺察</small>
+        <small class="lang-en">Empathy</small>
+        <small class="lang-ja">五感と調査</small>
+      </button>
+      <button class="day-tab" onclick="showDay(3)">
+        <span>Day 3</span>
+        <small class="lang-zh">農創與信任</small>
+        <small class="lang-en">CSA & Trust</small>
+        <small class="lang-ja">農創と信頼</small>
+      </button>
+      <button class="day-tab" onclick="showDay(4)">
+        <span>Day 4</span>
+        <small class="lang-zh">共創設計</small>
+        <small class="lang-en">Co-Creation</small>
+        <small class="lang-ja">ソリューション</small>
+      </button>
+      <button class="day-tab" onclick="showDay(5)">
+        <span>Day 5</span>
+        <small class="lang-zh">成果發表</small>
+        <small class="lang-en">Pitch Day</small>
+        <small class="lang-ja">成果発表</small>
+      </button>
+    </div>
+
+    <!-- Timeline Contents -->
+    <div class="timeline-container">
+      
+      <!-- ================= Day 1 ================= -->
+      <div id="day-1" class="day-content active">
+        
+        <div class="day-overview">
+          <h3 class="lang-zh">本日焦點：了解專案與團隊建立</h3>
+          <h3 class="lang-en">Day 1 Focus: Orientation & Team Building</h3>
+          <h3 class="lang-ja">本日フォーカス：オリエンテーションとチーム結成</h3>
+          <p class="lang-zh">抵達宜蘭南澳營地，展開跨文化破冰與組員交流，並選定本週要深入研究的生存挑戰主題。</p>
+          <p class="lang-en">Arrive at Nao'ao camp, join the cross-cultural icebreaking, and select your team's survival challenge theme.</p>
+          <p class="lang-ja">宜蘭南澳のキャンプ地に到着後、異文化間アイスブレイクを行い、チームで探求するサバイバルミッションを選択します。</p>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">12:00 - 13:20</span>
+            <span class="category-badge badge-dining">用餐 / Dining / 食事</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">報到與迎賓午餐</h4>
+            <h4 class="schedule-title lang-en">Check-in & Welcome Lunch</h4>
+            <h4 class="schedule-title lang-ja">受付とウェルカムランチ</h4>
+            <span class="schedule-location">報到現場 / Lobby / 受付会場</span>
+            <p class="schedule-desc lang-zh">抵達會場，領取專屬學員袋、紀念禮品與迎賓餐盒，準備開啟豐富的學習旅程。</p>
+            <p class="schedule-desc lang-en">Arrive at the venue, receive your welcome bag, souvenirs, and lunchbox, preparing for the upcoming journey.</p>
+            <p class="schedule-desc lang-ja">会場に到着後、参加者バッグ、記念品、お弁当を受け取り、これからの学びに備えます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">13:30 - 17:00</span>
+            <span class="category-badge badge-workshop">工作坊 / Workshop / ワークショップ</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">台日青年永續論壇</h4>
+            <h4 class="schedule-title lang-en">Taiwan-Japan Youth Sustainability Forum</h4>
+            <h4 class="schedule-title lang-ja">日台ユース・サステナビリティフォーラム</h4>
+            <span class="schedule-location">論壇會場 / Forum Hall / フォーラム会場</span>
+            <p class="schedule-desc lang-zh">聆聽永續與社會創新專家的專題分享，並於會中正式公佈五天四夜的跨文化分組名冊。</p>
+            <p class="schedule-desc lang-en">Listen to keynote speeches by sustainability and social innovation mentors, and check the official cross-cultural team grouping.</p>
+            <p class="schedule-desc lang-ja">サステナビリティと社会イノベーションのメンターによる講演を聴き、異文化混成チームの名簿が発表されます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">17:00 - 17:30</span>
+            <span class="category-badge badge-other">整備 / Prep / 準備</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">晚餐與出發準備</h4>
+            <h4 class="schedule-title lang-en">Dinner & Departure Prep</h4>
+            <h4 class="schedule-title lang-ja">夕食と出発準備</h4>
+            <p class="schedule-desc lang-zh">享用晚餐餐盒並進行登車與出發準備。</p>
+            <p class="schedule-desc lang-en">Enjoy your dinner box and prepare for boarding the bus.</p>
+            <p class="schedule-desc lang-ja">夕食のお弁当を楽しみ、バスへの乗車準備を整えます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">17:30 - 18:30</span>
+            <span class="category-badge badge-transit">交通 / Transit / 移動</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">移動至南澳</h4>
+            <h4 class="schedule-title lang-en">Transit to Nao'ao</h4>
+            <h4 class="schedule-title lang-ja">南澳へ移動</h4>
+            <span class="schedule-location">遊覽車 / Shuttle Bus / バス</span>
+            <p class="schedule-desc lang-zh">搭乘接駁專車前往宜蘭南澳，車上將進行跨文化破冰互動。</p>
+            <p class="schedule-desc lang-en">Take the shuttle bus to Nao'ao, Yilan. Icebreaking activities will take place on board.</p>
+            <p class="schedule-desc lang-ja">送迎バスで宜蘭南澳へ移動します。車内ではアイスブレイクアクティビティを行います。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">18:30 - 19:00</span>
+            <span class="category-badge badge-other">自由時間 / Free Time / 自由時間</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">入住與安置</h4>
+            <h4 class="schedule-title lang-en">Camp Check-in & Settle In</h4>
+            <h4 class="schedule-title lang-ja">チェックインと荷物整理</h4>
+            <span class="schedule-location">星光碧后 / Camp Resort / キャンプ場</span>
+            <p class="schedule-desc lang-zh">抵達南澳宿營地，安頓行李並整理房間。</p>
+            <p class="schedule-desc lang-en">Arrive at Nao'ao camping site. Check in and put away your luggage.</p>
+            <p class="schedule-desc lang-ja">南澳のキャンプ場に到着後、チェックインを済ませて部屋に荷物を置きます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">19:00 - 21:00</span>
+            <span class="category-badge badge-workshop">工作坊 / Workshop / ワークショップ</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">破冰交流與挑戰主題選定</h4>
+            <h4 class="schedule-title lang-en">Icebreaking & Challenge Theme Selection</h4>
+            <h4 class="schedule-title lang-ja">交流会とサバイバルミッションの選択</h4>
+            <span class="schedule-location">星光碧后 / Camp Resort / キャンプ場</span>
+            <p class="schedule-desc lang-zh">展開跨文化交流，進行 Open Space 討論，並由小組共同選定本週要深入探索的生存挑戰主題。</p>
+            <p class="schedule-desc lang-en">Start cross-cultural dialogue, join Open Space brainstorms, and select the specific livelihood challenge your team wants to tackle.</p>
+            <p class="schedule-desc lang-ja">異文化交流を開始し、オープンスペースでの議論を経て、チームで探求するサバイバルミッションを選択します。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= Day 2 ================= -->
+      <div id="day-2" class="day-content">
+        
+        <div class="day-overview">
+          <h3 class="lang-zh">本日焦點：感知覺察與大數據探索</h3>
+          <h3 class="lang-en">Day 2 Focus: Sensory Awareness & Desk Research</h3>
+          <h3 class="lang-ja">本日フォーカス：五感の覚察とデスクリサーチ</h3>
+          <p class="lang-zh">在南澳自然田野中開啟感官覺察，下午利用 AI 工具箱針對挑戰主題進行法規與痛點桌上研究。</p>
+          <p class="lang-en">Open your senses in Nao'ao fields in the morning. Use the AI Prompts toolkit for regulatory and pain point research in the afternoon.</p>
+          <p class="lang-ja">午前は南澳の自然の中で五感を開き、午後はAIプロンプトツールを使って課題や法規制のデスクリサーチを行います。</p>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">08:00 - 08:10</span>
+            <span class="category-badge badge-dining">用餐 / Dining / 食事</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">在地能量早餐</h4>
+            <h4 class="schedule-title lang-en">Local Energizing Breakfast</h4>
+            <h4 class="schedule-title lang-ja">ローカル朝食</h4>
+            <span class="schedule-location">星光碧后 / Camp Resort / キャンプ場</span>
+            <p class="schedule-desc lang-zh">享用宜蘭在地早餐，補充一整天的活力。</p>
+            <p class="schedule-desc lang-en">Enjoy a fresh local breakfast to boost your energy for the day.</p>
+            <p class="schedule-desc lang-ja">宜蘭現地の朝食を味わい、一日の活力を補給します。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">08:30 - 09:30</span>
+            <span class="category-badge badge-class">課程 / Class / 講義</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">原生園靜坐與五感覺察</h4>
+            <h4 class="schedule-title lang-en">Mindfulness & Five-Senses Awareness</h4>
+            <h4 class="schedule-title lang-ja">原生園での瞑想と五感ワーク</h4>
+            <span class="schedule-location">原生園 / Nature Park / 原生園</span>
+            <p class="schedule-desc lang-zh">在自然綠意中由導師帶領靜坐，開啟身體感官，練習深度五感覺察與土地連結。</p>
+            <p class="schedule-desc lang-en">Practice meditation led by mentors in the lush forest to awaken your body senses and connect with the earth.</p>
+            <p class="schedule-desc lang-ja">自然の緑の中で瞑想を行い、身体の感覚を開いて土地とのつながりを深く認識します。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">09:30 - 12:00</span>
+            <span class="category-badge badge-field">田野訪查 / Fieldwork / フィールド調査</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">阿聰自然田：友善農耕體驗</h4>
+            <h4 class="schedule-title lang-en">Friendly Farming at A-Cong Farm</h4>
+            <h4 class="schedule-title lang-ja">自然農法体験（阿聡自然田）</h4>
+            <span class="schedule-location">阿聰自然田 / A-Cong Farm / 阿聡自然田</span>
+            <p class="schedule-desc lang-zh">親自體驗白甘蔗採收榨汁、鋸竹作碗，並認識秀明自然農法，在耕作實踐中記錄田野觀察。</p>
+            <p class="schedule-desc lang-en">Experience harvesting sugar cane, making bamboo bowls, and learning nature farming principles, documenting field observations.</p>
+            <p class="schedule-desc lang-ja">サトウキビの収穫と搾汁、竹を使ったお椀作りを体験し、自然農法について学び、フィールドノートを記録します。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">12:00 - 13:20</span>
+            <span class="category-badge badge-dining">用餐 / Dining / 食事</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">原住民文化認識與部落餐</h4>
+            <h4 class="schedule-title lang-en">Indigenous Culture & Tribal Lunch</h4>
+            <h4 class="schedule-title lang-ja">原住民族文化交流と部族料理の昼食</h4>
+            <span class="schedule-location">南澳部落 / Atayal Tribe / 南澳集落</span>
+            <p class="schedule-desc lang-zh">品嚐傳統泰雅族部落美食，認識在地原住民文化，蒐集文化觀察與食農體驗素材。</p>
+            <p class="schedule-desc lang-en">Taste traditional Atayal tribal dishes, understand indigenous culture, and gather materials for cultural reflection.</p>
+            <p class="schedule-desc lang-ja">伝統的なタイヤル族の料理を楽しみ、現地の先住民族文化を学び、食農体験の記録をまとめます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">13:30 - 17:00</span>
+            <span class="category-badge badge-workshop">工作坊 / Workshop / ワークショップ</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">AI 應用市場理解：桌上研究</h4>
+            <h4 class="schedule-title lang-en">AI Application & Desk Research</h4>
+            <h4 class="schedule-title lang-ja">AIを活用した市場理解とデスクリサーチ</h4>
+            <span class="schedule-location">原生園會議室 / Meeting Room / 原生園会議室</span>
+            <p class="schedule-desc lang-zh">利用 AI 提示詞工具箱，針對小組所選擇的挑戰主題進行線上文獻收集、大數據整理與背景法規解構。</p>
+            <p class="schedule-desc lang-en">Leverage the AI Prompts toolkit to conduct online research, gather macro statistics, and decode policy backgrounds.</p>
+            <p class="schedule-desc lang-ja">AIプロンプトツールを活用し、選択したサバイバルミッションに関連する文献収集、データ整理、法規制の解読を行います。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">19:00 - 21:00</span>
+            <span class="category-badge badge-other">交流 / Cultural / 文化交流</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">跨文化之夜</h4>
+            <h4 class="schedule-title lang-en">Cross-Cultural Exchange Night</h4>
+            <h4 class="schedule-title lang-ja">クロスカルチャーナイト</h4>
+            <span class="schedule-location">星光碧后 / Camp Resort / キャンプ場</span>
+            <p class="schedule-desc lang-zh">台日青年交流活動，透過互動遊戲拉近組員距離，在輕鬆氛圍下展開跨文化深度對話。</p>
+            <p class="schedule-desc lang-en">Participate in activities designed to break barriers and foster cross-cultural friendship and deep conversations.</p>
+            <p class="schedule-desc lang-ja">日台の若者による交流プログラム。インタラクティブなゲームを通じて親睦を深め、異文化対話を行います。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= Day 3 ================= -->
+      <div id="day-3" class="day-content">
+        
+        <div class="day-overview">
+          <h3 class="lang-zh">本日焦點：農創訪查與社區信任</h3>
+          <h3 class="lang-en">Day 3 Focus: Green Agri-Business & Trust Building</h3>
+          <h3 class="lang-ja">本日フォーカス：グリーン農創と地域コミュニティの信頼</h3>
+          <p class="lang-zh">上午訪查水月農莊的加工高值化模式，下午移防員山深溝村，拜訪慢島生活並探索青年如何打入庄頭信任圈。</p>
+          <p class="lang-en">Inspect Water-Moon Farm's value-added model in the morning. Move to Shengou Village in the afternoon to study community integration.</p>
+          <p class="lang-ja">午前は水月農園の加工高付加価値化モデルを調査し、午後は員山深溝集落へ移動してローカル起業家の地域での信頼構築を学びます。</p>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">09:00 - 12:00</span>
+            <span class="category-badge badge-field">田野訪查 / Fieldwork / フィールド調査</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">水月農莊：綠色農創訪查</h4>
+            <h4 class="schedule-title lang-en">Green Agri-Business Tour at Water-Moon Farm</h4>
+            <h4 class="schedule-title lang-ja">グリーン農創調査（水月農園）</h4>
+            <span class="schedule-location">水月農莊 / Water-Moon Farm / 水月農園</span>
+            <p class="schedule-desc lang-zh">體驗採蓮與五色稻田導覽，探索農產品加工高值化與生態農創的日常營運模式。</p>
+            <p class="schedule-desc lang-en">Experience harvesting lotus, view the colorful rice field, and dissect green product processing business models.</p>
+            <p class="schedule-desc lang-ja">蓮の収穫や五色田のガイドツアーを体験し、農産加工品の付加価値化やエコロジービジネスモデルを学びます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">12:00 - 13:20</span>
+            <span class="category-badge badge-dining">用餐 / Dining / 食事</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">農村饗宴：包飯糰與蓮子湯</h4>
+            <h4 class="schedule-title lang-en">Rural Lunch: Rice Balls & Lotus Soup</h4>
+            <h4 class="schedule-title lang-ja">農村の食事：おにぎり作りとハスの実スープ</h4>
+            <span class="schedule-location">水月農莊 / Water-Moon Farm / 水月農園</span>
+            <p class="schedule-desc lang-zh">動手製作傳統飯糰、品嚐清涼蓮子湯，體驗從土地到餐桌的永續連結與在地滋味。</p>
+            <p class="schedule-desc lang-en">Make your own rice balls and taste fresh lotus seed soup, experiencing the farm-to-table connection.</p>
+            <p class="schedule-desc lang-ja">伝統的なおにぎり作りとハスの実スープを体験し、地産地消のつながりを舌で実感します。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">15:00 - 18:00</span>
+            <span class="category-badge badge-field">田野訪查 / Fieldwork / フィールド調査</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">慢島生活：水稻踏查與社區共融</h4>
+            <h4 class="schedule-title lang-en">Slow Island Life: Rice Field Tour & Trust Building</h4>
+            <h4 class="schedule-title lang-ja">スローアイランドライフ：水田踏査とコミュニティ融合</h4>
+            <span class="schedule-location">慢島生活 / Slow Island Life / 慢島生活</span>
+            <p class="schedule-desc lang-zh">進行水稻田踏查、體驗傳統稻草編織，並與移居當地的青年進行深度訪談，學習如何逐步融入庄頭的信任圈。</p>
+            <p class="schedule-desc lang-en">Walk through the rice fields, learn straw weaving, and interview young migrants to understand trust-building in rural societies.</p>
+            <p class="schedule-desc lang-ja">水田踏査や伝統的な藁編みを体験し、移住してきた若者とのインタビューを通じて、地域にいかに溶け込むかを学びます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">19:00 - 21:00</span>
+            <span class="category-badge badge-workshop">工作坊 / Workshop / ワークショップ</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">訪談反思與設計思考工作坊</h4>
+            <h4 class="schedule-title lang-en">Reflection & Design Thinking Workshop</h4>
+            <h4 class="schedule-title lang-ja">インタビューの振り返りとデザイン思考</h4>
+            <span class="schedule-location">春風草堂 / Villa Lounge / 春風草堂</span>
+            <p class="schedule-desc lang-zh">引導各組整理並彙整 Day 1 至 Day 3 的訪談素材與觀察筆記，提煉關鍵痛點與洞察 (Insight)。</p>
+            <p class="schedule-desc lang-en">Consolidate your interview notes from Day 1 to Day 3. Define target user pain points and extract key insights.</p>
+            <p class="schedule-desc lang-ja">Day 1からDay 3までのインタビュー素材や観察ノートを整理し、ユーザーの課題と洞察（インサイト）を抽出します。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= Day 4 ================= -->
+      <div id="day-4" class="day-content">
+        
+        <div class="day-overview">
+          <h3 class="lang-zh">本日焦點：共創設計與解決方案迭代</h3>
+          <h3 class="lang-en">Day 4 Focus: Co-Creation & Solution Prototyping</h3>
+          <h3 class="lang-ja">本日フォーカス：ソリューション共創とプロトタイピング</h3>
+          <p class="lang-zh">深入生態調查與永續先驅訪談，下午進駐佛光大學，將前幾日調研成果轉化為具體的 PFS 社會合約與服務藍圖。</p>
+          <p class="lang-en">Participate in eco-surveys and pioneer interviews. Settle at Fo Guang University to prototype solutions and PFS frameworks.</p>
+          <p class="lang-ja">水路の生態調査と先駆者インタビューを行い、午後は佛光大学に移動してPFS社会インパクト契約とサービスデザインを構築します。</p>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">08:30 - 10:00</span>
+            <span class="category-badge badge-field">田野訪查 / Fieldwork / フィールド調査</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">生態大調查：深溝釣魚大賽</h4>
+            <h4 class="schedule-title lang-en">Shengou Eco-Survey & Fishing Challenge</h4>
+            <h4 class="schedule-title lang-ja">生態系大調査：深溝水路釣り大会</h4>
+            <span class="schedule-location">深溝 / Shengou Village / 深溝集落</span>
+            <p class="schedule-desc lang-zh">實地參與深溝渠道的生態調查，以趣味體驗方式，記錄農村水圳的生態多樣性與環境維護現況。</p>
+            <p class="schedule-desc lang-en">Conduct a hands-on survey of the local canal ecosystem to understand bio-diversity and water protection.</p>
+            <p class="schedule-desc lang-ja">深溝集落の水路で生態調査に直接参加し、遊び感覚を通じて水路の生物多様性と保全活動の現状を記録します。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">10:15 - 11:30</span>
+            <span class="category-badge badge-class">課程 / Class / 講義</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">講座對談：半農半 X 生態學家</h4>
+            <h4 class="schedule-title lang-en">Panel: Half-Farming, Half-X Ecologist</h4>
+            <h4 class="schedule-title lang-ja">座談：半農半Xエコロジスト</h4>
+            <span class="schedule-location">深溝 / Shengou Village / 深溝集落</span>
+            <p class="schedule-desc lang-zh">聆聽兼顧農業生產、自由接案與生態研究的「半農半 X」職人分享，探討農漁村的多元生計組合與生活時間管理。</p>
+            <p class="schedule-desc lang-en">Listen to a professional balancing organic farming, freelance research, and life-work balance in rural communities.</p>
+            <p class="schedule-desc lang-ja">有機農業、受託研究、ライフバランスの両立を実践する専門家の講義を聴き、農村における多様な生計と時間管理を学びます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">11:45 - 13:45</span>
+            <span class="category-badge badge-dining">用餐 / Dining / 食事</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">蔬食體驗與先驅者訪談：陳幸延、賴青松</h4>
+            <h4 class="schedule-title lang-en">Pioneer Interviews & Lunch: Chen Xing-Yan & Lai Qing-Song</h4>
+            <h4 class="schedule-title lang-ja">自然派ランチと先駆者対談：陳幸延氏、頼青松氏</h4>
+            <span class="schedule-location">一簞食 / Yi Dan Shi / 一簞食</span>
+            <p class="schedule-desc lang-zh">享用在地友善蔬食，並與台灣社群支持型農業（CSA）先驅賴青松、科技新農陳幸延進行深度座談，探討長期契作與氣候風險分擔。</p>
+            <p class="schedule-desc lang-en">Enjoy organic vegetarian cuisine and discuss agricultural contract models and risk-sharing with CSA pioneers.</p>
+            <p class="schedule-desc lang-ja">現地の食材を使った料理を味わい、日台CSAの先駆者である頼氏、スマート農業実践者の陳氏とリスク分擔や契約モデルについて対談します。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">14:00 - 16:30</span>
+            <span class="category-badge badge-workshop">工作坊 / Workshop / ワークショップ</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">桑葚米烘焙體驗與加工創新</h4>
+            <h4 class="schedule-title lang-en">Mulberry Rice Baking & processing Workshop</h4>
+            <h4 class="schedule-title lang-ja">桑の実米粉ベーキング体験と加工イノベーション</h4>
+            <span class="schedule-location">深溝 / Shengou Village / 深溝集落</span>
+            <p class="schedule-desc lang-zh">參與桑葚米烘焙體驗，討論微型農產品加工與格外品再利用的法規合規與綠色行銷品牌定位。</p>
+            <p class="schedule-desc lang-en">Bake mulberry rice snacks and brainstorm how micro food processing can address agricultural waste legally and commercially.</p>
+            <p class="schedule-desc lang-ja">米粉を使ったベーキングを体験し、農産加工品の付加価値向上や規格外品の活用、エコロジーなブランディングを議論します。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">19:00 - 21:00</span>
+            <span class="category-badge badge-workshop">工作坊 / Workshop / ワークショップ</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">解決方案共創與點子迭代</h4>
+            <h4 class="schedule-title lang-en">Solution Co-creation & Idea Iteration</h4>
+            <h4 class="schedule-title lang-ja">ソリューション共創とアイディアの推敲</h4>
+            <span class="schedule-location">佛光大學 / University Campus / 佛光大学</span>
+            <p class="schedule-desc lang-zh">整合前幾日調研成果，撰寫生存挑戰解決方案。設計核心服務藍圖與 PFS 成果合約指標，並進行小組迭代優化。</p>
+            <p class="schedule-desc lang-en">Synthesize your findings, formulate a service blueprint, establish a PFS contract, and refine your pitch deck.</p>
+            <p class="schedule-desc lang-ja">これまでの調査成果を統合し、サバイバルミッションの解決策を策定します。サービスブループリントや成果連動（PFS）の指標を設計します。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= Day 5 ================= -->
+      <div id="day-5" class="day-content">
+        
+        <div class="day-overview">
+          <h3 class="lang-zh">本日焦點：永續傳承與成果 Pitch</h3>
+          <h3 class="lang-en">Day 5 Focus: Legacy & Graduation Presentation</h3>
+          <h3 class="lang-ja">本日フォーカス：サステナブルの継承と成果発表</h3>
+          <p class="lang-zh">上午植樹留下永續承諾，下午向產官學專家正式發表各組研究成果並完成結業典禮。</p>
+          <p class="lang-en">Plant trees in the morning for environmental commitment. Present your final pitches to expert judges in the afternoon.</p>
+          <p class="lang-ja">午前は植樹活動を通じてサステナビリティの誓いを立て、午後は審査員に向けてチームの成果を発表します。</p>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">08:30 - 10:00</span>
+            <span class="category-badge badge-other">植樹 / Planting / 植樹活動</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">種樹活動：傳承與承諾</h4>
+            <h4 class="schedule-title lang-en">Tree Planting: Commitment to Earth</h4>
+            <h4 class="schedule-title lang-ja">植樹活動：地球へのコミットメント</h4>
+            <span class="schedule-location">佛光大學植樹區 / Planting Zone / 植樹エリア</span>
+            <p class="schedule-desc lang-zh">由環境學者帶領進行校園植樹活動，並由導師帶領進行最後的五感覺察，留下對這片土地與永續的具體承諾。</p>
+            <p class="schedule-desc lang-en">Plant trees on campus led by ecology professors, followed by a final sensory reflection to leave a lasting sustainability pledge.</p>
+            <p class="schedule-desc lang-ja">環境分野の教授陣の指導のもと植樹活動を行い、メンターとの振り返りセッションを経て、土地への誓いを立てます。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">10:00 - 12:00</span>
+            <span class="category-badge badge-workshop">工作坊 / Workshop / ワークショップ</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">成果發表最後修整</h4>
+            <h4 class="schedule-title lang-en">Pitch Preparation & Final Polish</h4>
+            <h4 class="schedule-title lang-ja">成果発表の最終調整</h4>
+            <span class="schedule-location">成果發表會場 / Presentation Hall / 発表会場</span>
+            <p class="schedule-desc lang-zh">各小組進行發表簡報投影片的最後打磨、上台發表排練與時間掌控微調。</p>
+            <p class="schedule-desc lang-en">Polish your slides, practice your speech, and perform final adjustments to timing and formatting.</p>
+            <p class="schedule-desc lang-ja">各チームで発表用スライドの最終ブラッシュアップ、発表練習、持ち時間の管理調整を行います。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">13:30 - 17:00</span>
+            <span class="category-badge badge-other">成果發表 / Presentation / 成果発表</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">成果發表、專家講評、結業典禮</h4>
+            <h4 class="schedule-title lang-en">Graduation Presentation & Review Ceremony</h4>
+            <h4 class="schedule-title lang-ja">成果発表、専門家講評、結業式</h4>
+            <span class="schedule-location">成果發表會場 / Presentation Hall / 発表会場</span>
+            <p class="schedule-desc lang-zh">各組正式發表生存挑戰的解決方案 Pitch。由產官學界專家評審進行深度問答與講評，最後頒發結業證書並回顧。</p>
+            <p class="schedule-desc lang-en">Present your team's solution to judges. Participate in Q&A, receive expert feedback, and celebrate graduation.</p>
+            <p class="schedule-desc lang-ja">チームで共創した解決策を発表します。専門家による講評を受け、結業証書が授与され、振り返りを行います。</p>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-meta">
+            <span class="schedule-time">17:00 - 19:30</span>
+            <span class="category-badge badge-transit">交通 / Transit / 移動</span>
+          </div>
+          <div class="schedule-detail">
+            <h4 class="schedule-title lang-zh">遊覽車回台北</h4>
+            <h4 class="schedule-title lang-en">Shuttle Bus Back to Taipei</h4>
+            <h4 class="schedule-title lang-ja">バスで台北へ戻る</h4>
+            <span class="schedule-location">遊覽車 / Shuttle Bus / バス</span>
+            <p class="schedule-desc lang-zh">搭乘接駁車返回台北車站解散，互道珍重，圓滿結束五天四夜的共創旅程。</p>
+            <p class="schedule-desc lang-en">Board the shuttle bus to return to Taipei Main Station, wrapping up the 5-day co-creation experience.</p>
+            <p class="schedule-desc lang-ja">送迎バスで台北駅に戻り解散します。互いに感謝を伝え、5日間の共創プログラムが幕を閉じます。</p>
+          </div>
+        </div>
+
+      </div>
+</div>
+
+  
+
+  <script>
+    function showDay(dayNum) {
+      // Toggle active state in tabs
+      document.querySelectorAll('.day-tab').forEach((tab, index) => {
+        if (index + 1 === dayNum) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      // Toggle active day content
+      document.querySelectorAll('.day-content').forEach((content) => {
+        content.classList.remove('active');
+      });
+      const targetContent = document.getElementById(`day-${dayNum}`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+      
+      // Smooth scroll back to top of tab container
+      const selector = document.querySelector('.day-selector');
+      if (selector) {
+        selector.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function getEventDayIndex() {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1;
+      const date = today.getDate();
+      
+      if (year === 2026) {
+        if (month === 6) {
+          if (date === 28) return 1;
+          if (date === 29) return 2;
+          if (date === 30) return 3;
+        } else if (month === 7) {
+          if (date === 1) return 4;
+          if (date === 2) return 5;
+        }
+      }
+      return 1; // Default to Day 1
+    }
+
+    // Passkey verification logic
+    const correctHashes = [
+      "d05d69816331b43ba5645148410d0ed2fb2588af07ad847e3351fd59e4927398", // terra2026
+      "efdbee68667328024d7f63fd1bd4a1292079e1cad0251272153c7120b54de072"  // terra-yilan
+    ];
+
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function verifyPasskey() {
+      const inputVal = document.getElementById('gating-input').value.trim().toLowerCase();
+      const errorDiv = document.getElementById('gating-error');
+      
+      if (!inputVal) {
+        return;
+      }
+      
+      const hashedVal = await sha256(inputVal);
+      if (correctHashes.includes(hashedVal)) {
+        // Access granted!
+        sessionStorage.setItem('terra-authorized', 'true');
+        document.body.style.overflow = '';
+        
+        // Check for redirect param
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirect = urlParams.get('redirect');
+        
+        // Fade out
+        document.getElementById('gating-overlay').classList.add('fade-out');
+        
+        setTimeout(() => {
+          if (redirect) {
+            window.location.href = decodeURIComponent(redirect);
+          } else {
+            document.getElementById('gating-overlay').remove();
+          }
+        }, 500);
+      } else {
+        // Access denied
+        const errorMsgs = {
+          zh: "金鑰錯誤，請重新輸入！",
+          en: "Invalid passkey. Please try again!",
+          ja: "パスキーが正しくありません。再入力してください。"
+        };
+        const bodyEl = document.body;
+        const lang = bodyEl.getAttribute('lang-select') || 'zh';
+        errorDiv.innerText = errorMsgs[lang];
+        errorDiv.classList.add('show');
+        
+        // Shake animation
+        const card = document.querySelector('.gating-card');
+        card.style.animation = 'none';
+        card.offsetHeight; // trigger reflow
+        card.style.animation = 'shake 0.4s ease';
+      }
+    }
+
+    // Language switcher logic
+    function setLanguage(lang) {
+      document.body.setAttribute('lang-select', lang);
+      localStorage.setItem('terra-lang', lang);
+      
+      // Update active state in switcher UI
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // Initialize language from localStorage or browser default
+    document.addEventListener('DOMContentLoaded', () => {
+            // Force theme to light mode
+            document.body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            
+        // Hamburger Drawer Menu Controller
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerClose = document.getElementById('drawerClose');
+        
+        function openMenu() {
+            navDrawer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            navDrawer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        if (menuToggle) menuToggle.addEventListener('click', openMenu);
+        if (drawerOverlay) drawerOverlay.addEventListener('click', closeMenu);
+        if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+    
+        
+            // Force theme to light mode
+            document.body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            
+      // Check auth status first
+      if (sessionStorage.getItem('terra-authorized') === 'true') {
+        const overlay = document.getElementById('gating-overlay');
+        if (overlay) overlay.remove();
+      } else {
+        document.body.style.overflow = 'hidden';
+      }
+
+      // Auto-select day based on today's date
+      const activeDay = getEventDayIndex();
+      showDay(activeDay);
+      const savedLang = localStorage.getItem('terra-lang');
+      const browserLang = navigator.language || navigator.userLanguage;
+      let defaultLang = 'zh'; // default
+      
+      if (savedLang) {
+        defaultLang = savedLang;
+      } else if (browserLang.startsWith('ja')) {
+        defaultLang = 'ja';
+      } else if (browserLang.startsWith('en')) {
+        defaultLang = 'en';
+      }
+      
+      setLanguage(defaultLang);
+      
+      // Add event listeners to switcher buttons
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          setLanguage(lang);
+        });
+      });
+    });
+  </script>
+
+
+  
+  <!-- Presenter Selection Modal -->
+  <div id="presenter-modal" class="presenter-backdrop">
+    <div class="presenter-modal">
+      <h3 id="proj-modal-title">幫小隊設定生存挑戰</h3>
+      <div id="proj-modal-subtitle" style="font-size: 13px; color: var(--muted); margin-bottom: 16px; margin-top: -12px;"></div>
+      <div class="presenter-options-grid" id="presenter-opts-grid"></div>
+      <div class="presenter-modal-footer">
+        <button class="presenter-cancel-btn" onclick="closePresenterSelector()">取消</button>
+        <button class="presenter-submit-btn" onclick="submitPresenterSelection()">確認選擇，現場解鎖！</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Big Screen Success Unlocked Celebration Overlay -->
+  <div id="success-celebration" class="success-celebration">
+    <div class="celebration-icon" style="font-size: 24px; font-weight: 900; letter-spacing: 0.1em; color: var(--accent-2);">SUCCESS</div>
+    <div id="celebration-title" class="celebration-title"></div>
+    <div id="celebration-desc" class="celebration-desc"></div>
+  </div>
+
+  <script>
+    // Localized options same as student_guide_day1.html
+    const selectorChallenges = {
+      zh: [
+        { value: "1", text: "任務一：落腳的第一坪空間 (空間、民生與居住)" },
+        { value: "2", text: "任務二：打入庄頭的隱形鑰匙 (地方信任與社區融入)" },
+        { value: "3", text: "任務三：農作起步的探索指針 (生產入門與耕作決策)" },
+        { value: "4", text: "任務四：時光掌控者的砂漏 (日常作息與時間管理)" },
+        { value: "5", text: "任務五：農產原料的華麗變身 (農產加工與品牌行銷)" },
+        { value: "6", text: "任務六：農田變教室的體驗魔法 (體驗設計與教育傳播)" },
+        { value: "7", text: "任務七：穀東盟約的終身鐵粉 (支持者社群與風險共擔)" },
+        { value: "8", text: "任務八：都市青年的第二身分 (半農半 X 與技能轉譯)" }
+      ],
+      en: [
+        { value: "1", text: "Task 1: First-Footing Space (Housing & Livelihood)" },
+        { value: "2", text: "Task 2: The Invisible Key (Community Trust & Integration)" },
+        { value: "3", text: "Task 3: Farming Navigation (Production & Land Lease)" },
+        { value: "4", text: "Task 4: The Timekeeper's Hourglass (Time Allocation)" },
+        { value: "5", text: "Task 5: Value Transformation (Processing & Branding)" },
+        { value: "6", text: "Task 6: Farm to Classroom (Experience Design)" },
+        { value: "7", text: "Task 7: The Supporter Covenant (CSA & Risk Sharing)" },
+        { value: "8", text: "Task 8: The Second Identity (Half-Farming, Half-X)" }
+      ],
+      ja: [
+        { value: "1", text: "ミッション 1：生活立脚の第一歩 (居住空間とインフラ)" },
+        { value: "2", text: "ミッション 2：コミュニティ信頼構築の見えない鍵 (地域融合)" },
+        { value: "3", text: "ミッション 3：農の第一歩 (農地選定と作物の決定)" },
+        { value: "4", text: "ミッション 4：時間管理者の砂時計 (日常タスク管理)" },
+        { value: "5", text: "ミッション 5：農産物の華麗なる變身 (加工品とブランド化)" },
+        { value: "6", text: "ミッション 6：農地を教室に変える体験の魔法 (体験プログラム)" },
+        { value: "7", text: "ミッション 7：ファン（穀東）との誓約 (サポーター関係)" },
+        { value: "8", text: "ミッション 8：第2のアイデンティティ (半農半Xと複業)" }
+      ]
+    };
+
+    const teamNames = {
+      zh: ["", "第一組 (稻香小隊)", "第二組 (水月小隊)", "第三組 (慢島小隊)", "第四組 (半農小隊)"],
+      en: ["", "Team 1 (Rice Fragrance)", "Team 2 (Water Moon)", "Team 3 (Slow Island)", "Team 4 (Half Farming)"],
+      ja: ["", "第1班 (稲香チーム)", "第2班 (水月チーム)", "第3班 (慢島チーム)", "第4班 (半農チーム)"]
+    };
+
+    let activeTeamId = null;
+    let tempSelectedChallengeId = null;
+
+    // Open presenter selector
+    function openPresenterSelector(teamId) {
+      activeTeamId = teamId;
+      tempSelectedChallengeId = null;
+      
+      const modal = document.getElementById('presenter-modal');
+      const title = document.getElementById('proj-modal-title');
+      const subtitle = document.getElementById('proj-modal-subtitle');
+      
+      const lang = currentLanguage || 'zh';
+      
+      title.innerText = lang === 'zh' ? '幫小隊開通挑戰項目' : lang === 'en' ? 'Unlock Challenge for Team' : 'チームのサバイバルミッション決定';
+      subtitle.innerText = `Target: ${teamNames[lang][teamId]}`;
+      
+      // Render options grid
+      const grid = document.getElementById('presenter-opts-grid');
+      grid.innerHTML = '';
+      
+      selectorChallenges[lang].forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'presenter-opt';
+        div.innerText = c.text;
+        div.onclick = () => {
+          // Highlight selected
+          document.querySelectorAll('.presenter-opt').forEach(el => el.classList.remove('selected'));
+          div.classList.add('selected');
+          tempSelectedChallengeId = c.value;
+        };
+        grid.appendChild(div);
+      });
+      
+      modal.classList.add('show');
+    }
+
+    function closePresenterSelector() {
+      document.getElementById('presenter-modal').classList.remove('show');
+    }
+
+    function submitPresenterSelection() {
+      if (!tempSelectedChallengeId) {
+        alert(currentLanguage === 'zh' ? "請先點選一個生存挑戰項目！" : currentLanguage === 'en' ? "Please select a challenge first!" : "ミッションを選択してください！");
+        return;
+      }
+      
+      closePresenterSelector();
+      
+      const lang = currentLanguage || 'zh';
+      const selectedText = selectorChallenges[lang].find(c => c.value === tempSelectedChallengeId).text;
+      const cleanedChallengeName = selectedText.replace(/^[^\s]+:\s*/, '').replace(/^[^\s]+：\s*/, '');
+      
+      // Save state to localStorage
+      localStorage.setItem(`terra-selected-team-${activeTeamId}`, tempSelectedChallengeId);
+      
+      // Trigger big celebration screen
+      const celebrOverlay = document.getElementById('success-celebration');
+      const celebrTitle = document.getElementById('celebration-title');
+      const celebrDesc = document.getElementById('celebration-desc');
+      
+      celebrTitle.innerText = lang === 'zh' ? `【${teamNames[lang][activeTeamId]}】生存挑戰開通！` : lang === 'en' ? `【${teamNames[lang][activeTeamId]}】Challenge Unlocked!` : `【${teamNames[lang][activeTeamId]}】ミッションアンロック！`;
+      celebrDesc.innerText = lang === 'zh' ? `選定任務：${cleanedChallengeName}\n\n小隊研究看板與專用學習指引已即時解鎖！` : lang === 'en' ? `Livelihood Challenge: ${cleanedChallengeName}\n\nResearch board and specialized guides are unlocked!` : `選択ミッション: ${cleanedChallengeName}\n\n看板と学習ナビが即時アンロックされました！`;
+      
+      celebrOverlay.classList.add('show');
+      
+      setTimeout(() => {
+        celebrOverlay.classList.remove('show');
+        // Render local UI update
+        updateTeamCardUI(activeTeamId, tempSelectedChallengeId);
+      }, 3500);
+    }
+
+    function updateTeamCardUI(teamId, challengeId) {
+      const badge = document.getElementById(`team-badge-${teamId}`);
+      const card = document.getElementById(`team-card-${teamId}`);
+      const lang = currentLanguage || 'zh';
+      
+      if (challengeId) {
+        const selectedText = selectorChallenges[lang].find(c => c.value === challengeId).text;
+        const cleanedChallengeName = selectedText.replace(/^[^\s]+:\s*/, '').replace(/^[^\s]+：\s*/, '');
+        
+        const labelPrefix = lang === 'zh' ? '已選擇：' : lang === 'en' ? 'Selected: ' : '選択済：';
+        badge.className = "team-badge active-badge";
+        badge.innerHTML = `${labelPrefix}${cleanedChallengeName}`;
+        card.classList.add('unlocked-card');
+      } else {
+        badge.className = "team-badge";
+        badge.innerHTML = lang === 'zh' ? '待選題 (點擊解鎖)' : lang === 'en' ? 'Pending (Click to Set)' : '未選択 (クリックで決定)';
+        card.classList.remove('unlocked-card');
+      }
+    }
+
+    // Load initial states from local storage on startup
+    function loadInitialSelections() {
+      for (let i = 1; i <= 4; i++) {
+        const savedChallengeId = localStorage.getItem(`terra-selected-team-${i}`);
+        if (savedChallengeId) {
+          updateTeamCardUI(i, savedChallengeId);
+        }
+      }
+    }
+
+    // Override setLanguage to also update badges UI text if selected
+    const origSetLanguage = setLanguage;
+    setLanguage = function(lang) {
+      origSetLanguage(lang);
+      // Reload UI text representation to match new language
+      loadInitialSelections();
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadInitialSelections();
+    });
+  </script>
+  
+  <!-- Navigation Drawer Overlay -->
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+    <div class="nav-drawer-content">
+      <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="drawer-brand">
+        <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="drawer-logo">
+        <div class="drawer-brand-text">
+          <span class="brand-title">TERRA</span>
+          <span class="brand-subtitle lang-zh">地之校手冊</span>
+          <span class="brand-subtitle lang-en">Manual</span>
+          <span class="brand-subtitle lang-ja">マニュアル</span>
+        </div>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html" class="drawer-nav-item active">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span class="lang-zh">行程指南</span>
+          <span class="lang-en">Itinerary</span>
+          <span class="lang-ja">日程ガイド</span>
+        </a>
+        <a href="members.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span class="lang-zh">分組名冊</span>
+          <span class="lang-en">Roster</span>
+          <span class="lang-ja">名簿</span>
+        </a>
+        <a href="eight_challenges.html" class="drawer-nav-item" style="font-weight: 800;">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span class="lang-zh">生存挑戰</span>
+          <span class="lang-en">Challenge Quests</span>
+          <span class="lang-ja">生存課題</span>
+        </a>
+        <a href="challenge_1.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 1 落腳的第一坪空間</span>
+          <span class="lang-en">Task 1 Housing & Utilities</span>
+          <span class="lang-ja">任務 1 生活立脚の第一步</span>
+        </a>
+        <a href="challenge_2.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 2 打入庄頭的隱形鑰匙</span>
+          <span class="lang-en">Task 2 Community Integration</span>
+          <span class="lang-ja">任務 2 コミュニティ信頼構築</span>
+        </a>
+        <a href="challenge_3.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 3 農作起步的探索指針</span>
+          <span class="lang-en">Task 3 Farming Operations</span>
+          <span class="lang-ja">任務 3 農業展開の探索指標</span>
+        </a>
+        <a href="challenge_4.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 4 農村職人的家之課題</span>
+          <span class="lang-en">Task 4 Rural Artisans & Housing</span>
+          <span class="lang-ja">任務 4 農村職人の住環境</span>
+        </a>
+        <a href="challenge_5.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 5 翻越資金的無形高牆</span>
+          <span class="lang-en">Task 5 Financing Obstacles</span>
+          <span class="lang-ja">任務 5 資金調達の見えない壁</span>
+        </a>
+        <a href="challenge_6.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 6 尋找水路外的灌溉綠洲</span>
+          <span class="lang-en">Task 6 Water Infrastructure</span>
+          <span class="lang-ja">任務 6 インフレ整備と灌漑</span>
+        </a>
+        <a href="challenge_7.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 7 點土成金的行銷密碼</span>
+          <span class="lang-en">Task 7 Agricultural Marketing</span>
+          <span class="lang-ja">任務 7 農産物マーケティング</span>
+        </a>
+        <a href="challenge_8.html" class="drawer-sub-item">
+          <span class="lang-zh">任務 8 農業之外的價值鏈結</span>
+          <span class="lang-en">Task 8 Non-Agri Value Chains</span>
+          <span class="lang-ja">任務 8 農業以外の価値連鎖</span>
+        </a>
+                <a href="../design-thinking/design-thinking.html" class="drawer-nav-item">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="3" y1="9" x2="9" y2="9"></line></svg>
+          <span class="lang-zh">工具箱</span>
+          <span class="lang-en">Toolbox</span>
+          <span class="lang-ja">ツールボックス</span>
+        </a>
+        <a href="../design-thinking/design-thinking.html" class="drawer-sub-item">
+          <span class="lang-zh">design-thinking-101</span>
+          <span class="lang-en">design-thinking-101</span>
+          <span class="lang-ja">design-thinking-101</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+    
+</body>
+</html>

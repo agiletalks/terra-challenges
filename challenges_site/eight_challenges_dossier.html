@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        const hash = window.location.hash;
+        let redirectUrl = 'eight_challenges.html';
+        if (hash) {
+            const match = hash.match(/^#quest-(\d+)$/);
+            if (match) {
+                redirectUrl = 'challenge_' + match[1] + '.html#dossier';
+            }
+        }
+        window.location.replace(redirectUrl);
+    </script>
+</head>
+<body>
+    <p>Redirecting to Challenge Hub... <a href="eight_challenges.html">Click here</a> if you are not redirected.</p>
+</body>
+</html>
