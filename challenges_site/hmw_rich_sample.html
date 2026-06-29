@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HMW 創意思考討論看板 (豐富體驗版)</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1200px; margin: 40px auto; }
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { color: #0f2a1c; font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; }
+  .header p { color: #78716c; font-size: 0.98rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+  
+  /* 控制列 */
+  .control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; background: white; padding: 16px 24px; border-radius: 12px; border: 1px solid #e7e5e4; }
+  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; }
+  .btn-export:hover { background: #A04B19; }
+  
+  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(15,42,28,0.02); }
+  .theme-title { font-size: 1.15rem; font-weight: 800; color: white; background: #0f2a1c; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .cards-list { display: flex; flex-direction: column; gap: 12px; min-height: 50px; }
+  
+  /* HMW 卡片樣式 */
+  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); border-radius: 12px; padding: 18px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center; gap: 16px; position: relative; }
+  .hmw-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.04); border-color: rgba(22,101,52,0.2); }
+  .hmw-card.dragging { opacity: 0.5; background: #f5f5f4; cursor: grabbing; }
+  
+  .card-content { flex-grow: 1; }
+  .angle-badge { font-size: 0.72em; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+  .badge-barrier { background: #fee2e2; color: #991b1b; }
+  .badge-outcome { background: #dcfce7; color: #166534; }
+  .badge-leverage { background: #dbeafe; color: #1e40af; }
+  
+  .hmw-text { font-size: 0.98rem; line-height: 1.6; color: #1c1917; margin-bottom: 6px; }
+  .hmw-text strong { color: #B35C24; margin-right: 6px; }
+  
+  .original-source { font-size: 0.78rem; color: #78716c; margin-top: 10px; border-top: 1px dashed #e7e5e4; padding-top: 8px; font-weight: 500; }
+  
+  /* 投票計數器樣式 (+/- 按鈕) */
+  .vote-area { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e7e5e4; border-radius: 20px; padding: 6px 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+  .vote-change-btn { background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; transition: all 0.2s ease; user-select: none; }
+  .vote-change-btn:hover { background: #e7e5e4; color: #1c1917; transform: scale(1.05); }
+  .vote-change-btn:active { transform: scale(0.95); }
+  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 42px; justify-content: center; }
+  .vote-heart-icon { color: #e11d48; font-size: 1rem; }
+  .vote-count { font-size: 0.95rem; font-weight: 800; color: #1c1917; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>💡 HMW 創意思考討論看板</h1>
+    <p>以下是由 AI 將多位受訪者的 Coding（痛點/期望）轉化為 3 種不同設計視角的 HMW 挑戰。請在下方進行拖曳排序與投票，決定小隊下一步的 Ideation 重點！</p>
+  </div>
+  
+  <div class="control-row">
+    <div style="font-size: 0.9rem; color: #6b7280; font-weight: 600;">操作說明：上下拖曳卡片進行排序，點擊 ❤️ 投票，結束後匯出結果。</div>
+    <button class="btn-export" onclick="exportResults()">匯出討論結果</button>
+  </div>
+
+  <!-- 主題 1 -->
+  <div class="theme-section">
+    <div class="theme-title">#社區融入與信任建立 / CommunityIntegrationTrust / 地域社会への融和と信頼構築</div>
+    <div class="cards-list">
+      
+      <!-- 卡片 1 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何降低老農對都市青年的防備心，建立合作的切入點？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we reduce elderly farmers' wariness toward urban youth and establish a starting point for collaboration?</div>
+          <div class="hmw-text"><strong>JA</strong>：どのようにして老農の都会の若者に対する警戒心を和らげ、協力の足掛かりを築くことができるか？</div>
+          <div class="original-source">💡 源自痛點：都市書生形象被質疑玩玩而已 (受訪者：賴大哥)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+      <!-- 卡片 2 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Desired Outcome</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓青年在每天的農耕日常中，感到自己與老農建立了如家人般的深厚情誼？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we make youth feel as close as family to the elderly farmers during daily farming tasks?</div>
+          <div class="hmw-text"><strong>JA</strong>：日々の農作業の中で、若者が老農たちと家族のように親しく感じられるようにするにはどうすればよいか？</div>
+          <div class="original-source">💡 源自期望：用行動證明誠意並融入社區 (受訪者：賴大哥)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+      <!-- 卡片 3 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢/系統槓桿 / Leverage Opportunities</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何利用青年數位工具的優勢，去主動協助老農解決日常申報補助的痛點，建立最初的信任？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we leverage youth's digital skills to help elderly farmers apply for subsidies, establishing initial trust?</div>
+          <div class="hmw-text"><strong>JA</strong>：若者のデジタルスキルの強みを活かして老農の申請業務を支援し、最初の信頼関係を構築するにはどうすればよいか？</div>
+          <div class="original-source">💡 源自痛點：行政申報手續繁瑣 (受訪者：賴大哥)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- 主題 2 -->
+  <div class="theme-section">
+    <div class="theme-title">#老農經驗傳承與技術轉化 / AgriculturalTechTransfer / 農業技術の伝承と可視化</div>
+    <div class="cards-list">
+      
+      <!-- 卡片 4 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何將老農腦海中抽象的「憑感覺」種植經驗，轉化為青年能輕鬆理解的視覺化指標？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we translate elderly farmers' intuitive farming experience into visual metrics that youth can easily understand?</div>
+          <div class="hmw-text"><strong>JA</strong>：老農の直感的な農業経験を、若者が理解しやすいビジュアル指標に変換するにはどうすればよいか？</div>
+          <div class="original-source">💡 源自痛點：傳統種植技術全在老農腦海中，青年難以精準學習 (受訪者：小陳)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+      <!-- 卡片 5 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Desired Outcome</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓老農在向都市青年傳授農技時，感受到自我的專業價值被高度尊重與傳承？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we ensure elderly farmers feel deeply respected and valued for their expertise when mentoring urban youth?</div>
+          <div class="hmw-text"><strong>JA</strong>：若者に技術を教える際、老農が自らの専門価値が尊重され、受け継がれていると実感できるようにするにはどうすればよいか？</div>
+          <div class="original-source">💡 源自期望：建立技術傳承的榮譽感 (受訪者：老農阿公)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+      <!-- 卡片 6 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢/系統槓桿 / Leverage Opportunities</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何結合青年的多媒體記錄能力與老農的口述口訣，共同編輯出一份新時代的農村耕作指引？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we combine youth's multimedia skills with farmers' oral guidelines to co-create a modern farming playbook?</div>
+          <div class="hmw-text"><strong>JA</strong>：若者のマルチメディア記録力と老農の口伝を組み合わせ、新時代の農業ノートを共同作成するにはどうすればよいか？</div>
+          <div class="original-source">💡 源自優勢：都市青年善用社群與多媒體 (受訪者：小陳)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- 主題 3 -->
+  <div class="theme-section">
+    <div class="theme-title">#都市與農村角色共融 / UrbanRuralIdentity / 都市と農村の役割融合</div>
+    <div class="cards-list">
+      
+      <!-- 卡片 7 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何消除青年在「都市專業工作」與「農村耕作生活」之間的撕裂感，建立和諧的作息節奏？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we reduce the friction between youth's urban professional jobs and their rural farming lives to create a harmonious rhythm?</div>
+          <div class="hmw-text"><strong>JA</strong>：若者の都市での専門職と農村での農耕生活の間のジレンマを解消し、調和のとれたリズムを築くにはどうすればよいか？</div>
+          <div class="original-source">💡 源自痛點：都市青年面臨半農半X的身分焦慮，兩頭不討好 (受訪者：阿美)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+      <!-- 卡片 8 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Desired Outcome</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓青年在農村生活中，找到能充分發揮其都市專長的「第二身分」，獲得獨特的成就感？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we help youth find a second identity in the countryside that leverages their urban expertise for unique fulfillment?</div>
+          <div class="hmw-text"><strong>JA</strong>：農村生活の中で、若者が都市での強みを活かせる「第二のアイデンティティ」を見つけ、独自の達成感を得られるようにするにはどうすればよいか？</div>
+          <div class="original-source">💡 源自期望：發揮所長並獲得自我實現 (受訪者：阿美)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+      <!-- 卡片 9 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢/系統槓桿 / Leverage Opportunities</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何將農田打造成一個「半農半X的共創基地」，讓都市資源與農耕土地產生雙向互利的永續循環？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we transform farms into co-creation hubs where urban resources and farm lands generate mutually beneficial cycles?</div>
+          <div class="hmw-text"><strong>JA</strong>：農地を「半農半Xの共創拠点」に変え、都市の資源と農地の間で双方向のメリットを生み出す持続可能な循環を築くにはどうすればよいか？</div>
+          <div class="original-source">💡 源自優勢：兩邊人脈與資源的嫁接能力 (受訪者：阿美)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // 簡易 HTML5 Drag & Drop 邏輯
+  const lists = document.querySelectorAll('.cards-list');
+  lists.forEach(list => {
+    list.addEventListener('dragstart', (e) => {
+      if (e.target.classList.contains('hmw-card')) {
+        e.target.classList.add('dragging');
+      }
+    });
+
+    list.addEventListener('dragend', (e) => {
+      if (e.target.classList.contains('hmw-card')) {
+        e.target.classList.remove('dragging');
+      }
+    });
+
+    list.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      const draggingCard = document.querySelector('.dragging');
+      const siblings = [...list.querySelectorAll('.hmw-card:not(.dragging)')];
+      const nextSibling = siblings.find(sibling => {
+        return e.clientY <= sibling.getBoundingClientRect().top + sibling.getBoundingClientRect().height / 2;
+      });
+      if (nextSibling) {
+        list.insertBefore(draggingCard, nextSibling);
+      } else {
+        list.appendChild(draggingCard);
+      }
+    });
+  });
+
+  // 投票點讚邏輯
+  // 投票增減邏輯 (+/- 按鈕)
+  function adjustVote(btn, amount) {
+    const voteArea = btn.parentElement;
+    const countSpan = voteArea.querySelector('.vote-count');
+    let current = parseInt(countSpan.innerText) || 0;
+    let newValue = current + amount;
+    if (newValue < 0) newValue = 0; // 不允許負數票
+    countSpan.innerText = newValue;
+  }
+
+  // 匯出結果
+  function exportResults() {
+    let resultText = "=== HMW 討論與投票排序結果 ===\n\n";
+    const sections = document.querySelectorAll('.theme-section');
+    sections.forEach(sec => {
+      const title = sec.querySelector('.theme-title').innerText;
+      resultText += "【主題】" + title + "\n";
+      const cards = sec.querySelectorAll('.hmw-card');
+      cards.forEach((card, index) => {
+        const hmwCh = card.querySelector('.hmw-text').innerText;
+        const votes = card.querySelector('.vote-count').innerText;
+        resultText += (index+1) + ". [" + votes + " 票] " + hmwCh + "\n";
+      });
+      resultText += "\n";
+    });
+    
+    // 複製到剪貼簿並提示
+    navigator.clipboard.writeText(resultText).then(() => {
+      alert("排序與投票結果已複製到您的剪貼簿！可直接貼上紀錄。");
+    }).catch(err => {
+      alert("複製失敗：" + err);
+    });
+  }
+</script>
+</body>
+</html>
