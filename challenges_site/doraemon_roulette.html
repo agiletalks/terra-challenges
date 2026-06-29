@@ -138,7 +138,6 @@
             }
         }
 
-        /* 輪盤區 */
         .roulette-wrapper {
             display: flex;
             flex-direction: column;
@@ -166,7 +165,6 @@
             }
         }
 
-        /* 指針 */
         .pointer {
             position: absolute;
             top: -15px;
@@ -181,7 +179,6 @@
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
         }
 
-        /* 輪盤主體 */
         .wheel {
             width: 100%;
             height: 100%;
@@ -270,7 +267,6 @@
             transform: translate(-50%, -50%) scale(0.92);
         }
 
-        /* 鈴鐺線條與孔洞 */
         .bell-icon {
             display: flex;
             flex-direction: column;
@@ -291,7 +287,6 @@
             border-radius: 50%;
         }
 
-        /* SPIN 按鈕 */
         .spin-btn {
             background-color: var(--doraemon-blue);
             color: white;
@@ -322,7 +317,6 @@
             transform: none;
         }
 
-        /* 結果顯示卡 */
         .result-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -383,7 +377,6 @@
             width: 100%;
         }
 
-        /* 輪盤內部數字標示 */
         .wheel-number {
             position: absolute;
             width: 100%;
@@ -396,52 +389,226 @@
             padding-top: 10px;
             pointer-events: none;
         }
+
+        /* 經典道具登場的全螢幕舞台特效 */
+        .fanfare-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10000;
+            overflow: hidden;
+            background: rgba(15, 23, 42, 0.93);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .fanfare-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 旋轉放射狀光芒背景 */
+        .radial-burst {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 250vmax;
+            height: 250vmax;
+            transform: translate(-50%, -50%);
+            background: repeating-conic-gradient(
+                from 0deg,
+                #38bdf8 0deg 12deg,
+                #fef08a 12deg 24deg
+            );
+            animation: spin-burst 25s linear infinite;
+            z-index: 1;
+            opacity: 0.75;
+        }
+        @keyframes spin-burst {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .showcase-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            animation: pop-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: scale(0.7);
+        }
+        .fanfare-overlay.show .showcase-container {
+            opacity: 1;
+            transform: scale(1);
+        }
+        @keyframes pop-up {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 動漫字卡風格 */
+        .showcase-card {
+            background: rgba(255, 255, 255, 0.96);
+            border: 6px solid #1e293b;
+            border-radius: 28px;
+            padding: 40px 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 0 4px rgba(255,255,255,0.2);
+            width: 100%;
+            position: relative;
+        }
+
+        .showcase-num {
+            background: var(--doraemon-red);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 900;
+            padding: 6px 20px;
+            border-radius: 99px;
+            margin-bottom: 24px;
+            display: inline-block;
+            border: 3px solid #1e293b;
+            box-shadow: 0 4px 0 #1e293b;
+        }
+
+        .showcase-name-zh {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #0284c7;
+            margin-bottom: 12px;
+            text-shadow: 3px 3px 0px #e0f2fe, 6px 6px 0px rgba(30, 41, 59, 0.15);
+            letter-spacing: 2px;
+        }
+
+        .showcase-name-other {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 700;
+            background: #f1f5f9;
+            padding: 6px 16px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .showcase-desc {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #0f172a;
+            font-weight: 600;
+            background: #fffbeb;
+            padding: 24px 30px;
+            border-radius: 16px;
+            border: 3px solid #1e293b;
+            box-shadow: 4px 4px 0px #1e293b;
+            text-align: left;
+        }
+
+        .close-showcase-btn {
+            margin-top: 32px;
+            background: var(--doraemon-yellow);
+            color: #1e293b;
+            border: 4px solid #1e293b;
+            padding: 12px 36px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #1e293b, 0 10px 20px rgba(0,0,0,0.3);
+            transition: all 0.1s;
+        }
+        .close-showcase-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #1e293b, 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* 閃爍星星特效 */
+        .sparkle {
+            position: absolute;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: blink 1.2s ease-in-out infinite alternate;
+            z-index: 2;
+            pointer-events: none;
+        }
+        @keyframes blink {
+            0% { transform: scale(0.3) rotate(0deg); opacity: 0.3; }
+            100% { transform: scale(1.1) rotate(180deg); opacity: 1; }
+        }
     </style>
 </head>
-<body>
+<body lang-select="zh" data-theme="light">
 
-    <header>
-        <div class="header-container">
-            <div class="brand-lockup">
-                <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
-                <div class="brand-text">
-                    <span class="brand-title">TERRA</span>
-                    <span class="brand-subtitle">地之校手冊</span>
-                </div>
-            </div>
-            <a href="../design-thinking/design-thinking.html" class="back-btn">返回工具箱</a>
-        </div>
-        <h1>🔮 哆啦A夢秘密道具輪盤</h1>
-        <p>點擊「SPIN」轉動輪盤，隨機抽出一款經典的 22 世紀未來道具！</p>
-    </header>
-
-    <div class="main-content">
-        <div class="roulette-wrapper">
-            <div class="pointer"></div>
-            <div class="roulette-container">
-                <div class="center-btn" id="spinCenterBtn">
-                    <div class="bell-icon">
-                        <div class="bell-line"></div>
-                        <div class="bell-hole"></div>
+    <div class="wrap">
+        <header>
+            <div class="header-container">
+                <div class="brand-lockup">
+                    <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
+                    <div class="brand-text">
+                        <span class="brand-title">TERRA</span>
+                        <span class="brand-subtitle">地之校手冊</span>
                     </div>
                 </div>
-                <div class="wheel" id="wheel"></div>
+                <a href="../design-thinking/design-thinking.html" class="back-btn">返回工具箱</a>
             </div>
-            <button class="spin-btn" id="spinBtn">SPIN / 開始轉動</button>
-        </div>
+            <h1>🔮 哆啦A夢秘密道具輪盤</h1>
+            <p>點擊「SPIN」轉動輪盤，隨機抽出一款經典的 22 世紀未來道具！</p>
+        </header>
 
-        <div class="result-card" id="resultCard">
-            <div class="result-empty" id="resultEmpty">
-                <p>🔮 點選左側的 SPIN 鍵來抽取道具吧！</p>
-            </div>
-            <div id="resultDetails" style="display: none; width: 100%;">
-                <span class="result-num-badge">No. <span id="resNum">001</span></span>
-                <h2 class="result-name-zh" id="resNameZh">任意門</h2>
-                <div class="result-name-other">
-                    <span id="resNameEn">Anywhere Door</span> / <span id="resNameJa">どこでもドア</span>
+        <div class="main-content">
+            <div class="roulette-wrapper">
+                <div class="pointer"></div>
+                <div class="roulette-container">
+                    <div class="center-btn" id="spinCenterBtn">
+                        <div class="bell-icon">
+                            <div class="bell-line"></div>
+                            <div class="bell-hole"></div>
+                        </div>
+                    </div>
+                    <div class="wheel" id="wheel"></div>
                 </div>
-                <p class="result-desc" id="resDesc">最具代表性的道具，可到達十光年內任何已知地點。</p>
+                <button class="spin-btn" id="spinBtn">SPIN / 開始轉動</button>
             </div>
+
+            <div class="result-card" id="resultCard">
+                <div class="result-empty" id="resultEmpty">
+                    <p>🔮 點選左側的 SPIN 鍵來抽取道具吧！</p>
+                </div>
+                <div id="resultDetails" style="display: none; width: 100%;">
+                    <span class="result-num-badge">No. <span id="resNum">001</span></span>
+                    <h2 class="result-name-zh" id="resNameZh">任意門</h2>
+                    <div class="result-name-other">
+                        <span id="resNameEn">Anywhere Door</span> / <span id="resNameJa">どこでもドア</span>
+                    </div>
+                    <p class="result-desc" id="resDesc">最具代表性的道具，可到達十光年內任何已知地點。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 經典道具登場的全螢幕舞台特效 HTML -->
+    <div class="fanfare-overlay" id="fanfareOverlay">
+        <div class="radial-burst"></div>
+        <div id="sparkleContainer"></div>
+        <div class="showcase-container">
+            <div class="showcase-card">
+                <div class="showcase-num">No. <span id="showNum">001</span></div>
+                <div class="showcase-name-zh" id="showNameZh">任意門</div>
+                <div class="showcase-name-other"><span id="showNameEn">Anywhere Door</span> / <span id="showNameJa">どこでもドア</span></div>
+                <div class="showcase-desc" id="showDesc">最具代表性的道具，可到達十光年內任何已知地點。</div>
+            </div>
+            <button class="close-showcase-btn" id="closeShowcaseBtn">太棒了！收下道具</button>
         </div>
     </div>
 
@@ -1149,12 +1316,10 @@
   }
 ];
 
-        // 建立輪盤數字顯示
         const wheel = document.getElementById('wheel');
         for (let i = 1; i <= 100; i++) {
             const numDiv = document.createElement('div');
             numDiv.className = 'wheel-number';
-            // 每個扇區為 3.6 度，將數字旋轉到對應扇區中心
             const rot = (i - 1) * 3.6 + 1.8;
             numDiv.style.transform = `rotate(${rot}deg)`;
             numDiv.innerText = i;
@@ -1166,11 +1331,16 @@
         const resultEmpty = document.getElementById('resultEmpty');
         const resultDetails = document.getElementById('resultDetails');
         
+        const fanfareOverlay = document.getElementById('fanfareOverlay');
+        const closeShowcaseBtn = document.getElementById('closeShowcaseBtn');
+        const sparkleContainer = document.getElementById('sparkleContainer');
+        
         let isSpinning = false;
         let currentRotation = 0;
 
-        // 音效系統
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        // 齒輪轉動滴答聲
         function playTickSound() {
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
@@ -1188,45 +1358,118 @@
             osc.stop(audioCtx.currentTime + 0.05);
         }
 
+        // 登登登登！極致還原經典道具吹奏 Fanfare 音效
+        function playFanfareSound() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const now = audioCtx.currentTime;
+            
+            // 四個小號聲部音符：C5 (523.25Hz), E5 (659.25Hz), G5 (783.99Hz), C6 (1046.50Hz)
+            const notes = [523.25, 659.25, 783.99, 1046.50];
+            const durations = [0.08, 0.08, 0.08, 0.8];
+            const starts = [0, 0.08, 0.16, 0.24];
+            
+            notes.forEach((freq, idx) => {
+                const osc1 = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator(); // 雙小喇叭合奏效果
+                const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+                
+                osc1.connect(filter);
+                osc2.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                // 鋸齒波模擬小號黃銅音色
+                osc1.type = 'sawtooth';
+                osc2.type = 'sawtooth';
+                osc1.frequency.setValueAtTime(freq - 2, now + starts[idx]);
+                osc2.frequency.setValueAtTime(freq + 2, now + starts[idx]);
+                
+                // 低通濾波器包絡線調變，產生黃銅特有的 "Wah-wah" 前奏吹氣質感
+                filter.type = 'lowpass';
+                filter.Q.setValueAtTime(6, now + starts[idx]);
+                filter.frequency.setValueAtTime(300, now + starts[idx]);
+                filter.frequency.exponentialRampToValueAtTime(freq * 3, now + starts[idx] + 0.02);
+                filter.frequency.exponentialRampToValueAtTime(freq * 1.5, now + starts[idx] + durations[idx]);
+                
+                // 音量包絡線
+                gain.gain.setValueAtTime(0, now + starts[idx]);
+                gain.gain.linearRampToValueAtTime(0.12, now + starts[idx] + 0.02);
+                
+                if (idx === 3) {
+                    // 第四個拉長的主音加上些微顫音與漸弱
+                    gain.gain.setValueAtTime(0.12, now + starts[idx] + 0.3);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + starts[idx] + durations[idx]);
+                    
+                    // 顫音效果
+                    osc1.frequency.linearRampToValueAtTime(freq - 10, now + starts[idx] + 0.3);
+                    osc1.frequency.linearRampToValueAtTime(freq + 10, now + starts[idx] + 0.5);
+                    osc1.frequency.linearRampToValueAtTime(freq, now + starts[idx] + 0.8);
+                } else {
+                    gain.gain.setValueAtTime(0.12, now + starts[idx] + durations[idx] - 0.01);
+                    gain.gain.setValueAtTime(0, now + starts[idx] + durations[idx]);
+                }
+                
+                osc1.start(now + starts[idx]);
+                osc2.start(now + starts[idx]);
+                osc1.stop(now + starts[idx] + durations[idx]);
+                osc2.stop(now + starts[idx] + durations[idx]);
+            });
+        }
+
+        // 產生白色閃爍十字星光
+        function createSparkles() {
+            sparkleContainer.innerHTML = '';
+            for (let i = 0; i < 18; i++) {
+                const star = document.createElement('div');
+                star.className = 'sparkle';
+                
+                const size = 15 + Math.random() * 25;
+                const top = 10 + Math.random() * 80;
+                const left = 5 + Math.random() * 90;
+                const delay = Math.random() * 1.5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${top}%`;
+                star.style.left = `${left}%`;
+                star.style.animationDelay = `${delay}s`;
+                
+                sparkleContainer.appendChild(star);
+            }
+        }
+
         function spinWheel() {
             if (isSpinning) return;
             isSpinning = true;
             spinBtn.disabled = true;
 
-            // 隨機抽取一個道具 (1-100)
             const randomIndex = Math.floor(Math.random() * 100);
             const targetGadget = gadgets[randomIndex];
-            const targetId = targetGadget.id; // 1-100
+            const targetId = targetGadget.id; 
 
-            // 計算目標角度
-            // 指針指向頂部 (0度/360度)。輪盤旋轉為順時針。
-            // 為了讓第 targetId 個扇區落在頂部指針處，需要旋轉的相對角度：
-            // 每個扇區 3.6 度，第 targetId 個扇區的位置是 (targetId - 1) * 3.6 + 1.8 度。
-            // 輪盤順時針旋轉角度應為： 360 - 扇區中心角度。
             const targetSectorAngle = (targetId - 1) * 3.6 + 1.8;
             const targetAngle = 360 - targetSectorAngle;
 
-            // 增加旋轉圈數 (至少 5 圈)
-            const spins = 5 + Math.floor(Math.random() * 3);
+            const spins = 6 + Math.floor(Math.random() * 3);
             const extraDegrees = spins * 360;
             currentRotation += extraDegrees + targetAngle - (currentRotation % 360);
 
-            // 執行旋轉動畫
             wheel.style.transform = `rotate(${currentRotation}deg)`;
 
-            // 模擬旋轉過程中的滴答聲
             let tickCount = 0;
             const totalTicks = spins * 100 + targetId;
             const startTime = performance.now();
-            const duration = 5000; // 5秒
+            const duration = 5000; 
 
             function animateTicks(timestamp) {
                 const elapsed = timestamp - startTime;
                 if (elapsed < duration) {
-                    // 使用 cubic-bezier 緩動函數來計算當前進度與速度，模擬滴答聲的減速
                     const progress = elapsed / duration;
-                    const easedProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-                    const currentTickTarget = Math.floor(easedProgress * totalTicks);
+                    const EasedProgress = 1 - Math.pow(1 - progress, 4); // easeOutQuart 減速效果更柔和
+                    const currentTickTarget = Math.floor(EasedProgress * totalTicks);
                     
                     if (currentTickTarget > tickCount) {
                         playTickSound();
@@ -1237,34 +1480,51 @@
             }
             requestAnimationFrame(animateTicks);
 
-            // 旋轉結束後的處理
             setTimeout(() => {
                 isSpinning = false;
                 spinBtn.disabled = false;
-                showResult(targetGadget);
+                triggerShowcase(targetGadget);
             }, duration);
         }
 
-        function showResult(gadget) {
+        // 觸發全螢幕展示與吹奏音效
+        function triggerShowcase(gadget) {
+            // 寫入展示卡片內容
+            document.getElementById('showNum').innerText = String(gadget.id).padStart(3, '0');
+            document.getElementById('showNameZh').innerText = gadget.nameZh;
+            document.getElementById('showNameEn').innerText = gadget.nameEn;
+            document.getElementById('showNameJa').innerText = gadget.nameJa;
+            document.getElementById('showDesc').innerText = gadget.descZh;
+
+            // 寫入側邊備份卡片內容
             resultEmpty.style.display = 'none';
             resultDetails.style.display = 'block';
-
             document.getElementById('resNum').innerText = String(gadget.id).padStart(3, '0');
             document.getElementById('resNameZh').innerText = gadget.nameZh;
             document.getElementById('resNameEn').innerText = gadget.nameEn;
             document.getElementById('resNameJa').innerText = gadget.nameJa;
             document.getElementById('resDesc').innerText = gadget.descZh;
 
-            // 輕微的縮放震盪效果
-            const card = document.getElementById('resultCard');
-            card.style.transform = 'scale(1.03)';
-            setTimeout(() => {
-                card.style.transform = 'scale(1)';
-            }, 150);
+            // 隨機產生星光並展開特效遮罩
+            createSparkles();
+            fanfareOverlay.classList.add('show');
+
+            // 播放極致還原喇叭吹奏音效
+            playFanfareSound();
+        }
+
+        function closeShowcase() {
+            fanfareOverlay.classList.remove('show');
         }
 
         spinBtn.addEventListener('click', spinWheel);
         spinCenterBtn.addEventListener('click', spinWheel);
+        closeShowcaseBtn.addEventListener('click', closeShowcase);
+        fanfareOverlay.addEventListener('click', (e) => {
+            if (e.target === fanfareOverlay) {
+                closeShowcase();
+            }
+        });
     </script>
 </body>
 </html>
