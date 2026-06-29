@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <script>
+        if (localStorage.getItem('terra-authorized') !== 'true' && sessionStorage.getItem('terra-authorized') !== 'true') {
+            window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰拉學校｜哆啦A夢道具輪盤 (Doraemon Gadget Roulette)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #f0f7ff;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --doraemon-blue: #0ea5e9;
+            --doraemon-red: #ef4444;
+            --doraemon-yellow: #facc15;
+            --border-color: rgba(14, 165, 233, 0.12);
+            --shadow-sm: 0 4px 12px rgba(14, 165, 233, 0.05);
+            --shadow-lg: 0 20px 40px rgba(14, 165, 233, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-lockup {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            height: 36px;
+            filter: brightness(0) invert(1);
+        }
+
+        .brand-text {
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            opacity: 0.8;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            flex-grow: 1;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* 輪盤區 */
+        .roulette-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .roulette-container {
+            width: 320px;
+            height: 320px;
+            position: relative;
+            margin-bottom: 24px;
+            border-radius: 50%;
+            padding: 8px;
+            background: #ffffff;
+            box-shadow: var(--shadow-lg);
+            border: 6px solid var(--doraemon-blue);
+        }
+
+        @media (min-width: 480px) {
+            .roulette-container {
+                width: 400px;
+                height: 400px;
+            }
+        }
+
+        /* 指針 */
+        .pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 35px solid var(--doraemon-red);
+            z-index: 10;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+        }
+
+        /* 輪盤主體 */
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            transition: transform 5s cubic-bezier(0.1, 0.8, 0.1, 1);
+            background: conic-gradient(
+                #38bdf8 0deg 3.6deg, #0ea5e9 3.6deg 7.2deg,
+                #7dd3fc 7.2deg 10.8deg, #0284c7 10.8deg 14.4deg,
+                #bae6fd 14.4deg 18deg, #0369a1 18deg 21.6deg,
+                #e0f2fe 21.6deg 25.2deg, #075985 25.2deg 28.8deg,
+                #38bdf8 28.8deg 32.4deg, #0ea5e9 32.4deg 36deg,
+                #7dd3fc 36deg 39.6deg, #0284c7 39.6deg 43.2deg,
+                #bae6fd 43.2deg 46.8deg, #0369a1 46.8deg 50.4deg,
+                #e0f2fe 50.4deg 54deg, #075985 54deg 57.6deg,
+                #38bdf8 57.6deg 61.2deg, #0ea5e9 61.2deg 64.8deg,
+                #7dd3fc 64.8deg 68.4deg, #0284c7 68.4deg 72deg,
+                #bae6fd 72deg 75.6deg, #0369a1 75.6deg 79.2deg,
+                #e0f2fe 79.2deg 82.8deg, #075985 82.8deg 86.4deg,
+                #38bdf8 86.4deg 90deg, #0ea5e9 90deg 93.6deg,
+                #7dd3fc 93.6deg 97.2deg, #0284c7 97.2deg 100.8deg,
+                #bae6fd 100.8deg 104.4deg, #0369a1 104.4deg 108deg,
+                #e0f2fe 108deg 111.6deg, #075985 111.6deg 115.2deg,
+                #38bdf8 115.2deg 118.8deg, #0ea5e9 118.8deg 122.4deg,
+                #7dd3fc 122.4deg 126deg, #0284c7 126deg 129.6deg,
+                #bae6fd 129.6deg 133.2deg, #0369a1 133.2deg 136.8deg,
+                #e0f2fe 136.8deg 140.4deg, #075985 140.4deg 144deg,
+                #38bdf8 144deg 147.6deg, #0ea5e9 147.6deg 151.2deg,
+                #7dd3fc 151.2deg 154.8deg, #0284c7 154.8deg 158.4deg,
+                #bae6fd 158.4deg 162deg, #0369a1 162deg 165.6deg,
+                #e0f2fe 165.6deg 169.2deg, #075985 169.2deg 172.8deg,
+                #38bdf8 172.8deg 176.4deg, #0ea5e9 176.4deg 180deg,
+                #7dd3fc 180deg 183.6deg, #0284c7 183.6deg 187.2deg,
+                #bae6fd 187.2deg 190.8deg, #0369a1 190.8deg 194.4deg,
+                #e0f2fe 194.4deg 198deg, #075985 198deg 201.6deg,
+                #38bdf8 201.6deg 205.2deg, #0ea5e9 205.2deg 208.8deg,
+                #7dd3fc 208.8deg 212.4deg, #0284c7 212.4deg 216deg,
+                #bae6fd 216deg 219.6deg, #0369a1 219.6deg 223.2deg,
+                #e0f2fe 223.2deg 226.8deg, #075985 226.8deg 230.4deg,
+                #38bdf8 230.4deg 234deg, #0ea5e9 234deg 237.6deg,
+                #7dd3fc 237.6deg 241.2deg, #0284c7 241.2deg 244.8deg,
+                #bae6fd 244.8deg 248.4deg, #0369a1 248.4deg 252deg,
+                #e0f2fe 252deg 255.6deg, #075985 255.6deg 259.2deg,
+                #38bdf8 259.2deg 262.8deg, #0ea5e9 262.8deg 266.4deg,
+                #7dd3fc 266.4deg 270deg, #0284c7 270deg 273.6deg,
+                #bae6fd 273.6deg 277.2deg, #0369a1 277.2deg 280.8deg,
+                #e0f2fe 280.8deg 284.4deg, #075985 284.4deg 288deg,
+                #38bdf8 288deg 291.6deg, #0ea5e9 291.6deg 295.2deg,
+                #7dd3fc 295.2deg 298.8deg, #0284c7 298.8deg 302.4deg,
+                #bae6fd 302.4deg 306deg, #0369a1 306deg 309.6deg,
+                #e0f2fe 309.6deg 313.2deg, #075985 313.2deg 316.8deg,
+                #38bdf8 316.8deg 320.4deg, #0ea5e9 320.4deg 324deg,
+                #7dd3fc 324deg 327.6deg, #0284c7 327.6deg 331.2deg,
+                #bae6fd 331.2deg 334.8deg, #0369a1 334.8deg 338.4deg,
+                #e0f2fe 338.4deg 342deg, #075985 342deg 345.6deg,
+                #38bdf8 345.6deg 349.2deg, #0ea5e9 349.2deg 352.8deg,
+                #7dd3fc 352.8deg 356.4deg, #0284c7 356.4deg 360deg
+            );
+        }
+
+        .center-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: var(--doraemon-yellow);
+            border: 4px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #1e293b;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            z-index: 5;
+            transition: transform 0.1s;
+            user-select: none;
+        }
+
+        .center-btn:active {
+            transform: translate(-50%, -50%) scale(0.92);
+        }
+
+        /* 鈴鐺線條與孔洞 */
+        .bell-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+        }
+        .bell-line {
+            width: 30px;
+            height: 4px;
+            background: #1e293b;
+            border-radius: 2px;
+        }
+        .bell-hole {
+            width: 10px;
+            height: 10px;
+            background: #1e293b;
+            border-radius: 50%;
+        }
+
+        /* SPIN 按鈕 */
+        .spin-btn {
+            background-color: var(--doraemon-blue);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+
+        .spin-btn:hover {
+            background-color: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+        }
+
+        .spin-btn:active {
+            transform: translateY(0);
+        }
+
+        .spin-btn:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* 結果顯示卡 */
+        .result-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-lg);
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 8px solid var(--doraemon-blue);
+        }
+
+        .result-empty {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .result-num-badge {
+            background: var(--doraemon-yellow);
+            color: #1e293b;
+            font-size: 0.9rem;
+            font-weight: 900;
+            padding: 6px 16px;
+            border-radius: 99px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .result-name-zh {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #0284c7;
+            margin-bottom: 8px;
+        }
+
+        .result-name-other {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .result-desc {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #334155;
+            background: #f8fafc;
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: 1px solid #f1f5f9;
+            width: 100%;
+        }
+
+        /* 輪盤內部數字標示 */
+        .wheel-number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transform-origin: 50% 50%;
+            font-size: 8px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.7);
+            padding-top: 10px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-lockup">
+                <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
+                <div class="brand-text">
+                    <span class="brand-title">TERRA</span>
+                    <span class="brand-subtitle">地之校手冊</span>
+                </div>
+            </div>
+            <a href="../design-thinking/design-thinking.html" class="back-btn">返回工具箱</a>
+        </div>
+        <h1>🔮 哆啦A夢秘密道具輪盤</h1>
+        <p>點擊「SPIN」轉動輪盤，隨機抽出一款經典的 22 世紀未來道具！</p>
+    </header>
+
+    <div class="main-content">
+        <div class="roulette-wrapper">
+            <div class="pointer"></div>
+            <div class="roulette-container">
+                <div class="center-btn" id="spinCenterBtn">
+                    <div class="bell-icon">
+                        <div class="bell-line"></div>
+                        <div class="bell-hole"></div>
+                    </div>
+                </div>
+                <div class="wheel" id="wheel"></div>
+            </div>
+            <button class="spin-btn" id="spinBtn">SPIN / 開始轉動</button>
+        </div>
+
+        <div class="result-card" id="resultCard">
+            <div class="result-empty" id="resultEmpty">
+                <p>🔮 點選左側的 SPIN 鍵來抽取道具吧！</p>
+            </div>
+            <div id="resultDetails" style="display: none; width: 100%;">
+                <span class="result-num-badge">No. <span id="resNum">001</span></span>
+                <h2 class="result-name-zh" id="resNameZh">任意門</h2>
+                <div class="result-name-other">
+                    <span id="resNameEn">Anywhere Door</span> / <span id="resNameJa">どこでもドア</span>
+                </div>
+                <p class="result-desc" id="resDesc">最具代表性的道具，可到達十光年內任何已知地點。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gadgets = [
+  {
+    "id": 1,
+    "nameZh": "任意門",
+    "nameEn": "Anywhere Door",
+    "nameJa": "どこでもドア",
+    "descZh": "最具代表性的道具，可到達十光年內任何已知地點。"
+  },
+  {
+    "id": 2,
+    "nameZh": "竹蜻蜓",
+    "nameEn": "Hopter",
+    "nameJa": "タケコプター",
+    "descZh": "最常使用的飛行道具，戴在頭上即可在空中自由飛翔。"
+  },
+  {
+    "id": 3,
+    "nameZh": "時光機",
+    "nameEn": "Time Machine",
+    "nameJa": "タイムマシン",
+    "descZh": "位於大雄書桌抽屜中，用以穿梭過去與未來的時空載具。"
+  },
+  {
+    "id": 4,
+    "nameZh": "時間包巾 / 時光布",
+    "nameEn": "Time Kerchief",
+    "nameJa": "タイムふろしき",
+    "descZh": "雙面設計。包住物體後，正面可讓物體時間變新，反面可使時間變舊。"
+  },
+  {
+    "id": 5,
+    "nameZh": "穿透環 / 避難通路",
+    "nameEn": "Pass-loop",
+    "nameJa": "通りぬけフープ",
+    "descZh": "貼在牆壁或障礙物上，即可創造出一個能穿過去的通道。"
+  },
+  {
+    "id": 6,
+    "nameZh": "如果電話亭",
+    "nameEn": "What-if Phone Booth",
+    "nameJa": "もしもボックス",
+    "descZh": "撥打電話並說出假想的世界，整個世界就會按照設定發生改變。"
+  },
+  {
+    "id": 7,
+    "nameZh": "時光電視",
+    "nameEn": "Time Television",
+    "nameJa": "タイムテレビ",
+    "descZh": "可以觀察過去、未來或世界上任何角落所發生的事情。"
+  },
+  {
+    "id": 8,
+    "nameZh": "時光膠囊",
+    "nameEn": "Time Capsule",
+    "nameJa": "タイムカプセル",
+    "descZh": "用於封存物品，並能埋入地下在百年後完好無損地挖出。"
+  },
+  {
+    "id": 9,
+    "nameZh": "時間暫停器",
+    "nameEn": "Time Stop Watch",
+    "nameJa": "タンマウォッチ",
+    "descZh": "按下即可讓全世界的時間暫停，僅使用者能自由移動。"
+  },
+  {
+    "id": 10,
+    "nameZh": "定時傻瓜相機",
+    "nameEn": "Timer Camera",
+    "nameJa": "タイマーカメラ",
+    "descZh": "設定時間後，相機會在特定時間自動拍下當時的畫面。"
+  },
+  {
+    "id": 11,
+    "nameZh": "記憶麵包 / 記憶吐司",
+    "nameEn": "Memory Bread",
+    "nameJa": "アンキパン",
+    "descZh": "將麵包貼在書本上，吃下去後就能完美背下該頁的內容，但排泄後會失效。"
+  },
+  {
+    "id": 12,
+    "nameZh": "電腦鉛筆",
+    "nameEn": "Computer Pencil",
+    "nameJa": "コンピューターペンシル",
+    "descZh": "寫功課或考試時，鉛筆會自動寫出百分之百正確的答案。"
+  },
+  {
+    "id": 13,
+    "nameZh": "預言日記",
+    "nameEn": "Prophecy Diary",
+    "nameJa": "あらかじめ日記",
+    "descZh": "在日記寫下未來即將發生的事，事情一定會按照所寫的成真。"
+  },
+  {
+    "id": 14,
+    "nameZh": "成績單改分器",
+    "nameEn": "Grade Corrector",
+    "nameJa": "成績表改書きペン",
+    "descZh": "可任意塗改成績單上的分數，但只是障眼法。"
+  },
+  {
+    "id": 15,
+    "nameZh": "速讀眼鏡",
+    "nameEn": "Speed Reading Glasses",
+    "nameJa": "速読眼鏡",
+    "descZh": "戴上後，可以在極短時間內讀完厚重的小說或課本。"
+  },
+  {
+    "id": 16,
+    "nameZh": "萬能護照",
+    "nameEn": "All-Pass Passport",
+    "nameJa": "パスポート",
+    "descZh": "只要出示此護照，無論做任何事、去任何地方都會被無條件允許。"
+  },
+  {
+    "id": 17,
+    "nameZh": "全自動讀書機",
+    "nameEn": "Auto Study Machine",
+    "nameJa": "自動勉強機",
+    "descZh": "可以代替人讀書、做作業的機器。"
+  },
+  {
+    "id": 18,
+    "nameZh": "健忘草",
+    "nameEn": "Forgetfulness Grass",
+    "nameJa": "わすれ草",
+    "descZh": "聞到其花香的人會忘記剛才所想或準備要做的事。"
+  },
+  {
+    "id": 19,
+    "nameZh": "追蹤徽章",
+    "nameEn": "Tracer Badge",
+    "nameJa": "トレーサーバッジ",
+    "descZh": "將徽章別在他人身上，即可在地圖上追蹤其即時位置。"
+  },
+  {
+    "id": 20,
+    "nameZh": "翻譯蒟蒻 / 翻譯年糕",
+    "nameEn": "Translation Gummy",
+    "nameJa": "ほんやくコンニャク",
+    "descZh": "吃下後便能聽懂、讀懂並說出世界上所有語言（包括外星語和動物語言）。"
+  },
+  {
+    "id": 21,
+    "nameZh": "縮小燈",
+    "nameEn": "Shrink Ray",
+    "nameJa": "スモールライト",
+    "descZh": "照向物體即可使其縮小，有時效限制。"
+  },
+  {
+    "id": 22,
+    "nameZh": "放大燈",
+    "nameEn": "Magnifying Ray",
+    "nameJa": "ビッグライト",
+    "descZh": "與縮小燈相反，照向物體可使其無限放大。"
+  },
+  {
+    "id": 23,
+    "nameZh": "格列佛隧道",
+    "nameEn": "Gulliver Tunnel",
+    "nameJa": "ガリバートンネル",
+    "descZh": "從大口進、小口出就會變小；反之則變大。"
+  },
+  {
+    "id": 24,
+    "nameZh": "空間剪刀",
+    "nameEn": "Space Scissors",
+    "nameJa": "空間切り取りばさみ",
+    "descZh": "可以把任何地方的空間剪下一塊，貼在自家房間使用。"
+  },
+  {
+    "id": 25,
+    "nameZh": "公寓貼紙",
+    "nameEn": "Apartment Paper",
+    "nameJa": "アパートごっこシール",
+    "descZh": "貼在牆壁上即可開闢出一個專屬的地下房間。"
+  },
+  {
+    "id": 26,
+    "nameZh": "縮小懸崖",
+    "nameEn": "Miniature Cliff",
+    "nameJa": "ミニチュアがけ",
+    "descZh": "將微縮景觀放大為真實環境，用以體驗攀岩等極限運動。"
+  },
+  {
+    "id": 27,
+    "nameZh": "萬能起重機",
+    "nameEn": "Universal Crane",
+    "nameJa": "万能クレーン",
+    "descZh": "可以輕鬆吊起並移動任何沉重物體的微型吊車。"
+  },
+  {
+    "id": 28,
+    "nameZh": "重力調節器",
+    "nameEn": "Gravity Paint",
+    "nameJa": "重力ペイント",
+    "descZh": "刷在牆壁上即可改變重力方向，讓人可以在天花板或牆上行走。"
+  },
+  {
+    "id": 29,
+    "nameZh": "壁紙基地",
+    "nameEn": "Wallpaper Base",
+    "nameJa": "壁紙ハウス",
+    "descZh": "貼在牆上展開後，即可進入壁紙內部的舒適房間。"
+  },
+  {
+    "id": 30,
+    "nameZh": "口袋置物架",
+    "nameEn": "Pocket Shelf",
+    "nameJa": "ポケット棚",
+    "descZh": "可以將大量家具和物品塞入微小的抽屜或架子中。"
+  },
+  {
+    "id": 31,
+    "nameZh": "獨裁者按鈕",
+    "nameEn": "Dictator Button",
+    "nameJa": "どくさいスイッチ",
+    "descZh": "按下按鈕並說出名字，該人就會在世界上徹底消失。"
+  },
+  {
+    "id": 32,
+    "nameZh": "惡魔護照",
+    "nameEn": "Devil's Passport",
+    "nameJa": "悪魔のパスポート",
+    "descZh": "出示此護照後，無論使用者做多麼壞的壞事都會被原諒。"
+  },
+  {
+    "id": 33,
+    "nameZh": "誠實娃娃 / 誠實人形",
+    "nameEn": "Honesty Doll",
+    "nameJa": "正直太郎",
+    "descZh": "拿著它時，它會代替使用者說出心裡最誠實的真心話。"
+  },
+  {
+    "id": 34,
+    "nameZh": "朋友圈",
+    "nameEn": "Friendship Ring",
+    "nameJa": "友情の輪",
+    "descZh": "兩個人同時站在這個圓圈內，就會瞬間成為一輩子的摯友。"
+  },
+  {
+    "id": 35,
+    "nameZh": "名刀「電光丸」",
+    "nameEn": "Sword Denkomaru",
+    "nameJa": "名刀電光丸",
+    "descZh": "自動化木刀，能感知對手的攻擊並自動出招防禦和反擊。"
+  },
+  {
+    "id": 36,
+    "nameZh": "討厭藥丸",
+    "nameEn": "Dislike Pill",
+    "nameJa": "いやな薬",
+    "descZh": "吃下後會讓身邊所有人暫時極度討厭你，用來躲避糾纏。"
+  },
+  {
+    "id": 37,
+    "nameZh": "好人藥水",
+    "nameEn": "Good Guy Medicine",
+    "nameJa": "いい子薬",
+    "descZh": "喝下後會不由自主地想做好事、幫助別人。"
+  },
+  {
+    "id": 38,
+    "nameZh": "誇獎頭盔",
+    "nameEn": "Flattery Helmet",
+    "nameJa": "お褒めヘルメット",
+    "descZh": "戴上後，身邊所有人會開始無底線地誇獎、讚美你。"
+  },
+  {
+    "id": 39,
+    "nameZh": "聽話機器人",
+    "nameEn": "Obedience Robot",
+    "nameJa": "言うことを聞くロボット",
+    "descZh": "絕對服從命令的小型機器人僕人。"
+  },
+  {
+    "id": 40,
+    "nameZh": "引路天使",
+    "nameEn": "Guiding Angel",
+    "nameJa": "みちびきエンゼル",
+    "descZh": "戴在手指上的小天使，會為你指引出通往成功的最優路線。"
+  },
+  {
+    "id": 41,
+    "nameZh": "天氣決定箱",
+    "nameEn": "Weather Box",
+    "nameJa": "お天気ボックス",
+    "descZh": "插入特定天氣卡片，即可瞬間改變當地的天氣。"
+  },
+  {
+    "id": 42,
+    "nameZh": "避雨斗篷",
+    "nameEn": "Rain Avoidance Cape",
+    "nameJa": "雨よけよけ",
+    "descZh": "披上後，天上下雨也不會有一滴雨水淋到身上。"
+  },
+  {
+    "id": 43,
+    "nameZh": "颱風眼",
+    "nameEn": "Typhoon Eye",
+    "nameJa": "台風の眼",
+    "descZh": "可以馴服颱風，使其像寵物一樣聽話並在自己身邊環繞。"
+  },
+  {
+    "id": 44,
+    "nameZh": "雲土",
+    "nameEn": "Cloud Clay",
+    "nameJa": "雲かためガス",
+    "descZh": "可以將天上的白雲凝固，像土地一樣在上面蓋房子、奔跑。"
+  },
+  {
+    "id": 45,
+    "nameZh": "日光浴燈",
+    "nameEn": "Sun Tan Lamp",
+    "nameJa": "日光浴ライト",
+    "descZh": "在室內也能模擬陽光，曬出健康的古銅色皮膚。"
+  },
+  {
+    "id": 46,
+    "nameZh": "竹子速成粉",
+    "nameEn": "Instant Bamboo",
+    "nameJa": "インスタント竹の子",
+    "descZh": "灑在地上能讓植物在幾秒鐘內迅速長成參天大樹。"
+  },
+  {
+    "id": 47,
+    "nameZh": "鼴鼠手套",
+    "nameEn": "Mole Gloves",
+    "nameJa": "モグラ手袋",
+    "descZh": "戴上後能像鼴鼠一樣以極快的速度在地下挖洞。"
+  },
+  {
+    "id": 48,
+    "nameZh": "深海潛水服",
+    "nameEn": "Deep Sea Diving Suit",
+    "nameJa": "深海潜水服",
+    "descZh": "不需要氧氣瓶，能承受深海極大水壓的輕便潛水服。"
+  },
+  {
+    "id": 49,
+    "nameZh": "四季蠟燭",
+    "nameEn": "Four Seasons Candle",
+    "nameJa": "四季ローソク",
+    "descZh": "點燃特定季節的蠟燭，周圍環境就會變成該季節的氣候。"
+  },
+  {
+    "id": 50,
+    "nameZh": "微型太陽",
+    "nameEn": "Miniature Sun",
+    "nameJa": "ミニ太陽",
+    "descZh": "在室內懸掛的微型發光發熱太陽，提供溫暖與光照。"
+  },
+  {
+    "id": 51,
+    "nameZh": "桃太郎飯糰",
+    "nameEn": "Momotaro Dango",
+    "nameJa": "桃太郎印のきびだんご",
+    "descZh": "投餵給任何凶猛的動物（或怪獸）吃，牠就會立刻變得溫順聽話。"
+  },
+  {
+    "id": 52,
+    "nameZh": "美食桌巾",
+    "nameEn": "Gourmet Tablecloth",
+    "nameJa": "グルメテーブルかけ",
+    "descZh": "鋪開後點菜，桌巾會瞬間變出世界上任何精美且美味的料理。"
+  },
+  {
+    "id": 53,
+    "nameZh": "百寶袋",
+    "nameEn": "Four-Dimensional Pocket",
+    "nameJa": "四次元ポケット",
+    "descZh": "哆啦A夢腹部的口袋，與四次元空間相連，裝有無限的道具。"
+  },
+  {
+    "id": 54,
+    "nameZh": "備用百寶袋",
+    "nameEn": "Spare Pocket",
+    "nameJa": "予備のポケット",
+    "descZh": "大雄常常偷拿的備用口袋，與哆啦A夢身上的主口袋相連。"
+  },
+  {
+    "id": 55,
+    "nameZh": "醫生手提箱",
+    "nameEn": "Doctor Bag",
+    "nameJa": "お医者さんごっこ",
+    "descZh": "將聽診器貼在身上，即可自動開出藥丸治癒百病。"
+  },
+  {
+    "id": 56,
+    "nameZh": "自動販賣機",
+    "nameEn": "Auto Vending Machine",
+    "nameJa": "自動販売機",
+    "descZh": "輸入想要的商品名稱，就會以極便宜的價格自動販售。"
+  },
+  {
+    "id": 57,
+    "nameZh": "速成罐頭",
+    "nameEn": "Instant Can",
+    "nameJa": "インスタント缶詰",
+    "descZh": "打開即可提供各種熱騰騰的食物，非常方便。"
+  },
+  {
+    "id": 58,
+    "nameZh": "好運罐頭",
+    "nameEn": "Good Luck Can",
+    "nameJa": "幸せの缶詰",
+    "descZh": "開罐後能帶來一段時間的極佳好運。"
+  },
+  {
+    "id": 59,
+    "nameZh": "體力發條",
+    "nameEn": "Stamina Spring",
+    "nameJa": "ぜんまいねじ",
+    "descZh": "發條裝在背後並上緊，體力與行動速度會瞬間提升十倍。"
+  },
+  {
+    "id": 60,
+    "nameZh": "隱形藥水",
+    "nameEn": "Invisibility Dropper",
+    "nameJa": "透明人間薬",
+    "descZh": "喝下後身體會完全變為透明，達到隱形效果。"
+  },
+  {
+    "id": 61,
+    "nameZh": "空氣砲",
+    "nameEn": "Air Cannon",
+    "nameJa": "空気砲",
+    "descZh": "套在手上喊「碰！」，即可發射出強大壓縮空氣擊昏對手。"
+  },
+  {
+    "id": 62,
+    "nameZh": "衝擊槍",
+    "nameEn": "Shock Gun",
+    "nameJa": "ショックガン",
+    "descZh": "發射無形衝擊波擊昏敵人，是哆啦A夢冒險時的常規武器。"
+  },
+  {
+    "id": 63,
+    "nameZh": "隱形斗篷 / 避役斗篷",
+    "nameEn": "Invisibility Cape",
+    "nameJa": "透明マント",
+    "descZh": "披在身上即可讓身體與背景完全融合，實現隱形。"
+  },
+  {
+    "id": 64,
+    "nameZh": "雷電槍",
+    "nameEn": "Lightning Gun",
+    "nameJa": "カミナリコング",
+    "descZh": "能釋放小型雷電擊打敵人的防禦用槍枝。"
+  },
+  {
+    "id": 65,
+    "nameZh": "超人披風",
+    "nameEn": "Super Cape",
+    "nameJa": "スーパーマント",
+    "descZh": "披上後會獲得超人般的力量、速度與防禦力。"
+  },
+  {
+    "id": 66,
+    "nameZh": "縮小指北針",
+    "nameEn": "Shrinking Compass",
+    "nameJa": "縮小コンパス",
+    "descZh": "指向人即可讓對方的身形縮小，便於防禦。"
+  },
+  {
+    "id": 67,
+    "nameZh": "火箭吸管",
+    "nameEn": "Rocket Straw",
+    "nameJa": "ロケットストロー",
+    "descZh": "吹氣即可發射火箭般的推力，能用作飛行或攻擊。"
+  },
+  {
+    "id": 68,
+    "nameZh": "障礙破壞器",
+    "nameEn": "Obstacle Destroyer",
+    "nameJa": "障害物破壊機",
+    "descZh": "能瞬間摧毀前方任何物理阻礙的重型道具。"
+  },
+  {
+    "id": 69,
+    "nameZh": "反彈斗篷",
+    "nameEn": "Reflecting Cape",
+    "nameJa": "ひらりマント",
+    "descZh": "揮舞斗篷可以反彈任何物理攻擊、子彈甚至魔法。"
+  },
+  {
+    "id": 70,
+    "nameZh": "救命丸",
+    "nameEn": "Lifesaver Pill",
+    "nameJa": "命の素",
+    "descZh": "在遭遇致命危險前吃下，能獲得短暫的無敵防禦。"
+  },
+  {
+    "id": 71,
+    "nameZh": "室內釣魚池",
+    "nameEn": "Indoor Fishing Pond",
+    "nameJa": "お座敷つりぼり",
+    "descZh": "鋪在地上即與大海或湖泊相連，可以在室內釣到海魚。"
+  },
+  {
+    "id": 72,
+    "nameZh": "說謊鏡",
+    "nameEn": "Lying Mirror",
+    "nameJa": "うそつきかがみ",
+    "descZh": "會一邊極力讚美照鏡子的人（將其美化），一邊教唆人做壞事。"
+  },
+  {
+    "id": 73,
+    "nameZh": "透視相機",
+    "nameEn": "X-Ray Camera",
+    "nameJa": "透視カメラ",
+    "descZh": "可以拍出物體內部構造或障礙物後方畫面的照相機。"
+  },
+  {
+    "id": 74,
+    "nameZh": "錄音紙",
+    "nameEn": "Sound Recording Paper",
+    "nameJa": "音録音紙",
+    "descZh": "說話時會將聲音記錄在紙上，撕開時會重新播出聲音。"
+  },
+  {
+    "id": 75,
+    "nameZh": "室內滑雪場",
+    "nameEn": "Indoor Ski Slope",
+    "nameJa": "お座敷スキー場",
+    "descZh": "在地毯上鋪開即可創造微型的室內低溫滑雪場。"
+  },
+  {
+    "id": 76,
+    "nameZh": "立體複印相機",
+    "nameEn": "3D Copy Camera",
+    "nameJa": "立体コピーカメラ",
+    "descZh": "拍下物體後，能立刻複製出一個一模一樣的立體實物模型。"
+  },
+  {
+    "id": 77,
+    "nameZh": "人偶黏土",
+    "nameEn": "Doll Clay",
+    "nameJa": "人形粘土",
+    "descZh": "用黏土捏出別人的樣子，該人偶所受的影響會同步到真人身上。"
+  },
+  {
+    "id": 78,
+    "nameZh": "神奇畫筆",
+    "nameEn": "Magic Paintbrush",
+    "nameJa": "魔法の筆",
+    "descZh": "用它畫出來的畫作，會從紙面上跳出來變成真實的物體。"
+  },
+  {
+    "id": 79,
+    "nameZh": "微縮相機",
+    "nameEn": "Miniature Camera",
+    "nameJa": "ポラロイドインスタントカメラ",
+    "descZh": "拍下真實房屋後，會掉落出一個可以住進去的微縮模型屋。"
+  },
+  {
+    "id": 80,
+    "nameZh": "神奇音樂盒",
+    "nameEn": "Magic Music Box",
+    "nameJa": "オルゴール",
+    "descZh": "播放時會讓聽到音樂的人不由自主地開始跳舞。"
+  },
+  {
+    "id": 81,
+    "nameZh": "惡作劇玩具",
+    "nameEn": "Prank Toy",
+    "nameJa": "いたずらおもちゃ",
+    "descZh": "用以捉弄別人的整人道具。"
+  },
+  {
+    "id": 82,
+    "nameZh": "說話藥水",
+    "nameEn": "Talking Dropper",
+    "nameJa": "動物の言葉の薬",
+    "descZh": "滴在動物身上，即可讓牠說出人類的語言。"
+  },
+  {
+    "id": 83,
+    "nameZh": "夢境放映機",
+    "nameEn": "Dream Projector",
+    "nameJa": "ユメプロジェクター",
+    "descZh": "可以將別人的夢境畫面即時投影出來觀看。"
+  },
+  {
+    "id": 84,
+    "nameZh": "真心話藥水",
+    "nameEn": "Truth Serum",
+    "nameJa": "本音薬",
+    "descZh": "喝下後在一段時間內無法說任何謊話。"
+  },
+  {
+    "id": 85,
+    "nameZh": "變身葉子",
+    "nameEn": "Transformation Leaf",
+    "nameJa": "ドロン葉",
+    "descZh": "放在頭上即可變身為任何動物，多為動物或半獸人使用。"
+  },
+  {
+    "id": 86,
+    "nameZh": "尋物指針",
+    "nameEn": "Finding Compass",
+    "nameJa": "探し物針",
+    "descZh": "磁針會指向你正在尋找的失物方向。"
+  },
+  {
+    "id": 87,
+    "nameZh": "家庭迷宮",
+    "nameEn": "Home Maze",
+    "nameJa": "ホーム迷路",
+    "descZh": "轉動轉盤即可讓自家房子內部變成一個巨大的迷宮。"
+  },
+  {
+    "id": 88,
+    "nameZh": "自動保鑣",
+    "nameEn": "Auto Bodyguard",
+    "nameJa": "自動用心棒",
+    "descZh": "會二十四小時寸步不離保護你的隱形保鑣機器人。"
+  },
+  {
+    "id": 89,
+    "nameZh": "幸運藥丸",
+    "nameEn": "Lucky Pill",
+    "nameJa": "ラッキー薬",
+    "descZh": "吃下後無論做什麼決定都會得到最好、最幸運的結果。"
+  },
+  {
+    "id": 90,
+    "nameZh": "重組相機",
+    "nameEn": "Reassembly Camera",
+    "nameJa": "組み立て相機",
+    "descZh": "將破碎的物體拍下，即可使其恢復原狀。"
+  },
+  {
+    "id": 91,
+    "nameZh": "地球製造機",
+    "nameEn": "Earth Maker",
+    "nameJa": "地球製造セット",
+    "descZh": "能在室內模擬出太陽系塵埃凝聚、地球誕生與生物演化的微型宇宙盒。"
+  },
+  {
+    "id": 92,
+    "nameZh": "童話鞋",
+    "nameEn": "Fairytale Shoes",
+    "nameJa": "絵本入り靴",
+    "descZh": "穿上鞋子即可跳入童話書的世界中，與故事人物互動。"
+  },
+  {
+    "id": 93,
+    "nameZh": "演化退化放射線源",
+    "nameEn": "Evolution Ray",
+    "nameJa": "進化退化放射線",
+    "descZh": "照射物體可使其前進到千萬年後的進化狀態，或退回原始狀態。"
+  },
+  {
+    "id": 94,
+    "nameZh": "夢幻三劍客服裝",
+    "nameEn": "Three Musketeers Suit",
+    "nameJa": "夢幻三銃士",
+    "descZh": "進入夢境遊戲的裝備，在夢中受傷會影響現實，有著神級世界觀。"
+  },
+  {
+    "id": 95,
+    "nameZh": "先導者地圖",
+    "nameEn": "Pioneer Map",
+    "nameJa": "開拓地図",
+    "descZh": "可在未開發的星球或土地上自動繪製出地圖與資源分布。"
+  },
+  {
+    "id": 96,
+    "nameZh": "環境適應燈",
+    "nameEn": "Adapting Light",
+    "nameJa": "テキオー灯",
+    "descZh": "照射後能讓人體在極限環境（如外太空、深海、岩漿）中生存 24 小時。"
+  },
+  {
+    "id": 97,
+    "nameZh": "星際地圖",
+    "nameEn": "Galactic Map",
+    "nameJa": "宇宙地図",
+    "descZh": "擁有它就能找到傳說中的各種祕境。"
+  },
+  {
+    "id": 98,
+    "nameZh": "創世日記",
+    "nameEn": "Genesis Diary",
+    "nameJa": "創世日記",
+    "descZh": "觀察並記錄自己親手創造的微型世界歷史演進的日記。"
+  },
+  {
+    "id": 99,
+    "nameZh": "神仙機器人",
+    "nameEn": "God Robot",
+    "nameJa": "かみさまロボット",
+    "descZh": "裝扮成破爛老人，若有人對他好，他就能實現對方的三個願望。"
+  },
+  {
+    "id": 100,
+    "nameZh": "惡魔召喚符",
+    "nameEn": "Devil Card",
+    "nameJa": "悪魔のカード",
+    "descZh": "每抖動一下卡片即可獲得 300 日圓，但使用者身高會縮小 1 毫米。"
+  }
+];
+
+        // 建立輪盤數字顯示
+        const wheel = document.getElementById('wheel');
+        for (let i = 1; i <= 100; i++) {
+            const numDiv = document.createElement('div');
+            numDiv.className = 'wheel-number';
+            // 每個扇區為 3.6 度，將數字旋轉到對應扇區中心
+            const rot = (i - 1) * 3.6 + 1.8;
+            numDiv.style.transform = `rotate(${rot}deg)`;
+            numDiv.innerText = i;
+            wheel.appendChild(numDiv);
+        }
+
+        const spinBtn = document.getElementById('spinBtn');
+        const spinCenterBtn = document.getElementById('spinCenterBtn');
+        const resultEmpty = document.getElementById('resultEmpty');
+        const resultDetails = document.getElementById('resultDetails');
+        
+        let isSpinning = false;
+        let currentRotation = 0;
+
+        // 音效系統
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTickSound() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.05);
+        }
+
+        function spinWheel() {
+            if (isSpinning) return;
+            isSpinning = true;
+            spinBtn.disabled = true;
+
+            // 隨機抽取一個道具 (1-100)
+            const randomIndex = Math.floor(Math.random() * 100);
+            const targetGadget = gadgets[randomIndex];
+            const targetId = targetGadget.id; // 1-100
+
+            // 計算目標角度
+            // 指針指向頂部 (0度/360度)。輪盤旋轉為順時針。
+            // 為了讓第 targetId 個扇區落在頂部指針處，需要旋轉的相對角度：
+            // 每個扇區 3.6 度，第 targetId 個扇區的位置是 (targetId - 1) * 3.6 + 1.8 度。
+            // 輪盤順時針旋轉角度應為： 360 - 扇區中心角度。
+            const targetSectorAngle = (targetId - 1) * 3.6 + 1.8;
+            const targetAngle = 360 - targetSectorAngle;
+
+            // 增加旋轉圈數 (至少 5 圈)
+            const spins = 5 + Math.floor(Math.random() * 3);
+            const extraDegrees = spins * 360;
+            currentRotation += extraDegrees + targetAngle - (currentRotation % 360);
+
+            // 執行旋轉動畫
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+            // 模擬旋轉過程中的滴答聲
+            let tickCount = 0;
+            const totalTicks = spins * 100 + targetId;
+            const startTime = performance.now();
+            const duration = 5000; // 5秒
+
+            function animateTicks(timestamp) {
+                const elapsed = timestamp - startTime;
+                if (elapsed < duration) {
+                    // 使用 cubic-bezier 緩動函數來計算當前進度與速度，模擬滴答聲的減速
+                    const progress = elapsed / duration;
+                    const easedProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                    const currentTickTarget = Math.floor(easedProgress * totalTicks);
+                    
+                    if (currentTickTarget > tickCount) {
+                        playTickSound();
+                        tickCount = currentTickTarget;
+                    }
+                    requestAnimationFrame(animateTicks);
+                }
+            }
+            requestAnimationFrame(animateTicks);
+
+            // 旋轉結束後的處理
+            setTimeout(() => {
+                isSpinning = false;
+                spinBtn.disabled = false;
+                showResult(targetGadget);
+            }, duration);
+        }
+
+        function showResult(gadget) {
+            resultEmpty.style.display = 'none';
+            resultDetails.style.display = 'block';
+
+            document.getElementById('resNum').innerText = String(gadget.id).padStart(3, '0');
+            document.getElementById('resNameZh').innerText = gadget.nameZh;
+            document.getElementById('resNameEn').innerText = gadget.nameEn;
+            document.getElementById('resNameJa').innerText = gadget.nameJa;
+            document.getElementById('resDesc').innerText = gadget.descZh;
+
+            // 輕微的縮放震盪效果
+            const card = document.getElementById('resultCard');
+            card.style.transform = 'scale(1.03)';
+            setTimeout(() => {
+                card.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        spinBtn.addEventListener('click', spinWheel);
+        spinCenterBtn.addEventListener('click', spinWheel);
+    </script>
+</body>
+</html>
