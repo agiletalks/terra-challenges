@@ -131,6 +131,10 @@
             margin-top: 24px;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
         header p {
@@ -169,7 +173,7 @@
             background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
             border: 8px solid var(--accent-color);
             border-radius: 32px;
-            padding: 30px;
+            padding: 30px 24px;
             width: 320px;
             box-shadow: 0 25px 50px -12px rgba(15, 42, 28, 0.25), inset 0 4px 0 rgba(255,255,255,0.1);
             position: relative;
@@ -186,7 +190,6 @@
             }
         }
 
-        /* 拉霸機頂部飾條與燈光 */
         .slot-lights {
             display: flex;
             justify-content: space-between;
@@ -196,9 +199,9 @@
         .light-dot {
             width: 10px;
             height: 10px;
-            background-color: var(--doraemon-yellow, #facc15);
+            background-color: #facc15;
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--doraemon-yellow, #facc15);
+            box-shadow: 0 0 8px #facc15;
             animation: flash-light 0.6s infinite alternate;
         }
         .light-dot:nth-child(even) {
@@ -255,6 +258,23 @@
         .reel-digit.blur {
             filter: blur(4px);
             opacity: 0.7;
+        }
+
+        /* 拉霸機雙側 SVG 裝飾 */
+        .slot-decorations {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 10px;
+            align-items: center;
+        }
+
+        /* 四次元口袋裝飾 */
+        .pocket-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: -10px;
         }
 
         /* SPIN 按鈕 */
@@ -428,6 +448,17 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             width: 100%;
             position: relative;
+            overflow: hidden;
+        }
+
+        /* 4D 口袋浮水印 */
+        .pocket-watermark {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            opacity: 0.08;
+            pointer-events: none;
+            transform: rotate(-15deg);
         }
 
         .showcase-num {
@@ -474,6 +505,8 @@
             border: 3px solid #1e293b;
             box-shadow: 4px 4px 0px #1e293b;
             text-align: left;
+            position: relative;
+            z-index: 5;
         }
 
         .close-showcase-btn {
@@ -522,7 +555,16 @@
                 </div>
                 <a href="../design-thinking/design-thinking.html" class="back-btn">返回工具箱</a>
             </div>
-            <h1>🔮 哆啦A夢秘密道具輪盤</h1>
+            <h1>
+                <!-- 哆啦A夢黃色鈴鐺 SVG -->
+                <svg viewBox="0 0 60 60" width="36" height="36" style="fill: #facc15; stroke: #1e293b; stroke-width: 3.5; stroke-linejoin: round; vertical-align: middle; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+                    <circle cx="30" cy="30" r="25" />
+                    <rect x="6" y="22" width="48" height="5" fill="#ef4444" rx="1" />
+                    <circle cx="30" cy="38" r="5" fill="#1e293b" />
+                    <line x1="30" y1="43" x2="30" y2="52" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+                </svg>
+                哆啦A夢秘密道具拉霸機
+            </h1>
             <p>點擊「SPIN」啟動拉霸機，隨機抽出一款經典的 22 世紀未來道具！</p>
         </header>
 
@@ -545,6 +587,32 @@
                         <div class="slot-reel-box">
                             <div class="reel-digit" id="reelOnes">0</div>
                         </div>
+                    </div>
+                    
+                    <div class="slot-decorations">
+                        <!-- 竹蜻蜓 SVG -->
+                        <svg viewBox="0 0 100 60" width="38" height="24" style="fill: #facc15; stroke: #ffffff; stroke-width: 4; stroke-linejoin: round; opacity: 0.85;">
+                            <path d="M10 25 C 25 15, 75 15, 90 25 C 75 35, 25 35, 10 25 Z" />
+                            <rect x="46" y="25" width="8" height="25" fill="#cbd5e1" />
+                            <path d="M35 50 C 35 45, 65 45, 65 50 Z" />
+                        </svg>
+                        
+                        <!-- 任意門 SVG -->
+                        <svg viewBox="0 0 100 120" width="30" height="36" style="fill: #f43f5e; stroke: #ffffff; stroke-width: 4; stroke-linejoin: round; opacity: 0.85;">
+                            <rect x="15" y="10" width="70" height="100" rx="4" />
+                            <rect x="23" y="17" width="54" height="86" rx="2" fill="#fda4af" />
+                            <circle cx="70" cy="60" r="5" fill="#facc15" stroke="#1e293b" stroke-width="2" />
+                        </svg>
+                    </div>
+
+                    <!-- 四次元口袋 SVG -->
+                    <div class="pocket-container">
+                        <svg viewBox="0 0 120 70" width="120" height="70" style="stroke: #ffffff; stroke-width: 3.5; stroke-linejoin: round;">
+                            <path d="M10 10 Q 60 70, 110 10" fill="none" stroke="#38bdf8" stroke-width="8" />
+                            <path d="M20 10 A 40 40 0 0 0 100 10 Z" fill="#ffffff" />
+                            <line x1="20" y1="10" x2="100" y2="10" stroke="#cbd5e1" stroke-width="3" />
+                            <path d="M35 10 A 25 25 0 0 0 85 10 Z" fill="#f1f5f9" />
+                        </svg>
                     </div>
                     
                     <div class="action-btn-wrapper">
@@ -575,6 +643,14 @@
         <div id="sparkleContainer"></div>
         <div class="showcase-container">
             <div class="showcase-card">
+                <!-- 卡片浮水印 -->
+                <svg class="pocket-watermark" viewBox="0 0 120 70" width="180" height="105" style="stroke: #1e293b; stroke-width: 4; stroke-linejoin: round;">
+                    <path d="M10 10 Q 60 70, 110 10" fill="none" stroke="#0ea5e9" stroke-width="8" />
+                    <path d="M20 10 A 40 40 0 0 0 100 10 Z" fill="#ffffff" />
+                    <line x1="20" y1="10" x2="100" y2="10" stroke="#cbd5e1" stroke-width="3" />
+                    <path d="M35 10 A 25 25 0 0 0 85 10 Z" fill="#f1f5f9" />
+                </svg>
+                
                 <div class="showcase-num">No. <span id="showNum">00</span></div>
                 <div class="showcase-name-zh" id="showNameZh">任意門</div>
                 <div class="showcase-name-other"><span id="showNameEn">Anywhere Door</span> / <span id="showNameJa">どこでもドア</span></div>
@@ -1327,7 +1403,6 @@
             }
             const now = audioCtx.currentTime;
             
-            // 四個小號聲部音符：C5 (523.25Hz), E5 (659.25Hz), G5 (783.99Hz), C6 (1046.50Hz)
             const notes = [523.25, 659.25, 783.99, 1046.50];
             const durations = [0.08, 0.08, 0.08, 0.8];
             const starts = [0, 0.08, 0.16, 0.24];
@@ -1402,62 +1477,52 @@
             isSpinning = true;
             spinBtn.disabled = true;
 
-            // 隨機選定道具 (00-99)
             const targetIndex = Math.floor(Math.random() * 100);
             const targetGadget = gadgets[targetIndex];
             
-            // 補零轉換為 00-99
             const targetStr = String(targetIndex).padStart(2, '0');
             const targetTens = parseInt(targetStr[0]);
             const targetOnes = parseInt(targetStr[1]);
 
-            let duration = 3000; // 總旋轉時間 3 秒
+            let duration = 3000; 
             let startTime = performance.now();
 
             reelTens.classList.add('blur');
             reelOnes.classList.add('blur');
 
             let lastTickTime = 0;
-            const tickInterval = 60; // 滾動滴答聲間隔
+            const tickInterval = 60; 
 
             function updateReels(timestamp) {
                 const elapsed = timestamp - startTime;
                 
                 if (elapsed < duration) {
-                    // 隨機跳動顯示
                     if (timestamp - lastTickTime > tickInterval) {
                         playTickSound();
                         lastTickTime = timestamp;
                         
-                        // 十位數隨機
                         if (elapsed < duration - 1000) {
                             reelTens.innerText = Math.floor(Math.random() * 10);
                         }
-                        // 個位數隨機
                         if (elapsed < duration) {
                             reelOnes.innerText = Math.floor(Math.random() * 10);
                         }
                     }
                     
-                    // 階段一：十位數先停止 (倒數1秒時)
                     if (elapsed >= duration - 1000 && reelTens.classList.contains('blur')) {
                         reelTens.classList.remove('blur');
                         reelTens.innerText = targetTens;
-                        // 輕微回彈效果
                         reelTens.style.transform = 'scale(1.2)';
                         setTimeout(() => { reelTens.style.transform = 'scale(1)'; }, 100);
                     }
                     
                     requestAnimationFrame(updateReels);
                 } else {
-                    // 階段二：個位數隨後停止
-                    reelOnes.classList.remove('remove');
                     reelOnes.classList.remove('blur');
                     reelOnes.innerText = targetOnes;
                     reelOnes.style.transform = 'scale(1.2)';
                     setTimeout(() => { reelOnes.style.transform = 'scale(1)'; }, 100);
                     
-                    // 結束旋轉
                     setTimeout(() => {
                         isSpinning = false;
                         spinBtn.disabled = false;
