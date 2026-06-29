@@ -46,6 +46,10 @@
             padding-bottom: 60px;
         }
 
+        body[lang-select="zh"] .lang-en, body[lang-select="zh"] .lang-ja { display: none !important; }
+        body[lang-select="en"] .lang-zh, body[lang-select="en"] .lang-ja { display: none !important; }
+        body[lang-select="ja"] .lang-zh, body[lang-select="ja"] .lang-en { display: none !important; }
+
         header {
             background: var(--header-bg);
             background-size: cover;
@@ -59,19 +63,25 @@
             border-bottom-right-radius: 24px;
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .hero-header {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             padding-bottom: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             width: 100%;
         }
 
-        .brand-lockup {
+        .hero-header .brand-lockup {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            box-shadow: none;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -79,7 +89,7 @@
 
         .brand-icon {
             height: 38px;
-            filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255,255,255,0.1));
         }
 
         .brand-text {
@@ -91,6 +101,7 @@
         }
 
         .brand-title {
+            font-family: 'Outfit', sans-serif;
             font-size: 20px;
             font-weight: 900;
             color: #ffffff;
@@ -105,28 +116,71 @@
             margin-top: 2px;
         }
 
-        .back-btn {
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: auto;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            color: white;
-            padding: 8px 20px;
+            padding: 4px;
             border-radius: 99px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            width: fit-content;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 6px 12px;
             font-size: 12px;
             font-weight: 700;
-            text-decoration: none;
-            transition: all 0.2s;
+            border-radius: 99px;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .lang-btn.active {
+            background: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .hamburger-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
         }
 
-        .back-btn:hover {
+        .hamburger-btn:hover {
             background: rgba(255, 255, 255, 0.18);
             transform: scale(1.05);
         }
 
         header h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
             margin-top: 24px;
             margin-bottom: 8px;
@@ -316,7 +370,7 @@
             color: #9ca3af;
         }
 
-        /* 結果顯示卡 (常規備份) */
+        /* 結果顯示卡 */
         .result-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -373,7 +427,176 @@
             width: 100%;
         }
 
-        /* 經典道具登場的全螢幕舞台特效 HTML */
+        /* Navigation Drawer */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            pointer-events: none;
+            visibility: hidden;
+            transition: visibility 0.3s;
+        }
+        .nav-drawer.open {
+            pointer-events: auto;
+            visibility: visible;
+        }
+        .nav-drawer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 42, 28, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .nav-drawer.open .nav-drawer-overlay {
+            opacity: 1;
+        }
+        .nav-drawer-content {
+            position: absolute;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background: #0f2a1c;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            overflow-y: auto;
+            color: #ffffff;
+            text-align: left;
+        }
+        .nav-drawer.open .nav-drawer-content {
+            right: 0;
+        }
+
+        .drawer-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .drawer-close-btn:hover {
+            color: #ffffff;
+        }
+
+        .drawer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 10px;
+        }
+
+        .drawer-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
+        .drawer-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer-brand-text .brand-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .drawer-brand-text .brand-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        .drawer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .drawer-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        .drawer-nav-item.active {
+            background: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .drawer-sub-item {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 16px 10px 48px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .drawer-sub-item::before {
+            content: "";
+            position: absolute;
+            left: 28px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .drawer-sub-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+        }
+
+        .drawer-sub-item.active {
+            color: var(--accent-color);
+            font-weight: 700;
+            background: rgba(179, 92, 36, 0.08);
+        }
+
+        .drawer-sub-item.active::before {
+            background: var(--accent-color);
+        }
+
+        /* 舞台特效 */
         .fanfare-overlay {
             position: fixed;
             top: 0;
@@ -451,7 +674,6 @@
             overflow: hidden;
         }
 
-        /* 4D 口袋浮水印 */
         .pocket-watermark {
             position: absolute;
             bottom: -20px;
@@ -545,15 +767,30 @@
 
     <div class="wrap">
         <header>
-            <div class="header-container">
+            <div class="hero-header">
                 <div class="brand-lockup">
                     <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="brand-icon">
                     <div class="brand-text">
                         <span class="brand-title">TERRA</span>
-                        <span class="brand-subtitle">地之校手冊</span>
+                        <span class="brand-subtitle lang-zh">地之校</span>
+                        <span class="brand-subtitle lang-en">Earth School</span>
+                        <span class="brand-subtitle lang-ja">地の校</span>
                     </div>
                 </div>
-                <a href="../design-thinking/design-thinking.html" class="back-btn">返回工具箱</a>
+                <div class="header-actions">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="zh" onclick="setLanguage('zh')">繁中</button>
+                        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+                        <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">日本語</button>
+                    </div>
+                    <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
             </div>
             <h1>
                 <!-- 哆啦A夢黃色鈴鐺 SVG -->
@@ -563,9 +800,13 @@
                     <circle cx="30" cy="38" r="5" fill="#1e293b" />
                     <line x1="30" y1="43" x2="30" y2="52" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
                 </svg>
-                哆啦A夢秘密道具拉霸機
+                <span class="lang-zh">哆啦A夢秘密道具拉霸機</span>
+                <span class="lang-en">Doraemon Secret Gadget Slot</span>
+                <span class="lang-ja">ドラえもんひみつ道具スロット</span>
             </h1>
-            <p>點擊「SPIN」啟動拉霸機，隨機抽出一款經典的 22 世紀未來道具！</p>
+            <p class="lang-zh">點擊「SPIN」啟動拉霸機，隨機抽出一款經典的 22 世紀未來道具！</p>
+            <p class="lang-en">Click "SPIN" to start the slot machine and randomly draw a classic 22nd-century gadget!</p>
+            <p class="lang-ja">「SPIN」ボタンを押してスロットを起動し、22世紀の未来から届いたひみつ道具をランダムに引き当てよう！</p>
         </header>
 
         <div class="container">
@@ -616,14 +857,20 @@
                     </div>
                     
                     <div class="action-btn-wrapper">
-                        <button class="spin-btn" id="spinBtn">SPIN / 啟動拉霸</button>
+                        <button class="spin-btn" id="spinBtn">
+                            <span class="lang-zh">SPIN / 啟動拉霸</span>
+                            <span class="lang-en">SPIN / Play</span>
+                            <span class="lang-ja">SPIN / スタート</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="result-card" id="resultCard">
                 <div class="result-empty" id="resultEmpty">
-                    <p>🔮 點選左側的 SPIN 鍵來抽取道具吧！</p>
+                    <p class="lang-zh">🔮 點選左側的 SPIN 鍵來抽取道具吧！</p>
+                    <p class="lang-en">🔮 Click the SPIN button on the left to draw a gadget!</p>
+                    <p class="lang-ja">🔮 左側のSPINボタンを押して道具を引いてみよう！</p>
                 </div>
                 <div id="resultDetails" style="display: none; width: 100%;">
                     <span class="result-num-badge">No. <span id="resNum">00</span></span>
@@ -634,6 +881,142 @@
                     <p class="result-desc" id="resDesc">最具代表性的道具，可到達十光年內任何已知地點。</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Navigation Drawer Overlay -->
+    <div class="nav-drawer" id="navDrawer">
+        <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+        <div class="nav-drawer-content">
+            <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu" style="padding: 10px; background: transparent; border: none; cursor: pointer;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="drawer-brand">
+                <img src="https://i.ibb.co/ZzxC3BVn/icon.png" alt="TERRA" class="drawer-logo">
+                <div class="drawer-brand-text">
+                    <span class="brand-title">TERRA</span>
+                    <span class="brand-subtitle lang-zh">地之校手冊</span>
+                    <span class="brand-subtitle lang-en">Manual</span>
+                    <span class="brand-subtitle lang-ja">マニュアル</span>
+                </div>
+            </div>
+            <nav class="drawer-nav">
+                <a href="index.html" class="drawer-nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span class="lang-zh">行程指南</span>
+                    <span class="lang-en">Itinerary</span>
+                    <span class="lang-ja">旅程ガイド</span>
+                </a>
+                <a href="members.html" class="drawer-nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span class="lang-zh">分組名冊</span>
+                    <span class="lang-en">Members</span>
+                    <span class="lang-ja">メンバー名簿</span>
+                </a>
+                <a href="eight_challenges.html" class="drawer-nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <span class="lang-zh">八大任務</span>
+                    <span class="lang-en">Eight Tasks</span>
+                    <span class="lang-ja">8大課題</span>
+                </a>
+                <a href="challenge_1.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 1 地方行銷與品牌建立</span>
+                    <span class="lang-en">Task 1 Regional Marketing</span>
+                    <span class="lang-ja">任務 1 地域マーケティングとブランド構築</span>
+                </a>
+                <a href="challenge_2.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 2 綠色旅遊與永續觀光</span>
+                    <span class="lang-en">Task 2 Green Tourism</span>
+                    <span class="lang-ja">任務 2 グリーンツーリズムと持続可能な観光</span>
+                </a>
+                <a href="challenge_3.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 3 傳統工藝振興與傳承</span>
+                    <span class="lang-en">Task 3 Heritage Crafts</span>
+                    <span class="lang-ja">任務 3 傳統工芸の振興と伝承</span>
+                </a>
+                <a href="challenge_4.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 4 家庭支持與生活平衡</span>
+                    <span class="lang-en">Task 4 Family Support</span>
+                    <span class="lang-ja">任務 4 家族のサポートと生活のバランス</span>
+                </a>
+                <a href="challenge_5.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 5 青銀共創與社區連結</span>
+                    <span class="lang-en">Task 5 Intergenerational</span>
+                    <span class="lang-ja">任務 5 多世代共創とコミュニティ連携</span>
+                </a>
+                <a href="challenge_6.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 6 地方空間再生與再利用</span>
+                    <span class="lang-en">Task 6 Spatial Regeneration</span>
+                    <span class="lang-ja">任務 6 地域空間の再生と再利用</span>
+                </a>
+                <a href="challenge_7.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 7 友善農業與飲食教育</span>
+                    <span class="lang-en">Task 7 Friendly Agriculture</span>
+                    <span class="lang-ja">任務 7 環境に優しい農業と食育</span>
+                </a>
+                <a href="challenge_8.html" class="drawer-sub-item">
+                    <span class="lang-zh">任務 8 都市青年的第二身分</span>
+                    <span class="lang-en">Task 8 The Second Identity</span>
+                    <span class="lang-ja">任務 8 「半農半X」と複業キャリアデザイン</span>
+                </a>
+                <a href="../design-thinking/design-thinking.html" class="drawer-nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="3" y1="9" x2="9" y2="9"></line></svg>
+                    <span class="lang-zh">工具箱</span>
+                    <span class="lang-en">Toolbox</span>
+                    <span class="lang-ja">ツールボックス</span>
+                </a>
+                <div class="drawer-category-header" style="padding: 10px 16px 4px 48px; font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
+                    <span class="lang-zh">📁 檔案下載</span>
+                    <span class="lang-en">📁 Files</span>
+                    <span class="lang-ja">📁 ファイル</span>
+                </div>
+                <a href="../design-thinking/design-thinking.html" class="drawer-sub-item">
+                    <span class="lang-zh">design-thinking-101</span>
+                    <span class="lang-en">design-thinking-101</span>
+                    <span class="lang-ja">design-thinking-101</span>
+                </a>
+                <a href="doraemon_roulette.html" class="drawer-sub-item active">
+                    <span class="lang-zh">哆啦A夢道具輪盤</span>
+                    <span class="lang-en">Doraemon Gadgets Roulette</span>
+                    <span class="lang-ja">ドラえもん道具ルーレット</span>
+                </a>
+                <div class="drawer-category-header" style="padding: 12px 16px 4px 48px; font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
+                    🤖 Prompts
+                </div>
+                <a href="prompt_for_ai_desk_research.html" class="drawer-sub-item">
+                    <span class="lang-zh">1. 執行案頭研究</span>
+                    <span class="lang-en">1. Execute Desk Research</span>
+                    <span class="lang-ja">1. デスク研究を実行</span>
+                </a>
+                <a href="prompt_for_voice_to_transcript.html" class="drawer-sub-item">
+                    <span class="lang-zh">2. 語音轉為逐字稿</span>
+                    <span class="lang-en">2. Convert Voice to Transcript</span>
+                    <span class="lang-ja">2. 音声を逐字録に変換</span>
+                </a>
+                <a href="prompt_for_three_language_comparison.html" class="drawer-sub-item">
+                    <span class="lang-zh">3. 轉譯三語與文化備註</span>
+                    <span class="lang-en">3. Translate Trilingual with Notes</span>
+                    <span class="lang-ja">3. 三言語対照翻訳と注釈追加</span>
+                </a>
+                <a href="prompt_for_coding_and_tagging.html" class="drawer-sub-item">
+                    <span class="lang-zh">4. 編碼與標記資料</span>
+                    <span class="lang-en">4. Coding and Tagging Data</span>
+                    <span class="lang-ja">4. コーディングとタグ付け</span>
+                </a>
+                <a href="prompt_for_theme_extraction.html" class="drawer-sub-item">
+                    <span class="lang-zh">5. 提取痛點、期望與維度</span>
+                    <span class="lang-en">5. Extract Pain Points, Hopes</span>
+                    <span class="lang-ja">5. 痛点・期待・次元の抽出</span>
+                </a>
+                <a href="prompt_for_hmw_generation.html" class="drawer-sub-item">
+                    <span class="lang-zh">6. 轉化為 HMW 問題</span>
+                    <span class="lang-en">6. Convert into HMWs</span>
+                    <span class="lang-ja">6. HMW質問に変換</span>
+                </a>
+            </nav>
         </div>
     </div>
 
@@ -654,7 +1037,7 @@
                 <div class="showcase-num">No. <span id="showNum">00</span></div>
                 <div class="showcase-name-zh" id="showNameZh">任意門</div>
                 <div class="showcase-name-other"><span id="showNameEn">Anywhere Door</span> / <span id="showNameJa">どこでもドア</span></div>
-                <div class="showcase-desc" id="showDesc">最具代表性的道具，可到達十光年內任何已知地點。</div>
+                <div class="showcase-desc" id="showDesc">最具代表性的道具，可到達十光年內 any 已知地點。</div>
             </div>
             <button class="close-showcase-btn" id="closeShowcaseBtn">太棒了！收下道具</button>
         </div>
@@ -1363,6 +1746,33 @@
     "descZh": "每抖動一下卡片即可獲得 300 日圓，但使用者身高會縮小 1 毫米。"
   }
 ];
+
+        // 語言切換
+        function setLanguage(lang) {
+            document.body.setAttribute('lang-select', lang);
+            localStorage.setItem('terra-lang', lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        // 初始化語言
+        const savedLang = localStorage.getItem('terra-lang') || 'zh';
+        setLanguage(savedLang);
+
+        // Drawer 導覽選單控制
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerClose = document.getElementById('drawerClose');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        menuToggle.addEventListener('click', () => navDrawer.classList.add('open'));
+        drawerClose.addEventListener('click', () => navDrawer.classList.remove('open'));
+        drawerOverlay.addEventListener('click', () => navDrawer.classList.remove('open'));
 
         const spinBtn = document.getElementById('spinBtn');
         const reelTens = document.getElementById('reelTens');
