@@ -1517,8 +1517,18 @@
             fanfareOverlay.classList.remove('show');
         }
 
-        spinBtn.addEventListener('click', spinWheel);
-        spinCenterBtn.addEventListener('click', spinWheel);
+        spinBtn.addEventListener('click', () => {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            spinWheel();
+        });
+        spinCenterBtn.addEventListener('click', () => {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            spinWheel();
+        });
         closeShowcaseBtn.addEventListener('click', closeShowcase);
         fanfareOverlay.addEventListener('click', (e) => {
             if (e.target === fanfareOverlay) {
