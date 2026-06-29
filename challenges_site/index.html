@@ -2221,7 +2221,13 @@
       const celebrDesc = document.getElementById('celebration-desc');
       
       celebrTitle.innerText = lang === 'zh' ? `【${teamNames[lang][activeTeamId]}】生存挑戰開通！` : lang === 'en' ? `【${teamNames[lang][activeTeamId]}】Challenge Unlocked!` : `【${teamNames[lang][activeTeamId]}】ミッションアンロック！`;
-      celebrDesc.innerText = lang === 'zh' ? `選定任務：${cleanedChallengeName}\n\n小隊研究看板與專用學習指引已即時解鎖！` : lang === 'en' ? `Livelihood Challenge: ${cleanedChallengeName}\n\nResearch board and specialized guides are unlocked!` : `選択ミッション: ${cleanedChallengeName}\n\n看板と学習ナビが即時アンロックされました！`;
+      celebrDesc.innerText = lang === 'zh' ? `選定任務：${cleanedChallengeName}
+
+小隊研究看板與專用學習指引已即時解鎖！` : lang === 'en' ? `Livelihood Challenge: ${cleanedChallengeName}
+
+Research board and specialized guides are unlocked!` : `選択ミッション: ${cleanedChallengeName}
+
+看板と学習ナビが即時アンロックされました！`;
       
       celebrOverlay.classList.add('show');
       
@@ -2391,7 +2397,8 @@
                     <span class="lang-zh">4. 執行編碼與標籤化</span>
                     <span class="lang-en">4. Execute Coding & Tagging</span>
                     <span class="lang-ja">4. コード化とタグ付け</span>
-                </a>\n                <a href="prompt_for_theme_extraction.html" class="drawer-sub-item">
+                </a>
+                <a href="prompt_for_theme_extraction.html" class="drawer-sub-item">
                     <span class="lang-zh">5. 提煉主題維度</span>
                     <span class="lang-en">5. Extract Themes</span>
                     <span class="lang-ja">5. テーマ抽出を実行</span>
