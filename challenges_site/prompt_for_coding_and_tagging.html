@@ -603,16 +603,16 @@
                     <h3 class="lang-en">Usage Guidelines</h3>
                     <h3 class="lang-ja">利用ガイド</h3>
                     
-                    <p class="lang-zh">在質性研究中，Coding（編碼）就像是資訊的考古學。此 Prompt 能引導 AI 閱讀三語逐字稿，在原文中以高亮與粗體標示出最具代表性的引言（User Quotes），並提煉出同時包含「中 / 英 / 日」三語並列文字內容的單一標籤（Tag），完美打破跨國合作的語言藩籬！</p>
-                    <p class="lang-en">In qualitative research, coding is like information archaeology. This prompt guides AI to highlight representative quotes across languages and append corresponding single trilingual parallel coding tags in the sidebar.</p>
-                    <p class="lang-ja">質的調査において、コード化（Coding）は情報の考古学のようなものです。このプロンプトは、対話データから重要発言を抽出し、サイドバーに中英日３言語対照のテキスト内容を持つ１つのコードタグを自動作成します。</p>
+                    <p class="lang-zh">在質性研究中，Coding（編碼）就像是資訊的考古學。此 Prompt 能引導 AI 閱讀三語逐字稿，在原本的中、英、日三欄中以高亮標示出經典引言（User Quotes），並在新增的**第四欄中寫出對應的 Coding 標籤**，且該標籤本身同時包含「中 / 英 / 日」三語並列，完美突破語言障礙！</p>
+                    <p class="lang-en">In qualitative research, coding is like information archaeology. This prompt guides AI to highlight representative quotes across original columns and write corresponding trilingual coding tags in the newly added fourth column.</p>
+                    <p class="lang-ja">質的調査において、コード化（Coding）は情報の考古学のようなものです。このプロンプトは、元の3言語対照欄で重要箇所をハイライトさせ、新設の「第4列」に対比する3言語並列のコードタグを出力させます。</p>
                     
                     <ul>
-                        <li class="lang-zh"><strong>三語並列單一標籤</strong>：提煉出來的每一個編碼標籤內容，本身直接以「中 / 英 / 日」三語並列的方式呈現。</li>
-                        <li class="lang-en"><strong>Trilingual Single Tag</strong>: The text content of each tag directly contains parallel Chinese, English, and Japanese translations.</li>
-                        <li class="lang-ja"><strong>3言語並列の単一タグ</strong>：抽出された各コードタグのテキスト内容自体に、中・英・日3ヶ国語を並列表記。</li>
+                        <li class="lang-zh"><strong>新設第四欄 (編碼欄)</strong>：在原本的中、英、日三欄對話右側，加入第四欄作為專用編碼區，讓引言與編碼呈現優雅平行。</li>
+                        <li class="lang-en"><strong>Added 4th Coding Column</strong>: The coding workspace sits in the fourth column on the far right, matching quotes and tags side-by-side.</li>
+                        <li class="lang-ja"><strong>新設の第4列 (コード欄)</strong>：元の中・英・日3つの発言列の右側に、コード専用の第4列を追加し、引用とコードを平行に対比。</li>
                         
-                        <li class="lang-zh"><strong>即時預覽與下載</strong>：複製 AI 生成的網頁代碼並貼入下方沙盒，即可當場查看精美的雙欄編碼網頁，或下載成 .html 檔。</li>
+                        <li class="lang-zh"><strong>即時預覽與下載</strong>：複製 AI 生成的網頁代碼並貼入下方沙盒，即可當場查看精美的四欄編碼網頁，或下載成 .html 檔。</li>
                         <li class="lang-en"><strong>Preview & Download</strong>: Paste generated code in the toolbox sandbox to render instantly or download as an HTML file.</li>
                         <li class="lang-ja"><strong>プレビューとDL</strong>：AI出力コードを下部ツールに貼り付けるだけで、即座にプレビュー・HTML保存。</li>
                     </ul>
@@ -639,15 +639,20 @@
 請幫我完成以下任務，並嚴格遵循後續的格式與標記要求：
 
 ### 任務說明
-1. **執行質性研究編碼 (Coding)**：閱讀每一行對話，找出受訪者表達的核心需求、行為模式、情緒起伏或痛點。
-2. **單一標籤三語並列**：在左側的 Coding 欄位中，為每一處提煉出編碼，且**每一個編碼標籤的文字內容本身，必須同時包含三語並列（中文 / 英文 / 日文）**（例如：#建立在地信用 / BuildingLocalTrust / 地元の信頼構築 必須放在同一個標籤內，做為單一編碼概念）。
-3. **標記引言原話 (User Quotes)**：在中文、英文、日文對話中，精準找出支持該編碼的「受訪者經典引言（User Quotes）」，並使用特定 HTML 標籤將其加粗並套用螢光筆效果。
+1. **標記三語對話重點 (Highlighter)**：閱讀中文、英文、日文對話，精準找出最關鍵的「受訪者引言（User Quotes）」，並使用特定 HTML 標籤（如下所示的 mark）將其加粗並套用螢光筆效果。
+2. **新增第四欄為編碼欄 (Coding Tags Column)**：在每一列對話的右側，新增第四個欄位（編碼欄位）。
+3. **在第四欄中寫入對照標籤 (Trilingual Tags)**：針對前面三欄所畫出的重點，在第四欄中提煉出編碼標籤，且**該標籤本身必須同時包含三語並列（中文 / 英文 / 日文）**（例如：#建立在地信用 / BuildingLocalTrust / 地元の信頼構築）。
 
 ---
 
 ### 輸出格式與載體要求
-請輸出一份完整的 **「雙欄編碼（含三語並列標籤）與三語對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左側編碼欄（包含三語並列的 tag）、右側三欄對照的專業排版，在手機上則會自動適應。
-請使用以下結構並直接填入編碼與訪談內容，不要省略任何 CSS 樣式：
+請輸出一份完整的 **「四欄式編碼對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現四個平行對齊的欄位：
+1. 中文 (Chinese) — *含高亮重點*
+2. English — *含高亮重點*
+3. 日本語 (Japanese) — *含高亮重點*
+4. 編碼標籤 (Coding Tags) — *第四欄，含三語並列 tag*
+
+在手機上則會自動適應堆疊。請使用以下結構並直接填入內容，不要省略任何 CSS 樣式：
 
 ```html
 &lt;!DOCTYPE html&gt;
@@ -658,24 +663,20 @@
 &lt;title&gt;訪談編碼與標籤化整理手札&lt;/title&gt;
 &lt;style&gt;
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
-  .container { max-width: 1200px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
   .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
-  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; display: flex; flex-direction: column; gap: 16px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 992px) {
-    .row { flex-direction: row; align-items: stretch; }
-  }
-  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
-  @media (min-width: 992px) {
-    .coding-col { width: 240px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
-  }
-  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
-  
-  .grid-col { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 12px; }
-  @media (min-width: 768px) {
-    .grid-col { grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding-left: 16px; }
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 240px; }
   }
   .lang-col { padding: 8px; border-radius: 8px; }
-  .lang-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 4px; }
+  .coding-col { padding: 8px; border-top: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 8px; align-content: flex-start; }
+  @media (min-width: 992px) {
+    .coding-col { border-top: none; border-left: 1px dashed #e7e5e4; padding-left: 16px; }
+  }
+  .lang-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
   .text { font-size: 0.95em; line-height: 1.7; }
   /* 螢光筆效果 (Fluorescent Highlighter Effect) */
   mark.quote-highlight { background-color: rgba(217, 139, 75, 0.2); border-bottom: 2px solid #D98B4B; color: inherit; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
@@ -688,29 +689,30 @@
 
   &lt;!-- 對話編碼列範例 --&gt;
   &lt;div class="row"&gt;
-    &lt;div class="coding-col"&gt;
-      &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
-      &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
-    &lt;/div&gt;
     &lt;div class="grid-col"&gt;
+      &lt;!-- 1. 中文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
         &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
         &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。所以我那時候就是&lt;mark class="quote-highlight"&gt;天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作&lt;/mark&gt;，用行動證明啦。&lt;/div&gt;
       &lt;/div&gt;
+      &lt;!-- 2. 英文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;English&lt;/div&gt;
-        &lt;div class="text"&gt;
-          &lt;div class="speaker"&gt;Interviewee: Mr. Lai&lt;/div&gt;
-          Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. So back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.
-        &lt;/div&gt;
+        &lt;div class="speaker"&gt;Interviewee: Mr. Lai&lt;/div&gt;
+        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. So back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.&lt;/div&gt;
       &lt;/div&gt;
+      &lt;!-- 3. 日文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-        &lt;div class="text"&gt;
-          &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
-          ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。
-        &lt;/div&gt;
+        &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
+        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- 4. 編碼標籤欄位 (第四欄) --&gt;
+      &lt;div class="coding-col"&gt;
+        &lt;div class="lang-label"&gt;編碼標籤 (Coding Tags)&lt;/div&gt;
+        &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
+        &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -732,15 +734,20 @@
 請幫我完成以下任務，並嚴格遵循後續的格式與標記要求：
 
 ### 任務說明
-1. **執行質性研究編碼 (Coding)**：閱讀每一行對話，找出受訪者表達的核心需求、行為模式、情緒起伏或痛點。
-2. **單一標籤三語並列**：在左側的 Coding 欄位中，為每一處提煉出編碼，且**每一個編碼標籤的文字內容本身，必須同時包含三語並列（中文 / 英文 / 日文）**（例如：#建立在地信用 / BuildingLocalTrust / 地元の信頼構築 必須放在同一個標籤內，做為單一編碼概念）。
-3. **標記引言原話 (User Quotes)**：在中文、英文、日文對話中，精準找出支持該編碼的「受訪者經典引言（User Quotes）」，並使用特定 HTML 標籤將其加粗並套用螢光筆效果。
+1. **標記三語對話重點 (Highlighter)**：閱讀中文、英文、日文對話，精準找出最關鍵的「受訪者引言（User Quotes）」，並使用特定 HTML 標籤（如下所示的 mark）將其加粗並套用螢光筆效果。
+2. **新增第四欄為編碼欄 (Coding Tags Column)**：在每一列對話的右側，新增第四個欄位（編碼欄位）。
+3. **在第四欄中寫入對照標籤 (Trilingual Tags)**：針對前面三欄所畫出的重點，在第四欄中提煉出編碼標籤，且**該標籤本身必須同時包含三語並列（中文 / 英文 / 日文）**（例如：#建立在地信用 / BuildingLocalTrust / 地元の信頼構築）。
 
 ---
 
 ### 輸出格式與載體要求
-請輸出一份完整的 **「雙欄編碼（含三語並列標籤）與三語對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左側編碼欄（包含三語並列的 tag）、右側三欄對照的專業排版，在手機上則會自動適應。
-請使用以下結構並直接填入編碼與訪談內容，不要省略任何 CSS 樣式：
+請輸出一份完整的 **「四欄式編碼對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現四個平行對齊的欄位：
+1. 中文 (Chinese) — *含高亮重點*
+2. English — *含高亮重點*
+3. 日本語 (Japanese) — *含高亮重點*
+4. 編碼標籤 (Coding Tags) — *第四欄，含三語並列 tag*
+
+在手機上則會自動適應堆疊。請使用以下結構並直接填入內容，不要省略任何 CSS 樣式：
 
 ```html
 &lt;!DOCTYPE html&gt;
@@ -751,24 +758,20 @@
 &lt;title&gt;訪談編碼與標籤化整理手札&lt;/title&gt;
 &lt;style&gt;
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
-  .container { max-width: 1200px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
   .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
-  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; display: flex; flex-direction: column; gap: 16px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 992px) {
-    .row { flex-direction: row; align-items: stretch; }
-  }
-  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
-  @media (min-width: 992px) {
-    .coding-col { width: 240px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
-  }
-  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
-  
-  .grid-col { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 12px; }
-  @media (min-width: 768px) {
-    .grid-col { grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding-left: 16px; }
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 240px; }
   }
   .lang-col { padding: 8px; border-radius: 8px; }
-  .lang-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 4px; }
+  .coding-col { padding: 8px; border-top: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 8px; align-content: flex-start; }
+  @media (min-width: 992px) {
+    .coding-col { border-top: none; border-left: 1px dashed #e7e5e4; padding-left: 16px; }
+  }
+  .lang-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
   .text { font-size: 0.95em; line-height: 1.7; }
   /* 螢光筆效果 (Fluorescent Highlighter Effect) */
   mark.quote-highlight { background-color: rgba(217, 139, 75, 0.2); border-bottom: 2px solid #D98B4B; color: inherit; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
@@ -781,29 +784,30 @@
 
   &lt;!-- 對話編碼列範例 --&gt;
   &lt;div class="row"&gt;
-    &lt;div class="coding-col"&gt;
-      &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
-      &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
-    &lt;/div&gt;
     &lt;div class="grid-col"&gt;
+      &lt;!-- 1. 中文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
         &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
         &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。所以我那時候就是&lt;mark class="quote-highlight"&gt;天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作&lt;/mark&gt;，用行動證明啦。&lt;/div&gt;
       &lt;/div&gt;
+      &lt;!-- 2. 英文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;English&lt;/div&gt;
-        &lt;div class="text"&gt;
-          &lt;div class="speaker"&gt;Interviewee: Mr. Lai&lt;/div&gt;
-          Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. So back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.
-        &lt;/div&gt;
+        &lt;div class="speaker"&gt;Interviewee: Mr. Lai&lt;/div&gt;
+        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. So back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.&lt;/div&gt;
       &lt;/div&gt;
+      &lt;!-- 3. 日文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-        &lt;div class="text"&gt;
-          &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
-          ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。
-        &lt;/div&gt;
+        &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
+        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- 4. 編碼標籤欄位 (第四欄) --&gt;
+      &lt;div class="coding-col"&gt;
+        &lt;div class="lang-label"&gt;編碼標籤 (Coding Tags)&lt;/div&gt;
+        &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
+        &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -1029,24 +1033,20 @@
 &lt;title&gt;訪談編碼與標籤化整理手札 (範例)&lt;/title&gt;
 &lt;style&gt;
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
-  .container { max-width: 1200px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
   .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
-  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; display: flex; flex-direction: column; gap: 16px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 992px) {
-    .row { flex-direction: row; align-items: stretch; }
-  }
-  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
-  @media (min-width: 992px) {
-    .coding-col { width: 240px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
-  }
-  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
-  
-  .grid-col { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 12px; }
-  @media (min-width: 768px) {
-    .grid-col { grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding-left: 16px; }
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 240px; }
   }
   .lang-col { padding: 8px; border-radius: 8px; }
-  .lang-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 4px; }
+  .coding-col { padding: 8px; border-top: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 8px; align-content: flex-start; }
+  @media (min-width: 992px) {
+    .coding-col { border-top: none; border-left: 1px dashed #e7e5e4; padding-left: 16px; }
+  }
+  .lang-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
   .text { font-size: 0.95em; line-height: 1.7; }
   mark.quote-highlight { background-color: rgba(217, 139, 75, 0.2); border-bottom: 2px solid #D98B4B; color: inherit; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
   .speaker { font-weight: 700; font-size: 0.9em; color: #78716c; margin-bottom: 8px; }
@@ -1056,29 +1056,30 @@
 &lt;div class="container"&gt;
   &lt;div class="header-title"&gt;訪談編碼與標籤化整理手札 (範例)&lt;/div&gt;
   &lt;div class="row"&gt;
-    &lt;div class="coding-col"&gt;
-      &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
-      &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
-    &lt;/div&gt;
     &lt;div class="grid-col"&gt;
+      &lt;!-- 1. 中文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
         &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
         &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。所以我那時候就是&lt;mark class="quote-highlight"&gt;天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作&lt;/mark&gt;，用行動證明啦。&lt;/div&gt;
       &lt;/div&gt;
+      &lt;!-- 2. 英文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;English&lt;/div&gt;
-        &lt;div class="text"&gt;
-          &lt;div class="speaker"&gt;Interviewee: Mr. Lai&lt;/div&gt;
-          Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. So back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.
-        &lt;/div&gt;
+        &lt;div class="speaker"&gt;Interviewee: Mr. Lai&lt;/div&gt;
+        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. So back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.&lt;/div&gt;
       &lt;/div&gt;
+      &lt;!-- 3. 日文欄位 --&gt;
       &lt;div class="lang-col"&gt;
         &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-        &lt;div class="text"&gt;
-          &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
-          ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時, &lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。
-        &lt;/div&gt;
+        &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
+        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- 4. 編碼標籤欄位 (第四欄) --&gt;
+      &lt;div class="coding-col"&gt;
+        &lt;div class="lang-label"&gt;編碼標籤 (Coding Tags)&lt;/div&gt;
+        &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
+        &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -1196,6 +1197,7 @@
             URL.revokeObjectURL(url);
         }
 
+        // Clear Sandbox
         function clearSandbox() {
             document.getElementById('sandboxCode').value = '';
             const frame = document.getElementById('previewFrame');
