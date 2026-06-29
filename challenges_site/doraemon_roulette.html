@@ -15,16 +15,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #f0f7ff;
+            --bg-primary: #FAF8F5;
             --bg-card: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --doraemon-blue: #0ea5e9;
-            --doraemon-red: #ef4444;
-            --doraemon-yellow: #facc15;
-            --border-color: rgba(14, 165, 233, 0.12);
-            --shadow-sm: 0 4px 12px rgba(14, 165, 233, 0.05);
-            --shadow-lg: 0 20px 40px rgba(14, 165, 233, 0.1);
+            --text-primary: #1C2421;
+            --text-secondary: #6B7280;
+            --accent-color: #B35C24; /* clay terracotta */
+            --accent-hover: #A04B19;
+            --accent-green: #0F2A1C; /* deep forest green */
+            --accent-green-hover: #1A3D2C;
+            --border-color: rgba(15, 42, 28, 0.08);
+            --code-bg: #F3F6F4;
+            --shadow-sm: 0 4px 12px rgba(15, 42, 28, 0.03);
+            --shadow-md: 0 20px 40px rgba(15, 42, 28, 0.03);
+            --header-bg: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&q=80&w=1200');
+            --badge-bg: #FAF5F0;
+            --badge-text: #B35C24;
         }
 
         * {
@@ -37,21 +42,21 @@
             font-family: 'Outfit', 'Noto Sans TC', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            line-height: 1.7;
+            padding-bottom: 60px;
         }
 
         header {
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            background: var(--header-bg);
+            background-size: cover;
+            background-position: center;
             color: #ffffff;
-            padding: 24px;
+            padding: 40px 24px 50px 24px;
             text-align: center;
-            box-shadow: var(--shadow-sm);
             position: relative;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+            box-shadow: var(--shadow-md);
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
         }
 
         .header-container {
@@ -60,6 +65,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+            width: 100%;
         }
 
         .brand-lockup {
@@ -69,241 +78,210 @@
         }
 
         .brand-icon {
-            height: 36px;
+            height: 38px;
             filter: brightness(0) invert(1);
         }
 
         .brand-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             text-align: left;
             line-height: 1.2;
         }
 
         .brand-title {
-            font-size: 1.1rem;
+            font-size: 20px;
             font-weight: 900;
-            letter-spacing: 1px;
+            color: #ffffff;
+            letter-spacing: 1.5px;
         }
 
         .brand-subtitle {
-            font-size: 11px;
-            opacity: 0.8;
+            font-size: 12px;
             font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
             letter-spacing: 2px;
+            margin-top: 2px;
         }
 
         .back-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             color: white;
-            padding: 8px 16px;
+            padding: 8px 20px;
             border-radius: 99px;
             font-size: 12px;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.2s;
             cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.18);
+            transform: scale(1.05);
         }
 
         header h1 {
             font-size: 2rem;
             font-weight: 900;
-            margin-top: 16px;
-            margin-bottom: 6px;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
         header p {
-            font-size: 0.95rem;
-            opacity: 0.9;
+            font-size: 1rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
         }
 
-        .main-content {
+        .container {
             max-width: 1200px;
             margin: 40px auto;
-            padding: 0 24px;
+            padding: 0 20px;
             display: grid;
             grid-template-columns: 1fr;
             gap: 40px;
-            flex-grow: 1;
             align-items: center;
         }
 
         @media (min-width: 992px) {
-            .main-content {
+            .container {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
-        .roulette-wrapper {
+        /* 賭場拉霸機 UI */
+        .slot-machine-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
-        .roulette-container {
+        .slot-machine {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            border: 8px solid var(--accent-color);
+            border-radius: 32px;
+            padding: 30px;
             width: 320px;
-            height: 320px;
+            box-shadow: 0 25px 50px -12px rgba(15, 42, 28, 0.25), inset 0 4px 0 rgba(255,255,255,0.1);
             position: relative;
-            margin-bottom: 24px;
-            border-radius: 50%;
-            padding: 8px;
-            background: #ffffff;
-            box-shadow: var(--shadow-lg);
-            border: 6px solid var(--doraemon-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            border-bottom-width: 14px;
         }
 
         @media (min-width: 480px) {
-            .roulette-container {
-                width: 400px;
-                height: 400px;
+            .slot-machine {
+                width: 380px;
             }
         }
 
-        .pointer {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 35px solid var(--doraemon-red);
-            z-index: 10;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
-        }
-
-        .wheel {
+        /* 拉霸機頂部飾條與燈光 */
+        .slot-lights {
+            display: flex;
+            justify-content: space-between;
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-            transition: transform 5s cubic-bezier(0.1, 0.8, 0.1, 1);
-            background: conic-gradient(
-                #38bdf8 0deg 3.6deg, #0ea5e9 3.6deg 7.2deg,
-                #7dd3fc 7.2deg 10.8deg, #0284c7 10.8deg 14.4deg,
-                #bae6fd 14.4deg 18deg, #0369a1 18deg 21.6deg,
-                #e0f2fe 21.6deg 25.2deg, #075985 25.2deg 28.8deg,
-                #38bdf8 28.8deg 32.4deg, #0ea5e9 32.4deg 36deg,
-                #7dd3fc 36deg 39.6deg, #0284c7 39.6deg 43.2deg,
-                #bae6fd 43.2deg 46.8deg, #0369a1 46.8deg 50.4deg,
-                #e0f2fe 50.4deg 54deg, #075985 54deg 57.6deg,
-                #38bdf8 57.6deg 61.2deg, #0ea5e9 61.2deg 64.8deg,
-                #7dd3fc 64.8deg 68.4deg, #0284c7 68.4deg 72deg,
-                #bae6fd 72deg 75.6deg, #0369a1 75.6deg 79.2deg,
-                #e0f2fe 79.2deg 82.8deg, #075985 82.8deg 86.4deg,
-                #38bdf8 86.4deg 90deg, #0ea5e9 90deg 93.6deg,
-                #7dd3fc 93.6deg 97.2deg, #0284c7 97.2deg 100.8deg,
-                #bae6fd 100.8deg 104.4deg, #0369a1 104.4deg 108deg,
-                #e0f2fe 108deg 111.6deg, #075985 111.6deg 115.2deg,
-                #38bdf8 115.2deg 118.8deg, #0ea5e9 118.8deg 122.4deg,
-                #7dd3fc 122.4deg 126deg, #0284c7 126deg 129.6deg,
-                #bae6fd 129.6deg 133.2deg, #0369a1 133.2deg 136.8deg,
-                #e0f2fe 136.8deg 140.4deg, #075985 140.4deg 144deg,
-                #38bdf8 144deg 147.6deg, #0ea5e9 147.6deg 151.2deg,
-                #7dd3fc 151.2deg 154.8deg, #0284c7 154.8deg 158.4deg,
-                #bae6fd 158.4deg 162deg, #0369a1 162deg 165.6deg,
-                #e0f2fe 165.6deg 169.2deg, #075985 169.2deg 172.8deg,
-                #38bdf8 172.8deg 176.4deg, #0ea5e9 176.4deg 180deg,
-                #7dd3fc 180deg 183.6deg, #0284c7 183.6deg 187.2deg,
-                #bae6fd 187.2deg 190.8deg, #0369a1 190.8deg 194.4deg,
-                #e0f2fe 194.4deg 198deg, #075985 198deg 201.6deg,
-                #38bdf8 201.6deg 205.2deg, #0ea5e9 205.2deg 208.8deg,
-                #7dd3fc 208.8deg 212.4deg, #0284c7 212.4deg 216deg,
-                #bae6fd 216deg 219.6deg, #0369a1 219.6deg 223.2deg,
-                #e0f2fe 223.2deg 226.8deg, #075985 226.8deg 230.4deg,
-                #38bdf8 230.4deg 234deg, #0ea5e9 234deg 237.6deg,
-                #7dd3fc 237.6deg 241.2deg, #0284c7 241.2deg 244.8deg,
-                #bae6fd 244.8deg 248.4deg, #0369a1 248.4deg 252deg,
-                #e0f2fe 252deg 255.6deg, #075985 255.6deg 259.2deg,
-                #38bdf8 259.2deg 262.8deg, #0ea5e9 262.8deg 266.4deg,
-                #7dd3fc 266.4deg 270deg, #0284c7 270deg 273.6deg,
-                #bae6fd 273.6deg 277.2deg, #0369a1 277.2deg 280.8deg,
-                #e0f2fe 280.8deg 284.4deg, #075985 284.4deg 288deg,
-                #38bdf8 288deg 291.6deg, #0ea5e9 291.6deg 295.2deg,
-                #7dd3fc 295.2deg 298.8deg, #0284c7 298.8deg 302.4deg,
-                #bae6fd 302.4deg 306deg, #0369a1 306deg 309.6deg,
-                #e0f2fe 309.6deg 313.2deg, #075985 313.2deg 316.8deg,
-                #38bdf8 316.8deg 320.4deg, #0ea5e9 320.4deg 324deg,
-                #7dd3fc 324deg 327.6deg, #0284c7 327.6deg 331.2deg,
-                #bae6fd 331.2deg 334.8deg, #0369a1 334.8deg 338.4deg,
-                #e0f2fe 338.4deg 342deg, #075985 342deg 345.6deg,
-                #38bdf8 345.6deg 349.2deg, #0ea5e9 349.2deg 352.8deg,
-                #7dd3fc 352.8deg 356.4deg, #0284c7 356.4deg 360deg
-            );
+            padding: 0 10px;
         }
-
-        .center-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70px;
-            height: 70px;
-            background: var(--doraemon-yellow);
-            border: 4px solid #ffffff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: #1e293b;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-            z-index: 5;
-            transition: transform 0.1s;
-            user-select: none;
-        }
-
-        .center-btn:active {
-            transform: translate(-50%, -50%) scale(0.92);
-        }
-
-        .bell-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-        }
-        .bell-line {
-            width: 30px;
-            height: 4px;
-            background: #1e293b;
-            border-radius: 2px;
-        }
-        .bell-hole {
+        .light-dot {
             width: 10px;
             height: 10px;
-            background: #1e293b;
+            background-color: var(--doraemon-yellow, #facc15);
             border-radius: 50%;
+            box-shadow: 0 0 8px var(--doraemon-yellow, #facc15);
+            animation: flash-light 0.6s infinite alternate;
+        }
+        .light-dot:nth-child(even) {
+            animation-delay: 0.3s;
+            background-color: var(--accent-color);
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+        @keyframes flash-light {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+
+        /* 顯示螢幕 */
+        .slot-screen {
+            background: #0f172a;
+            border: 5px solid #0f2a1c;
+            border-radius: 20px;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 10px;
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 滾軸與數字 */
+        .slot-reel-box {
+            width: 80px;
+            height: 110px;
+            background: #1e293b;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reel-digit {
+            font-size: 4.8rem;
+            font-weight: 900;
+            color: #facc15;
+            text-shadow: 0 0 15px rgba(250, 204, 21, 0.7);
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+            line-height: 1;
+            transition: transform 0.05s ease;
+        }
+        .reel-digit.blur {
+            filter: blur(4px);
+            opacity: 0.7;
+        }
+
+        /* SPIN 按鈕 */
+        .action-btn-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
         .spin-btn {
-            background-color: var(--doraemon-blue);
+            background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 14px 40px;
+            padding: 14px 44px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 800;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 4px 15px rgba(179, 92, 36, 0.4);
+            border: 3px solid rgba(255,255,255,0.1);
         }
 
         .spin-btn:hover {
-            background-color: #0284c7;
+            background-color: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 6px 20px rgba(179, 92, 36, 0.5);
         }
 
         .spin-btn:active {
@@ -311,28 +289,27 @@
         }
 
         .spin-btn:disabled {
-            background-color: #cbd5e1;
+            background-color: #4b5563;
             cursor: not-allowed;
             box-shadow: none;
             transform: none;
+            color: #9ca3af;
         }
 
+        /* 結果顯示卡 (常規備份) */
         .result-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 32px;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-sm);
             min-height: 280px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-top: 8px solid var(--doraemon-blue);
+            border-top: 8px solid var(--accent-color);
         }
 
         .result-empty {
@@ -342,20 +319,19 @@
         }
 
         .result-num-badge {
-            background: var(--doraemon-yellow);
-            color: #1e293b;
+            background: var(--badge-bg);
+            color: var(--badge-text);
             font-size: 0.9rem;
             font-weight: 900;
             padding: 6px 16px;
             border-radius: 99px;
             margin-bottom: 16px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .result-name-zh {
             font-size: 1.8rem;
             font-weight: 900;
-            color: #0284c7;
+            color: var(--accent-color);
             margin-bottom: 8px;
         }
 
@@ -369,28 +345,15 @@
         .result-desc {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: #334155;
-            background: #f8fafc;
+            color: #1c1917;
+            background: var(--code-bg);
             padding: 16px 24px;
             border-radius: 12px;
-            border: 1px solid #f1f5f9;
+            border: 1px solid var(--border-color);
             width: 100%;
         }
 
-        .wheel-number {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transform-origin: 50% 50%;
-            font-size: 8px;
-            font-weight: 800;
-            color: rgba(255,255,255,0.7);
-            padding-top: 10px;
-            pointer-events: none;
-        }
-
-        /* 經典道具登場的全螢幕舞台特效 */
+        /* 經典道具登場的全螢幕舞台特效 HTML */
         .fanfare-overlay {
             position: fixed;
             top: 0;
@@ -412,7 +375,6 @@
             pointer-events: auto;
         }
 
-        /* 旋轉放射狀光芒背景 */
         .radial-burst {
             position: absolute;
             top: 50%;
@@ -458,19 +420,18 @@
             }
         }
 
-        /* 動漫字卡風格 */
         .showcase-card {
             background: rgba(255, 255, 255, 0.96);
             border: 6px solid #1e293b;
             border-radius: 28px;
             padding: 40px 30px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 0 4px rgba(255,255,255,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             width: 100%;
             position: relative;
         }
 
         .showcase-num {
-            background: var(--doraemon-red);
+            background: #ef4444;
             color: white;
             font-size: 1.1rem;
             font-weight: 900;
@@ -517,7 +478,7 @@
 
         .close-showcase-btn {
             margin-top: 32px;
-            background: var(--doraemon-yellow);
+            background: #facc15;
             color: #1e293b;
             border: 4px solid #1e293b;
             padding: 12px 36px;
@@ -533,7 +494,6 @@
             box-shadow: 0 2px 0 #1e293b, 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* 閃爍星星特效 */
         .sparkle {
             position: absolute;
             background: white;
@@ -563,22 +523,34 @@
                 <a href="../design-thinking/design-thinking.html" class="back-btn">返回工具箱</a>
             </div>
             <h1>🔮 哆啦A夢秘密道具輪盤</h1>
-            <p>點擊「SPIN」轉動輪盤，隨機抽出一款經典的 22 世紀未來道具！</p>
+            <p>點擊「SPIN」啟動拉霸機，隨機抽出一款經典的 22 世紀未來道具！</p>
         </header>
 
-        <div class="main-content">
-            <div class="roulette-wrapper">
-                <div class="pointer"></div>
-                <div class="roulette-container">
-                    <div class="center-btn" id="spinCenterBtn">
-                        <div class="bell-icon">
-                            <div class="bell-line"></div>
-                            <div class="bell-hole"></div>
+        <div class="container">
+            <div class="slot-machine-wrapper">
+                <div class="slot-machine">
+                    <div class="slot-lights">
+                        <div class="light-dot"></div>
+                        <div class="light-dot"></div>
+                        <div class="light-dot"></div>
+                        <div class="light-dot"></div>
+                        <div class="light-dot"></div>
+                        <div class="light-dot"></div>
+                    </div>
+                    
+                    <div class="slot-screen">
+                        <div class="slot-reel-box">
+                            <div class="reel-digit" id="reelTens">0</div>
+                        </div>
+                        <div class="slot-reel-box">
+                            <div class="reel-digit" id="reelOnes">0</div>
                         </div>
                     </div>
-                    <div class="wheel" id="wheel"></div>
+                    
+                    <div class="action-btn-wrapper">
+                        <button class="spin-btn" id="spinBtn">SPIN / 啟動拉霸</button>
+                    </div>
                 </div>
-                <button class="spin-btn" id="spinBtn">SPIN / 開始轉動</button>
             </div>
 
             <div class="result-card" id="resultCard">
@@ -586,7 +558,7 @@
                     <p>🔮 點選左側的 SPIN 鍵來抽取道具吧！</p>
                 </div>
                 <div id="resultDetails" style="display: none; width: 100%;">
-                    <span class="result-num-badge">No. <span id="resNum">001</span></span>
+                    <span class="result-num-badge">No. <span id="resNum">00</span></span>
                     <h2 class="result-name-zh" id="resNameZh">任意門</h2>
                     <div class="result-name-other">
                         <span id="resNameEn">Anywhere Door</span> / <span id="resNameJa">どこでもドア</span>
@@ -603,7 +575,7 @@
         <div id="sparkleContainer"></div>
         <div class="showcase-container">
             <div class="showcase-card">
-                <div class="showcase-num">No. <span id="showNum">001</span></div>
+                <div class="showcase-num">No. <span id="showNum">00</span></div>
                 <div class="showcase-name-zh" id="showNameZh">任意門</div>
                 <div class="showcase-name-other"><span id="showNameEn">Anywhere Door</span> / <span id="showNameJa">どこでもドア</span></div>
                 <div class="showcase-desc" id="showDesc">最具代表性的道具，可到達十光年內任何已知地點。</div>
@@ -1316,18 +1288,10 @@
   }
 ];
 
-        const wheel = document.getElementById('wheel');
-        for (let i = 1; i <= 100; i++) {
-            const numDiv = document.createElement('div');
-            numDiv.className = 'wheel-number';
-            const rot = (i - 1) * 3.6 + 1.8;
-            numDiv.style.transform = `rotate(${rot}deg)`;
-            numDiv.innerText = i;
-            wheel.appendChild(numDiv);
-        }
-
         const spinBtn = document.getElementById('spinBtn');
-        const spinCenterBtn = document.getElementById('spinCenterBtn');
+        const reelTens = document.getElementById('reelTens');
+        const reelOnes = document.getElementById('reelOnes');
+        
         const resultEmpty = document.getElementById('resultEmpty');
         const resultDetails = document.getElementById('resultDetails');
         
@@ -1336,8 +1300,6 @@
         const sparkleContainer = document.getElementById('sparkleContainer');
         
         let isSpinning = false;
-        let currentRotation = 0;
-
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         // 齒輪轉動滴答聲
@@ -1350,12 +1312,12 @@
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             
-            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
             
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.05);
+            osc.stop(audioCtx.currentTime + 0.04);
         }
 
         // 登登登登！極致還原經典道具吹奏 Fanfare 音效
@@ -1372,7 +1334,7 @@
             
             notes.forEach((freq, idx) => {
                 const osc1 = audioCtx.createOscillator();
-                const osc2 = audioCtx.createOscillator(); // 雙小喇叭合奏效果
+                const osc2 = audioCtx.createOscillator(); 
                 const gain = audioCtx.createGain();
                 const filter = audioCtx.createBiquadFilter();
                 
@@ -1381,29 +1343,24 @@
                 filter.connect(gain);
                 gain.connect(audioCtx.destination);
                 
-                // 鋸齒波模擬小號黃銅音色
                 osc1.type = 'sawtooth';
                 osc2.type = 'sawtooth';
                 osc1.frequency.setValueAtTime(freq - 2, now + starts[idx]);
                 osc2.frequency.setValueAtTime(freq + 2, now + starts[idx]);
                 
-                // 低通濾波器包絡線調變，產生黃銅特有的 "Wah-wah" 前奏吹氣質感
                 filter.type = 'lowpass';
                 filter.Q.setValueAtTime(6, now + starts[idx]);
                 filter.frequency.setValueAtTime(300, now + starts[idx]);
                 filter.frequency.exponentialRampToValueAtTime(freq * 3, now + starts[idx] + 0.02);
                 filter.frequency.exponentialRampToValueAtTime(freq * 1.5, now + starts[idx] + durations[idx]);
                 
-                // 音量包絡線
                 gain.gain.setValueAtTime(0, now + starts[idx]);
                 gain.gain.linearRampToValueAtTime(0.12, now + starts[idx] + 0.02);
                 
                 if (idx === 3) {
-                    // 第四個拉長的主音加上些微顫音與漸弱
                     gain.gain.setValueAtTime(0.12, now + starts[idx] + 0.3);
                     gain.gain.exponentialRampToValueAtTime(0.001, now + starts[idx] + durations[idx]);
                     
-                    // 顫音效果
                     osc1.frequency.linearRampToValueAtTime(freq - 10, now + starts[idx] + 0.3);
                     osc1.frequency.linearRampToValueAtTime(freq + 10, now + starts[idx] + 0.5);
                     osc1.frequency.linearRampToValueAtTime(freq, now + starts[idx] + 0.8);
@@ -1419,7 +1376,6 @@
             });
         }
 
-        // 產生白色閃爍十字星光
         function createSparkles() {
             sparkleContainer.innerHTML = '';
             for (let i = 0; i < 18; i++) {
@@ -1441,75 +1397,95 @@
             }
         }
 
-        function spinWheel() {
+        function spinSlots() {
             if (isSpinning) return;
             isSpinning = true;
             spinBtn.disabled = true;
 
-            const randomIndex = Math.floor(Math.random() * 100);
-            const targetGadget = gadgets[randomIndex];
-            const targetId = targetGadget.id; 
+            // 隨機選定道具 (00-99)
+            const targetIndex = Math.floor(Math.random() * 100);
+            const targetGadget = gadgets[targetIndex];
+            
+            // 補零轉換為 00-99
+            const targetStr = String(targetIndex).padStart(2, '0');
+            const targetTens = parseInt(targetStr[0]);
+            const targetOnes = parseInt(targetStr[1]);
 
-            const targetSectorAngle = (targetId - 1) * 3.6 + 1.8;
-            const targetAngle = 360 - targetSectorAngle;
+            let duration = 3000; // 總旋轉時間 3 秒
+            let startTime = performance.now();
 
-            const spins = 6 + Math.floor(Math.random() * 3);
-            const extraDegrees = spins * 360;
-            currentRotation += extraDegrees + targetAngle - (currentRotation % 360);
+            reelTens.classList.add('blur');
+            reelOnes.classList.add('blur');
 
-            wheel.style.transform = `rotate(${currentRotation}deg)`;
+            let lastTickTime = 0;
+            const tickInterval = 60; // 滾動滴答聲間隔
 
-            let tickCount = 0;
-            const totalTicks = spins * 100 + targetId;
-            const startTime = performance.now();
-            const duration = 5000; 
-
-            function animateTicks(timestamp) {
+            function updateReels(timestamp) {
                 const elapsed = timestamp - startTime;
+                
                 if (elapsed < duration) {
-                    const progress = elapsed / duration;
-                    const EasedProgress = 1 - Math.pow(1 - progress, 4); // easeOutQuart 減速效果更柔和
-                    const currentTickTarget = Math.floor(EasedProgress * totalTicks);
-                    
-                    if (currentTickTarget > tickCount) {
+                    // 隨機跳動顯示
+                    if (timestamp - lastTickTime > tickInterval) {
                         playTickSound();
-                        tickCount = currentTickTarget;
+                        lastTickTime = timestamp;
+                        
+                        // 十位數隨機
+                        if (elapsed < duration - 1000) {
+                            reelTens.innerText = Math.floor(Math.random() * 10);
+                        }
+                        // 個位數隨機
+                        if (elapsed < duration) {
+                            reelOnes.innerText = Math.floor(Math.random() * 10);
+                        }
                     }
-                    requestAnimationFrame(animateTicks);
+                    
+                    // 階段一：十位數先停止 (倒數1秒時)
+                    if (elapsed >= duration - 1000 && reelTens.classList.contains('blur')) {
+                        reelTens.classList.remove('blur');
+                        reelTens.innerText = targetTens;
+                        // 輕微回彈效果
+                        reelTens.style.transform = 'scale(1.2)';
+                        setTimeout(() => { reelTens.style.transform = 'scale(1)'; }, 100);
+                    }
+                    
+                    requestAnimationFrame(updateReels);
+                } else {
+                    // 階段二：個位數隨後停止
+                    reelOnes.classList.remove('remove');
+                    reelOnes.classList.remove('blur');
+                    reelOnes.innerText = targetOnes;
+                    reelOnes.style.transform = 'scale(1.2)';
+                    setTimeout(() => { reelOnes.style.transform = 'scale(1)'; }, 100);
+                    
+                    // 結束旋轉
+                    setTimeout(() => {
+                        isSpinning = false;
+                        spinBtn.disabled = false;
+                        triggerShowcase(targetGadget, targetStr);
+                    }, 500);
                 }
             }
-            requestAnimationFrame(animateTicks);
 
-            setTimeout(() => {
-                isSpinning = false;
-                spinBtn.disabled = false;
-                triggerShowcase(targetGadget);
-            }, duration);
+            requestAnimationFrame(updateReels);
         }
 
-        // 觸發全螢幕展示與吹奏音效
-        function triggerShowcase(gadget) {
-            // 寫入展示卡片內容
-            document.getElementById('showNum').innerText = String(gadget.id).padStart(3, '0');
+        function triggerShowcase(gadget, numStr) {
+            document.getElementById('showNum').innerText = numStr;
             document.getElementById('showNameZh').innerText = gadget.nameZh;
             document.getElementById('showNameEn').innerText = gadget.nameEn;
             document.getElementById('showNameJa').innerText = gadget.nameJa;
             document.getElementById('showDesc').innerText = gadget.descZh;
 
-            // 寫入側邊備份卡片內容
             resultEmpty.style.display = 'none';
             resultDetails.style.display = 'block';
-            document.getElementById('resNum').innerText = String(gadget.id).padStart(3, '0');
+            document.getElementById('resNum').innerText = numStr;
             document.getElementById('resNameZh').innerText = gadget.nameZh;
             document.getElementById('resNameEn').innerText = gadget.nameEn;
             document.getElementById('resNameJa').innerText = gadget.nameJa;
             document.getElementById('resDesc').innerText = gadget.descZh;
 
-            // 隨機產生星光並展開特效遮罩
             createSparkles();
             fanfareOverlay.classList.add('show');
-
-            // 播放極致還原喇叭吹奏音效
             playFanfareSound();
         }
 
@@ -1521,13 +1497,7 @@
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
-            spinWheel();
-        });
-        spinCenterBtn.addEventListener('click', () => {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            spinWheel();
+            spinSlots();
         });
         closeShowcaseBtn.addEventListener('click', closeShowcase);
         fanfareOverlay.addEventListener('click', (e) => {
