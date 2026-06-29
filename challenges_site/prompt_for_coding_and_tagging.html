@@ -593,7 +593,7 @@
             
             <p class="lang-zh">本工具專為將三語逐字稿進行「Coding（編碼）」所設計。透過精準標記引言與提煉小標標籤，將感性故事轉化為理性洞察。</p>
             <p class="lang-en">This tool is designed to code and tag the parallel trilingual transcript, converting narratives into structured nodes.</p>
-            <p class="lang-ja">三カ国語対照の逐字録に対して「コード化（Coding）」を行うためのツールです。発言のハイライトとタグ化を行い、分析を支援します。</p>
+            <p class="lang-ja">三カ国語対照の逐字録に対して「コード化（Coding）」を行うためのツールです。發言のハイライトとタグ化を行い、分析を支援します。</p>
         </header>
 
         <div class="container">
@@ -603,14 +603,14 @@
                     <h3 class="lang-en">Usage Guidelines</h3>
                     <h3 class="lang-ja">利用ガイド</h3>
                     
-                    <p class="lang-zh">在質性研究中，Coding（編碼）就像是資訊的考古學。此 Prompt 能引導 AI 閱讀三語逐字稿，在原文中以高亮與粗體標示出最具代表性的引言（User Quotes），並在同一個 Coding 欄位內同時提供中英日三語對照的 `#標籤`，完美打破跨國合作的語言藩籬！</p>
-                    <p class="lang-en">In qualitative research, coding is like information archaeology. This prompt guides AI to highlight representative quotes across languages and append corresponding trilingual parallel coding tags in the sidebar.</p>
-                    <p class="lang-ja">質的調査において、コード化（Coding）は情報の考古学のようなものです。このプロンプトは、対話データから重要発言を抽出し、サイドバーに中英日３言語対照のコードタグを自動作成します。</p>
+                    <p class="lang-zh">在質性研究中，Coding（編碼）就像是資訊的考古學。此 Prompt 能引導 AI 閱讀三語逐字稿，在原文中以高亮與粗體標示出最具代表性的引言（User Quotes），並提煉出同時包含「中 / 英 / 日」三語並列文字內容的單一標籤（Tag），完美打破跨國合作的語言藩籬！</p>
+                    <p class="lang-en">In qualitative research, coding is like information archaeology. This prompt guides AI to highlight representative quotes across languages and append corresponding single trilingual parallel coding tags in the sidebar.</p>
+                    <p class="lang-ja">質的調査において、コード化（Coding）は情報の考古学のようなものです。このプロンプトは、対話データから重要発言を抽出し、サイドバーに中英日３言語対照のテキスト内容を持つ１つのコードタグを自動作成します。</p>
                     
                     <ul>
-                        <li class="lang-zh"><strong>同欄三語標籤</strong>：每一個編碼區間中，同時包含中、英、日三種語系的 `#標籤`，讓不同國籍的隊友零時差看懂分類。</li>
-                        <li class="lang-en"><strong>Trilingual Parallel Tags</strong>: Each code entry bundles Chinese, English, and Japanese tags to keep global teammates aligned.</li>
-                        <li class="lang-ja"><strong>同一欄の3言語タグ</strong>：各コーディングに対し中・英・日3ヶ国語のタグを併記し、多国籍メンバーの理解を均一化。</li>
+                        <li class="lang-zh"><strong>三語並列單一標籤</strong>：提煉出來的每一個編碼標籤內容，本身直接以「中 / 英 / 日」三語並列的方式呈現。</li>
+                        <li class="lang-en"><strong>Trilingual Single Tag</strong>: The text content of each tag directly contains parallel Chinese, English, and Japanese translations.</li>
+                        <li class="lang-ja"><strong>3言語並列の単一タグ</strong>：抽出された各コードタグのテキスト内容自体に、中・英・日3ヶ国語を並列表記。</li>
                         
                         <li class="lang-zh"><strong>即時預覽與下載</strong>：複製 AI 生成的網頁代碼並貼入下方沙盒，即可當場查看精美的雙欄編碼網頁，或下載成 .html 檔。</li>
                         <li class="lang-en"><strong>Preview & Download</strong>: Paste generated code in the toolbox sandbox to render instantly or download as an HTML file.</li>
@@ -640,13 +640,13 @@
 
 ### 任務說明
 1. **執行質性研究編碼 (Coding)**：閱讀每一行對話，找出受訪者表達的核心需求、行為模式、情緒起伏或痛點。
-2. **三語編碼標籤對照**：在左側的 Coding 欄位中，為每一處提煉出編碼，且**必須在同一個 Coding 欄位內同時提供「中文、英文、日文」三種語系的 # 標籤對照**（例如：一個編碼主題需同時包含 #建立在地信用、#BuildingLocalTrust、#地元の信頼構築）。
+2. **單一標籤三語並列**：在左側的 Coding 欄位中，為每一處提煉出編碼，且**每一個編碼標籤的文字內容本身，必須同時包含三語並列（中文 / 英文 / 日文）**（例如：#建立在地信用 / BuildingLocalTrust / 地元の信頼構築 必須放在同一個標籤內，做為單一編碼概念）。
 3. **標記引言原話 (User Quotes)**：在中文、英文、日文對話中，精準找出支持該編碼的「受訪者經典引言（User Quotes）」，並使用特定 HTML 標籤將其加粗並套用螢光筆效果。
 
 ---
 
 ### 輸出格式與載體要求
-請輸出一份完整的 **「雙欄編碼（含三語標籤）與三語對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左側編碼欄（包含中英日三語 tag）、右側三欄對照的專業排版，在手機上則會自動適應。
+請輸出一份完整的 **「雙欄編碼（含三語並列標籤）與三語對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左側編碼欄（包含三語並列的 tag）、右側三欄對照的專業排版，在手機上則會自動適應。
 請使用以下結構並直接填入編碼與訪談內容，不要省略任何 CSS 樣式：
 
 ```html
@@ -664,14 +664,11 @@
   @media (min-width: 992px) {
     .row { flex-direction: row; align-items: stretch; }
   }
-  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 12px; }
+  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
   @media (min-width: 992px) {
-    .coding-col { width: 220px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
+    .coding-col { width: 240px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
   }
-  .tag-group { background: #FAF5F0; border: 1px solid rgba(179,92,36,0.15); border-radius: 8px; padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
-  .tag-zh { color: #B35C24; font-weight: 700; font-size: 0.85em; }
-  .tag-en { color: #166534; font-weight: 700; font-size: 0.78em; }
-  .tag-ja { color: #1E3A8A; font-weight: 700; font-size: 0.78em; }
+  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
   
   .grid-col { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 12px; }
   @media (min-width: 768px) {
@@ -692,16 +689,8 @@
   &lt;!-- 對話編碼列範例 --&gt;
   &lt;div class="row"&gt;
     &lt;div class="coding-col"&gt;
-      &lt;div class="tag-group"&gt;
-        &lt;div class="tag-zh"&gt;#建立在地信用&lt;/div&gt;
-        &lt;div class="tag-en"&gt;#BuildingLocalTrust&lt;/div&gt;
-        &lt;div class="tag-ja"&gt;#地元の信頼構築&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class="tag-group"&gt;
-        &lt;div class="tag-zh"&gt;#老農成見突破&lt;/div&gt;
-        &lt;div class="tag-en"&gt;#OvercomingElderlyPrejudice&lt;/div&gt;
-        &lt;div class="tag-ja"&gt;#老農の偏見打破&lt;/div&gt;
-      &lt;/div&gt;
+      &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
+      &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
     &lt;/div&gt;
     &lt;div class="grid-col"&gt;
       &lt;div class="lang-col"&gt;
@@ -744,13 +733,13 @@
 
 ### 任務說明
 1. **執行質性研究編碼 (Coding)**：閱讀每一行對話，找出受訪者表達的核心需求、行為模式、情緒起伏或痛點。
-2. **三語編碼標籤對照**：在左側的 Coding 欄位中，為每一處提煉出編碼，且**必須在同一個 Coding 欄位內同時提供「中文、英文、日文」三種語系的 # 標籤對照**（例如：一個編碼主題需同時包含 #建立在地信用、#BuildingLocalTrust、#地元の信頼構築）。
+2. **單一標籤三語並列**：在左側的 Coding 欄位中，為每一處提煉出編碼，且**每一個編碼標籤的文字內容本身，必須同時包含三語並列（中文 / 英文 / 日文）**（例如：#建立在地信用 / BuildingLocalTrust / 地元の信頼構築 必須放在同一個標籤內，做為單一編碼概念）。
 3. **標記引言原話 (User Quotes)**：在中文、英文、日文對話中，精準找出支持該編碼的「受訪者經典引言（User Quotes）」，並使用特定 HTML 標籤將其加粗並套用螢光筆效果。
 
 ---
 
 ### 輸出格式與載體要求
-請輸出一份完整的 **「雙欄編碼（含三語標籤）與三語對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左側編碼欄（包含中英日三語 tag）、右側三欄對照的專業排版，在手機上則會自動適應。
+請輸出一份完整的 **「雙欄編碼（含三語並列標籤）與三語對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左側編碼欄（包含三語並列的 tag）、右側三欄對照的專業排版，在手機上則會自動適應。
 請使用以下結構並直接填入編碼與訪談內容，不要省略任何 CSS 樣式：
 
 ```html
@@ -768,14 +757,11 @@
   @media (min-width: 992px) {
     .row { flex-direction: row; align-items: stretch; }
   }
-  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 12px; }
+  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
   @media (min-width: 992px) {
-    .coding-col { width: 220px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
+    .coding-col { width: 240px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
   }
-  .tag-group { background: #FAF5F0; border: 1px solid rgba(179,92,36,0.15); border-radius: 8px; padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
-  .tag-zh { color: #B35C24; font-weight: 700; font-size: 0.85em; }
-  .tag-en { color: #166534; font-weight: 700; font-size: 0.78em; }
-  .tag-ja { color: #1E3A8A; font-weight: 700; font-size: 0.78em; }
+  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
   
   .grid-col { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 12px; }
   @media (min-width: 768px) {
@@ -796,16 +782,8 @@
   &lt;!-- 對話編碼列範例 --&gt;
   &lt;div class="row"&gt;
     &lt;div class="coding-col"&gt;
-      &lt;div class="tag-group"&gt;
-        &lt;div class="tag-zh"&gt;#建立在地信用&lt;/div&gt;
-        &lt;div class="tag-en"&gt;#BuildingLocalTrust&lt;/div&gt;
-        &lt;div class="tag-ja"&gt;#地元の信頼構築&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class="tag-group"&gt;
-        &lt;div class="tag-zh"&gt;#老農成見突破&lt;/div&gt;
-        &lt;div class="tag-en"&gt;#OvercomingElderlyPrejudice&lt;/div&gt;
-        &lt;div class="tag-ja"&gt;#老農の偏見打破&lt;/div&gt;
-      &lt;/div&gt;
+      &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
+      &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
     &lt;/div&gt;
     &lt;div class="grid-col"&gt;
       &lt;div class="lang-col"&gt;
@@ -1057,14 +1035,11 @@
   @media (min-width: 992px) {
     .row { flex-direction: row; align-items: stretch; }
   }
-  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 12px; }
+  .coding-col { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
   @media (min-width: 992px) {
-    .coding-col { width: 220px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
+    .coding-col { width: 240px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 16px; }
   }
-  .tag-group { background: #FAF5F0; border: 1px solid rgba(179,92,36,0.15); border-radius: 8px; padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
-  .tag-zh { color: #B35C24; font-weight: 700; font-size: 0.85em; }
-  .tag-en { color: #166534; font-weight: 700; font-size: 0.78em; }
-  .tag-ja { color: #1E3A8A; font-weight: 700; font-size: 0.78em; }
+  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
   
   .grid-col { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 12px; }
   @media (min-width: 768px) {
@@ -1082,16 +1057,8 @@
   &lt;div class="header-title"&gt;訪談編碼與標籤化整理手札 (範例)&lt;/div&gt;
   &lt;div class="row"&gt;
     &lt;div class="coding-col"&gt;
-      &lt;div class="tag-group"&gt;
-        &lt;div class="tag-zh"&gt;#建立在地信用&lt;/div&gt;
-        &lt;div class="tag-en"&gt;#BuildingLocalTrust&lt;/div&gt;
-        &lt;div class="tag-ja"&gt;#地元の信頼構築&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class="tag-group"&gt;
-        &lt;div class="tag-zh"&gt;#老農成見突破&lt;/div&gt;
-        &lt;div class="tag-en"&gt;#OvercomingElderlyPrejudice&lt;/div&gt;
-        &lt;div class="tag-ja"&gt;#老農の偏見打破&lt;/div&gt;
-      &lt;/div&gt;
+      &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
+      &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
     &lt;/div&gt;
     &lt;div class="grid-col"&gt;
       &lt;div class="lang-col"&gt;
@@ -1110,7 +1077,7 @@
         &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
         &lt;div class="text"&gt;
           &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
-          ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。
+          ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時, &lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
