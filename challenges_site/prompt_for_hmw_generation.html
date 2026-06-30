@@ -556,6 +556,51 @@
             flex-shrink: 0;
         }
     </style>
+<!-- ANTIGRAVITY_DRAWER_CSS_START -->
+<style>
+/* Collapsible navigation styling for drawer-nav */
+.drawer-collapse-content {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    margin-left: 16px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+.drawer-collapse-content.expanded {
+    display: flex;
+}
+.collapse-trigger {
+    cursor: pointer;
+    user-select: none;
+}
+.collapse-arrow {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+/* Make the drawer-nav container scroll cleanly and not be cut off */
+.drawer-nav {
+    padding-bottom: 80px !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
+}
+/* Improve the scrollbar usability */
+.drawer-nav::-webkit-scrollbar {
+    width: 8px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 99px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+</style>
+<!-- ANTIGRAVITY_DRAWER_CSS_END -->
 </head>
 <body lang-select="zh" data-theme="light">
 
@@ -635,7 +680,8 @@
                         コンテナ内のプロンプト全体をコピーし、AIモデル（GeminiやChatGPTなど）に入力してください。
                     </p>
                     
-                    <div class="prompt-container" id="promptTextContainer"><template id="rawPromptText">你現在是一位資深的設計思考（Design Thinking）教練與引導師。我將提供你上一個步驟（步驟 5）產出的跨訪談主題維度、痛點與期望對照資料。
+                    <div class="prompt-container" id="promptTextContainer">
+                    <template id="rawPromptTextZh">你現在是一位資深的設計思考（Design Thinking）教練與引導師。我將提供你上一個步驟（步驟 5）產出的跨訪談主題維度、痛點與期望對照資料。
 請幫我完成以下任務，並嚴格遵循後續的格式與標記要求：
 
 ### 任務說明
@@ -653,13 +699,13 @@
 請輸出一份完整的 **「可拖曳排序與投票的 HMW 互動討論看板 HTML 網頁代碼」**。
 該網頁必須包含完整的 CSS 樣式與 Vanilla JS 互動邏輯，具備以下功能：
 1. **可拖曳排序 (Sortable)**：使用者可以透過拖曳，在同一個主題區塊內對 HMW 卡片進行上下排序。
-2. 投票計數器 (Vote Counter)：每張 HMW 卡片都有增加 (+) 與減少 (-) 的票數調整按鈕，以方便單機多人口頭投票並累積多張選票。
+2. **投票計數器 (Vote Counter)**：每張 HMW 卡片都有增加 (+) 與減少 (-) 的票數調整按鈕，以方便單機多人口頭投票並累積多張選票。
 3. **分類排列**：卡片依據步驟 5 的主題維度進行分組呈現。
 4. **一鍵導出**：提供按鈕可將討論與投票排序後的結果導出複製。
 
 請使用以下結構並直接填入內容，不要省略任何 CSS 樣式：
 
-```html
+\`\`\`html
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-Hant"&gt;
 &lt;head&gt;
@@ -670,86 +716,58 @@
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
   .container { max-width: 1200px; margin: 40px auto; }
   .header { text-align: center; margin-bottom: 32px; }
-  .header h1 { color: #0f2a1c; font-size: 2rem; font-weight: 800; }
-  .header p { color: #78716c; font-size: 0.95rem; }
-  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(15,42,28,0.02); }
-  .theme-title { font-size: 1.1rem; font-weight: 800; color: white; background: #0f2a1c; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; }
+  .header h1 { color: #0f2a1c; font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; }
+  .header p { color: #78716c; font-size: 0.98rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+  .control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; background: white; padding: 16px 24px; border-radius: 12px; border: 1px solid #e7e5e4; }
+  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; }
+  .btn-export:hover { background: #A04B19; }
+  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 30px; }
+  .theme-title { font-size: 1.15rem; font-weight: 800; color: white; background: #0f2a1c; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; }
   .cards-list { display: flex; flex-direction: column; gap: 12px; min-height: 50px; }
-  
-  /* HMW 卡片樣式 */
-  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); border-radius: 12px; padding: 16px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; position: relative; }
+  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); border-radius: 12px; padding: 18px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .hmw-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.04); border-color: rgba(22,101,52,0.2); }
   .hmw-card.dragging { opacity: 0.5; background: #f5f5f4; cursor: grabbing; }
-  
   .card-content { flex-grow: 1; }
-  .angle-badge { font-size: 0.72em; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+  .angle-badge { font-size: 0.72em; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
   .badge-barrier { background: #fee2e2; color: #991b1b; }
   .badge-outcome { background: #dcfce7; color: #166534; }
   .badge-leverage { background: #dbeafe; color: #1e40af; }
-  
-  .hmw-text { font-size: 0.95rem; line-height: 1.5; color: #1c1917; margin-bottom: 6px; }
+  .hmw-text { font-size: 0.98rem; line-height: 1.6; color: #1c1917; margin-bottom: 6px; }
   .hmw-text strong { color: #B35C24; margin-right: 6px; }
-  
-  .original-source { font-size: 0.75rem; color: #78716c; margin-top: 8px; border-top: 1px dashed #e7e5e4; padding-top: 6px; }
-  
-  /* 投票計數器樣式 (+/- 按鈕) */
-  .vote-area { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e7e5e4; border-radius: 20px; padding: 4px 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-  .vote-change-btn { background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 50%; width: 26px; height: 26px; font-size: 1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; transition: all 0.2s ease; user-select: none; }
-  .vote-change-btn:hover { background: #e7e5e4; color: #1c1917; transform: scale(1.05); }
-  .vote-change-btn:active { transform: scale(0.95); }
-  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 38px; justify-content: center; }
-  .vote-heart-icon { color: #e11d48; font-size: 0.9rem; }
-  .vote-count { font-size: 0.9rem; font-weight: 800; color: #1c1917; }
-  
-  /* 控制列 */
-  .control-row { display: flex; justify-content: flex-end; gap: 12px; margin-bottom: 24px; }
-  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
-  .btn-export:hover { background: #A04B19; }
+  .original-source { font-size: 0.78rem; color: #78716c; margin-top: 10px; border-top: 1px dashed #e7e5e4; padding-top: 8px; font-weight: 500; }
+  .vote-area { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e7e5e4; border-radius: 20px; padding: 6px 12px; }
+  .vote-change-btn { background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; }
+  .vote-change-btn:hover { background: #e7e5e4; color: #1c1917; }
+  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 42px; justify-content: center; }
+  .vote-heart-icon { color: #e11d48; font-size: 1rem; }
+  .vote-count { font-size: 0.95rem; font-weight: 800; color: #1c1917; }
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class="container"&gt;
   &lt;div class="header"&gt;
-    &lt;h1&gt;HMW 創意思考討論看板&lt;/h1&gt;
-    &lt;p&gt;拖曳卡片進行排序，點擊愛心進行投票，篩選出最想開展 Ideation 的設計挑戰！&lt;/p&gt;
+    &lt;h1&gt;💡 HMW 創意思考討論看板&lt;/h1&gt;
+    &lt;p&gt;以下是由 AI 將多位受訪者的 Coding（痛點/期望）轉化為 3 種不同設計視角的 HMW 挑戰。請在下方進行拖曳排序與投票，決定小隊下一步的 Ideation 重點！&lt;/p&gt;
   &lt;/div&gt;
   
   &lt;div class="control-row"&gt;
+    &lt;div style="font-size: 0.9rem; color: #6b7280; font-weight: 600;"&gt;操作說明：上下拖曳卡片進行排序，點擊 +/- 按鈕投票，結束後可按匯出。&lt;/div&gt;
     &lt;button class="btn-export" onclick="exportResults()"&gt;匯出討論結果&lt;/button&gt;
   &lt;/div&gt;
 
-  &lt;!-- 主題區塊範例 --&gt;
+  &lt;!-- 主題 1 --&gt;
   &lt;div class="theme-section"&gt;
-    &lt;div class="theme-title"&gt;#社區融入與信任建立 / CommunityIntegrationTrust / 地域社会への融和と信頼構築&lt;/div&gt;
-    
+    &lt;div class="theme-title"&gt;#社區融入與信任建立 / CommunityIntegrationTrust / 地元の信頼構築&lt;/div&gt;
     &lt;div class="cards-list"&gt;
-      &lt;!-- 卡片 1：克服障礙角度 --&gt;
+      
+      &lt;!-- 卡片 1 --&gt;
       &lt;div class="hmw-card" draggable="true"&gt;
         &lt;div class="card-content"&gt;
           &lt;span class="angle-badge badge-barrier"&gt;角度 1：克服障礙 / Overcoming Barriers&lt;/span&gt;
           &lt;div class="hmw-text"&gt;&lt;strong&gt;中&lt;/strong&gt;：我們如何降低老農對都市青年的防備心，建立合作的切入點？&lt;/div&gt;
           &lt;div class="hmw-text"&gt;&lt;strong&gt;EN&lt;/strong&gt;：How might we reduce elderly farmers' wariness toward urban youth and establish a starting point for collaboration?&lt;/div&gt;
           &lt;div class="hmw-text"&gt;&lt;strong&gt;JA&lt;/strong&gt;：どのようにして老農の都会の若者に対する警戒心を和らげ、協力の足掛かりを築くことができるか？&lt;/div&gt;
-          &lt;div class="original-source"&gt;源自痛點：都市書生形象被質疑玩玩而已 (受訪者：賴大哥)&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class="vote-area"&gt;
-          &lt;button class="vote-change-btn" onclick="adjustVote(this, -1)"&gt;-&lt;/button&gt;
-          &lt;div class="vote-display-wrapper"&gt;
-            &lt;span class="vote-heart-icon"&gt;❤️&lt;/span&gt;
-            &lt;span class="vote-count"&gt;0&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;button class="vote-change-btn" onclick="adjustVote(this, 1)"&gt;+&lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      
-      &lt;!-- 卡片 2：創造正面成效角度 --&gt;
-      &lt;div class="hmw-card" draggable="true"&gt;
-        &lt;div class="card-content"&gt;
-          &lt;span class="angle-badge badge-outcome"&gt;角度 2：創造正面成效 / Desired Outcome&lt;/span&gt;
-          &lt;div class="hmw-text"&gt;&lt;strong&gt;中&lt;/strong&gt;：我們如何讓青年在每天的農耕日常中，感到與老農像一家人般親近？&lt;/div&gt;
-          &lt;div class="hmw-text"&gt;&lt;strong&gt;EN&lt;/strong&gt;：How might we make youth feel as close as family to the elderly farmers during daily farming tasks?&lt;/div&gt;
-          &lt;div class="hmw-text"&gt;&lt;strong&gt;JA&lt;/strong&gt;：日々の農作業の中で、若者が老農たちと家族のように親しく感じられるようにするにはどうすればよいか？&lt;/div&gt;
-          &lt;div class="original-source"&gt;源自期望：用行動證明誠意並融入社區 (受訪者：賴大哥)&lt;/div&gt;
+          &lt;div class="original-source"&gt;💡 源自痛點：都市書生形象被質疑玩玩而已 (受訪者：賴大哥)&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class="vote-area"&gt;
           &lt;button class="vote-change-btn" onclick="adjustVote(this, -1)"&gt;-&lt;/button&gt;
@@ -762,197 +780,105 @@
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
 &lt;/div&gt;
-
-&lt;script&gt;
-  // 簡易 HTML5 Drag & Drop 邏輯
-  const lists = document.querySelectorAll('.cards-list');
-  lists.forEach(list =&gt; {
-    list.addEventListener('dragstart', (e) =&gt; {
-      if (e.target.classList.contains('hmw-card')) {
-        e.target.classList.add('dragging');
-      }
-    });
-
-    list.addEventListener('dragend', (e) =&gt; {
-      if (e.target.classList.contains('hmw-card')) {
-        e.target.classList.remove('dragging');
-      }
-    });
-
-    list.addEventListener('dragover', (e) =&gt; {
-      e.preventDefault();
-      const draggingCard = document.querySelector('.dragging');
-      const siblings = [...list.querySelectorAll('.hmw-card:not(.dragging)')];
-      const nextSibling = siblings.find(sibling =&gt; {
-        return e.clientY &lt;= sibling.getBoundingClientRect().top + sibling.getBoundingClientRect().height / 2;
-      });
-      if (nextSibling) {
-        list.insertBefore(draggingCard, nextSibling);
-      } else {
-        list.appendChild(draggingCard);
-      }
-    });
-  });
-
-  // 投票增減邏輯 (+/- 按鈕)
-  function adjustVote(btn, amount) {
-    const voteArea = btn.parentElement;
-    const countSpan = voteArea.querySelector('.vote-count');
-    let current = parseInt(countSpan.innerText) || 0;
-    let newValue = current + amount;
-    if (newValue &lt; 0) newValue = 0; // 不允許負數票
-    countSpan.innerText = newValue;
-  }
-
-  // 匯出結果
-  function exportResults() {
-    let resultText = "=== HMW 討論與投票排序結果 ===\n\n";
-    const sections = document.querySelectorAll('.theme-section');
-    sections.forEach(sec =&gt; {
-      const title = sec.querySelector('.theme-title').innerText;
-      resultText += "【主題】" + title + "\n";
-      const cards = sec.querySelectorAll('.hmw-card');
-      cards.forEach((card, index) =&gt; {
-        const hmwCh = card.querySelector('.hmw-text').innerText;
-        const votes = card.querySelector('.vote-count').innerText;
-        resultText += (index+1) + ". [" + votes + " 票] " + hmwCh + "\n";
-      });
-      resultText += "\n";
-    });
-    
-    // 複製到剪貼簿並提示
-    navigator.clipboard.writeText(resultText).then(() =&gt; {
-      alert("排序與投票結果已複製到您的剪貼簿！可直接貼上紀錄。");
-    }).catch(err =&gt; {
-      alert("複製失敗：" + err);
-    });
-  }
-&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-```
+\`\`\`
 
 ---
 
-### 原始主題、痛點與期望資料輸入
+### 主題維度與痛點/期望對照資料輸入
 
-【請在此貼上步驟 5 產出的 HTML 程式碼】</template>你現在是一位資深的設計思考（Design Thinking）教練與引導師。我將提供你上一個步驟（步驟 5）產出的跨訪談主題維度、痛點與期望對照資料。
-請幫我完成以下任務，並嚴格遵循後續的格式與標記要求：
+請根據上述規則，進行多視角 HMW 轉化與 HTML 重構：
 
-### 任務說明
-1. **多維度 HMW 轉化 (How Might We)**：針對輸入資料中的每一個痛點（Pain Point）、期望（Expectation）或核心洞察（Insight），分別轉化出**至少 3 個不同切入角度的 HMW 設計挑戰問題**，以打開思考寬度，定義不同的問題方式。
-2. **切入角度要求**：
-   - 角度 1：**克服障礙 / 消除痛點**（正面迎擊核心難題，降低阻力）。
-   - 角度 2：**創造正面成效 / 放大期望**（專注於使用者最終美好的願景與正面體驗）。
-   - 角度 3：**藉助優勢 / 系統槓桿**（利用外在資源、系統關聯、技能或隱性優勢進行創新）。
-3. **三語 HMW 對照**：產出的每一個 HMW 問題本身，必須以「中文 / 英文 / 日文」三語並列的方式呈現於同一個問題卡片中，方便跨國團隊成員同步閱讀。
-4. **符合 NNG 原則**：確保生成的 HMW 問題落在黃金區間（不預設解決方案，且寬窄適中），並以正向語氣發問。
+【請在此貼上步驟 5 產出的主題維度、痛點與期望對照 HTML 代碼內容】</template>
+                    <template id="rawPromptTextEn">You are now an experienced Design Thinking coach and facilitator. I will provide you with the cross-interview themes, pain points, and expectations organized in the previous step (Step 5).
+Please help me complete the following tasks and strictly follow the formatting and tagging requirements below:
+
+### Task Description
+1. **Multi-Dimensional HMW Conversion**: For each pain point, expectation, or core insight in the input data, convert them into **at least 3 HMW (How Might We) design challenge questions from different angles** to broaden thinking and define the problem in different ways.
+2. **Requirements for Angles**:
+   - Angle 1: **Overcome Obstacles / Eliminate Pain Points** (Tackle the core difficulty head-on to reduce friction).
+   - Angle 2: **Create Positive Outcomes / Amplify Expectations** (Focus on the user's final desired state and positive experiences).
+   - Angle 3: **Leverage Advantages / System Leverage** (Use external resources, system connections, skills, or hidden advantages to innovate).
+3. **Trilingual HMW Alignment**: Every generated HMW question must be presented with Chinese, English, and Japanese side-by-side in the same question card for trilingual team members to read simultaneously.
+4. **NNG Principles Compliance**: Ensure the generated HMW questions fall in the "sweet spot" (not too broad, not too narrow, and do not pre-determine solutions) and are phrased in a positive tone.
 
 ---
 
-### 輸出格式與載體要求
-請輸出一份完整的 **「可拖曳排序與投票的 HMW 互動討論看板 HTML 網頁代碼」**。
-該網頁必須包含完整的 CSS 樣式與 Vanilla JS 互動邏輯，具備以下功能：
-1. **可拖曳排序 (Sortable)**：使用者可以透過拖曳，在同一個主題區塊內對 HMW 卡片進行上下排序。
-2. 投票計數器 (Vote Counter)：每張 HMW 卡片都有增加 (+) 與減少 (-) 的票數調整按鈕，以方便單機多人口頭投票並累積多張選票。
-3. **分類排列**：卡片依據步驟 5 的主題維度進行分組呈現。
-4. **一鍵導出**：提供按鈕可將討論與投票排序後的結果導出複製。
+### Output Format and Container Requirements
+Please output a complete **"Drag-and-Drop Sortable and Votable HMW Interactive Discussion Board HTML Webpage Code"**.
+The webpage must include complete CSS styles and Vanilla JS interactive logic with the following features:
+1. **Sortable**: Users can sort HMW cards up and down within the same theme block by dragging.
+2. **Vote Counter**: Each HMW card has increase (+) and decrease (-) voting buttons to facilitate local voting and accumulate votes.
+3. **Categorized Arrangement**: Cards are grouped and displayed according to the theme dimensions from Step 5.
+4. **One-Click Export**: Provide a button to export and copy the sorted and voted discussion results.
 
-請使用以下結構並直接填入內容，不要省略任何 CSS 樣式：
+Please use the following structure and fill in the content directly. Do not omit any CSS styles:
 
-```html
+\`\`\`html
 &lt;!DOCTYPE html&gt;
-&lt;html lang="zh-Hant"&gt;
+&lt;html lang="en"&gt;
 &lt;head&gt;
 &lt;meta charset="utf-8"&gt;
 &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;title&gt;HMW 創意思考討論看板&lt;/title&gt;
+&lt;title&gt;HMW Creative Thinking Discussion Board&lt;/title&gt;
 &lt;style&gt;
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
   .container { max-width: 1200px; margin: 40px auto; }
   .header { text-align: center; margin-bottom: 32px; }
-  .header h1 { color: #0f2a1c; font-size: 2rem; font-weight: 800; }
-  .header p { color: #78716c; font-size: 0.95rem; }
-  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(15,42,28,0.02); }
-  .theme-title { font-size: 1.1rem; font-weight: 800; color: white; background: #0f2a1c; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; }
+  .header h1 { color: #0f2a1c; font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; }
+  .header p { color: #78716c; font-size: 0.98rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+  .control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; background: white; padding: 16px 24px; border-radius: 12px; border: 1px solid #e7e5e4; }
+  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; }
+  .btn-export:hover { background: #A04B19; }
+  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 30px; }
+  .theme-title { font-size: 1.15rem; font-weight: 800; color: white; background: #0f2a1c; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; }
   .cards-list { display: flex; flex-direction: column; gap: 12px; min-height: 50px; }
-  
-  /* HMW 卡片樣式 */
-  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); border-radius: 12px; padding: 16px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; position: relative; }
+  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); border-radius: 12px; padding: 18px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .hmw-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.04); border-color: rgba(22,101,52,0.2); }
   .hmw-card.dragging { opacity: 0.5; background: #f5f5f4; cursor: grabbing; }
-  
   .card-content { flex-grow: 1; }
-  .angle-badge { font-size: 0.72em; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+  .angle-badge { font-size: 0.72em; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
   .badge-barrier { background: #fee2e2; color: #991b1b; }
   .badge-outcome { background: #dcfce7; color: #166534; }
   .badge-leverage { background: #dbeafe; color: #1e40af; }
-  
-  .hmw-text { font-size: 0.95rem; line-height: 1.5; color: #1c1917; margin-bottom: 6px; }
+  .hmw-text { font-size: 0.98rem; line-height: 1.6; color: #1c1917; margin-bottom: 6px; }
   .hmw-text strong { color: #B35C24; margin-right: 6px; }
-  
-  .original-source { font-size: 0.75rem; color: #78716c; margin-top: 8px; border-top: 1px dashed #e7e5e4; padding-top: 6px; }
-  
-  /* 投票計數器樣式 (+/- 按鈕) */
-  .vote-area { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e7e5e4; border-radius: 20px; padding: 4px 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-  .vote-change-btn { background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 50%; width: 26px; height: 26px; font-size: 1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; transition: all 0.2s ease; user-select: none; }
-  .vote-change-btn:hover { background: #e7e5e4; color: #1c1917; transform: scale(1.05); }
-  .vote-change-btn:active { transform: scale(0.95); }
-  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 38px; justify-content: center; }
-  .vote-heart-icon { color: #e11d48; font-size: 0.9rem; }
-  .vote-count { font-size: 0.9rem; font-weight: 800; color: #1c1917; }
-  
-  /* 控制列 */
-  .control-row { display: flex; justify-content: flex-end; gap: 12px; margin-bottom: 24px; }
-  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
-  .btn-export:hover { background: #A04B19; }
+  .original-source { font-size: 0.78rem; color: #78716c; margin-top: 10px; border-top: 1px dashed #e7e5e4; padding-top: 8px; font-weight: 500; }
+  .vote-area { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e7e5e4; border-radius: 20px; padding: 6px 12px; }
+  .vote-change-btn { background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; }
+  .vote-change-btn:hover { background: #e7e5e4; color: #1c1917; }
+  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 42px; justify-content: center; }
+  .vote-heart-icon { color: #e11d48; font-size: 1rem; }
+  .vote-count { font-size: 0.95rem; font-weight: 800; color: #1c1917; }
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class="container"&gt;
   &lt;div class="header"&gt;
-    &lt;h1&gt;HMW 創意思考討論看板&lt;/h1&gt;
-    &lt;p&gt;拖曳卡片進行排序，點擊愛心進行投票，篩選出最想開展 Ideation 的設計挑戰！&lt;/p&gt;
+    &lt;h1&gt;💡 HMW Creative Thinking Discussion Board&lt;/h1&gt;
+    &lt;p&gt;Below are HMW challenges converted by AI from multiple respondents' coding tags (pain points/expectations) across three different design angles. Drag cards to sort them, click +/- to vote, and export the results when done.&lt;/p&gt;
   &lt;/div&gt;
   
   &lt;div class="control-row"&gt;
-    &lt;button class="btn-export" onclick="exportResults()"&gt;匯出討論結果&lt;/button&gt;
+    &lt;div style="font-size: 0.9rem; color: #6b7280; font-weight: 600;"&gt;Instructions: Drag cards up/down to sort, click +/- to vote, and click Export when finished.&lt;/div&gt;
+    &lt;button class="btn-export" onclick="exportResults()"&gt;Export Discussion Results&lt;/button&gt;
   &lt;/div&gt;
 
-  &lt;!-- 主題區塊範例 --&gt;
+  &lt;!-- Theme 1 --&gt;
   &lt;div class="theme-section"&gt;
-    &lt;div class="theme-title"&gt;#社區融入與信任建立 / CommunityIntegrationTrust / 地域社会への融和と信頼構築&lt;/div&gt;
-    
+    &lt;div class="theme-title"&gt;#CommunityIntegrationTrust / 地元の信頼構築&lt;/div&gt;
     &lt;div class="cards-list"&gt;
-      &lt;!-- 卡片 1：克服障礙角度 --&gt;
+      
+      &lt;!-- Card 1 --&gt;
       &lt;div class="hmw-card" draggable="true"&gt;
         &lt;div class="card-content"&gt;
-          &lt;span class="angle-badge badge-barrier"&gt;角度 1：克服障礙 / Overcoming Barriers&lt;/span&gt;
-          &lt;div class="hmw-text"&gt;&lt;strong&gt;中&lt;/strong&gt;：我們如何降低老農對都市青年的防備心，建立合作的切入點？&lt;/div&gt;
+          &lt;span class="angle-badge badge-barrier"&gt;Angle 1: Overcoming Barriers&lt;/span&gt;
+          &lt;div class="hmw-text"&gt;&lt;strong&gt;ZH&lt;/strong&gt;：我們如何降低老農對都市青年的防備心，建立合作的切入點？&lt;/div&gt;
           &lt;div class="hmw-text"&gt;&lt;strong&gt;EN&lt;/strong&gt;：How might we reduce elderly farmers' wariness toward urban youth and establish a starting point for collaboration?&lt;/div&gt;
           &lt;div class="hmw-text"&gt;&lt;strong&gt;JA&lt;/strong&gt;：どのようにして老農の都会の若者に対する警戒心を和らげ、協力の足掛かりを築くことができるか？&lt;/div&gt;
-          &lt;div class="original-source"&gt;源自痛點：都市書生形象被質疑玩玩而已 (受訪者：賴大哥)&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class="vote-area"&gt;
-          &lt;button class="vote-change-btn" onclick="adjustVote(this, -1)"&gt;-&lt;/button&gt;
-          &lt;div class="vote-display-wrapper"&gt;
-            &lt;span class="vote-heart-icon"&gt;❤️&lt;/span&gt;
-            &lt;span class="vote-count"&gt;0&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;button class="vote-change-btn" onclick="adjustVote(this, 1)"&gt;+&lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      
-      &lt;!-- 卡片 2：創造正面成效角度 --&gt;
-      &lt;div class="hmw-card" draggable="true"&gt;
-        &lt;div class="card-content"&gt;
-          &lt;span class="angle-badge badge-outcome"&gt;角度 2：創造正面成效 / Desired Outcome&lt;/span&gt;
-          &lt;div class="hmw-text"&gt;&lt;strong&gt;中&lt;/strong&gt;：我們如何讓青年在每天的農耕日常中，感到與老農像一家人般親近？&lt;/div&gt;
-          &lt;div class="hmw-text"&gt;&lt;strong&gt;EN&lt;/strong&gt;：How might we make youth feel as close as family to the elderly farmers during daily farming tasks?&lt;/div&gt;
-          &lt;div class="hmw-text"&gt;&lt;strong&gt;JA&lt;/strong&gt;：日々の農作業の中で、若者が老農たちと家族のように親しく感じられるようにするにはどうすればよいか？&lt;/div&gt;
-          &lt;div class="original-source"&gt;源自期望：用行動證明誠意並融入社區 (受訪者：賴大哥)&lt;/div&gt;
+          &lt;div class="original-source"&gt;💡 Source: Suspected of just playing around (Interviewee: Mr. Lai)&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class="vote-area"&gt;
           &lt;button class="vote-change-btn" onclick="adjustVote(this, -1)"&gt;-&lt;/button&gt;
@@ -965,85 +891,132 @@
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
 &lt;/div&gt;
-
-&lt;script&gt;
-  // 簡易 HTML5 Drag & Drop 邏輯
-  const lists = document.querySelectorAll('.cards-list');
-  lists.forEach(list =&gt; {
-    list.addEventListener('dragstart', (e) =&gt; {
-      if (e.target.classList.contains('hmw-card')) {
-        e.target.classList.add('dragging');
-      }
-    });
-
-    list.addEventListener('dragend', (e) =&gt; {
-      if (e.target.classList.contains('hmw-card')) {
-        e.target.classList.remove('dragging');
-      }
-    });
-
-    list.addEventListener('dragover', (e) =&gt; {
-      e.preventDefault();
-      const draggingCard = document.querySelector('.dragging');
-      const siblings = [...list.querySelectorAll('.hmw-card:not(.dragging)')];
-      const nextSibling = siblings.find(sibling =&gt; {
-        return e.clientY &lt;= sibling.getBoundingClientRect().top + sibling.getBoundingClientRect().height / 2;
-      });
-      if (nextSibling) {
-        list.insertBefore(draggingCard, nextSibling);
-      } else {
-        list.appendChild(draggingCard);
-      }
-    });
-  });
-
-  // 投票增減邏輯 (+/- 按鈕)
-  function adjustVote(btn, amount) {
-    const voteArea = btn.parentElement;
-    const countSpan = voteArea.querySelector('.vote-count');
-    let current = parseInt(countSpan.innerText) || 0;
-    let newValue = current + amount;
-    if (newValue &lt; 0) newValue = 0; // 不允許負數票
-    countSpan.innerText = newValue;
-  }
-
-  // 匯出結果
-  function exportResults() {
-    let resultText = "=== HMW 討論與投票排序結果 ===\n\n";
-    const sections = document.querySelectorAll('.theme-section');
-    sections.forEach(sec =&gt; {
-      const title = sec.querySelector('.theme-title').innerText;
-      resultText += "【主題】" + title + "\n";
-      const cards = sec.querySelectorAll('.hmw-card');
-      cards.forEach((card, index) =&gt; {
-        const hmwCh = card.querySelector('.hmw-text').innerText;
-        const votes = card.querySelector('.vote-count').innerText;
-        resultText += (index+1) + ". [" + votes + " 票] " + hmwCh + "\n";
-      });
-      resultText += "\n";
-    });
-    
-    // 複製到剪貼簿並提示
-    navigator.clipboard.writeText(resultText).then(() =&gt; {
-      alert("排序與投票結果已複製到您的剪貼簿！可直接貼上紀錄。");
-    }).catch(err =&gt; {
-      alert("複製失敗：" + err);
-    });
-  }
-&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-```
+\`\`\`
 
 ---
 
-### 原始主題、痛點與期望資料輸入
+### Theme Dimensions &amp; Pain Points/Expectations Input
 
-【請在此貼上步驟 5 產出的 HTML 程式碼】</div>
-                    
-                    <div class="actions-row">
+Please perform multi-angle HMW conversion and HTML reconstruction according to the rules above:
+
+【Please paste the theme dimensions and pain points/expectations HTML code output from Step 5 here】</template>
+                    <template id="rawPromptTextJa">あなたは今、ベテランのデザイン思考（Design Thinking）コーチおよびファシリテーターです。前ステップ（ステップ5）で作成されたインタビュー横斷的なテーマ次元、課題、および期待の対照データを提供します。
+以下のタスクを完了し、その後のフォーマットとマーキングの要件を厳守してください：
+
+### タスク説明
+1. **多次元的な HMW への変換 (How Might We)**：入力データの各課題（Pain Point）、期待（Expectation）、または核心的洞察（Insight）に対して、思考の幅を広げ、異なる問題定義を行うために、**少なくとも3つの異なる切り口から HMW 設計挑戦質問に変換**してください。
+2. **切り口の要件**：
+   - 切り口 1：**障害の克服／課題の解消**（核心的な難題に正面から立ち向かい、抵抗を減らす）。
+   - 切り口 2：**好ましい成果の創出／期待の最大化**（ユーザーの最終的な素晴らしいビジョンとポジティブな体験に焦点を当てる）。
+   - 切り口 3：**強みの活用／システムレバレッジ**（外部リソース、システム間のつながり、スキル、または隠れた強みを利用してイノベーションを起こす）。
+3. **三言語並列の HMW**：生成された各HMW質問自体は、多国籍チームのメンバーが同時に閲覧できるよう、同じ質問カード内に「中国語／英語／日本語」を三言語並列で表示してください。
+4. **NNG原則の遵守**：生成されるHMW質問がゴールデンレンジ（解決策をあらかじめ決めつけず、広すぎず狭すぎず適度な範囲）に収まり、前向きな口調で問いかけるようにしてください。
+
+---
+
+### 出力フォーマットとメディア要件
+完全な **「ドラッグ＆ドロップで並べ替えと投票ができる HMW インタラクティブディスカッションボードHTMLウェブページコード」** を出力してください。
+このウェブページには、完全なCSSスタイルとVanilla JSインタラクティブロジックが含まれており、以下の機能を備えている必要があります：
+1. **ドラッグ＆ドロップによる並べ替え (Sortable)**：ユーザーはドラッグによって、同じテーマブロック内でHMWカードを上下に並べ替えることができます。
+2. **投票カウンター (Vote Counter)**：各HMWカードに投票数を増やす（＋）と減らす（－）調整ボタンがあり、オフラインでの複数人投票や票の累積に便利です。
+3. **分類配置**：カードはステップ5のテーマ次元に基づいてグループごとに表示されます。
+4. **ワンクリック書き出し**：ディスカッションと投票による並べ替え後の結果を書き出してコピーできるボタンを提供します。
+
+以下の構造を使用し、コンテンツを直接入力してください。CSSスタイルは一切省略しないでください：
+
+\`\`\`html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;HMW 創意思考討論ボード&lt;/title&gt;
+&lt;style&gt;
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1200px; margin: 40px auto; }
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { color: #0f2a1c; font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; }
+  .header p { color: #78716c; font-size: 0.98rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+  .control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; background: white; padding: 16px 24px; border-radius: 12px; border: 1px solid #e7e5e4; }
+  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; }
+  .btn-export:hover { background: #A04B19; }
+  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 30px; }
+  .theme-title { font-size: 1.15rem; font-weight: 800; color: white; background: #0f2a1c; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; }
+  .cards-list { display: flex; flex-direction: column; gap: 12px; min-height: 50px; }
+  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); border-radius: 12px; padding: 18px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .hmw-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.04); border-color: rgba(22,101,52,0.2); }
+  .hmw-card.dragging { opacity: 0.5; background: #f5f5f4; cursor: grabbing; }
+  .card-content { flex-grow: 1; }
+  .angle-badge { font-size: 0.72em; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+  .badge-barrier { background: #fee2e2; color: #991b1b; }
+  .badge-outcome { background: #dcfce7; color: #166534; }
+  .badge-leverage { background: #dbeafe; color: #1e40af; }
+  .hmw-text { font-size: 0.98rem; line-height: 1.6; color: #1c1917; margin-bottom: 6px; }
+  .hmw-text strong { color: #B35C24; margin-right: 6px; }
+  .original-source { font-size: 0.78rem; color: #78716c; margin-top: 10px; border-top: 1px dashed #e7e5e4; padding-top: 8px; font-weight: 500; }
+  .vote-area { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e7e5e4; border-radius: 20px; padding: 6px 12px; }
+  .vote-change-btn { background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; }
+  .vote-change-btn:hover { background: #e7e5e4; color: #1c1917; }
+  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 42px; justify-content: center; }
+  .vote-heart-icon { color: #e11d48; font-size: 1rem; }
+  .vote-count { font-size: 0.95rem; font-weight: 800; color: #1c1917; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div class="header"&gt;
+    &lt;h1&gt;💡 HMW 創意思考討論ボード&lt;/h1&gt;
+    &lt;p&gt;以下は、AIが複数の受訪者のコーディング（課題／期待）を3つの異なる設計視点に変換したHMWチャレンジです。ドラッグ＆ドロップで並べ替え、＋／ーで投票を行い、終了後はエクスポートしてください。&lt;/p&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="control-row"&gt;
+    &lt;div style="font-size: 0.9rem; color: #6b7280; font-weight: 600;"&gt;操作方法：カードをドラッグして並べ替え、＋／ーで投票、終了後に書き出し。&lt;/div&gt;
+    &lt;button class="btn-export" onclick="exportResults()"&gt;ディスカッション結果の書き出し&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- テーマ 1 --&gt;
+  &lt;div class="theme-section"&gt;
+    &lt;div class="theme-title"&gt;#地元の信頼構築 / CommunityIntegrationTrust / 地元の信頼構築&lt;/div&gt;
+    &lt;div class="cards-list"&gt;
+      
+      &lt;!-- カード 1 --&gt;
+      &lt;div class="hmw-card" draggable="true"&gt;
+        &lt;div class="card-content"&gt;
+          &lt;span class="angle-badge badge-barrier"&gt;切り口 1：障害の克服／課題の解消&lt;/span&gt;
+          &lt;div class="hmw-text"&gt;&lt;strong&gt;ZH&lt;/strong&gt;：我們如何降低老農對都市青年的防備心，建立合作的切入點？&lt;/div&gt;
+          &lt;div class="hmw-text"&gt;&lt;strong&gt;EN&lt;/strong&gt;：How might we reduce elderly farmers' wariness toward urban youth and establish a starting point for collaboration?&lt;/div&gt;
+          &lt;div class="hmw-text"&gt;&lt;strong&gt;JA&lt;/strong&gt;：どのようにして老農の都会の若者に対する警戒心を和らげ、協力の足掛かりを築くことができるか？&lt;/div&gt;
+          &lt;div class="original-source"&gt;💡 元の課題：都会の若者のイメージが一時的な遊びと疑われる (被面談者：賴大哥)&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="vote-area"&gt;
+          &lt;button class="vote-change-btn" onclick="adjustVote(this, -1)"&gt;-&lt;/button&gt;
+          &lt;div class="vote-display-wrapper"&gt;
+            &lt;span class="vote-heart-icon"&gt;❤️&lt;/span&gt;
+            &lt;span class="vote-count"&gt;0&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;button class="vote-change-btn" onclick="adjustVote(this, 1)"&gt;+&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+\`\`\`
+
+---
+
+### テーマ次元と課題/期待対照データ入力
+
+上記の規則に従って、多角的な HMW への変換と HTML 再構成を行ってください：
+
+【ここにステップ5で出力されたテーマ次元、課題、および期待の対照HTMLコード内容を貼り付けてください】</template>
+                    <div id="visiblePromptText" style="white-space: pre-wrap; word-break: break-all;"></div>
+                </div>
+                <div class="actions-row">
                         <button class="copy-btn" onclick="copyPrompt()">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -1562,5 +1535,271 @@
             frame.style.display = 'none';
         }
     </script>
+<!-- ANTIGRAVITY_DRAWER_JS_START -->
+<script>
+(() => {
+    function initCollapsibleDrawer() {
+        const drawerNav = document.querySelector(".drawer-nav");
+        if (!drawerNav) return;
+
+        const children = Array.from(drawerNav.children);
+        
+        // Group 1: 生存挑戰 (challenges)
+        const challengeTrigger = children.find(el => el.getAttribute('href') === 'eight_challenges.html');
+        
+        // Group 2: 📁 檔案下載 (files)
+        const filesTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('檔案下載'));
+
+        // Group 3: 🤖 Prompts (prompts)
+        const promptsTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('Prompts'));
+
+        function makeCollapsible(trigger, idClass, isLink = false) {
+            if (!trigger) return;
+            
+            // Find all sibling sub-items immediately following the trigger
+            const subItems = [];
+            let next = trigger.nextElementSibling;
+            while (next && next.classList.contains('drawer-sub-item')) {
+                subItems.push(next);
+                next = next.nextElementSibling;
+            }
+
+            if (subItems.length === 0) return;
+
+            // Create container
+            const container = document.createElement('div');
+            container.className = 'drawer-collapse-content ' + idClass;
+            
+            // Move subItems into container
+            trigger.parentNode.insertBefore(container, subItems[0]);
+            subItems.forEach(item => container.appendChild(item));
+
+            // For links, add a dynamic "Overview" page inside the accordion
+            if (isLink && trigger.getAttribute('href')) {
+                const overviewItem = document.createElement('a');
+                overviewItem.className = 'drawer-sub-item';
+                overviewItem.href = trigger.getAttribute('href');
+                overviewItem.innerHTML = `
+                    <span class="lang-zh">所有挑戰總覽</span>
+                    <span class="lang-en">All Challenges</span>
+                    <span class="lang-ja">すべての課題</span>
+                `;
+                container.insertBefore(overviewItem, container.firstChild);
+                
+                if (trigger.classList.contains('active')) {
+                    overviewItem.classList.add('active');
+                    trigger.classList.remove('active');
+                }
+            }
+
+            // Add chevron to trigger
+            const arrow = document.createElement('span');
+            arrow.className = 'collapse-arrow';
+            arrow.innerHTML = '&#9662;'; // downward triangle
+            
+            // Align trigger layout
+            trigger.style.display = 'flex';
+            trigger.style.alignItems = 'center';
+            trigger.appendChild(arrow);
+            
+            // Add class to trigger
+            trigger.classList.add('collapse-trigger');
+
+            // Check if any sub-item inside is active or if trigger is active
+            const hasActive = trigger.classList.contains('active') || Array.from(container.children).some(item => item.classList.contains('active'));
+            if (hasActive) {
+                container.classList.add('expanded');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+
+            // Toggle on click
+            trigger.addEventListener('click', (e) => {
+                if (isLink) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                const isExpanded = container.classList.toggle('expanded');
+                arrow.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        }
+
+        makeCollapsible(challengeTrigger, 'challenges-group', true);
+        makeCollapsible(filesTrigger, 'files-group', false);
+        makeCollapsible(promptsTrigger, 'prompts-group', false);
+    }
+
+    // Dynamic Multi-Language Prompt Renderer & Copying Overrides
+    function initTrilingualPromptRenderer() {
+        // Find visible prompt container
+        const visiblePromptText = document.getElementById('visiblePromptText');
+        if (!visiblePromptText) return; // Not a prompt tool page
+
+        // Function to update the displayed prompt
+        window.updatePromptDisplay = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1); // rawPromptTextZh, rawPromptTextEn, rawPromptTextJa
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            visiblePromptText.textContent = decodedString;
+        };
+
+        // Helper to copy text to clipboard
+        function copyTextToClipboard(text, successCallback) {
+            function fallbackCopy(textVal) {
+                const textArea = document.createElement("textarea");
+                textArea.value = textVal;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Fallback copy failed', err);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    successCallback();
+                }).catch(err => {
+                    fallbackCopy(text);
+                    successCallback();
+                });
+            } else {
+                fallbackCopy(text);
+                successCallback();
+            }
+        }
+
+        // Helper to flash copy success state on button text
+        function flashSuccessButtonText() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const zhText = document.getElementById('copyBtnText');
+            const enText = document.getElementById('copyBtnTextEn');
+            const jaText = document.getElementById('copyBtnTextJa');
+            
+            if (zhText && enText && jaText) {
+                const originalZh = zhText.innerText;
+                const originalEn = enText.innerText;
+                const originalJa = jaText.innerText;
+                
+                zhText.innerText = "已複製！";
+                enText.innerText = "Copied!";
+                jaText.innerText = "コピーしました！";
+                
+                setTimeout(() => {
+                    zhText.innerText = originalZh;
+                    enText.innerText = originalEn;
+                    jaText.innerText = originalJa;
+                }, 2000);
+            } else {
+                const btn = document.getElementById('copyBtn') || document.querySelector('.action-btn-orange') || document.querySelector('.action-btn-secondary');
+                if (btn) {
+                    const originalText = btn.innerText;
+                    btn.innerText = lang === 'en' ? 'Copied!' : (lang === 'ja' ? 'コピー完了！' : '已複製！');
+                    setTimeout(() => { btn.innerText = originalText; }, 2000);
+                }
+            }
+        }
+
+        // Dynamic Overrides for global copy functions
+        // For Step 2-6: copyPrompt
+        window.copyPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, flashSuccessButtonText);
+        };
+
+        // For Step 1: copyMasterPrompt (Only copy the master template)
+        window.copyMasterPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Master template copied!' : (lang === 'ja' ? 'マスタープロンプトをコピーしました！' : '已複製主提示詞範本！'));
+                }
+            });
+        };
+
+        // For Step 1: copyCombinedPrompt (Combine templates with parameters)
+        window.copyCombinedPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+
+            // Resolve parameters
+            const q = window.questData ? window.questData[window.currentQuestId] : null;
+            if (!q) return;
+
+            let combined = decodedString
+                .replace("{TopicTitle}", q.title)
+                .replace("{TopicOutline}", q.outline)
+                .replace("{TopicLaws}", q.laws)
+                .replace("{TopicData}", q.data)
+                .replace("{TopicCases}", q.cases)
+                .replace("{TopicSDGs}", q.sdgs);
+
+            copyTextToClipboard(combined, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Combined prompt copied!' : (lang === 'ja' ? 'プロンプトをコピーしました！' : '組合提示詞複製成功！直接貼給 AI 即可生成背景資訊報告！'));
+                }
+            });
+        };
+
+        // Run initial render
+        window.updatePromptDisplay();
+
+        // Register MutationObserver to automatically trigger re-rendering when lang-select changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'lang-select') {
+                    window.updatePromptDisplay();
+                }
+            });
+        });
+        observer.observe(document.body, { attributes: true });
+    }
+
+    // Bulletproof initialization
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+            initCollapsibleDrawer();
+            initTrilingualPromptRenderer();
+        });
+    } else {
+        initCollapsibleDrawer();
+        initTrilingualPromptRenderer();
+    }
+})();
+</script>
+<!-- ANTIGRAVITY_DRAWER_JS_END -->
 </body>
 </html>

@@ -556,6 +556,51 @@
             flex-shrink: 0;
         }
     </style>
+<!-- ANTIGRAVITY_DRAWER_CSS_START -->
+<style>
+/* Collapsible navigation styling for drawer-nav */
+.drawer-collapse-content {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    margin-left: 16px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+.drawer-collapse-content.expanded {
+    display: flex;
+}
+.collapse-trigger {
+    cursor: pointer;
+    user-select: none;
+}
+.collapse-arrow {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+/* Make the drawer-nav container scroll cleanly and not be cut off */
+.drawer-nav {
+    padding-bottom: 80px !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
+}
+/* Improve the scrollbar usability */
+.drawer-nav::-webkit-scrollbar {
+    width: 8px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 99px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+</style>
+<!-- ANTIGRAVITY_DRAWER_CSS_END -->
 </head>
 <body lang-select="zh" data-theme="light">
 
@@ -635,7 +680,8 @@
                         コンテナ内のプロンプト全体をコピーし、AIモデル（GeminiやChatGPTなど）に入力してください。
                     </p>
                     
-                    <div class="prompt-container" id="promptTextContainer"><template id="rawPromptText">你現在是一位資深的質化研究專家與學術編輯。我將提供你多份已完成編碼（Coding）與標籤化的訪談對話 HTML 資料（來自多個不同受訪者的步驟 4 產出）。
+                    <div class="prompt-container" id="promptTextContainer">
+                    <template id="rawPromptTextZh">你現在是一位資深的質化研究專家與學術編輯。我將提供你多份已完成編碼（Coding）與標籤化的訪談對話 HTML 資料（來自多個不同受訪者的步驟 4 產出）。
 請幫我完成以下任務，並嚴格遵循後續的格式與標記要求：
 
 ### 任務說明
@@ -656,7 +702,7 @@
 
 請使用以下結構並直接填入內容，不要省略任何 CSS 樣式：
 
-```html
+\`\`\`html
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-Hant"&gt;
 &lt;head&gt;
@@ -669,289 +715,350 @@
   .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
   .theme-card { background: white; padding: 24px; border-radius: 20px; box-shadow: 0 4px 12px rgba(15, 42, 28, 0.04); border: 1px solid #e7e5e4; margin-bottom: 24px; display: flex; flex-direction: column; gap: 16px; }
   @media (min-width: 992px) {
-    .theme-card { flex-direction: row; align-items: stretch; }
+    .theme-card { flex-direction: row; }
+    .left-panel { width: 35%; border-right: 1px solid #e7e5e4; padding-right: 24px; }
+    .right-panel { width: 65%; padding-left: 24px; }
   }
-  .theme-col { width: 100%; padding-bottom: 16px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 12px; }
-  @media (min-width: 992px) {
-    .theme-col { width: 320px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 20px; }
-  }
-  .theme-title { background: #0f2a1c; color: white; padding: 10px 16px; border-radius: 8px; font-size: 0.9em; font-weight: 800; line-height: 1.4; word-break: break-word; }
-  .theme-meta { margin-top: 12px; }
-  .meta-label { font-size: 0.75rem; color: #78716c; font-weight: 700; margin-bottom: 6px; }
-  .code-tags-list { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { background: #FAF5F0; color: #B35C24; padding: 4px 10px; border-radius: 6px; font-size: 0.78em; font-weight: 700; border: 1px solid rgba(179,92,36,0.12); }
-  
-  /* 核心洞察區塊 */
-  .theme-insight-box { background: #F3F6F4; border-left: 4px solid #166534; padding: 12px 16px; border-radius: 4px; margin-top: 16px; }
-  .insight-label { font-size: 0.8rem; font-weight: 800; color: #166534; margin-bottom: 6px; }
-  .insight-text { font-size: 0.82rem; color: #1c1917; line-height: 1.6; }
-  
-  .quotes-container { flex-grow: 1; display: flex; flex-direction: column; gap: 24px; }
-  @media (min-width: 992px) {
-    .quotes-container { padding-left: 20px; }
-  }
-  .quote-row { border-bottom: 1px solid #f5f5f4; padding-bottom: 20px; }
-  .quote-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .speaker-badge { font-weight: 800; font-size: 0.85em; color: #B35C24; background: #FAF5F0; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
-  
-  /* 痛點與期望對照 */
-  .behavior-aspects { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); padding: 12px; border-radius: 8px; font-size: 0.85em; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
-  .aspect-item strong { color: #0f2a1c; }
-
-  .grid-col { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .theme-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .theme-id { background: #0f2a1c; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; }
+  .theme-name { font-size: 1.25rem; font-weight: 800; color: #0f2a1c; }
+  .insight-box { background: #f5f5f4; border: 1px solid #e7e5e4; padding: 16px; border-radius: 12px; font-size: 0.9rem; line-height: 1.6; }
+  .insight-title { font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .speaker-section { border-bottom: 1px dashed #e7e5e4; padding-bottom: 20px; margin-bottom: 20px; }
+  .speaker-section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .speaker-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .speaker-badge { background: #f5f5f4; color: #1c1917; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
+  .compare-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
   @media (min-width: 768px) {
-    .grid-col { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .compare-grid { grid-template-columns: 1fr 1fr; }
   }
-  .lang-col { padding: 4px; }
-  .lang-label { font-size: 0.7em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 4px; }
-  .text { font-size: 0.95em; line-height: 1.6; }
-  mark.quote-highlight { background-color: rgba(217, 139, 75, 0.15); border-bottom: 2px solid #D98B4B; color: inherit; font-weight: 700; padding: 1px 3px; border-radius: 4px; }
+  .grid-box { padding: 12px; border-radius: 8px; font-size: 0.88rem; line-height: 1.6; }
+  .box-pain { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+  .box-expect { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+  .quote-container { background: #fafaf9; border: 1px solid #e7e5e4; padding: 16px; border-radius: 10px; font-size: 0.88rem; }
+  .quote-row { margin-bottom: 8px; line-height: 1.5; }
+  .quote-row:last-child { margin-bottom: 0; }
+  .quote-lang { font-size: 0.72rem; font-weight: 800; color: #78716c; margin-bottom: 2px; text-transform: uppercase; }
+  .quote-text { font-style: italic; color: #44403c; }
+  mark { background: #fef08a; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class="container"&gt;
   &lt;div class="header-title"&gt;訪談主題維度提煉手札&lt;/div&gt;
-
-  &lt;!-- 主題維度卡片範例 --&gt;
+  
+  &lt;!-- 主題 1 --&gt;
   &lt;div class="theme-card"&gt;
-    &lt;div class="theme-col"&gt;
-      &lt;div class="theme-title"&gt;#社區融入與信任建立 / CommunityIntegrationTrust / 地域社会への融和と信頼構築&lt;/div&gt;
-      &lt;div class="theme-meta"&gt;
-        &lt;div class="meta-label"&gt;包含的 Coding 標籤：&lt;/div&gt;
-        &lt;div class="code-tags-list"&gt;
-          &lt;span class="tag"&gt;#建立在地信用&lt;/span&gt;
-          &lt;span class="tag"&gt;#老農成見突破&lt;/span&gt;
-          &lt;span class="tag"&gt;#日常拜訪問候&lt;/span&gt;
-        &lt;/div&gt;
+    &lt;div class="left-panel"&gt;
+      &lt;div class="theme-header"&gt;
+        &lt;div class="theme-id"&gt;T1&lt;/div&gt;
+        &lt;div class="theme-name"&gt;#社區融入與信任建立&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class="theme-insight-box"&gt;
-        &lt;div class="insight-label"&gt;核心洞察 (Theme Insight)&lt;/div&gt;
-        &lt;div class="insight-text"&gt;
-          &lt;strong&gt;中&lt;/strong&gt;：信任的建立並非基於口頭說服，而是基於「身體力行的日常勞動交換」，透過共享在地日常來突破偏見。&lt;br&gt;
-          &lt;strong&gt;EN&lt;/strong&gt;：Trust is built on shared daily labor rather than words. Engaging in field activities breaks stereotypes.&lt;br&gt;
-          &lt;strong&gt;JA&lt;/strong&gt;：信頼は言葉ではなく、日々の労働の共有を通じて構築される。農作業の同行が偏見を打破する。
-        &lt;/div&gt;
+      &lt;div class="insight-box"&gt;
+        &lt;div class="insight-title"&gt;核心洞察 (Theme Insight)&lt;/div&gt;
+        &lt;p&gt;&lt;strong&gt;中：&lt;/strong&gt; 青年移居初期常因外在形象遭受質疑，需藉由長期具體的勞動協作打破藩籬。&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;EN:&lt;/strong&gt; Migrant youth often face skepticism initially; long-term concrete labor collaboration is required to break barriers.&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;JA:&lt;/strong&gt; 移住初期の若者は外見やイメージで懐疑視されがちであり、長期的な具体的共同労働を通じて境界線を崩す必要がある。&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    
-    &lt;div class="quotes-container"&gt;
-      &lt;div class="quote-row"&gt;
-        &lt;div class="speaker-badge"&gt;受訪者：賴大哥 (Mr. Lai)&lt;/div&gt;
-        &lt;div class="behavior-aspects"&gt;
-          &lt;div class="aspect-item"&gt;&lt;strong&gt;痛點 (Pain Point)&lt;/strong&gt;：都市書生形象被質疑玩玩而已 / Urban intellectual image is questioned / 都会の若者の冷やかしと誤解される&lt;/div&gt;
-          &lt;div class="aspect-item"&gt;&lt;strong&gt;期望 (Expectation)&lt;/strong&gt;：以行動證明誠意與耐勞 / Prove sincerity through hard work / 行動で誠意と忍耐力を示す&lt;/div&gt;
+    &lt;div class="right-panel"&gt;
+      &lt;!-- 受訪者對比 1 --&gt;
+      &lt;div class="speaker-section"&gt;
+        &lt;div class="speaker-header"&gt;
+          &lt;div class="speaker-badge"&gt;受訪者：賴大哥 (Mr. Lai)&lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class="grid-col"&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
-            &lt;div class="text"&gt;我那時候就是&lt;mark class="quote-highlight"&gt;天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作&lt;/mark&gt;，用行動證明啦。&lt;/div&gt;
+        &lt;div class="compare-grid"&gt;
+          &lt;div class="grid-box box-pain"&gt;
+            &lt;strong&gt;痛點 (Pain Point)&lt;/strong&gt;&lt;br&gt;
+            剛來時被地主與老農懷疑只是來玩玩的，覺得都市人吃不了苦，不肯租好地。
           &lt;/div&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;English&lt;/div&gt;
-            &lt;div class="text"&gt;Back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.&lt;/div&gt;
-          &lt;/div&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-            &lt;div class="text"&gt;私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。&lt;/div&gt;
+          &lt;div class="grid-box box-expect"&gt;
+            &lt;strong&gt;期望 (Expectation)&lt;/strong&gt;&lt;br&gt;
+            希望能用實質耕作表現證明決心，獲得與在地農民平等的對話與租地機會。
           &lt;/div&gt;
         &lt;/div&gt;
-      &lt;/div&gt;
-      
-      &lt;div class="quote-row"&gt;
-        &lt;div class="speaker-badge"&gt;受訪者：阿美姐 (Ms. Ami)&lt;/div&gt;
-        &lt;div class="behavior-aspects"&gt;
-          &lt;div class="aspect-item"&gt;&lt;strong&gt;痛點 (Pain Point)&lt;/strong&gt;：初期鄰里關係冷漠 / Cold neighborhood relations initially / 初期は近所付き合いが極めて希薄&lt;/div&gt;
-          &lt;div class="aspect-item"&gt;&lt;strong&gt;期望 (Expectation)&lt;/strong&gt;：建立互助機制並被接納 / Establish mutual help and be accepted / 互助関係を築き、地域の一員になる&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class="grid-col"&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
-            &lt;div class="text"&gt;一開始鄰居都不理我，後來我&lt;mark class="quote-highlight"&gt;主動幫忙巡田水、分享收成的小黃瓜&lt;/mark&gt;，大家才漸漸把我當成自己人。&lt;/div&gt;
+        &lt;div class="quote-container"&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;Chinese&lt;/div&gt;
+            &lt;div class="quote-text"&gt;地主看到了就覺得很不順眼，懷疑我們&lt;mark&gt;是不是來玩玩的&lt;/mark&gt;。&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;English&lt;/div&gt;
-            &lt;div class="text"&gt;At first, neighbors ignored me. Later, &lt;mark class="quote-highlight"&gt;I proactively helped check the irrigation water and shared my harvested cucumbers&lt;/mark&gt;, then they gradually treated me as one of them.&lt;/div&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;English&lt;/div&gt;
+            &lt;div class="quote-text"&gt;The landlord saw it and felt it looked bad, questioning &lt;mark&gt;whether we were just here to play around&lt;/mark&gt;.&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-            &lt;div class="text"&gt;最初は近所の人に無視されましたが、&lt;mark class="quote-highlight"&gt;自主的に水路の見回り（巡田水）を手伝い、収穫したキュウリを分けるようになってから&lt;/mark&gt;、ようやく仲間として認めてもらえました。&lt;/div&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;Japanese&lt;/div&gt;
+            &lt;div class="quote-text"&gt;地主が見て非常に見栄えが悪く感じ、我々が&lt;mark&gt;ただ遊びに来ているのではないか&lt;/mark&gt;と疑っていました。&lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
-  &lt;!-- 請在此後依據上述範例格式填入所有主題維度分析結果 --&gt;
-
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-```
+\`\`\`
 
 ---
 
-### 原始多份訪談編碼資料輸入
+### 已編碼之訪談資料 HTML 輸入
 
-【請在此貼上受訪者 A, B, C... 在步驟 4 產出的 HTML 程式碼】</template>你現在是一位資深的質化研究專家與學術編輯。我將提供你多份已完成編碼（Coding）與標籤化的訪談對話 HTML 資料（來自多個不同受訪者的步驟 4 產出）。
-請幫我完成以下任務，並嚴格遵循後續的格式與標記要求：
+請根據上述規則，提煉主題維度、撰寫洞察與重構為 HTML：
 
-### 任務說明
-1. **輸入解析**：讀取我提供的多份 HTML 代碼，提取出每位受訪者被標記的高亮引言（即 mark 標籤內的文字）、對話語境以及對應的編碼標籤（即 tag 類型的標籤）。
-2. **跨訪談主題維度提煉 (Theme Extraction)**：尋找跨訪談（多個不同受訪者）之間的共通性、關聯性與行為差異，將性質相似的編碼標籤打包歸類，**提煉出至少 7 個核心主題維度 (Themes)**。這些主題維度將作為後續建立用戶人物誌 (Persona) 的重要行為維度與描述元資料 (Metadata)。
-3. **萃取主題核心洞察 (Theme Insight)**：為每個主題寫下「深層洞察（Insight）」，說明這個行為維度底下的本質規律，並以中、英、日三語對照呈現。
-4. **跨受訪者痛點與期望對稱分析**：在每個主題下，針對不同受訪者，分別整理出：
-   - 該主題下該受訪者的**痛點 (Pain Point)**
-   - 該主題下該受訪者的**期望 (Expectation)**
-   - 該受訪者的**代表性三語高亮佐證引言 (Supporting Quotes)**（必須完整摘錄自輸入代碼，以中、英、日三語並列呈現）。
+【請在此貼上受訪者 A, B, C... 在步驟 4 產出的 HTML 程式碼】</template>
+                    <template id="rawPromptTextEn">You are now an experienced qualitative research expert and academic editor. I will provide you with multiple coded and tagged interview HTML datasets (from the output of Step 4 for multiple different interviewees).
+Please help me complete the following tasks and strictly follow the formatting and tagging requirements below:
+
+### Task Description
+1. **Input Analysis**: Read the multiple HTML code blocks provided, extract each interviewee's highlighted quotes (text inside the \`mark\` tag), dialogue context, and corresponding coding tags (tags inside the \`tag\` element).
+2. **Cross-Interview Theme Extraction**: Look for commonalities, relationships, and behavioral differences across multiple interviewees. Group similar coding tags together and **extract at least 7 core theme dimensions (Themes)**. These themes will serve as key behavioral dimensions and descriptive metadata for building subsequent User Personas.
+3. **Extract Core Theme Insights (Theme Insight)**: Write a "Deep Insight" for each theme explaining the underlying pattern of this behavioral dimension, presented side-by-side in Chinese, English, and Japanese.
+4. **Symmetrical Analysis of Pain Points and Expectations Across Interviewees**: Under each theme, organize the following for each interviewee:
+   - The **Pain Point** of that interviewee under the theme.
+   - The **Expectation** of that interviewee under the theme.
+   - The **Representative Trilingual Supporting Quote** of that interviewee (extracted fully from the input code, displayed in Chinese, English, and Japanese side-by-side).
 
 ---
 
-### 輸出格式與載體要求
-請輸出一份完整的 **「主題維度與痛點/期望/引言整合 HTML 網頁格式代碼」**。網頁結構要求如下：
-- 左側：主題標籤與子標籤雲、主題核心洞察 (Insight)。
-- 右側：不同受訪者的痛點、期望對比，以及三語高亮佐證原話。
+### Output Format and Container Requirements
+Please output a complete **"Theme Dimensions &amp; Pain Points/Expectations/Quotes Integration HTML Webpage Code"**. The webpage structure should be:
+- Left Column: Theme tags, sub-tag clouds, and core Theme Insights.
+- Right Column: Symmetrical contrast of pain points and expectations for different interviewees, along with their trilingual highlighted quotes.
 
-請使用以下結構並直接填入內容，不要省略任何 CSS 樣式：
+Please use the following structure and fill in the content directly. Do not omit any CSS styles:
 
-```html
+\`\`\`html
 &lt;!DOCTYPE html&gt;
-&lt;html lang="zh-Hant"&gt;
+&lt;html lang="en"&gt;
 &lt;head&gt;
 &lt;meta charset="utf-8"&gt;
 &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;title&gt;訪談主題維度提煉手札&lt;/title&gt;
+&lt;title&gt;Interview Theme Dimensions Journal&lt;/title&gt;
 &lt;style&gt;
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
   .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 24px; }
   .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
   .theme-card { background: white; padding: 24px; border-radius: 20px; box-shadow: 0 4px 12px rgba(15, 42, 28, 0.04); border: 1px solid #e7e5e4; margin-bottom: 24px; display: flex; flex-direction: column; gap: 16px; }
   @media (min-width: 992px) {
-    .theme-card { flex-direction: row; align-items: stretch; }
+    .theme-card { flex-direction: row; }
+    .left-panel { width: 35%; border-right: 1px solid #e7e5e4; padding-right: 24px; }
+    .right-panel { width: 65%; padding-left: 24px; }
   }
-  .theme-col { width: 100%; padding-bottom: 16px; border-bottom: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 12px; }
-  @media (min-width: 992px) {
-    .theme-col { width: 320px; border-bottom: none; border-right: 1px dashed #e7e5e4; padding-bottom: 0; padding-right: 20px; }
-  }
-  .theme-title { background: #0f2a1c; color: white; padding: 10px 16px; border-radius: 8px; font-size: 0.9em; font-weight: 800; line-height: 1.4; word-break: break-word; }
-  .theme-meta { margin-top: 12px; }
-  .meta-label { font-size: 0.75rem; color: #78716c; font-weight: 700; margin-bottom: 6px; }
-  .code-tags-list { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { background: #FAF5F0; color: #B35C24; padding: 4px 10px; border-radius: 6px; font-size: 0.78em; font-weight: 700; border: 1px solid rgba(179,92,36,0.12); }
-  
-  /* 核心洞察區塊 */
-  .theme-insight-box { background: #F3F6F4; border-left: 4px solid #166534; padding: 12px 16px; border-radius: 4px; margin-top: 16px; }
-  .insight-label { font-size: 0.8rem; font-weight: 800; color: #166534; margin-bottom: 6px; }
-  .insight-text { font-size: 0.82rem; color: #1c1917; line-height: 1.6; }
-  
-  .quotes-container { flex-grow: 1; display: flex; flex-direction: column; gap: 24px; }
-  @media (min-width: 992px) {
-    .quotes-container { padding-left: 20px; }
-  }
-  .quote-row { border-bottom: 1px solid #f5f5f4; padding-bottom: 20px; }
-  .quote-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .speaker-badge { font-weight: 800; font-size: 0.85em; color: #B35C24; background: #FAF5F0; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
-  
-  /* 痛點與期望對照 */
-  .behavior-aspects { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); padding: 12px; border-radius: 8px; font-size: 0.85em; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
-  .aspect-item strong { color: #0f2a1c; }
-
-  .grid-col { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .theme-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .theme-id { background: #0f2a1c; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; }
+  .theme-name { font-size: 1.25rem; font-weight: 800; color: #0f2a1c; }
+  .insight-box { background: #f5f5f4; border: 1px solid #e7e5e4; padding: 16px; border-radius: 12px; font-size: 0.9rem; line-height: 1.6; }
+  .insight-title { font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .speaker-section { border-bottom: 1px dashed #e7e5e4; padding-bottom: 20px; margin-bottom: 20px; }
+  .speaker-section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .speaker-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .speaker-badge { background: #f5f5f4; color: #1c1917; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
+  .compare-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
   @media (min-width: 768px) {
-    .grid-col { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .compare-grid { grid-template-columns: 1fr 1fr; }
   }
-  .lang-col { padding: 4px; }
-  .lang-label { font-size: 0.7em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 4px; }
-  .text { font-size: 0.95em; line-height: 1.6; }
-  mark.quote-highlight { background-color: rgba(217, 139, 75, 0.15); border-bottom: 2px solid #D98B4B; color: inherit; font-weight: 700; padding: 1px 3px; border-radius: 4px; }
+  .grid-box { padding: 12px; border-radius: 8px; font-size: 0.88rem; line-height: 1.6; }
+  .box-pain { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+  .box-expect { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+  .quote-container { background: #fafaf9; border: 1px solid #e7e5e4; padding: 16px; border-radius: 10px; font-size: 0.88rem; }
+  .quote-row { margin-bottom: 8px; line-height: 1.5; }
+  .quote-row:last-child { margin-bottom: 0; }
+  .quote-lang { font-size: 0.72rem; font-weight: 800; color: #78716c; margin-bottom: 2px; text-transform: uppercase; }
+  .quote-text { font-style: italic; color: #44403c; }
+  mark { background: #fef08a; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class="container"&gt;
-  &lt;div class="header-title"&gt;訪談主題維度提煉手札&lt;/div&gt;
-
-  &lt;!-- 主題維度卡片範例 --&gt;
+  &lt;div class="header-title"&gt;Interview Theme Dimensions Journal&lt;/div&gt;
+  
+  &lt;!-- Theme 1 --&gt;
   &lt;div class="theme-card"&gt;
-    &lt;div class="theme-col"&gt;
-      &lt;div class="theme-title"&gt;#社區融入與信任建立 / CommunityIntegrationTrust / 地域社会への融和と信頼構築&lt;/div&gt;
-      &lt;div class="theme-meta"&gt;
-        &lt;div class="meta-label"&gt;包含的 Coding 標籤：&lt;/div&gt;
-        &lt;div class="code-tags-list"&gt;
-          &lt;span class="tag"&gt;#建立在地信用&lt;/span&gt;
-          &lt;span class="tag"&gt;#老農成見突破&lt;/span&gt;
-          &lt;span class="tag"&gt;#日常拜訪問候&lt;/span&gt;
-        &lt;/div&gt;
+    &lt;div class="left-panel"&gt;
+      &lt;div class="theme-header"&gt;
+        &lt;div class="theme-id"&gt;T1&lt;/div&gt;
+        &lt;div class="theme-name"&gt;#CommunityIntegrationTrust&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class="theme-insight-box"&gt;
-        &lt;div class="insight-label"&gt;核心洞察 (Theme Insight)&lt;/div&gt;
-        &lt;div class="insight-text"&gt;
-          &lt;strong&gt;中&lt;/strong&gt;：信任的建立並非基於口頭說服，而是基於「身體力行的日常勞動交換」，透過共享在地日常來突破偏見。&lt;br&gt;
-          &lt;strong&gt;EN&lt;/strong&gt;：Trust is built on shared daily labor rather than words. Engaging in field activities breaks stereotypes.&lt;br&gt;
-          &lt;strong&gt;JA&lt;/strong&gt;：信頼は言葉ではなく、日々の労働の共有を通じて構築される。農作業の同行が偏見を打破する。
-        &lt;/div&gt;
+      &lt;div class="insight-box"&gt;
+        &lt;div class="insight-title"&gt;Theme Insight&lt;/div&gt;
+        &lt;p&gt;&lt;strong&gt;ZH:&lt;/strong&gt; 青年移居初期常因外在形象遭受質疑，需藉由長期具體的勞動協作打破藩籬。&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;EN:&lt;/strong&gt; Migrant youth often face skepticism initially; long-term concrete labor collaboration is required to break barriers.&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;JA:&lt;/strong&gt; 移住初期の若者は外見やイメージで懐疑視されがちであり、長期的な具体的共同労働を通じて境界線を崩す必要がある。&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    
-    &lt;div class="quotes-container"&gt;
-      &lt;div class="quote-row"&gt;
-        &lt;div class="speaker-badge"&gt;受訪者：賴大哥 (Mr. Lai)&lt;/div&gt;
-        &lt;div class="behavior-aspects"&gt;
-          &lt;div class="aspect-item"&gt;&lt;strong&gt;痛點 (Pain Point)&lt;/strong&gt;：都市書生形象被質疑玩玩而已 / Urban intellectual image is questioned / 都会の若者の冷やかしと誤解される&lt;/div&gt;
-          &lt;div class="aspect-item"&gt;&lt;strong&gt;期望 (Expectation)&lt;/strong&gt;：以行動證明誠意與耐勞 / Prove sincerity through hard work / 行動で誠意と忍耐力を示す&lt;/div&gt;
+    &lt;div class="right-panel"&gt;
+      &lt;!-- Respondent 1 --&gt;
+      &lt;div class="speaker-section"&gt;
+        &lt;div class="speaker-header"&gt;
+          &lt;div class="speaker-badge"&gt;Interviewee: Mr. Lai&lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class="grid-col"&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
-            &lt;div class="text"&gt;我那時候就是&lt;mark class="quote-highlight"&gt;天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作&lt;/mark&gt;，用行動證明啦。&lt;/div&gt;
+        &lt;div class="compare-grid"&gt;
+          &lt;div class="grid-box box-pain"&gt;
+            &lt;strong&gt;Pain Point&lt;/strong&gt;&lt;br&gt;
+            Initially suspected of just "playing around" by landlords and older farmers; faced skepticism about urban people not being able to handle hard farm work, leading to reluctance in leasing good plots.
           &lt;/div&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;English&lt;/div&gt;
-            &lt;div class="text"&gt;Back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.&lt;/div&gt;
-          &lt;/div&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-            &lt;div class="text"&gt;私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。&lt;/div&gt;
+          &lt;div class="grid-box box-expect"&gt;
+            &lt;strong&gt;Expectation&lt;/strong&gt;&lt;br&gt;
+            Hoped to prove dedication through concrete farming work, gaining equal opportunities to converse and lease land with local farmers.
           &lt;/div&gt;
         &lt;/div&gt;
-      &lt;/div&gt;
-      
-      &lt;div class="quote-row"&gt;
-        &lt;div class="speaker-badge"&gt;受訪者：阿美姐 (Ms. Ami)&lt;/div&gt;
-        &lt;div class="behavior-aspects"&gt;
-          &lt;div class="aspect-item"&gt;&lt;strong&gt;痛點 (Pain Point)&lt;/strong&gt;：初期鄰里關係冷漠 / Cold neighborhood relations initially / 初期は近所付き合いが極めて希薄&lt;/div&gt;
-          &lt;div class="aspect-item"&gt;&lt;strong&gt;期望 (Expectation)&lt;/strong&gt;：建立互助機制並被接納 / Establish mutual help and be accepted / 互助関係を築き、地域の一員になる&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class="grid-col"&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
-            &lt;div class="text"&gt;一開始鄰居都不理我，後來我&lt;mark class="quote-highlight"&gt;主動幫忙巡田水、分享收成的小黃瓜&lt;/mark&gt;，大家才漸漸把我當成自己人。&lt;/div&gt;
+        &lt;div class="quote-container"&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;Chinese&lt;/div&gt;
+            &lt;div class="quote-text"&gt;地主看到了就覺得很不順眼，懷疑我們&lt;mark&gt;是不是來玩玩的&lt;/mark&gt;。&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;English&lt;/div&gt;
-            &lt;div class="text"&gt;At first, neighbors ignored me. Later, &lt;mark class="quote-highlight"&gt;I proactively helped check the irrigation water and shared my harvested cucumbers&lt;/mark&gt;, then they gradually treated me as one of them.&lt;/div&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;English&lt;/div&gt;
+            &lt;div class="quote-text"&gt;The landlord saw it and felt it looked bad, questioning &lt;mark&gt;whether we were just here to play around&lt;/mark&gt;.&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class="lang-col"&gt;
-            &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-            &lt;div class="text"&gt;最初は近所の人に無視されましたが、&lt;mark class="quote-highlight"&gt;自主的に水路の見回り（巡田水）を手伝い、収穫したキュウリを分けるようになってから&lt;/mark&gt;、ようやく仲間として認めてもらえました。&lt;/div&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;Japanese&lt;/div&gt;
+            &lt;div class="quote-text"&gt;地主が見て非常に見栄えが悪く感じ、我々が&lt;mark&gt;ただ遊びに来ているのではないか&lt;/mark&gt;と疑っていました。&lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
-  &lt;!-- 請在此後依據上述範例格式填入所有主題維度分析結果 --&gt;
-
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-```
+\`\`\`
 
 ---
 
-### 原始多份訪談編碼資料輸入
+### Coded Interview HTML Input
 
-【請在此貼上受訪者 A, B, C... 在步驟 4 產出的 HTML 程式碼】</div>
-                    
-                    <div class="actions-row">
+Please extract theme dimensions, write insights, and reconstruct into HTML according to the rules above:
+
+【Please paste HTML outputs from Step 4 for interviewees A, B, C... here】</template>
+                    <template id="rawPromptTextJa">あなたは今、ベテランの質的研究の専門家であり學術編集者です。コード化およびタグ付けが完了した複数のインタビュー対話のHTMLデータを提供します（複数の異なるインタビュイーによるステップ4の出力）。
+以下のタスクを完了し、その後のフォーマットとマーキングの要件を厳守してください：
+
+### タスク説明
+1. **入力データの解析**：提供された複数のHTMLコードを読み込み、各インタビュイーのハイライトされた発言（`mark` タグ内の文字）、対話の文脈、および対応するコード化タグ（`tag` クラスのタグ）を抽出してください。
+2. **インタビュー横断的なテーマ抽出 (Theme Extraction)**：複数のインタビュー（異なるインタビュイー）の間で、共通性、関連性、および行動の差異を探し、類似したコード化タグをグループ化して、**少なくとも7つの核心的なテーマ次元（Themes）を抽出**してください。これらのテーマは、後のユーザーペルソナ（Persona）を作成する際の重要な行動次元および記述用メタデータ（Metadata）となります。
+3. **テーマの核心的洞察の抽出 (Theme Insight)**：各テーマについて、その行動次元の根底にある本質的な法則を説明する「深い洞察（Insight）」を書き、中国語、英語、日本語の対照形式で提示してください。
+4. **インタビュイー別の課題と期待の対照分析**：各テーマにおいて、異なるインタビュイー別に以下を整理してください：
+   - そのテーマにおける該当インタビュイーの**課題（Pain Point）**
+   - そのテーマにおける該当インタビュイーの**期待（Expectation）**
+   - そのインタビュイーの**代表的な三言語ハイライト引用発言（Supporting Quotes）**（入力コードから完全に引用し、中・英・日三言語並列で表示）。
+
+---
+
+### 出力フォーマットとメディア要件
+完全な **「テーマ次元と課題/期待/発言統合HTMLウェブページ形式コード」** を出力してください。ウェブページの構造は以下の通りです：
+- 左側：テーマタグとサブタグクラウド、テーマの核心的洞察（Insight）。
+- 右側：異なるインタビュイーの課題・期待の対比、および三言語のハイライト引用発言。
+
+以下の構造を使用し、コンテンツを直接入力してください。CSSスタイルは一切省略しないでください：
+
+\`\`\`html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;インタビュー・テーマ次元抽出手帖&lt;/title&gt;
+&lt;style&gt;
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 24px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .theme-card { background: white; padding: 24px; border-radius: 20px; box-shadow: 0 4px 12px rgba(15, 42, 28, 0.04); border: 1px solid #e7e5e4; margin-bottom: 24px; display: flex; flex-direction: column; gap: 16px; }
+  @media (min-width: 992px) {
+    .theme-card { flex-direction: row; }
+    .left-panel { width: 35%; border-right: 1px solid #e7e5e4; padding-right: 24px; }
+    .right-panel { width: 65%; padding-left: 24px; }
+  }
+  .theme-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .theme-id { background: #0f2a1c; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; }
+  .theme-name { font-size: 1.25rem; font-weight: 800; color: #0f2a1c; }
+  .insight-box { background: #f5f5f4; border: 1px solid #e7e5e4; padding: 16px; border-radius: 12px; font-size: 0.9rem; line-height: 1.6; }
+  .insight-title { font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .speaker-section { border-bottom: 1px dashed #e7e5e4; padding-bottom: 20px; margin-bottom: 20px; }
+  .speaker-section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .speaker-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .speaker-badge { background: #f5f5f4; color: #1c1917; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
+  .compare-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
+  @media (min-width: 768px) {
+    .compare-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .grid-box { padding: 12px; border-radius: 8px; font-size: 0.88rem; line-height: 1.6; }
+  .box-pain { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+  .box-expect { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+  .quote-container { background: #fafaf9; border: 1px solid #e7e5e4; padding: 16px; border-radius: 10px; font-size: 0.88rem; }
+  .quote-row { margin-bottom: 8px; line-height: 1.5; }
+  .quote-row:last-child { margin-bottom: 0; }
+  .quote-lang { font-size: 0.72rem; font-weight: 800; color: #78716c; margin-bottom: 2px; text-transform: uppercase; }
+  .quote-text { font-style: italic; color: #44403c; }
+  mark { background: #fef08a; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div class="header-title"&gt;インタビュー・テーマ次元抽出手帖&lt;/div&gt;
+  
+  &lt;!-- テーマ 1 --&gt;
+  &lt;div class="theme-card"&gt;
+    &lt;div class="left-panel"&gt;
+      &lt;div class="theme-header"&gt;
+        &lt;div class="theme-id"&gt;T1&lt;/div&gt;
+        &lt;div class="theme-name"&gt;#地元の信頼構築&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="insight-box"&gt;
+        &lt;div class="insight-title"&gt;テーマの核心的洞察 (Theme Insight)&lt;/div&gt;
+        &lt;p&gt;&lt;strong&gt;中：&lt;/strong&gt; 青年移居初期常因外在形象遭受質疑，需藉由長期具體的勞動協作打破藩籬。&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;EN:&lt;/strong&gt; Migrant youth often face skepticism initially; long-term concrete labor collaboration is required to break barriers.&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;JA:&lt;/strong&gt; 移住初期の若者は外見やイメージで懐疑視されがちであり、長期的な具体的共同労働を通じて境界線を崩す必要がある。&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="right-panel"&gt;
+      &lt;!-- インタビュイー対比 1 --&gt;
+      &lt;div class="speaker-section"&gt;
+        &lt;div class="speaker-header"&gt;
+          &lt;div class="speaker-badge"&gt;被面談者：賴大哥 (Mr. Lai)&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="compare-grid"&gt;
+          &lt;div class="grid-box box-pain"&gt;
+            &lt;strong&gt;課題 (Pain Point)&lt;/strong&gt;&lt;br&gt;
+            移住初期、地主や高齢農家から「ただ遊びに来ているだけだ」「都会育ちには農業の苦労は耐えられない」と疑われ、良い土地を貸してもらえなかった。
+          &lt;/div&gt;
+          &lt;div class="grid-box box-expect"&gt;
+            &lt;strong&gt;期待 (Expectation)&lt;/strong&gt;&lt;br&gt;
+            実際の農作業パフォーマンスを通じて決意を示し、地元農家と対等な立場で対話や土地の賃貸契約を結びたい。
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="quote-container"&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;Chinese&lt;/div&gt;
+            &lt;div class="quote-text"&gt;地主看到了就覺得很不順眼，懷疑我們&lt;mark&gt;是不是來玩玩的&lt;/mark&gt;。&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;English&lt;/div&gt;
+            &lt;div class="quote-text"&gt;The landlord saw it and felt it looked bad, questioning &lt;mark&gt;whether we were just here to play around&lt;/mark&gt;.&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="quote-row"&gt;
+            &lt;div class="quote-lang"&gt;Japanese&lt;/div&gt;
+            &lt;div class="quote-text"&gt;地主が見て非常に見栄えが悪く感じ、我々が&lt;mark&gt;ただ遊びに来ているのではないか&lt;/mark&gt;と疑っていました。&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+\`\`\`
+
+---
+
+### コード化されたインタビュー資料 HTML 入力
+
+上記の規則に従って、テーマ次元の抽出、洞察の執筆、およびHTML再構成を行ってください：
+
+【ここに被面談者 A, B, C... がステップ 4 で出力した HTML コードを貼り付けてください】</template>
+                    <div id="visiblePromptText" style="white-space: pre-wrap; word-break: break-all;"></div>
+                </div>
+                <div class="actions-row">
                         <button class="copy-btn" onclick="copyPrompt()">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -1404,5 +1511,271 @@
             frame.style.display = 'none';
         }
     </script>
+<!-- ANTIGRAVITY_DRAWER_JS_START -->
+<script>
+(() => {
+    function initCollapsibleDrawer() {
+        const drawerNav = document.querySelector(".drawer-nav");
+        if (!drawerNav) return;
+
+        const children = Array.from(drawerNav.children);
+        
+        // Group 1: 生存挑戰 (challenges)
+        const challengeTrigger = children.find(el => el.getAttribute('href') === 'eight_challenges.html');
+        
+        // Group 2: 📁 檔案下載 (files)
+        const filesTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('檔案下載'));
+
+        // Group 3: 🤖 Prompts (prompts)
+        const promptsTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('Prompts'));
+
+        function makeCollapsible(trigger, idClass, isLink = false) {
+            if (!trigger) return;
+            
+            // Find all sibling sub-items immediately following the trigger
+            const subItems = [];
+            let next = trigger.nextElementSibling;
+            while (next && next.classList.contains('drawer-sub-item')) {
+                subItems.push(next);
+                next = next.nextElementSibling;
+            }
+
+            if (subItems.length === 0) return;
+
+            // Create container
+            const container = document.createElement('div');
+            container.className = 'drawer-collapse-content ' + idClass;
+            
+            // Move subItems into container
+            trigger.parentNode.insertBefore(container, subItems[0]);
+            subItems.forEach(item => container.appendChild(item));
+
+            // For links, add a dynamic "Overview" page inside the accordion
+            if (isLink && trigger.getAttribute('href')) {
+                const overviewItem = document.createElement('a');
+                overviewItem.className = 'drawer-sub-item';
+                overviewItem.href = trigger.getAttribute('href');
+                overviewItem.innerHTML = `
+                    <span class="lang-zh">所有挑戰總覽</span>
+                    <span class="lang-en">All Challenges</span>
+                    <span class="lang-ja">すべての課題</span>
+                `;
+                container.insertBefore(overviewItem, container.firstChild);
+                
+                if (trigger.classList.contains('active')) {
+                    overviewItem.classList.add('active');
+                    trigger.classList.remove('active');
+                }
+            }
+
+            // Add chevron to trigger
+            const arrow = document.createElement('span');
+            arrow.className = 'collapse-arrow';
+            arrow.innerHTML = '&#9662;'; // downward triangle
+            
+            // Align trigger layout
+            trigger.style.display = 'flex';
+            trigger.style.alignItems = 'center';
+            trigger.appendChild(arrow);
+            
+            // Add class to trigger
+            trigger.classList.add('collapse-trigger');
+
+            // Check if any sub-item inside is active or if trigger is active
+            const hasActive = trigger.classList.contains('active') || Array.from(container.children).some(item => item.classList.contains('active'));
+            if (hasActive) {
+                container.classList.add('expanded');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+
+            // Toggle on click
+            trigger.addEventListener('click', (e) => {
+                if (isLink) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                const isExpanded = container.classList.toggle('expanded');
+                arrow.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        }
+
+        makeCollapsible(challengeTrigger, 'challenges-group', true);
+        makeCollapsible(filesTrigger, 'files-group', false);
+        makeCollapsible(promptsTrigger, 'prompts-group', false);
+    }
+
+    // Dynamic Multi-Language Prompt Renderer & Copying Overrides
+    function initTrilingualPromptRenderer() {
+        // Find visible prompt container
+        const visiblePromptText = document.getElementById('visiblePromptText');
+        if (!visiblePromptText) return; // Not a prompt tool page
+
+        // Function to update the displayed prompt
+        window.updatePromptDisplay = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1); // rawPromptTextZh, rawPromptTextEn, rawPromptTextJa
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            visiblePromptText.textContent = decodedString;
+        };
+
+        // Helper to copy text to clipboard
+        function copyTextToClipboard(text, successCallback) {
+            function fallbackCopy(textVal) {
+                const textArea = document.createElement("textarea");
+                textArea.value = textVal;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Fallback copy failed', err);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    successCallback();
+                }).catch(err => {
+                    fallbackCopy(text);
+                    successCallback();
+                });
+            } else {
+                fallbackCopy(text);
+                successCallback();
+            }
+        }
+
+        // Helper to flash copy success state on button text
+        function flashSuccessButtonText() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const zhText = document.getElementById('copyBtnText');
+            const enText = document.getElementById('copyBtnTextEn');
+            const jaText = document.getElementById('copyBtnTextJa');
+            
+            if (zhText && enText && jaText) {
+                const originalZh = zhText.innerText;
+                const originalEn = enText.innerText;
+                const originalJa = jaText.innerText;
+                
+                zhText.innerText = "已複製！";
+                enText.innerText = "Copied!";
+                jaText.innerText = "コピーしました！";
+                
+                setTimeout(() => {
+                    zhText.innerText = originalZh;
+                    enText.innerText = originalEn;
+                    jaText.innerText = originalJa;
+                }, 2000);
+            } else {
+                const btn = document.getElementById('copyBtn') || document.querySelector('.action-btn-orange') || document.querySelector('.action-btn-secondary');
+                if (btn) {
+                    const originalText = btn.innerText;
+                    btn.innerText = lang === 'en' ? 'Copied!' : (lang === 'ja' ? 'コピー完了！' : '已複製！');
+                    setTimeout(() => { btn.innerText = originalText; }, 2000);
+                }
+            }
+        }
+
+        // Dynamic Overrides for global copy functions
+        // For Step 2-6: copyPrompt
+        window.copyPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, flashSuccessButtonText);
+        };
+
+        // For Step 1: copyMasterPrompt (Only copy the master template)
+        window.copyMasterPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Master template copied!' : (lang === 'ja' ? 'マスタープロンプトをコピーしました！' : '已複製主提示詞範本！'));
+                }
+            });
+        };
+
+        // For Step 1: copyCombinedPrompt (Combine templates with parameters)
+        window.copyCombinedPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+
+            // Resolve parameters
+            const q = window.questData ? window.questData[window.currentQuestId] : null;
+            if (!q) return;
+
+            let combined = decodedString
+                .replace("{TopicTitle}", q.title)
+                .replace("{TopicOutline}", q.outline)
+                .replace("{TopicLaws}", q.laws)
+                .replace("{TopicData}", q.data)
+                .replace("{TopicCases}", q.cases)
+                .replace("{TopicSDGs}", q.sdgs);
+
+            copyTextToClipboard(combined, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Combined prompt copied!' : (lang === 'ja' ? 'プロンプトをコピーしました！' : '組合提示詞複製成功！直接貼給 AI 即可生成背景資訊報告！'));
+                }
+            });
+        };
+
+        // Run initial render
+        window.updatePromptDisplay();
+
+        // Register MutationObserver to automatically trigger re-rendering when lang-select changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'lang-select') {
+                    window.updatePromptDisplay();
+                }
+            });
+        });
+        observer.observe(document.body, { attributes: true });
+    }
+
+    // Bulletproof initialization
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+            initCollapsibleDrawer();
+            initTrilingualPromptRenderer();
+        });
+    } else {
+        initCollapsibleDrawer();
+        initTrilingualPromptRenderer();
+    }
+})();
+</script>
+<!-- ANTIGRAVITY_DRAWER_JS_END -->
 </body>
 </html>

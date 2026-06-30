@@ -790,6 +790,51 @@
         }
 
 </style>
+<!-- ANTIGRAVITY_DRAWER_CSS_START -->
+<style>
+/* Collapsible navigation styling for drawer-nav */
+.drawer-collapse-content {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    margin-left: 16px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+.drawer-collapse-content.expanded {
+    display: flex;
+}
+.collapse-trigger {
+    cursor: pointer;
+    user-select: none;
+}
+.collapse-arrow {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+/* Make the drawer-nav container scroll cleanly and not be cut off */
+.drawer-nav {
+    padding-bottom: 80px !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
+}
+/* Improve the scrollbar usability */
+.drawer-nav::-webkit-scrollbar {
+    width: 8px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 99px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+</style>
+<!-- ANTIGRAVITY_DRAWER_CSS_END -->
 </head>
 <body lang-select="zh" data-theme="light">
     <div class="wrap">
@@ -898,16 +943,17 @@
                 <h2>第一步：檢視主提示詞範本 (Master Prompt Template)</h2>
                 <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 12px;">此範本為引導 AI 具備諮詢顧問視角與生成邏輯的骨架，您可先複製此範本，或直接在下方點擊「一鍵組合複製」直接獲取融合後的完整提示詞。</p>
                 
-                <div class="prompt-container" id="master-prompt-container">你是一位任職於國際頂尖管理諮詢公司（如 McKinsey、BCG、Dentsu）的資深永續發展（ESG）與社會創新（Social Innovation）策略顧問。現在，你需要針對以下特定挑戰主題，撰寫一份極具深度、數據詳實、法規精準且具商業可行性的「案頭背景資訊報告」。
-                
+                <div class="prompt-container" id="master-prompt-container">
+                    <template id="rawPromptTextZh">你是一位任職於國際頂尖管理諮詢公司（如 McKinsey、BCG、Dentsu）的資深永續發展（ESG）與社會創新（Social Innovation）策略顧問。現在，你需要針對以下特定挑戰主題，撰寫一份極具深度、數據詳實、法規精準且具商業可行性的「案頭背景資訊報告」。
+
 ### 報告產出基本要求：
 1. 字數與深度要求：請針對大綱中的每個章節進行詳盡的論述、背景分析、法規條文解析與案例拆解，拒絕空泛的概概描述。
 2. 語氣與風格：專業、嚴謹、客觀、分析性強。多用數據說話，精確引用台灣現行的法規法條名稱。
 3. 對接指標：報告的永續指標部分必須精確對應聯合國 SDGs 的 Sub-targets（子目標編號與規範內容）以及 GRI 的具體準則。
 4. PFS（以成效計價）框架：在報告的最後，必須設計出一個具體的「PFS 社會影響力契約框架」，包含明確的「成效支付觸發指標（Payment Triggers）」與財務邏輯。
-                
+
 ---
-                
+
 ### 進行案頭背景資訊的主題與專屬資訊：
 
 【研究主題】：{TopicTitle}
@@ -932,8 +978,82 @@
 - 在「二、背景現況與數據」中：請務必詳列台灣農村在該領域的具體統計數據（如高齡化比例、平均所得、廢棄物噸數等）。
 - 在「三、法規與政策限制」中：請逐條剖析上述法規在實務上對「青年移居者/新農」造成的具體限制、灰色地帶與合規路徑。
 - 在「四、技術/痛點解決方案」中：請以顧問視角，提出具備落地可行性的軟硬體解決方案或服務設計藍圖。
-- 在「五、國內外標竿案例」中：請採用「背景 -> 核心挑戰 -> 創新做法 -> 商業模式與社會成效」的邏輯，深度拆解這兩個案例。
-- 在「六、企業 ESG / PFS 機制對接」中：請為企業永續部門（TA）設計一套說服話術，並提供一個 PFS 契約範本表（包含：委託方、執行方、出資方、衡量指標、第三方驗證機構、成效支付級距）。</div>
+- 在「五、國內外標竿案例」中：請採用「背景 -&gt; 核心挑戰 -&gt; 創新做法 -&gt; 商業模式與社會成效」的邏輯，深度拆解這兩個案例。
+- 在「六、企業 ESG / PFS 機制對接」中：請為企業永續部門（TA）設計一套說服話術，並提供一個 PFS 契約範本表（包含：委託方、執行方、出資方、衡量指標、第三方驗證機構、成效支付級距）。</template>
+                    <template id="rawPromptTextEn">You are a senior sustainability (ESG) and social innovation strategy consultant at a top-tier international management consulting firm (e.g., McKinsey, BCG, Dentsu). Now, you need to write an in-depth, data-rich, legally precise, and commercially viable "Desk Research Background Report" for the following specific challenge topic.
+
+### Basic Requirements for Report Output:
+1. Length and Depth: Please provide detailed discourse, background analysis, legal clause analysis, and case deconstruction for each chapter in the outline. Refuse vague summaries.
+2. Tone and Style: Professional, rigorous, objective, and analytical. Rely heavily on data and precisely cite the names of Taiwan's current laws and regulations.
+3. Target Indicators: The sustainability metrics section of the report must precisely align with the United Nations SDGs Sub-targets (sub-target numbers and regulatory content) and specific GRI guidelines.
+4. PFS (Pay-for-Success) Framework: At the end of the report, you must design a concrete "PFS Social Impact Agreement Framework," including clear "Payment Triggers" and financial logic.
+
+---
+
+### Specific Topic and Specifications for Desk Background Research:
+
+[Research Topic]: {TopicTitle}
+[Exclusive Research Outline]:
+{TopicOutline}
+
+[Mandatory Taiwan Regulations &amp; Policies to Cite]:
+{TopicLaws}
+
+[Macro Data &amp; Pain Point Indicators to Discuss]:
+{TopicData}
+
+[In-Depth Benchmarking Cases]:
+{TopicCases}
+
+[Aligned SDG Targets &amp; GRI Indicators]:
+{TopicSDGs}
+
+---
+
+### Report Writing Guidelines (Strictly Follow):
+- In "2. Background and Data": Be sure to detail specific statistics of Taiwan's rural areas in this field (e.g., aging population ratio, average income, waste tonnage, etc.).
+- In "3. Regulatory and Policy Constraints": Analyze clause-by-clause the specific constraints, gray areas, and compliance paths that the above laws impose on "youth migrants/new farmers" in practice.
+- In "4. Technology/Pain Point Solutions": From a consultant's perspective, propose viable hardware/software solutions or service design blueprints.
+- In "5. Domestic and International Benchmarking Cases": Deeply deconstruct these two cases using the logic of "Background -&gt; Core Challenges -&gt; Innovative Practices -&gt; Business Model &amp; Social Impact."
+- In "6. Corporate ESG / PFS Mechanism Alignment": Design a persuasion pitch for the corporate sustainability department (target audience) and provide a PFS contract template table (including: Commissioner, Executor, Funder, Performance Indicators, Third-party Verification Agency, Payment Tiers).</template>
+                    <template id="rawPromptTextJa">あなたはマッキンゼー、BCG、電通などの世界トップクラスの経営コンサルティング会社で持続可能性（ESG）と社会イノベーション（Social Innovation）を担当するシニア戦略顧問です。これから、以下の具体的な課題テーマに対して、深く、データが充実し、法規制に適合し、商業的に実行可能な「デスクリサーチ背景調査報告書」を作成する必要があります。
+
+### 報告書の基本要件：
+1. 分量と深さ：アウトラインの各章について、詳細な論述、背景分析、法規制の条項解析、事例分解を行ってください。曖昧な概要説明は避けてください。
+2. 口調とスタイル：専門的、厳格、客観的、分析的。データを多く使用し、台湾の現行の法規制名を正確に引用してください。
+3. 対応指標：報告書の持続可能性目標の部分は、国連SDGsのサブターゲット（サブターゲット番号と定義内容）およびGRIの具体的な基準に正確に対応させる必要があります。
+4. PFS（成果連動型支払い）フレームワーク：報告書の最後に、明確な「成果支払いトリガー指標（Payment Triggers）」と財務ロジックを含む、具体的な「PFS社会インパクト契約フレームワーク」を設計してください。
+
+---
+
+### デスクリサーチのテーマおよび専用情報：
+
+【研究テーマ】：{TopicTitle}
+【専用研究アウトライン】：
+{TopicOutline}
+
+【引用必須の台湾の法規制および政策】：
+{TopicLaws}
+
+【議論必須のマクロデータおよび課題指標】：
+{TopicData}
+
+【深層分析するベンチマーク事例】：
+{TopicCases}
+
+【対応するSDGs規範詳細およびGRI指標】：
+{TopicSDGs}
+
+---
+
+### 報告書作成ガイド（厳守してください）：
+- 「二、背景現状とデータ」：この分野における台湾農村の具体的な統計データ（高齢化率、平均所得、廃棄物量など）を詳細に記載してください。
+- 「三、法規制と政策制限」：上記の法規制が実務上、「若手移住者／新規就農者」に与える具体的な制限、グレーゾーン、およびコンプライアンス経路を一条ずつ分析してください。
+- 「四、技術／課題解決策」：コンサルタントの視点から、実現可能なハードウェア／ソフトウェアの解決策またはサービス設計のブループリントを提案してください。
+- 「五、国内外のベンチマーク事例」：「背景 -&gt; 核心的課題 -&gt; 革নতুন取り組み -&gt; ビジネスモデルと社会的成果」のロジックを用いて、これら2つの事例を深く分解してください。
+- 「六、企業ESG / PFSメカニズムの連携」：企業の持続可能性部門（ターゲット層）向けの説得用ピッチを設計し、PFS契約書テンプレート表（委託者、実行者、出資者、評価指標、第三者検証機関、成果支払い階層を含む）を提供してください。</template>
+                    <div id="visiblePromptText" style="white-space: pre-wrap; word-break: break-all;"></div>
+                </div>
                 <div class="btn-group">
                     <button class="action-btn-secondary" onclick="copyMasterPrompt()">僅複製主提示詞範本</button>
                 </div>
@@ -1490,5 +1610,271 @@
     </div>
   </div>
 
+<!-- ANTIGRAVITY_DRAWER_JS_START -->
+<script>
+(() => {
+    function initCollapsibleDrawer() {
+        const drawerNav = document.querySelector(".drawer-nav");
+        if (!drawerNav) return;
+
+        const children = Array.from(drawerNav.children);
+        
+        // Group 1: 生存挑戰 (challenges)
+        const challengeTrigger = children.find(el => el.getAttribute('href') === 'eight_challenges.html');
+        
+        // Group 2: 📁 檔案下載 (files)
+        const filesTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('檔案下載'));
+
+        // Group 3: 🤖 Prompts (prompts)
+        const promptsTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('Prompts'));
+
+        function makeCollapsible(trigger, idClass, isLink = false) {
+            if (!trigger) return;
+            
+            // Find all sibling sub-items immediately following the trigger
+            const subItems = [];
+            let next = trigger.nextElementSibling;
+            while (next && next.classList.contains('drawer-sub-item')) {
+                subItems.push(next);
+                next = next.nextElementSibling;
+            }
+
+            if (subItems.length === 0) return;
+
+            // Create container
+            const container = document.createElement('div');
+            container.className = 'drawer-collapse-content ' + idClass;
+            
+            // Move subItems into container
+            trigger.parentNode.insertBefore(container, subItems[0]);
+            subItems.forEach(item => container.appendChild(item));
+
+            // For links, add a dynamic "Overview" page inside the accordion
+            if (isLink && trigger.getAttribute('href')) {
+                const overviewItem = document.createElement('a');
+                overviewItem.className = 'drawer-sub-item';
+                overviewItem.href = trigger.getAttribute('href');
+                overviewItem.innerHTML = `
+                    <span class="lang-zh">所有挑戰總覽</span>
+                    <span class="lang-en">All Challenges</span>
+                    <span class="lang-ja">すべての課題</span>
+                `;
+                container.insertBefore(overviewItem, container.firstChild);
+                
+                if (trigger.classList.contains('active')) {
+                    overviewItem.classList.add('active');
+                    trigger.classList.remove('active');
+                }
+            }
+
+            // Add chevron to trigger
+            const arrow = document.createElement('span');
+            arrow.className = 'collapse-arrow';
+            arrow.innerHTML = '&#9662;'; // downward triangle
+            
+            // Align trigger layout
+            trigger.style.display = 'flex';
+            trigger.style.alignItems = 'center';
+            trigger.appendChild(arrow);
+            
+            // Add class to trigger
+            trigger.classList.add('collapse-trigger');
+
+            // Check if any sub-item inside is active or if trigger is active
+            const hasActive = trigger.classList.contains('active') || Array.from(container.children).some(item => item.classList.contains('active'));
+            if (hasActive) {
+                container.classList.add('expanded');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+
+            // Toggle on click
+            trigger.addEventListener('click', (e) => {
+                if (isLink) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                const isExpanded = container.classList.toggle('expanded');
+                arrow.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        }
+
+        makeCollapsible(challengeTrigger, 'challenges-group', true);
+        makeCollapsible(filesTrigger, 'files-group', false);
+        makeCollapsible(promptsTrigger, 'prompts-group', false);
+    }
+
+    // Dynamic Multi-Language Prompt Renderer & Copying Overrides
+    function initTrilingualPromptRenderer() {
+        // Find visible prompt container
+        const visiblePromptText = document.getElementById('visiblePromptText');
+        if (!visiblePromptText) return; // Not a prompt tool page
+
+        // Function to update the displayed prompt
+        window.updatePromptDisplay = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1); // rawPromptTextZh, rawPromptTextEn, rawPromptTextJa
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            visiblePromptText.textContent = decodedString;
+        };
+
+        // Helper to copy text to clipboard
+        function copyTextToClipboard(text, successCallback) {
+            function fallbackCopy(textVal) {
+                const textArea = document.createElement("textarea");
+                textArea.value = textVal;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Fallback copy failed', err);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    successCallback();
+                }).catch(err => {
+                    fallbackCopy(text);
+                    successCallback();
+                });
+            } else {
+                fallbackCopy(text);
+                successCallback();
+            }
+        }
+
+        // Helper to flash copy success state on button text
+        function flashSuccessButtonText() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const zhText = document.getElementById('copyBtnText');
+            const enText = document.getElementById('copyBtnTextEn');
+            const jaText = document.getElementById('copyBtnTextJa');
+            
+            if (zhText && enText && jaText) {
+                const originalZh = zhText.innerText;
+                const originalEn = enText.innerText;
+                const originalJa = jaText.innerText;
+                
+                zhText.innerText = "已複製！";
+                enText.innerText = "Copied!";
+                jaText.innerText = "コピーしました！";
+                
+                setTimeout(() => {
+                    zhText.innerText = originalZh;
+                    enText.innerText = originalEn;
+                    jaText.innerText = originalJa;
+                }, 2000);
+            } else {
+                const btn = document.getElementById('copyBtn') || document.querySelector('.action-btn-orange') || document.querySelector('.action-btn-secondary');
+                if (btn) {
+                    const originalText = btn.innerText;
+                    btn.innerText = lang === 'en' ? 'Copied!' : (lang === 'ja' ? 'コピー完了！' : '已複製！');
+                    setTimeout(() => { btn.innerText = originalText; }, 2000);
+                }
+            }
+        }
+
+        // Dynamic Overrides for global copy functions
+        // For Step 2-6: copyPrompt
+        window.copyPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, flashSuccessButtonText);
+        };
+
+        // For Step 1: copyMasterPrompt (Only copy the master template)
+        window.copyMasterPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Master template copied!' : (lang === 'ja' ? 'マスタープロンプトをコピーしました！' : '已複製主提示詞範本！'));
+                }
+            });
+        };
+
+        // For Step 1: copyCombinedPrompt (Combine templates with parameters)
+        window.copyCombinedPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+
+            // Resolve parameters
+            const q = window.questData ? window.questData[window.currentQuestId] : null;
+            if (!q) return;
+
+            let combined = decodedString
+                .replace("{TopicTitle}", q.title)
+                .replace("{TopicOutline}", q.outline)
+                .replace("{TopicLaws}", q.laws)
+                .replace("{TopicData}", q.data)
+                .replace("{TopicCases}", q.cases)
+                .replace("{TopicSDGs}", q.sdgs);
+
+            copyTextToClipboard(combined, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Combined prompt copied!' : (lang === 'ja' ? 'プロンプトをコピーしました！' : '組合提示詞複製成功！直接貼給 AI 即可生成背景資訊報告！'));
+                }
+            });
+        };
+
+        // Run initial render
+        window.updatePromptDisplay();
+
+        // Register MutationObserver to automatically trigger re-rendering when lang-select changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'lang-select') {
+                    window.updatePromptDisplay();
+                }
+            });
+        });
+        observer.observe(document.body, { attributes: true });
+    }
+
+    // Bulletproof initialization
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+            initCollapsibleDrawer();
+            initTrilingualPromptRenderer();
+        });
+    } else {
+        initCollapsibleDrawer();
+        initTrilingualPromptRenderer();
+    }
+})();
+</script>
+<!-- ANTIGRAVITY_DRAWER_JS_END -->
 </body>
 </html>

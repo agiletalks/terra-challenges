@@ -556,6 +556,51 @@
             flex-shrink: 0;
         }
     </style>
+<!-- ANTIGRAVITY_DRAWER_CSS_START -->
+<style>
+/* Collapsible navigation styling for drawer-nav */
+.drawer-collapse-content {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    margin-left: 16px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+.drawer-collapse-content.expanded {
+    display: flex;
+}
+.collapse-trigger {
+    cursor: pointer;
+    user-select: none;
+}
+.collapse-arrow {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+/* Make the drawer-nav container scroll cleanly and not be cut off */
+.drawer-nav {
+    padding-bottom: 80px !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
+}
+/* Improve the scrollbar usability */
+.drawer-nav::-webkit-scrollbar {
+    width: 8px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 99px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+</style>
+<!-- ANTIGRAVITY_DRAWER_CSS_END -->
 </head>
 <body lang-select="zh" data-theme="light">
 
@@ -635,13 +680,14 @@
                         コンテナ内のプロンプト全体をコピーし、AIモデル（GeminiやChatGPTなど）に入力してください。
                     </p>
                     
-                    <div class="prompt-container" id="promptTextContainer"><template id="rawPromptText">你現在是一位資深的質化研究專家與學術編輯。我將提供你一份整理好的中、英、日三語訪談對話。
+                    <div class="prompt-container" id="promptTextContainer">
+                    <template id="rawPromptTextZh">你現在是一位資深的質化研究專家與學術編輯。我將提供你一份整理好的中、英、日三語訪談對話。
 請幫我完成以下任務，並嚴格遵循後續的格式與標記要求：
 
 ### 任務說明
 1. **標記三語對話重點 (Highlighter)**：閱讀中文、英文、日文對話，精準找出最關鍵的「受訪者引言（User Quotes）」，並使用特定 HTML 標籤（如下所示的 mark）將其加粗並套用螢光筆效果。
 2. **新增第四欄為編碼欄 (Coding Tags Column)**：在每一列對話的右側，新增第四個欄位（編碼欄位）。
-3. **在第四欄中寫入對照標籤 (Trilingual Tags)**：針對前面三欄所畫出的重點，在第四欄中提煉出編碼標籤，且**該標籤本身必須同時包含三語並列（中文 / 英文 / 日文）**（例如：#建立在地信用 / BuildingLocalTrust / 地元の信頼構築）。
+3. **在第四欄中寫入對照標籤 (Trilingual Tags)**：針對前面三欄所畫出的重點，在第四欄中提煉出編碼標籤，且**該標籤本身必須同時包含三語並列（中文 / 英文 / 日文）**（例如：\`#建立在地信用 / BuildingLocalTrust / 地元の信頼構築\`）。
 
 ---
 
@@ -654,7 +700,7 @@
 
 在手機上則會自動適應堆疊。請使用以下結構並直接填入內容，不要省略任何 CSS 樣式：
 
-```html
+\`\`\`html
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-Hant"&gt;
 &lt;head&gt;
@@ -668,61 +714,51 @@
   .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
   .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 992px) {
-    .grid-col { grid-template-columns: 1fr 1fr 1fr 240px; }
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
   }
-  .lang-col { padding: 8px; border-radius: 8px; }
-  .coding-col { padding: 8px; border-top: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 8px; align-content: flex-start; }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
   @media (min-width: 992px) {
-    .coding-col { border-top: none; border-left: 1px dashed #e7e5e4; padding-left: 16px; }
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
   }
-  .lang-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
-  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
-  .text { font-size: 0.95em; line-height: 1.7; }
-  /* 螢光筆效果 (Fluorescent Highlighter Effect) */
-  mark.quote-highlight { background-color: rgba(217, 139, 75, 0.2); border-bottom: 2px solid #D98B4B; color: inherit; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
-  .speaker { font-weight: 700; font-size: 0.9em; color: #78716c; margin-bottom: 8px; }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.78rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #e7e5e4; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class="container"&gt;
   &lt;div class="header-title"&gt;訪談編碼與標籤化整理手札&lt;/div&gt;
-
-  &lt;!-- 對話編碼列範例 --&gt;
+  
   &lt;div class="row"&gt;
     &lt;div class="grid-col"&gt;
-      &lt;!-- 1. 中文欄位 --&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
-        &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
-        &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。所以我那時候就是&lt;mark class="quote-highlight"&gt;天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作&lt;/mark&gt;，用行動證明啦。&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;賴大哥：呃，其實我們一開始做有機，&lt;mark&gt;格外品真的很多&lt;/mark&gt;，那個地主看到了就覺得很不順眼。&lt;/div&gt;
       &lt;/div&gt;
-      &lt;!-- 2. 英文欄位 --&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;English&lt;/div&gt;
-        &lt;div class="speaker"&gt;Interviewee: Mr. Lai&lt;/div&gt;
-        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. So back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Mr. Lai: Uh, actually when we started organic farming, &lt;mark&gt;there was a lot of ugly produce&lt;/mark&gt;, you know. The landlord saw it and felt it looked really bad.&lt;/div&gt;
       &lt;/div&gt;
-      &lt;!-- 3. 日文欄位 --&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-        &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
-        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;賴さん：ええ特、実は有機農業を始めた当初は、&lt;mark&gt;格外品が本当に多くて&lt;/mark&gt;、該、地主が見て非常に見栄えが悪く感じたようです。&lt;/div&gt;
       &lt;/div&gt;
-      &lt;!-- 4. 編碼標籤欄位 (第四欄) --&gt;
-      &lt;div class="coding-col"&gt;
-        &lt;div class="lang-label"&gt;編碼標籤 (Coding Tags)&lt;/div&gt;
-        &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
-        &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;編碼標籤 (Coding Tags)&lt;/div&gt;
+        &lt;div class="tags-container"&gt;
+          &lt;span class="tag"&gt;#格外品比例高 / HighUglyProduceRatio / 格外品の比率が高い&lt;/span&gt;
+          &lt;span class="tag"&gt;#地主傳統外觀偏好 / LandlordAestheticPreference / 地主の伝統的な外観嗜好&lt;/span&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
-  &lt;!-- 請在此後依據上述範例格式填入所有訪談對話編碼結果 --&gt;
-
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-```
+\`\`\`
 
 ---
 
@@ -730,32 +766,33 @@
 
 請根據上述規則，進行編碼、標記引言與重構為 HTML：
 
-【請在此處貼上您的三語逐字稿】</template>你現在是一位資深的質化研究專家與學術編輯。我將提供你一份整理好的中、英、日三語訪談對話。
-請幫我完成以下任務，並嚴格遵循後續的格式與標記要求：
+【請在此處貼上您的三語逐字稿】</template>
+                    <template id="rawPromptTextEn">You are now an experienced qualitative research expert and academic editor. I will provide you with a structured trilingual (Chinese, English, Japanese) interview dialogue.
+Please help me complete the following tasks and strictly follow the formatting and tagging requirements below:
 
-### 任務說明
-1. **標記三語對話重點 (Highlighter)**：閱讀中文、英文、日文對話，精準找出最關鍵的「受訪者引言（User Quotes）」，並使用特定 HTML 標籤（如下所示的 mark）將其加粗並套用螢光筆效果。
-2. **新增第四欄為編碼欄 (Coding Tags Column)**：在每一列對話的右側，新增第四個欄位（編碼欄位）。
-3. **在第四欄中寫入對照標籤 (Trilingual Tags)**：針對前面三欄所畫出的重點，在第四欄中提煉出編碼標籤，且**該標籤本身必須同時包含三語並列（中文 / 英文 / 日文）**（例如：#建立在地信用 / BuildingLocalTrust / 地元の信頼構築）。
+### Task Description
+1. **Highlight Trilingual Dialogue Keypoints (Highlighter)**: Read the Chinese, English, and Japanese dialogues, pinpoint the most critical "User Quotes," and wrap them in the specific HTML tag \`&lt;mark&gt;\` to bold them and apply a highlighter effect.
+2. **Add a Fourth Column for Coding Tags (Coding Tags Column)**: On the right side of each dialogue row, add a fourth column (the coding tags column).
+3. **Write Trilingual Tags in the Fourth Column (Trilingual Tags)**: Based on the highlighted keypoints from the previous three columns, extract coding tags for the fourth column. **The tags themselves must contain all three languages side-by-side** (e.g., \`#建立在地信用 / BuildingLocalTrust / 地元の信頼構築\`).
 
 ---
 
-### 輸出格式與載體要求
-請輸出一份完整的 **「四欄式編碼對照 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現四個平行對齊的欄位：
-1. 中文 (Chinese) — *含高亮重點*
-2. English — *含高亮重點*
-3. 日本語 (Japanese) — *含高亮重點*
-4. 編碼標籤 (Coding Tags) — *第四欄，含三語並列 tag*
+### Output Format and Container Requirements
+Please output a complete **"Four-Column Coding Comparison HTML Webpage Code"**. On a computer screen, the webpage will display four parallel columns:
+1. 中文 (Chinese) — *with highlighted keypoints*
+2. English — *with highlighted keypoints*
+3. 日本語 (Japanese) — *with highlighted keypoints*
+4. Coding Tags — *the 4th column, containing trilingual tags*
 
-在手機上則會自動適應堆疊。請使用以下結構並直接填入內容，不要省略任何 CSS 樣式：
+On mobile screens, it will stack automatically. Please use the following structure and fill in the content directly. Do not omit any CSS styles:
 
-```html
+\`\`\`html
 &lt;!DOCTYPE html&gt;
-&lt;html lang="zh-Hant"&gt;
+&lt;html lang="en"&gt;
 &lt;head&gt;
 &lt;meta charset="utf-8"&gt;
 &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;title&gt;訪談編碼與標籤化整理手札&lt;/title&gt;
+&lt;title&gt;Interview Coding &amp; Tagging Journal&lt;/title&gt;
 &lt;style&gt;
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
   .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
@@ -763,71 +800,148 @@
   .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
   .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 992px) {
-    .grid-col { grid-template-columns: 1fr 1fr 1fr 240px; }
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
   }
-  .lang-col { padding: 8px; border-radius: 8px; }
-  .coding-col { padding: 8px; border-top: 1px dashed #e7e5e4; display: flex; flex-direction: column; gap: 8px; align-content: flex-start; }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
   @media (min-width: 992px) {
-    .coding-col { border-top: none; border-left: 1px dashed #e7e5e4; padding-left: 16px; }
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
   }
-  .lang-label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
-  .tag { background: #FAF5F0; color: #B35C24; padding: 6px 12px; border-radius: 8px; font-size: 0.82em; font-weight: 700; border: 1px solid rgba(179,92,36,0.15); height: fit-content; line-height: 1.4; display: inline-block; word-break: break-word; }
-  .text { font-size: 0.95em; line-height: 1.7; }
-  /* 螢光筆效果 (Fluorescent Highlighter Effect) */
-  mark.quote-highlight { background-color: rgba(217, 139, 75, 0.2); border-bottom: 2px solid #D98B4B; color: inherit; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
-  .speaker { font-weight: 700; font-size: 0.9em; color: #78716c; margin-bottom: 8px; }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.78rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #e7e5e4; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class="container"&gt;
-  &lt;div class="header-title"&gt;訪談編碼與標籤化整理手札&lt;/div&gt;
-
-  &lt;!-- 對話編碼列範例 --&gt;
+  &lt;div class="header-title"&gt;Interview Coding &amp; Tagging Journal&lt;/div&gt;
+  
   &lt;div class="row"&gt;
     &lt;div class="grid-col"&gt;
-      &lt;!-- 1. 中文欄位 --&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
-        &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
-        &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。所以我那時候就是&lt;mark class="quote-highlight"&gt;天天去田埂邊跟他們打招呼，幫忙做一些粗重的工作&lt;/mark&gt;，用行動證明啦。&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;賴大哥：呃，其實我們一開始做有機，&lt;mark&gt;格外品真的很多&lt;/mark&gt;，那個地主看到了就覺得很不順眼。&lt;/div&gt;
       &lt;/div&gt;
-      &lt;!-- 2. 英文欄位 --&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;English&lt;/div&gt;
-        &lt;div class="speaker"&gt;Interviewee: Mr. Lai&lt;/div&gt;
-        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around. So back then, &lt;mark class="quote-highlight"&gt;I went to the field ridges every day to greet them and helped with heavy chores&lt;/mark&gt; to prove ourselves with actions.&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Mr. Lai: Uh, actually when we started organic farming, &lt;mark&gt;there was a lot of ugly produce&lt;/mark&gt;, you know. The landlord saw it and felt it looked really bad.&lt;/div&gt;
       &lt;/div&gt;
-      &lt;!-- 3. 日文欄位 --&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-        &lt;div class="speaker"&gt;受訪者：賴大哥&lt;/div&gt;
-        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。だから私はあの時、&lt;mark class="quote-highlight"&gt;毎日田んぼのあぜ道に行って挨拶し、力仕事を手伝いました&lt;/mark&gt;。行動で示すしかなかったんです。&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;賴さん：ええと、実は有機農業を始めた当初は、&lt;mark&gt;格外品が本当に多くて&lt;/mark&gt;、その、地主が見て非常に見栄えが悪く感じたようです。&lt;/div&gt;
       &lt;/div&gt;
-      &lt;!-- 4. 編碼標籤欄位 (第四欄) --&gt;
-      &lt;div class="coding-col"&gt;
-        &lt;div class="lang-label"&gt;編碼標籤 (Coding Tags)&lt;/div&gt;
-        &lt;span class="tag"&gt;#建立在地信用 / BuildingLocalTrust / 地元の信頼構築&lt;/span&gt;
-        &lt;span class="tag"&gt;#老農成見突破 / OvercomingElderlyPrejudice / 老農の偏見打破&lt;/span&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;Coding Tags&lt;/div&gt;
+        &lt;div class="tags-container"&gt;
+          &lt;span class="tag"&gt;#格外品比例高 / HighUglyProduceRatio / 格外品の比率が高い&lt;/span&gt;
+          &lt;span class="tag"&gt;#地主傳統外觀偏好 / LandlordAestheticPreference / 地主の伝統的な外観嗜好&lt;/span&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
-  &lt;!-- 請在此後依據上述範例格式填入所有訪談對話編碼結果 --&gt;
-
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-```
+\`\`\`
 
 ---
 
-### 原始三語逐字稿輸入
+### Raw Trilingual Dialogue Input
 
-請根據上述規則，進行編碼、標記引言與重構為 HTML：
+Please perform coding, quote highlighting, and HTML reconstruction according to the rules above:
 
-【請在此處貼上您的三語逐字稿】</div>
-                    
-                    <div class="actions-row">
+【Please paste your trilingual transcript here】</template>
+                    <template id="rawPromptTextJa">あなたは今、ベテランの質的研究の専門家であり学術編集者です。整理された中・英・日三言語のインタビュー対話を提供します。
+以下のタスクを完了し、その後のフォーマットとマーキングの要件を厳守してください：
+
+### タスク説明
+1. **三言語対話の重要ポイントのハイライト (Highlighter)**：中国語、英語、日本語の対話を読み、最も重要な「インタビュイーの発言（User Quotes）」を正確に特定し、特定のHTMLタグ（後述の \`&lt;mark&gt;\`）を使用して太字にし、蛍光ペン効果を適用してください。
+2. **4番目のカラムとしてコード化欄 (Coding Tags Column) の追加**：対話の各行の右側に、4番目のカラム（コード化欄）を新規に追加してください。
+3. **4番目のカラムに対照タグ (Trilingual Tags) を記入**：前の3つのカラムでハイライトした重要ポイントに基づき、4番目のカラムにコード化タグを抽出してください。**タグ自体は必ず三言語並列で表記してください**（例：\`#建立在地信用 / BuildingLocalTrust / 地元の信頼構築\`）。
+
+---
+
+### 出力フォーマットとメディア要件
+完全な **「4列式コード化対照HTMLウェブページ形式コード」** を出力してください。このウェブページはパソコン画面上で4つのカラムが平行に配置されます：
+1. 中文 (Chinese) — *ハイライトされた重要ポイントを含む*
+2. English — *ハイライトされた重要ポイントを含む*
+3. 日本語 (Japanese) — *ハイライトされた重要ポイントを含む*
+4. コード化タグ (Coding Tags) — *4番目の列、三言語並列タグを含む*
+
+スマホ画面では自動的に縦に並ぶようになります。以下の構造を使用し、コンテンツを直接入力してください。CSSスタイルは一切省略しないでください：
+
+\`\`\`html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;インタビュー・コーディング＆タグ付け手帖&lt;/title&gt;
+&lt;style&gt;
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 992px) {
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
+  }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 992px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.78rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #e7e5e4; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div class="header-title"&gt;インタビュー・コーディング＆タグ付け手帖&lt;/div&gt;
+  
+  &lt;div class="row"&gt;
+    &lt;div class="grid-col"&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;賴大哥：呃，其實我們一開始做有機，&lt;mark&gt;格外品真的很多&lt;/mark&gt;，那個地主看到了就覺得很不順眼。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Mr. Lai: Uh, actually when we started organic farming, &lt;mark&gt;there was a lot of ugly produce&lt;/mark&gt;, you know. The landlord saw it and felt it looked really bad.&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;賴さん：ええと、実は有機農業を始めた当初は、&lt;mark&gt;格外品が本当に多くて&lt;/mark&gt;、その、地主が見て非常に見栄えが悪く感じたようです。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;コード化タグ (Coding Tags)&lt;/div&gt;
+        &lt;div class="tags-container"&gt;
+          &lt;span class="tag"&gt;#格外品比例高 / HighUglyProduceRatio / 格外品の比率が高い&lt;/span&gt;
+          &lt;span class="tag"&gt;#地主傳統外觀偏好 / LandlordAestheticPreference / 地主の伝統的な外観嗜好&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+\`\`\`
+
+---
+
+### 原文三言語対話入力
+
+上記の規則に従って、コーディング、引用のハイライト、およびHTML再構成を行ってください：
+
+【ここに三言語インタビュー対話を貼り付けてください】</template>
+                    <div id="visiblePromptText" style="white-space: pre-wrap; word-break: break-all;"></div>
+                </div>
+                <div class="actions-row">
                         <button class="copy-btn" onclick="copyPrompt()">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -1237,5 +1351,271 @@
             frame.style.display = 'none';
         }
     </script>
+<!-- ANTIGRAVITY_DRAWER_JS_START -->
+<script>
+(() => {
+    function initCollapsibleDrawer() {
+        const drawerNav = document.querySelector(".drawer-nav");
+        if (!drawerNav) return;
+
+        const children = Array.from(drawerNav.children);
+        
+        // Group 1: 生存挑戰 (challenges)
+        const challengeTrigger = children.find(el => el.getAttribute('href') === 'eight_challenges.html');
+        
+        // Group 2: 📁 檔案下載 (files)
+        const filesTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('檔案下載'));
+
+        // Group 3: 🤖 Prompts (prompts)
+        const promptsTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('Prompts'));
+
+        function makeCollapsible(trigger, idClass, isLink = false) {
+            if (!trigger) return;
+            
+            // Find all sibling sub-items immediately following the trigger
+            const subItems = [];
+            let next = trigger.nextElementSibling;
+            while (next && next.classList.contains('drawer-sub-item')) {
+                subItems.push(next);
+                next = next.nextElementSibling;
+            }
+
+            if (subItems.length === 0) return;
+
+            // Create container
+            const container = document.createElement('div');
+            container.className = 'drawer-collapse-content ' + idClass;
+            
+            // Move subItems into container
+            trigger.parentNode.insertBefore(container, subItems[0]);
+            subItems.forEach(item => container.appendChild(item));
+
+            // For links, add a dynamic "Overview" page inside the accordion
+            if (isLink && trigger.getAttribute('href')) {
+                const overviewItem = document.createElement('a');
+                overviewItem.className = 'drawer-sub-item';
+                overviewItem.href = trigger.getAttribute('href');
+                overviewItem.innerHTML = `
+                    <span class="lang-zh">所有挑戰總覽</span>
+                    <span class="lang-en">All Challenges</span>
+                    <span class="lang-ja">すべての課題</span>
+                `;
+                container.insertBefore(overviewItem, container.firstChild);
+                
+                if (trigger.classList.contains('active')) {
+                    overviewItem.classList.add('active');
+                    trigger.classList.remove('active');
+                }
+            }
+
+            // Add chevron to trigger
+            const arrow = document.createElement('span');
+            arrow.className = 'collapse-arrow';
+            arrow.innerHTML = '&#9662;'; // downward triangle
+            
+            // Align trigger layout
+            trigger.style.display = 'flex';
+            trigger.style.alignItems = 'center';
+            trigger.appendChild(arrow);
+            
+            // Add class to trigger
+            trigger.classList.add('collapse-trigger');
+
+            // Check if any sub-item inside is active or if trigger is active
+            const hasActive = trigger.classList.contains('active') || Array.from(container.children).some(item => item.classList.contains('active'));
+            if (hasActive) {
+                container.classList.add('expanded');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+
+            // Toggle on click
+            trigger.addEventListener('click', (e) => {
+                if (isLink) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                const isExpanded = container.classList.toggle('expanded');
+                arrow.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        }
+
+        makeCollapsible(challengeTrigger, 'challenges-group', true);
+        makeCollapsible(filesTrigger, 'files-group', false);
+        makeCollapsible(promptsTrigger, 'prompts-group', false);
+    }
+
+    // Dynamic Multi-Language Prompt Renderer & Copying Overrides
+    function initTrilingualPromptRenderer() {
+        // Find visible prompt container
+        const visiblePromptText = document.getElementById('visiblePromptText');
+        if (!visiblePromptText) return; // Not a prompt tool page
+
+        // Function to update the displayed prompt
+        window.updatePromptDisplay = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1); // rawPromptTextZh, rawPromptTextEn, rawPromptTextJa
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            visiblePromptText.textContent = decodedString;
+        };
+
+        // Helper to copy text to clipboard
+        function copyTextToClipboard(text, successCallback) {
+            function fallbackCopy(textVal) {
+                const textArea = document.createElement("textarea");
+                textArea.value = textVal;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Fallback copy failed', err);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    successCallback();
+                }).catch(err => {
+                    fallbackCopy(text);
+                    successCallback();
+                });
+            } else {
+                fallbackCopy(text);
+                successCallback();
+            }
+        }
+
+        // Helper to flash copy success state on button text
+        function flashSuccessButtonText() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const zhText = document.getElementById('copyBtnText');
+            const enText = document.getElementById('copyBtnTextEn');
+            const jaText = document.getElementById('copyBtnTextJa');
+            
+            if (zhText && enText && jaText) {
+                const originalZh = zhText.innerText;
+                const originalEn = enText.innerText;
+                const originalJa = jaText.innerText;
+                
+                zhText.innerText = "已複製！";
+                enText.innerText = "Copied!";
+                jaText.innerText = "コピーしました！";
+                
+                setTimeout(() => {
+                    zhText.innerText = originalZh;
+                    enText.innerText = originalEn;
+                    jaText.innerText = originalJa;
+                }, 2000);
+            } else {
+                const btn = document.getElementById('copyBtn') || document.querySelector('.action-btn-orange') || document.querySelector('.action-btn-secondary');
+                if (btn) {
+                    const originalText = btn.innerText;
+                    btn.innerText = lang === 'en' ? 'Copied!' : (lang === 'ja' ? 'コピー完了！' : '已複製！');
+                    setTimeout(() => { btn.innerText = originalText; }, 2000);
+                }
+            }
+        }
+
+        // Dynamic Overrides for global copy functions
+        // For Step 2-6: copyPrompt
+        window.copyPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, flashSuccessButtonText);
+        };
+
+        // For Step 1: copyMasterPrompt (Only copy the master template)
+        window.copyMasterPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Master template copied!' : (lang === 'ja' ? 'マスタープロンプトをコピーしました！' : '已複製主提示詞範本！'));
+                }
+            });
+        };
+
+        // For Step 1: copyCombinedPrompt (Combine templates with parameters)
+        window.copyCombinedPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+
+            // Resolve parameters
+            const q = window.questData ? window.questData[window.currentQuestId] : null;
+            if (!q) return;
+
+            let combined = decodedString
+                .replace("{TopicTitle}", q.title)
+                .replace("{TopicOutline}", q.outline)
+                .replace("{TopicLaws}", q.laws)
+                .replace("{TopicData}", q.data)
+                .replace("{TopicCases}", q.cases)
+                .replace("{TopicSDGs}", q.sdgs);
+
+            copyTextToClipboard(combined, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Combined prompt copied!' : (lang === 'ja' ? 'プロンプトをコピーしました！' : '組合提示詞複製成功！直接貼給 AI 即可生成背景資訊報告！'));
+                }
+            });
+        };
+
+        // Run initial render
+        window.updatePromptDisplay();
+
+        // Register MutationObserver to automatically trigger re-rendering when lang-select changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'lang-select') {
+                    window.updatePromptDisplay();
+                }
+            });
+        });
+        observer.observe(document.body, { attributes: true });
+    }
+
+    // Bulletproof initialization
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+            initCollapsibleDrawer();
+            initTrilingualPromptRenderer();
+        });
+    } else {
+        initCollapsibleDrawer();
+        initTrilingualPromptRenderer();
+    }
+})();
+</script>
+<!-- ANTIGRAVITY_DRAWER_JS_END -->
 </body>
 </html>

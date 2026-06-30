@@ -566,6 +566,51 @@
             flex-shrink: 0;
         }
     </style>
+<!-- ANTIGRAVITY_DRAWER_CSS_START -->
+<style>
+/* Collapsible navigation styling for drawer-nav */
+.drawer-collapse-content {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    margin-left: 16px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+.drawer-collapse-content.expanded {
+    display: flex;
+}
+.collapse-trigger {
+    cursor: pointer;
+    user-select: none;
+}
+.collapse-arrow {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+/* Make the drawer-nav container scroll cleanly and not be cut off */
+.drawer-nav {
+    padding-bottom: 80px !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
+}
+/* Improve the scrollbar usability */
+.drawer-nav::-webkit-scrollbar {
+    width: 8px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 99px !important;
+}
+.drawer-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+</style>
+<!-- ANTIGRAVITY_DRAWER_CSS_END -->
 </head>
 <body lang-select="zh" data-theme="light">
 
@@ -649,7 +694,8 @@
                         コンテナ内のプロンプト全体をコピーし、AIモデル（GeminiやChatGPTなど）に入力してください。
                     </p>
                     
-                    <div class="prompt-container" id="promptTextContainer"><template id="rawPromptText">你現在是一位資深的跨國質化研究專家與跨文化翻譯專家。我將提供你一段整理好的中文訪談逐字稿。
+                    <div class="prompt-container" id="promptTextContainer">
+                    <template id="rawPromptTextZh">你現在是一位資深的跨國質化研究專家與跨文化翻譯專家。我將提供你一段整理好的中文訪談逐字稿。
 請幫我完成以下任務，並嚴格遵循後續的格式與翻譯要求：
 
 ### 任務說明
@@ -668,7 +714,7 @@
 ### 輸出格式與載體要求
 請輸出一份完整的 **「三語並列 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左、中、右三欄完美對稱，在手機上則會自動適應，可讀性極高。請使用以下結構並填入翻譯內容，不要省略 any CSS 樣式：
 
-```html
+\`\`\`html
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-Hant"&gt;
 &lt;head&gt;
@@ -679,149 +725,225 @@
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
   .container { max-width: 1000px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
   .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
-  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
-  .meta-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e7e5e4; padding-bottom: 8px; margin-bottom: 12px; }
-  .speaker { font-weight: 700; font-size: 1rem; }
-  .speaker.interviewer { color: #1c3d27; }
-  .speaker.interviewee { color: #b35c24; }
-  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .row { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 768px) {
-    .grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .grid-col { grid-template-columns: 1fr 1fr 1fr; }
   }
-  .lang-col { padding: 12px; border-radius: 8px; background: #fafaf9; border: 1px solid #f5f5f4; }
-  .lang-label { font-size: 0.75em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
-  .text { font-size: 0.95em; line-height: 1.7; }
-  .cultural-note { margin-top: 12px; padding: 12px; background: #fffbeb; border-left: 4px solid #d97706; border-radius: 4px; font-size: 0.88em; line-height: 1.6; }
-  .note-title { font-weight: 700; color: #b45309; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 768px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .remarks { font-size: 0.8rem; background: #fffbeb; color: #b45309; padding: 8px 12px; border-radius: 6px; border: 1px solid #fde68a; margin-top: 10px; }
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class="container"&gt;
   &lt;div class="header-title"&gt;三語對照訪談手札&lt;/div&gt;
-
+  
   &lt;div class="row"&gt;
-    &lt;div class="meta-header"&gt;
-      &lt;div class="speaker interviewee"&gt;受訪者：賴大哥&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="grid"&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
-        &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。&lt;/div&gt;
+    &lt;div class="grid-col"&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;賴大哥：呃，其實我們一開始做有機，格外品真的很多，那個地主看到了就覺得很不順眼。&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;English&lt;/div&gt;
-        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around.&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Mr. Lai: Uh, actually when we started organic farming, there was a lot of ugly produce, you know. The landlord saw it and felt it looked really bad.&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農（地元の高齢農家）たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;賴さん：ええと、実は有機農業を始めた当初は、格外品（規格外農産物）が本当に多くて、その、地主が見て非常に見栄えが悪く感じたようです。&lt;/div&gt;
+        &lt;div class="remarks"&gt;
+          &lt;strong&gt;Cultural Remarks:&lt;/strong&gt;&lt;br&gt;
+          EN: "Ugly produce (格外品)" refers to agricultural products in Taiwan that are nutritious and safe but fail to meet official grading standards for appearance.&lt;br&gt;
+          JA: 「格外品」とは、台湾において品質や安全性には問題ないものの、外見が市場の規格に適合しない規格外農産物を指します。
+        &lt;/div&gt;
       &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="cultural-note"&gt;
-      &lt;div class="note-title"&gt;台灣農村脈絡解說 (Cultural Notes)&lt;/div&gt;
-      &lt;div&gt;&lt;strong&gt;[老農]&lt;/strong&gt;&lt;br&gt;EN: Refers to elderly traditional farmers in Taiwan.&lt;br&gt;JA: 台湾の伝統的な高齢農家を指す言葉。&lt;br&gt;&lt;br&gt;&lt;strong&gt;[手無縛雞之力]&lt;/strong&gt;&lt;br&gt;EN: A Chinese idiom meaning physically weak or lacking physical strength.&lt;br&gt;JA: 四字熟語。鶏を縛る力もないほど、体力がなくひ弱な様子。&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-```
+\`\`\`
 
 ---
 
-### 原始中文逐字稿輸入
+### 中文訪談逐字稿輸入
 
-請根據上述規則，進行翻譯與重構：
+請根據上述規則，進行三語翻譯與 HTML 重構：
 
-【請在此處貼上您的中文逐字稿】</template>你現在是一位資深的跨國質化研究專家與跨文化翻譯專家。我將提供你一段整理好的中文訪談逐字稿。
-請幫我完成以下任務，並嚴格遵循後續的格式與翻譯要求：
+【請在此處貼上您的中文訪談逐字稿】</template>
+                    <template id="rawPromptTextEn">You are now an experienced global qualitative research expert and cross-cultural translation specialist. I will provide you with a structured Chinese interview transcript.
+Please help me complete the following tasks and strictly follow the formatting and translation requirements below:
 
-### 任務說明
-1. **三語對照翻譯**：將中文逐字稿逐行翻譯為「英文 (English)」與「日文 (Japanese)」。
-2. **保留語氣與贅詞翻譯**：在英文與日文的翻譯中，應儘量對應保留中文原文的語氣、贅詞（如呃、那個）或停頓（如……），展現受訪者真實的說話狀態，不要過度修飾為死板的書面語。
-3. **台灣農村文化備註 (Cultural Notes)**：
-   * 當訪談對話中出現台灣特有的農村俚語、農業法規、特定政策或在地文化詞彙時，請在「備註 (Remarks)」欄位中，以英日雙語為非台灣籍研究員補充簡短的背景說明。
-   * **常見詞彙舉例**：
-     - 格外品：英譯建議使用 "Ugly produce (aesthetic-deficient crops)"，並在備註說明這在台灣是指「規格以外但安全營養的蔬果」。
-     - 穀東/穀東俱樂部：說明這是台灣早期推動社區支持型農業 (CSA) 的契作認股模式。
-     - 打工換宿：說明是以勞務（如幫忙農作或打掃）換取免費住宿的旅行/落腳方式。
-     - 陪伴長者/青銀共居：說明是年輕人與在地高齡長者共同居住，以陪伴或簡單勞務代替部分房租。
+### Task Description
+1. **Trilingual Alignment Translation**: Translate the Chinese transcript line-by-line into "English" and "Japanese".
+2. **Preserve Spoken Tone and Filler Words in Translation**: In the English and Japanese translations, try to preserve the spoken tone, filler words (e.g., uh, like), or pauses (e.g., ...) of the original Chinese text. Do not over-translate them into rigid written text.
+3. **Taiwan Rural Cultural Notes**:
+   - When unique Taiwanese rural slang, agricultural regulations, specific policies, or local cultural terms appear in the dialogue, please add a brief background explanation in both English and Japanese in the "Remarks" column for non-Taiwanese researchers.
+   - **Examples of Common Terms**:
+     - Ugly Produce (格外品): Suggest English translation "Ugly produce (aesthetic-deficient crops)" and explain in the Remarks that this refers to "fruits and vegetables in Taiwan that fall outside standard sizes but are safe and nutritious."
+     - Shareholding Club (穀東/穀東俱樂部): Explain that this was Taiwan's early contract farming and shareholding model promoting Community Supported Agriculture (CSA).
+     - Working for Accommodations (打工換宿): Explain that this is a travel/accommodation model where labor (such as helping with farming or cleaning) is exchanged for free lodging.
+     - Intergenerational Co-living (陪伴長者/青銀共居): Explain that this refers to young people living with local elderly residents, replacing part of the rent with companionship or simple chores.
 
 ---
 
-### 輸出格式與載體要求
-請輸出一份完整的 **「三語並列 HTML 網頁格式代碼」**。該網頁在電腦螢幕上會呈現左、中、右三欄完美對稱，在手機上則會自動適應，可讀性極高。請使用以下結構並填入翻譯內容，不要省略 any CSS 樣式：
+### Output Format and Container Requirements
+Please output a complete **"Trilingual Side-by-Side HTML Webpage Code"**. The webpage should display three perfectly symmetrical columns (Left, Middle, Right) on desktop screens and adapt to stacking on mobile screens for maximum readability. Please use the following structure and fill in the translated content directly. Do not omit any CSS styles:
 
-```html
+\`\`\`html
 &lt;!DOCTYPE html&gt;
-&lt;html lang="zh-Hant"&gt;
+&lt;html lang="en"&gt;
 &lt;head&gt;
 &lt;meta charset="utf-8"&gt;
 &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;title&gt;三語對照訪談手札&lt;/title&gt;
+&lt;title&gt;Trilingual Interview Notes&lt;/title&gt;
 &lt;style&gt;
   body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
   .container { max-width: 1000px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
   .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
-  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
-  .meta-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e7e5e4; padding-bottom: 8px; margin-bottom: 12px; }
-  .speaker { font-weight: 700; font-size: 1rem; }
-  .speaker.interviewer { color: #1c3d27; }
-  .speaker.interviewee { color: #b35c24; }
-  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .row { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 768px) {
-    .grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .grid-col { grid-template-columns: 1fr 1fr 1fr; }
   }
-  .lang-col { padding: 12px; border-radius: 8px; background: #fafaf9; border: 1px solid #f5f5f4; }
-  .lang-label { font-size: 0.75em; font-weight: 700; text-transform: uppercase; color: #78716c; margin-bottom: 6px; letter-spacing: 0.5px; }
-  .text { font-size: 0.95em; line-height: 1.7; }
-  .cultural-note { margin-top: 12px; padding: 12px; background: #fffbeb; border-left: 4px solid #d97706; border-radius: 4px; font-size: 0.88em; line-height: 1.6; }
-  .note-title { font-weight: 700; color: #b45309; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 768px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .remarks { font-size: 0.8rem; background: #fffbeb; color: #b45309; padding: 8px 12px; border-radius: 6px; border: 1px solid #fde68a; margin-top: 10px; }
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div class="container"&gt;
-  &lt;div class="header-title"&gt;三語對照訪談手札&lt;/div&gt;
-
+  &lt;div class="header-title"&gt;Trilingual Interview Notes&lt;/div&gt;
+  
   &lt;div class="row"&gt;
-    &lt;div class="meta-header"&gt;
-      &lt;div class="speaker interviewee"&gt;受訪者：賴大哥&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="grid"&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;中文 (Chinese)&lt;/div&gt;
-        &lt;div class="text"&gt;呃，這個……其實一開始真的很難啦。老農他們看我們就是那個都市來的書生，手無縛雞之力嘛，覺得我們只是來玩玩的。&lt;/div&gt;
+    &lt;div class="grid-col"&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;賴大哥：呃，其實我們一開始做有機，格外品真的很多，那個地主看到了就覺得很不順眼。&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;English&lt;/div&gt;
-        &lt;div class="text"&gt;Uh, this... actually it was really difficult at the beginning. The elderly farmers saw us just as those urban scholars who couldn't lift a feather, thinking we were just here to play around.&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Mr. Lai: Uh, actually when we started organic farming, there was a lot of ugly produce, you know. The landlord saw it and felt it looked really bad.&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class="lang-col"&gt;
-        &lt;div class="lang-label"&gt;日本語&lt;/div&gt;
-        &lt;div class="text"&gt;ええと、こちらは……実は最初は本当に難しかったんですよ。老農（地元の高齢農家）たちは私たちのことを、都会から来た本を読むだけの、ひ弱な若者だと見ていましたから。ただ遊びに来ているだけだと思われていたんです。&lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;賴さん：ええと、実は有機農業を始めた当初は、格外品（規格外農産物）が本当に多くて、該、地主が見て非常に見栄えが悪く感じたようです。&lt;/div&gt;
+        &lt;div class="remarks"&gt;
+          &lt;strong&gt;Cultural Remarks:&lt;/strong&gt;&lt;br&gt;
+          EN: "Ugly produce (格外品)" refers to agricultural products in Taiwan that are nutritious and safe but fail to meet official grading standards for appearance.&lt;br&gt;
+          JA: 「格外品」とは、台湾において品質や安全性には問題ないものの、外見が市場の規格に適合しない規格外農産物を指します。
+        &lt;/div&gt;
       &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="cultural-note"&gt;
-      &lt;div class="note-title"&gt;台灣農村脈絡解說 (Cultural Notes)&lt;/div&gt;
-      &lt;div&gt;&lt;strong&gt;[老農]&lt;/strong&gt;&lt;br&gt;EN: Refers to elderly traditional farmers in Taiwan.&lt;br&gt;JA: 台湾の伝統的な高齢農家を指す言葉。&lt;br&gt;&lt;br&gt;&lt;strong&gt;[手無縛雞之力]&lt;/strong&gt;&lt;br&gt;EN: A Chinese idiom meaning physically weak or lacking physical strength.&lt;br&gt;JA: 四字熟語。鶏を縛る力もないほど、体力がなくひ弱な様子。&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-```
+\`\`\`
 
 ---
 
-### 原始中文逐字稿輸入
+### Chinese Interview Transcript Input
 
-請根據上述規則，進行翻譯與重構：
+Please perform trilingual translation and HTML reconstruction according to the rules above:
 
-【請在此處貼上您的中文逐字稿】</div>
-                    
-                    <div class="actions-row">
+【Please paste your Chinese interview transcript here】</template>
+                    <template id="rawPromptTextJa">あなたは今、ベテランのグローバル質的研究の専門家であり異文化翻訳の専門家です。整理された中国語のインタビュー逐字録を提供します。
+以下のタスクを完了し、その後のフォーマットと翻訳の要件を厳守してください：
+
+### タスク説明
+1. **三言語並列翻訳**：中国語の逐字録を一行ずつ「英語 (English)」と「日本語 (Japanese)」に翻訳してください。
+2. **話し言葉の口調と不要語の維持**：英語および日本語の翻訳において、中国語原文の話し言葉の口調、不要語（例：ええと、その）、または一時停止（例：……）を極力維持し、受訪者のリアルな話し言葉を再現してください。硬苦しい書き言葉に過度に修飾しないでください。
+3. **台湾農村文化の注釈 (Cultural Notes)**：
+   - インタビュー内で台湾特有の農村スラング、農業法規制、特定の政策、または地域文化の用語が登場した場合、非台湾籍の研究員のために、「備考 (Remarks)」欄に英語と日本語で簡単な背景説明を追加してください。
+   - **よく使われる用語の例**：
+     - 格外品：英訳は "Ugly produce (aesthetic-deficient crops)" を推奨し、備考欄で「規格外だが安全で栄養価の高い農産物」であることを説明します。
+     - 穀東／穀東クラブ：台湾における初期のコミュニティ支援型農業 (CSA) の契約栽培出資モデルであることを説明します。
+     - 打工換宿：労働（農作業や掃除など）の提供と引き換えに、宿泊費を無料にする旅行・滞在の形態であることを説明します。
+     - 陪伴長者／青銀共居：若者が地域の高齢者と共同生活を送り、話し相手や簡単な労働を提供することで家賃の一部を相殺する仕組みであることを説明します。
+
+---
+
+### 出力フォーマットとメディア要件
+完全な **「三言語並列HTMLウェブページ形式コード」** を出力してください。このウェブページはパソコンの画面では左・中・右の3カラムが美しく対称に表示され、スマホでは自動的にレスポンシブ表示され、非常に読みやすい設計になっています。以下の構造を使用し、翻訳内容を直接入力してください。CSSスタイルは一切省略しないでください：
+
+\`\`\`html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;三言語並列インタビュー手帖&lt;/title&gt;
+&lt;style&gt;
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1000px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 768px) {
+    .grid-col { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 768px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .remarks { font-size: 0.8rem; background: #fffbeb; color: #b45309; padding: 8px 12px; border-radius: 6px; border: 1px solid #fde68a; margin-top: 10px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div class="header-title"&gt;三言語並列インタビュー手帖&lt;/div&gt;
+  
+  &lt;div class="row"&gt;
+    &lt;div class="grid-col"&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;中文 (Chinese)&lt;/div&gt;
+        &lt;div class="text"&gt;賴大哥：呃，其實我們一開始做有機，格外品真的很多，那個地主看到了就覺得很不順眼。&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;English&lt;/div&gt;
+        &lt;div class="text"&gt;Mr. Lai: Uh, actually when we started organic farming, there was a lot of ugly produce, you know. The landlord saw it and felt it looked really bad.&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="lang-box"&gt;
+        &lt;div class="label"&gt;日本語&lt;/div&gt;
+        &lt;div class="text"&gt;賴さん：ええと、実は有機農業を始めた当初は、格外品（規格外農産物）が本当に多くて、その、地主が見て非常に見栄えが悪く感じたようです。&lt;/div&gt;
+        &lt;div class="remarks"&gt;
+          &lt;strong&gt;Cultural Remarks:&lt;/strong&gt;&lt;br&gt;
+          EN: "Ugly produce (格外品)" refers to agricultural products in Taiwan that are nutritious and safe but fail to meet official grading standards for appearance.&lt;br&gt;
+          JA: 「格外品」とは、台湾において品質や安全性には問題ないものの、外見が市場の規格に適合しない規格外農産物を指します。
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+\`\`\`
+
+---
+
+### 中国語インタビュー逐字録入力
+
+上記の規則に従って、三言語翻訳とHTML再構成を行ってください：
+
+【ここに中国語のインタビュー逐字録を貼り付けてください】</template>
+                    <div id="visiblePromptText" style="white-space: pre-wrap; word-break: break-all;"></div>
+                </div>
+                <div class="actions-row">
                         <button class="copy-btn" onclick="copyPrompt()">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -1234,5 +1356,271 @@
             frame.style.display = 'none';
         }
     </script>
+<!-- ANTIGRAVITY_DRAWER_JS_START -->
+<script>
+(() => {
+    function initCollapsibleDrawer() {
+        const drawerNav = document.querySelector(".drawer-nav");
+        if (!drawerNav) return;
+
+        const children = Array.from(drawerNav.children);
+        
+        // Group 1: 生存挑戰 (challenges)
+        const challengeTrigger = children.find(el => el.getAttribute('href') === 'eight_challenges.html');
+        
+        // Group 2: 📁 檔案下載 (files)
+        const filesTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('檔案下載'));
+
+        // Group 3: 🤖 Prompts (prompts)
+        const promptsTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('Prompts'));
+
+        function makeCollapsible(trigger, idClass, isLink = false) {
+            if (!trigger) return;
+            
+            // Find all sibling sub-items immediately following the trigger
+            const subItems = [];
+            let next = trigger.nextElementSibling;
+            while (next && next.classList.contains('drawer-sub-item')) {
+                subItems.push(next);
+                next = next.nextElementSibling;
+            }
+
+            if (subItems.length === 0) return;
+
+            // Create container
+            const container = document.createElement('div');
+            container.className = 'drawer-collapse-content ' + idClass;
+            
+            // Move subItems into container
+            trigger.parentNode.insertBefore(container, subItems[0]);
+            subItems.forEach(item => container.appendChild(item));
+
+            // For links, add a dynamic "Overview" page inside the accordion
+            if (isLink && trigger.getAttribute('href')) {
+                const overviewItem = document.createElement('a');
+                overviewItem.className = 'drawer-sub-item';
+                overviewItem.href = trigger.getAttribute('href');
+                overviewItem.innerHTML = `
+                    <span class="lang-zh">所有挑戰總覽</span>
+                    <span class="lang-en">All Challenges</span>
+                    <span class="lang-ja">すべての課題</span>
+                `;
+                container.insertBefore(overviewItem, container.firstChild);
+                
+                if (trigger.classList.contains('active')) {
+                    overviewItem.classList.add('active');
+                    trigger.classList.remove('active');
+                }
+            }
+
+            // Add chevron to trigger
+            const arrow = document.createElement('span');
+            arrow.className = 'collapse-arrow';
+            arrow.innerHTML = '&#9662;'; // downward triangle
+            
+            // Align trigger layout
+            trigger.style.display = 'flex';
+            trigger.style.alignItems = 'center';
+            trigger.appendChild(arrow);
+            
+            // Add class to trigger
+            trigger.classList.add('collapse-trigger');
+
+            // Check if any sub-item inside is active or if trigger is active
+            const hasActive = trigger.classList.contains('active') || Array.from(container.children).some(item => item.classList.contains('active'));
+            if (hasActive) {
+                container.classList.add('expanded');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+
+            // Toggle on click
+            trigger.addEventListener('click', (e) => {
+                if (isLink) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                const isExpanded = container.classList.toggle('expanded');
+                arrow.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        }
+
+        makeCollapsible(challengeTrigger, 'challenges-group', true);
+        makeCollapsible(filesTrigger, 'files-group', false);
+        makeCollapsible(promptsTrigger, 'prompts-group', false);
+    }
+
+    // Dynamic Multi-Language Prompt Renderer & Copying Overrides
+    function initTrilingualPromptRenderer() {
+        // Find visible prompt container
+        const visiblePromptText = document.getElementById('visiblePromptText');
+        if (!visiblePromptText) return; // Not a prompt tool page
+
+        // Function to update the displayed prompt
+        window.updatePromptDisplay = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1); // rawPromptTextZh, rawPromptTextEn, rawPromptTextJa
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            visiblePromptText.textContent = decodedString;
+        };
+
+        // Helper to copy text to clipboard
+        function copyTextToClipboard(text, successCallback) {
+            function fallbackCopy(textVal) {
+                const textArea = document.createElement("textarea");
+                textArea.value = textVal;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Fallback copy failed', err);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    successCallback();
+                }).catch(err => {
+                    fallbackCopy(text);
+                    successCallback();
+                });
+            } else {
+                fallbackCopy(text);
+                successCallback();
+            }
+        }
+
+        // Helper to flash copy success state on button text
+        function flashSuccessButtonText() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const zhText = document.getElementById('copyBtnText');
+            const enText = document.getElementById('copyBtnTextEn');
+            const jaText = document.getElementById('copyBtnTextJa');
+            
+            if (zhText && enText && jaText) {
+                const originalZh = zhText.innerText;
+                const originalEn = enText.innerText;
+                const originalJa = jaText.innerText;
+                
+                zhText.innerText = "已複製！";
+                enText.innerText = "Copied!";
+                jaText.innerText = "コピーしました！";
+                
+                setTimeout(() => {
+                    zhText.innerText = originalZh;
+                    enText.innerText = originalEn;
+                    jaText.innerText = originalJa;
+                }, 2000);
+            } else {
+                const btn = document.getElementById('copyBtn') || document.querySelector('.action-btn-orange') || document.querySelector('.action-btn-secondary');
+                if (btn) {
+                    const originalText = btn.innerText;
+                    btn.innerText = lang === 'en' ? 'Copied!' : (lang === 'ja' ? 'コピー完了！' : '已複製！');
+                    setTimeout(() => { btn.innerText = originalText; }, 2000);
+                }
+            }
+        }
+
+        // Dynamic Overrides for global copy functions
+        // For Step 2-6: copyPrompt
+        window.copyPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, flashSuccessButtonText);
+        };
+
+        // For Step 1: copyMasterPrompt (Only copy the master template)
+        window.copyMasterPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+            
+            copyTextToClipboard(decodedString, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Master template copied!' : (lang === 'ja' ? 'マスタープロンプトをコピーしました！' : '已複製主提示詞範本！'));
+                }
+            });
+        };
+
+        // For Step 1: copyCombinedPrompt (Combine templates with parameters)
+        window.copyCombinedPrompt = function() {
+            const lang = document.body.getAttribute('lang-select') || 'zh';
+            const templateId = 'rawPromptText' + lang.charAt(0).toUpperCase() + lang.slice(1);
+            const rawTemplate = document.getElementById(templateId);
+            if (!rawTemplate) return;
+            
+            const rawText = rawTemplate.innerHTML;
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
+
+            // Resolve parameters
+            const q = window.questData ? window.questData[window.currentQuestId] : null;
+            if (!q) return;
+
+            let combined = decodedString
+                .replace("{TopicTitle}", q.title)
+                .replace("{TopicOutline}", q.outline)
+                .replace("{TopicLaws}", q.laws)
+                .replace("{TopicData}", q.data)
+                .replace("{TopicCases}", q.cases)
+                .replace("{TopicSDGs}", q.sdgs);
+
+            copyTextToClipboard(combined, () => {
+                if (window.showToast) {
+                    window.showToast(lang === 'en' ? 'Combined prompt copied!' : (lang === 'ja' ? 'プロンプトをコピーしました！' : '組合提示詞複製成功！直接貼給 AI 即可生成背景資訊報告！'));
+                }
+            });
+        };
+
+        // Run initial render
+        window.updatePromptDisplay();
+
+        // Register MutationObserver to automatically trigger re-rendering when lang-select changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'lang-select') {
+                    window.updatePromptDisplay();
+                }
+            });
+        });
+        observer.observe(document.body, { attributes: true });
+    }
+
+    // Bulletproof initialization
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+            initCollapsibleDrawer();
+            initTrilingualPromptRenderer();
+        });
+    } else {
+        initCollapsibleDrawer();
+        initTrilingualPromptRenderer();
+    }
+})();
+</script>
+<!-- ANTIGRAVITY_DRAWER_JS_END -->
 </body>
 </html>
