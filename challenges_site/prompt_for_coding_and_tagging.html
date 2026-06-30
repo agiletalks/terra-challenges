@@ -1116,7 +1116,7 @@ Please perform coding, quote highlighting, and HTML reconstruction according to 
             <span class="lang-en">Doraemon Gadgets Roulette</span>
             <span class="lang-ja">ドラえもん道具ルーレット</span>
         </a>
-                <div class="drawer-category-header" style="padding: 12px 16px 4px 48px; font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
+                                <div class="drawer-category-header" style="padding: 12px 16px 4px 48px; font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
                     Prompts
                 </div>
                 <a href="prompt_for_ai_desk_research.html" class="drawer-sub-item">
@@ -1135,9 +1135,19 @@ Please perform coding, quote highlighting, and HTML reconstruction according to 
                     <span class="lang-ja">3. 三言語対照翻訳と注釈追加</span>
                 </a>
                 <a href="prompt_for_coding_and_tagging.html" class="drawer-sub-item active">
-                    <span class="lang-zh">4. 執行編碼與標籤化</span>
-                    <span class="lang-en">4. Execute Coding & Tagging</span>
-                    <span class="lang-ja">4. コード化とタグ付け</span>
+                    <span class="lang-zh">4. 編碼與標記資料</span>
+                    <span class="lang-en">4. Coding and Tagging Data</span>
+                    <span class="lang-ja">4. コーディングとタグ付け</span>
+                </a>
+                <a href="prompt_for_theme_extraction.html" class="drawer-sub-item">
+                    <span class="lang-zh">5. 提取痛點、期望與維度</span>
+                    <span class="lang-en">5. Extract Pain Points, Hopes</span>
+                    <span class="lang-ja">5. 痛点・期待・次元の抽出</span>
+                </a>
+                <a href="prompt_for_hmw_generation.html" class="drawer-sub-item">
+                    <span class="lang-zh">6. 轉化為 HMW 問題</span>
+                    <span class="lang-en">6. Convert into HMWs</span>
+                    <span class="lang-ja">6. HMW質問に変換</span>
                 </a>
             </nav>
         </div>
@@ -1366,7 +1376,7 @@ Please perform coding, quote highlighting, and HTML reconstruction according to 
         // Group 2: 📁 檔案下載 (files)
         const filesTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('檔案下載'));
 
-        // Group 3: 🤖 Prompts (prompts)
+        // Group 3: Prompts (prompts)
         const promptsTrigger = children.find(el => el.classList.contains('drawer-category-header') && el.textContent.includes('Prompts'));
 
         function makeCollapsible(trigger, idClass, isLink = false) {
