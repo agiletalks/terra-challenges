@@ -1261,11 +1261,36 @@
             });
         }
 
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
         function copyMasterPrompt() {
             const text = document.getElementById('master-prompt-container').innerText;
-            navigator.clipboard.writeText(text).then(() => {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("已複製主提示詞範本！");
+                }).catch(err => {
+                    fallbackCopy(text);
+                    showToast("已複製主提示詞範本！");
+                });
+            } else {
+                fallbackCopy(text);
                 showToast("已複製主提示詞範本！");
-            });
+            }
         }
 
         function copyCombinedPrompt() {
@@ -1273,7 +1298,6 @@
             const q = questData[currentQuestId];
             if (!q) return;
 
-            // Replace tags in the master prompt
             let combined = masterText
                 .replace("{TopicTitle}", q.title)
                 .replace("{TopicOutline}", q.outline)
@@ -1282,9 +1306,17 @@
                 .replace("{TopicCases}", q.cases)
                 .replace("{TopicSDGs}", q.sdgs);
 
-            navigator.clipboard.writeText(combined).then(() => {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(combined).then(() => {
+                    showToast("組合提示詞複製成功！直接貼給 AI 即可生成背景資訊報告！");
+                }).catch(err => {
+                    fallbackCopy(combined);
+                    showToast("組合提示詞複製成功！直接貼給 AI 即可生成背景資訊報告！");
+                });
+            } else {
+                fallbackCopy(combined);
                 showToast("組合提示詞複製成功！直接貼給 AI 即可生成背景資訊報告！");
-            });
+            }
         }
 
         function showToast(message) {

@@ -1125,16 +1125,45 @@
             drawerOverlay.addEventListener('click', () => navDrawer.classList.remove('open'));
         }
 
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
         function copyPrompt() {
             const rawText = document.getElementById('rawPromptText').innerHTML;
             const parser = new DOMParser();
             const decodedString = parser.parseFromString(rawText, 'text/html').body.textContent;
             
-            navigator.clipboard.writeText(decodedString).then(() => {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(decodedString).then(() => {
+                    showSuccessText();
+                }).catch(err => {
+                    fallbackCopy(decodedString);
+                    showSuccessText();
+                });
+            } else {
+                fallbackCopy(decodedString);
+                showSuccessText();
+            }
+
+            function showSuccessText() {
                 const zhText = document.getElementById('copyBtnText');
                 const enText = document.getElementById('copyBtnTextEn');
                 const jaText = document.getElementById('copyBtnTextJa');
-                
+                if (!zhText) return;
                 const origZh = zhText.innerText;
                 const origEn = enText.innerText;
                 const origJa = jaText.innerText;
@@ -1148,9 +1177,7 @@
                     enText.innerText = origEn;
                     jaText.innerText = origJa;
                 }, 2000);
-            }).catch(err => {
-                alert("Failed to copy: " + err);
-            });
+            }
         }
 
         function downloadSampleFile() {
