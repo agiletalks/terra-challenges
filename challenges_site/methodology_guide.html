@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <script>
+        if (localStorage.getItem('terra-authorized') !== 'true' && sessionStorage.getItem('terra-authorized') !== 'true') {
+            window.location.replace('index.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.hash));
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰拉學校｜從訪談到 HMW 的方法論 (Interview to HMW Methodology)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-card: #ffffff;
+            --text-primary: #1C2421;
+            --text-secondary: #6B7280;
+            --accent-color: #B35C24; /* clay terracotta */
+            --accent-hover: #A04B19;
+            --accent-green: #0F2A1C; /* deep forest green */
+            --accent-green-hover: #1A3D2C;
+            --border-color: rgba(15, 42, 28, 0.08);
+            --code-bg: #F3F6F4;
+            --shadow-sm: 0 4px 12px rgba(15, 42, 28, 0.03);
+            --shadow-md: 0 20px 40px rgba(15, 42, 28, 0.03);
+            --header-bg: linear-gradient(135deg, rgba(22, 101, 52, 0.85) 0%, rgba(11, 79, 38, 0.95) 100%), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=1200');
+            --badge-bg: #FAF5F0;
+            --badge-text: #B35C24;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+
+        .wrap {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--header-bg);
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 40px 24px 50px 24px;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+
+        .hero-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 16px;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+
+        .hero-header .brand-lockup {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            height: 38px;
+            filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(255,255,255,0.1));
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .brand-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+        }
+
+        .brand-subtitle {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: auto;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 4px;
+            border-radius: 99px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            width: fit-content;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 99px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .lang-btn.active {
+            background: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .hamburger-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: scale(1.05);
+        }
+
+        body[lang-select="zh"] .lang-en, body[lang-select="zh"] .lang-ja { display: none !important; }
+        body[lang-select="en"] .lang-zh, body[lang-select="en"] .lang-ja { display: none !important; }
+        body[lang-select="ja"] .lang-zh, body[lang-select="ja"] .lang-en { display: none !important; }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                grid-template-columns: 300px 1fr;
+            }
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 40px;
+        }
+
+        .nav-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-card h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--accent-green);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-list a:hover, .nav-list a.active {
+            color: var(--accent-color);
+            padding-left: 4px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .guide-section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            scroll-margin-top: 40px;
+        }
+
+        .guide-section h2 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            line-height: 1.3;
+        }
+
+        .guide-section p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .guide-section ul, .guide-section ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .guide-section li {
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Timeline styling */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            position: relative;
+        }
+
+        .timeline-number {
+            background: var(--accent-green);
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .timeline-body h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            margin-bottom: 6px;
+        }
+
+        .timeline-body p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* Callout Box styling */
+        .callout-box {
+            background-color: #FAF5F0;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .callout-title {
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        .callout-desc {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 0 !important;
+        }
+
+        /* Formula Card */
+        .formula-card {
+            background: var(--accent-green);
+            color: white;
+            padding: 24px;
+            border-radius: 16px;
+            margin: 24px 0;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .formula-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .formula-content {
+            font-size: 1.25rem;
+            font-weight: 800;
+            line-height: 1.5;
+            color: #ffffff;
+        }
+
+        .formula-content mark {
+            background: var(--accent-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: var(--code-bg);
+            color: var(--accent-green);
+            font-weight: 700;
+            text-align: left;
+            padding: 12px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            vertical-align: top;
+        }
+
+        /* Navigation Drawer styling */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            pointer-events: none;
+            visibility: hidden;
+            transition: visibility 0.3s;
+        }
+
+        .nav-drawer.open {
+            pointer-events: auto;
+            visibility: visible;
+        }
+
+        .nav-drawer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 42, 28, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-drawer.open .nav-drawer-overlay {
+            opacity: 1;
+        }
+
+        .nav-drawer-content {
+            position: absolute;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100%;
+            background: #0F2A1C; /* deep forest green */
+            color: #ffffff;
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .nav-drawer.open .nav-drawer-content {
+            right: 0;
+        }
+
+        .drawer-close-btn {
+            align-self: flex-end;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            width: 36px;
+            height: 36px;
+            margin-bottom: 24px;
+        }
+
+        .drawer-close-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .drawer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .drawer-category-header {
+            padding: 12px 16px 4px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .drawer-sub-item {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 16px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s;
+            line-height: 1.4;
+        }
+
+        .drawer-sub-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+        }
+
+        .drawer-sub-item.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .drawer-sub-item span {
+            display: block;
+        }
+
+        .drawer-sub-item span.lang-en {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        .drawer-sub-item span.lang-ja {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body lang-select="zh">
+    <div class="wrap">
+        <header>
+            <div class="hero-header">
+                <button class="brand-lockup" onclick="window.location.href='index.html'" style="cursor:pointer;">
+                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=100" alt="Brand Logo" class="brand-icon" style="border-radius:50%; width:38px; height:38px; object-fit:cover; filter:none;">
+                    <div class="brand-text">
+                        <span class="brand-title">TERRA SCHOOL</span>
+                        <span class="brand-subtitle">THE LAND HANDBOOK</span>
+                    </div>
+                </button>
+                <div class="header-actions">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" onclick="switchLang('zh')">ZH</button>
+                        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+                        <button class="lang-btn" onclick="switchLang('ja')">JA</button>
+                    </div>
+                    <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <h1 class="lang-zh">從訪談逐字稿到 HMW 的研析方法論</h1>
+            <h1 class="lang-en">Methodology: From Transcript to HMW</h1>
+            <h1 class="lang-ja">インタビューからHMWへの分析方法論</h1>
+            
+            <p class="lang-zh">本指南系統地說明如何從原始語音對話開始，經過科學編碼與主題提煉，最終轉化為具備創新行動價值的 How Might We 提案。</p>
+            <p class="lang-en">This guide systematically outlines how to transition from raw speech to structured insights, qualitative codes, theme clusters, and actionable How Might We questions.</p>
+            <p class="lang-ja">このガイドは、生の音声対話から始まり、科学的コーディングとテーマの抽出を経て、最終的に革新的な行動価値を持つHMW提案に変換するプロセスを体系的に説明します。</p>
+        </header>
+
+        <div class="container">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+                <div class="sticky-sidebar">
+                    <div class="nav-card">
+                        <h3 class="lang-zh">方法論章節</h3>
+                        <h3 class="lang-en">Methodology Chapters</h3>
+                        <h3 class="lang-ja">メソッド目次</h3>
+                        <ul class="nav-list">
+                            <li>
+                                <a href="#intro" class="active">
+                                    <span class="lang-zh">🔍 導言：定性研究的價值</span>
+                                    <span class="lang-en">🔍 Intro: Value of Qualitative</span>
+                                    <span class="lang-ja">🔍 導入：質的研究の価値</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#transcription">
+                                    <span class="lang-zh">1️⃣ 階段一：語音精準轉錄</span>
+                                    <span class="lang-en">1️⃣ Stage 1: Audio Transcription</span>
+                                    <span class="lang-ja">1️⃣ ステージ1：音声高精度書き起こし</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#coding">
+                                    <span class="lang-zh">2️⃣ 階段二：定性編碼與標記</span>
+                                    <span class="lang-en">2️⃣ Stage 2: Coding & Tagging</span>
+                                    <span class="lang-ja">2️⃣ ステージ2：質的コーディング</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#themes">
+                                    <span class="lang-zh">3️⃣ 階段三：跨訪談主題收斂</span>
+                                    <span class="lang-en">3️⃣ Stage 3: Theme Extraction</span>
+                                    <span class="lang-ja">3️⃣ ステージ3：テーマ抽出</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#hmw">
+                                    <span class="lang-zh">4️⃣ 階段四：轉化為 HMW 問題</span>
+                                    <span class="lang-en">4️⃣ Stage 4: Formulating HMWs</span>
+                                    <span class="lang-ja">4️⃣ ステージ4：HMW質問の設計</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Introduction -->
+                <div class="guide-section" id="intro">
+                    <h2 class="lang-zh">定性研究的價值：從共情到創新契機</h2>
+                    <h2 class="lang-en">The Value of Qualitative Research: Empathy to Opportunity</h2>
+                    <h2 class="lang-ja">質的研究の価値：共感からイノベーションの機会へ</h2>
+                    
+                    <p class="lang-zh">在設計思考（Design Thinking）中，訪談並非只是收集事實的工具，更是理解受訪者內心世界、建立深層共情（Empathy）的途徑。然而，未經處理的訪談資料雜亂無章。本方法論為研究小組提供了一套嚴謹、科學的分析路徑，引導大家將原始音訊抽絲剝繭，轉化為可以推動實際行動的「How Might We」機會點。</p>
+                    <p class="lang-en">In design thinking, interviews are not just tools for gathering facts, but paths to understand user minds and build deep empathy. However, raw interview data is unstructured and chaotic. This methodology provides research teams with a rigorous, scientific analytical pipeline to transform raw audio into actionable "How Might We" opportunities.</p>
+                    <p class="lang-ja">デザイン思考において、インタビューは単に事実を集める道具ではなく、対象者の内面を理解し、深い「共感（Empathy）」を築くためのアプローチです。しかし、整理されていないデータは雑多で混乱しています。本方法論は、生の音声を紐解き、実際の行動につながる「How Might We」の機会に変換するための体系的かつ科学的な分析方法を提供します。</p>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-body">
+                                <h4 class="lang-zh">語音轉錄 (Transcription)</h4>
+                                <h4 class="lang-en">Transcription</h4>
+                                <h4 class="lang-ja">音声書き起こし</h4>
+                                <p class="lang-zh">將音訊轉為帶語境與講者標籤的精確文本，奠定研究鐵證。</p>
+                                <p class="lang-en">Convert audio to precise texts with speakers and contexts as solid research evidence.</p>
+                                <p class="lang-ja">音声を話者タグ付きの正確なテキストに変換し、研究のエビデンスを確立します。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-body">
+                                <h4 class="lang-zh">編碼標記 (Coding & Tagging)</h4>
+                                <h4 class="lang-en">Coding & Tagging</h4>
+                                <h4 class="lang-ja">コーディングとタグ付け</h4>
+                                <p class="lang-zh">標註痛點、期望與佐證引言，將感性敘述轉為結構化標籤。</p>
+                                <p class="lang-en">Tag pain points, expectations, and quotes to structure narrative dialogues into labels.</p>
+                                <p class="lang-ja">課題、期待、引用発言をマークし、感性的な語りを構造化されたタグに変換します。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-body">
+                                <h4 class="lang-zh">主題提煉 (Theme Extraction)</h4>
+                                <h4 class="lang-en">Theme Extraction</h4>
+                                <h4 class="lang-ja">テーマ抽出と要約</h4>
+                                <p class="lang-zh">打包相似標籤，橫向對比受訪者，萃取深層洞察與行為維度。</p>
+                                <p class="lang-en">Cluster similar tags, contrast respondents horizontally, and extract deep insights.</p>
+                                <p class="lang-ja">類似のタグを統合し、対象者を横断分析して、深い洞察と行動次元を抽出します。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">4</div>
+                            <div class="timeline-body">
+                                <h4 class="lang-zh">HMW 設計 (HMW Formulation)</h4>
+                                <h4 class="lang-en">HMW Formulation</h4>
+                                <h4 class="lang-ja">HMWの設計</h4>
+                                <p class="lang-zh">重新定義問題，將痛點轉化為激發創意、可落地解題的設計挑戰。</p>
+                                <p class="lang-en">Redefine issues to transform pain points into constructive design challenges.</p>
+                                <p class="lang-ja">問題を再定義し、課題を創造的かつ具体的に解決可能なデザインの問いに変換します。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 1: Transcription -->
+                <div class="guide-section" id="transcription">
+                    <h2 class="lang-zh">階段一：語音精準轉錄與三語對照</h2>
+                    <h2 class="lang-en">Stage 1: Accurate Voice Transcription & Translation</h2>
+                    <h2 class="lang-ja">ステージ1：音声の高精度書き起こしと言語対照</h2>
+                    
+                    <p class="lang-zh">語音轉錄（Transcription）是研究分析的第一步。語音轉寫並非只是單純將字敲出，而是要「忠實保留對話情境與講者角色」。在地方協作的脈絡下，對話往往包含閩南語、客家語或地方土話，AI 自動轉寫常會產生大量錯別字，因此必須經過人工或進階 AI 校驗，確保姓名、專業術語與情緒語氣完全正確。</p>
+                    <p class="lang-en">Transcription is the first step of qualitative analysis. Transcribing is not just typing out words, but faithfully preserving dialogue contexts and speaker roles. In rural community collaborations, interviews often contain dialects or local slang; AI auto-transcription frequently generates typos. Thus, checking terms, names, and tones is essential.</p>
+                    <p class="lang-ja">音声書き起こし（Transcription）は分析の第一歩です。単に文字にするだけでなく、「対話の文脈と話者の役割を忠実に記録する」必要があります。地域協働の文脈では、方言や専門用語が含まれることが多く、AIの自動文字起こしでは誤変換が発生しやすいため、専門用語、固有名詞、感情のニュアンスを検証することが極めて重要です。</p>
+
+                    <div class="callout-box">
+                        <div class="callout-title">
+                            <span class="lang-zh">💡 轉錄檢核重點</span>
+                            <span class="lang-en">💡 Key Transcription Checkpoints</span>
+                            <span class="lang-ja">💡 書き起こしチェックの要点</span>
+                        </div>
+                        <div class="callout-desc">
+                            <ul class="lang-zh" style="margin-left: 20px; margin-top: 8px;">
+                                <li><strong>講者標籤清晰</strong>：明確區分「訪談者 (Interviewer)」與「受訪者 (Interviewee)」，避免語句混淆。</li>
+                                <li><strong>三語文化備註</strong>：將在地農村方言（如「巡田水」、「巡山」）翻譯為外語時，須附上文化註記，便於國際團隊理解。</li>
+                                <li><strong>段落時間標記</strong>：為關鍵段落加上時間戳記（Timestamp），利於後續追溯原始錄音。</li>
+                            </ul>
+                            <ul class="lang-en" style="margin-left: 20px; margin-top: 8px;">
+                                <li><strong>Clear Speaker Labels</strong>: Explicitly distinguish between "Interviewer" and "Interviewee" to prevent utterance confusion.</li>
+                                <li><strong>Trilingual Cultural Notes</strong>: Add notes when translating cultural terms (e.g., "Irrigation patrol" or "Mountain patrol") for global team understanding.</li>
+                                <li><strong>Timestamps for Key Quotes</strong>: Tag crucial segments with timestamps to trace back to original recordings.</li>
+                            </ul>
+                            <ul class="lang-ja" style="margin-left: 20px; margin-top: 8px;">
+                                <li><strong>明確な話者タグ</strong>：「インタビュアー」と「インタビュイー」を明確に区別し、発言の混同を防ぎます。</li>
+                                <li><strong>三言語の文化的注釈</strong>：地域の固有語（例：「水路の見回り」）を他言語に翻訳する際は、注釈を付けて国際チームの理解を助けます。</li>
+                                <li><strong>タイムスタンプの付与</strong>：主要な発言にタイムスタンプを付与し、元の音声ファイルへさかのぼりやすくします。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2: Coding & Tagging -->
+                <div class="guide-section" id="coding">
+                    <h2 class="lang-zh">階段二：定性編碼（Coding）與標記</h2>
+                    <h2 class="lang-en">Stage 2: Qualitative Coding & Text Tagging</h2>
+                    <h2 class="lang-ja">ステージ2：質的コーディング（Coding）とタグ付け</h2>
+                    
+                    <p class="lang-zh">編碼（Coding）是將紛亂的敘述「概念化與結構化」的過程。在定性分析中，我們會通讀逐字稿，將受訪者話語中帶有關鍵訊息的段落框選出來，並為其打上「標籤（Tags）」。</p>
+                    <p class="lang-en">Coding is the process of conceptualizing and structuring chaotic dialogues. In qualitative analysis, we read through the transcripts, highlight key segments with critical information, and assign tags to them.</p>
+                    <p class="lang-ja">コーディング（Coding）とは、雑多な対話データを「概念化・構造化」するプロセスです。私たちは書き起こしテキストを精読し、重要なメッセージを含む段落を抽出し、「タグ（Tags）」を割り当てます。</p>
+
+                    <h3 class="lang-zh" style="font-size: 1.15rem; font-weight: 800; color: var(--accent-green); margin-bottom: 12px;">核心編碼類型 (Core Tag Types)</h3>
+                    <h3 class="lang-en" style="font-size: 1.15rem; font-weight: 800; color: var(--accent-green); margin-bottom: 12px;">Core Tag Types</h3>
+                    <h3 class="lang-ja" style="font-size: 1.15rem; font-weight: 800; color: var(--accent-green); margin-bottom: 12px;">主要なタグの種類</h3>
+
+                    <table class="lang-zh">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">標籤名稱</th>
+                                <th style="width: 35%;">定義</th>
+                                <th style="width: 40%;">範例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>#痛點 (Pain Point)</strong></td>
+                                <td>受訪者遇到的具體困難、挫折、限制或負面情緒。</td>
+                                <td>「一開始地主看我們是都市來的，根本不相信，連一分地都不肯租給我們...」</td>
+                            </tr>
+                            <tr>
+                                <td><strong>#期望 (Expectation)</strong></td>
+                                <td>受訪者渴望實現的目標、需要的協助或理想中的狀態。</td>
+                                <td>「希望能建立一個透明的互助機制，讓新移居者與在地老農能平等的對話。」</td>
+                            </tr>
+                            <tr>
+                                <td><strong>#行為特徵 (Behavior)</strong></td>
+                                <td>受訪者在特定情境下的具體做法、應對策略或生活習慣。</td>
+                                <td>「我每天早晨五點就去田埂邊走動，幫隔壁老農搬搬重物、打招呼...」</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="lang-en">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Tag Name</th>
+                                <th style="width: 35%;">Definition</th>
+                                <th style="width: 40%;">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>#PainPoint</strong></td>
+                                <td>Specific difficulties, frustrations, limitations, or negative emotions faced by the interviewee.</td>
+                                <td>"At first, the landlord saw we were from the city and didn't trust us at all; refused to lease even a tiny plot..."</td>
+                            </tr>
+                            <tr>
+                                <td><strong>#Expectation</strong></td>
+                                <td>Desired goals, support needed, or ideal state of affairs the interviewee wishes to achieve.</td>
+                                <td>"Hope to establish a transparent mutual aid system so that new residents and local farmers can converse on equal terms."</td>
+                            </tr>
+                            <tr>
+                                <td><strong>#Behavior</strong></td>
+                                <td>Specific actions, coping strategies, or habits of the respondent in certain contexts.</td>
+                                <td>"I walked to the field ridges at 5 AM every morning, helped the old neighbor carry heavy items and greeted them..."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="lang-ja">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">タグ名</th>
+                                <th style="width: 35%;">定義</th>
+                                <th style="width: 40%;">例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>#PainPoint (課題)</strong></td>
+                                <td>対象者が直面している具体的な困難、挫折、制約、または否定的な感情。</td>
+                                <td>「最初は地主から都会育ちだと見くびられ、信用されず、狭い土地すら貸してもらえなかった...」</td>
+                            </tr>
+                            <tr>
+                                <td><strong>#Expectation (期待)</strong></td>
+                                <td>対象者が達成したい目標、必要とする支援、または理想的な状態。</td>
+                                <td>「新しい移住者と地元農家が対等に対話できる、透明性のある互助関係を築きたいです。」</td>
+                            </tr>
+                            <tr>
+                                <td><strong>#Behavior (行動特徴)</strong></td>
+                                <td>特定の文脈において対象者が取る具体的なアプローチや対処行動、生活習慣。</td>
+                                <td>「毎朝5時に田んぼのあぜ道に行き、隣の高齢農家さんの荷物運びを手伝って挨拶を続けました...」</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Stage 3: Theme Extraction -->
+                <div class="guide-section" id="themes">
+                    <h2 class="lang-zh">階段三：跨訪談主題收斂與核心洞察</h2>
+                    <h2 class="lang-en">Stage 3: Cross-Interview Theme Extraction & Insights</h2>
+                    <h2 class="lang-ja">ステージ3：複数インタビュー横断のテーマ抽出と核心的洞察</h2>
+                    
+                    <p class="lang-zh">當我們完成了對多位受訪者的編碼後，便要進入「收斂與提煉」階段。在這個階段，我們不能只看單一受訪者的故事，而是要**橫向對比不同的受訪者**，尋找共通的脈絡。</p>
+                    <p class="lang-en">Once coding for multiple interviewees is completed, we enter the "Convergence and Synthesis" stage. Here, we must not focus on single stories, but **contrast different respondents horizontally** to discover common patterns.</p>
+                    <p class="lang-ja">複数のインタビュイーのコーディングが完了したら、「収束と抽出」の段階に進みます。この段階では、1人のストーリーを見るだけでなく、**異なる対象者を横斷的に比較**し、共通の文脈を探し出します。</p>
+
+                    <p class="lang-zh">這個階段的產出主要包含兩個維度：</p>
+                    <p class="lang-en">The outputs of this stage consist of two major components:</p>
+                    <p class="lang-ja">この段階の出力は、主に以下の2つの次元で構成されます：</p>
+
+                    <ul class="lang-zh" style="margin-left: 20px;">
+                        <li><strong>核心主題維度 (Themes)</strong>：把本質相似的標籤打包歸類（例如將「突破成見」、「日常拜訪」、「共同勞動」打包歸類為 '#社區融入與信任建立'）。</li>
+                        <li><strong>主題核心洞察 (Theme Insights)</strong>：針對每個主題，寫出一個高度概括、直擊本質的規律。洞察並非只是描述現象，而是要說明<strong>「為什麼會這樣」</strong>。</li>
+                    </ul>
+                    <ul class="lang-en" style="margin-left: 20px;">
+                        <li><strong>Core Themes</strong>: Cluster tags of similar nature (e.g., grouping "breaking prejudice", "daily visits", and "shared labor" under '#CommunityIntegrationTrust').</li>
+                        <li><strong>Theme Insights</strong>: For each theme, write a high-level summary that captures the underlying patterns. Insights should explain **"why things occur the way they do"**, not just describe the symptoms.</li>
+                    </ul>
+                    <ul class="lang-ja" style="margin-left: 20px;">
+                        <li><strong>核心テーマ次元 (Themes)</strong>：本質的に類似したタグをグループ化します（例：「偏見の打破」「日々の挨拶」「共同作業」を統合して '#地域社会への融和と信頼構築' とします）。</li>
+                        <li><strong>テーマの核心的洞察 (Theme Insights)</strong>：各テーマについて、本質を突いた普遍的な法則を記述します。洞察とは単なる現状説明ではなく、**「なぜそうなっているのか」**という背景を説明するものです。</li>
+                    </ul>
+
+                    <div class="callout-box">
+                        <div class="callout-title">
+                            <span class="lang-zh">💡 優質洞察的範例 (Good Insight Example)</span>
+                            <span class="lang-en">💡 Good Insight Example</span>
+                            <span class="lang-ja">💡 優良な洞察の例</span>
+                        </div>
+                        <div class="callout-desc">
+                            <p class="lang-zh" style="margin-top: 6px;"><strong>主題</strong>：社區融入與信任建立<br>
+                            <strong>普通描述（非洞察）</strong>：新移居者剛來時會被懷疑，需要跟老農多打招呼。<br>
+                            <strong>核心洞察（優質）</strong>：信任的建立並非基於口頭說服，而是基於「身體力行的日常勞動交換」，透過共享在地日常來突破偏見。</p>
+                            
+                            <p class="lang-en" style="margin-top: 6px;"><strong>Theme</strong>: Community Integration & Trust Building<br>
+                            <strong>Basic Description (Not an Insight)</strong>: New residents face skepticism when they arrive and need to greet farmers more often.<br>
+                            <strong>Core Insight (Good)</strong>: Trust is established not through verbal persuasion, but via the "exchange of physical daily labor," breaking prejudices by sharing local daily field routines.</p>
+                            
+                            <p class="lang-ja" style="margin-top: 6px;"><strong>テーマ</strong>：地域社会への融和と信頼構築<br>
+                            <strong>一般的な現状説明（洞察ではない）</strong>：新規移住者は最初疑われがちなので、高齢農家によく挨拶する必要がある。<br>
+                            <strong>核心的洞察（優良）</strong>：信頼関係の構築は言葉による説得ではなく、「身体を通じた日々の労働交換」に基づいており、地域の日常を共有することで偏見が打破される。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 4: HMW Questioning -->
+                <div class="guide-section" id="hmw">
+                    <h2 class="lang-zh">階段四：轉化為 How Might We (HMW) 創新提案</h2>
+                    <h2 class="lang-en">Stage 4: Formulating How Might We (HMW) Questions</h2>
+                    <h2 class="lang-ja">ステージ4：How Might We (HMW) 質問への変換</h2>
+                    
+                    <p class="lang-zh">「How Might We (HMW) / 我們可以如何...」是連結「痛點發現」與「解決方案」的橋樑。一個好的設計挑戰不會直接給予答案，而是會打開一個「有方向性的探索空間」。我們利用前一階段整理出的受訪者痛點與期望，套入標準 HMW 公式：</p>
+                    <p class="lang-en">"How Might We (HMW)" acts as a bridge connecting "discovered pain points" and "innovative solutions". A good design challenge does not state direct answers but opens a "directionally bounded exploration space". We utilize pain points and expectations to fit into the standard HMW formula:</p>
+                    <p class="lang-ja">「How Might We (HMW) / 私たちはどのようにすれば...」は、「課題の発見」と「解決策の創出」をつなぐ架け橋です。優れたデザインの問いは、直接答えを示すのではなく、「方向性のある探索スペース」を広げます。課題と期待を公式に当てはめます：</p>
+
+                    <div class="formula-card">
+                        <div class="formula-title">
+                            <span class="lang-zh">📐 HMW 標準黃金公式</span>
+                            <span class="lang-en">📐 The HMW Golden Formula</span>
+                            <span class="lang-ja">📐 HMWの黄金公式</span>
+                        </div>
+                        <div class="formula-content lang-zh">
+                            我們可以如何協助 <mark>特定受訪者</mark>，在 <mark>特定情境</mark> 下克服 <mark>特定痛點</mark>，以便達到 <mark>特定期望</mark>？
+                        </div>
+                        <div class="formula-content lang-en">
+                            How might we help <mark>User Archetype</mark>, overcome <mark>Pain Point in Context</mark>, so that they can achieve <mark>Expectation</mark>?
+                        </div>
+                        <div class="formula-content lang-ja">
+                            私たちはどのようにすれば <mark>特定のユーザー</mark> が、 <mark>特定の状況下で課題</mark> を克服し、 <mark>期待する成果</mark> を達成できるようにできるか？
+                        </div>
+                    </div>
+
+                    <h3 class="lang-zh" style="font-size: 1.15rem; font-weight: 800; color: var(--accent-green); margin-bottom: 12px; margin-top: 24px;">HMW 設計的三大視角 (Three Angles of HMW)</h3>
+                    <h3 class="lang-en" style="font-size: 1.15rem; font-weight: 800; color: var(--accent-green); margin-bottom: 12px; margin-top: 24px;">Three Angles of HMW</h3>
+                    <h3 class="lang-ja" style="font-size: 1.15rem; font-weight: 800; color: var(--accent-green); margin-bottom: 12px; margin-top: 24px;">HMW設計の3つの視点</h3>
+
+                    <ul class="lang-zh" style="margin-left: 20px;">
+                        <li><strong>積極放大 (Amplify the Good)</strong>：如何放大受訪者現有的優勢或正面行為？（例如：如何利用新移居青年熟稔數位工具的優勢，加速在地老農的數位行銷推廣？）</li>
+                        <li><strong>消極消除 (Remove the Bad)</strong>：如何消除受訪者痛點中提到的核心障礙？（例如：如何降低在地老農對都市青年的成見，建立安全且漸進的耕作實習管道？）</li>
+                        <li><strong>逆轉轉化 (Turn Weakness to Strength)</strong>：如何將受訪者的劣勢轉化為意想不到的資源？（例如：如何將都市青年「不懂農耕」的缺點，轉化為吸引老農「當傳承導師」的熱情與榮譽感？）</li>
+                    </ul>
+                    <ul class="lang-en" style="margin-left: 20px;">
+                        <li><strong>Amplify the Good</strong>: How to leverage the user's positive traits or existing strengths? (e.g., How might we utilize urban youth's digital skills to boost local farmers' marketing campaigns?)</li>
+                        <li><strong>Remove the Bad</strong>: How to directly eliminate the core obstacles causing pain? (e.g., How might we reduce local farmers' bias against urban youth to build safe, step-by-step farming internships?)</li>
+                        <li><strong>Turn Weakness to Strength</strong>: How to transform a negative aspect into an unexpected resource? (e.g., How might we transform urban youth's "lack of farming knowledge" into a source of pride for local farmers acting as mentors?)</li>
+                    </ul>
+                    <ul class="lang-ja" style="margin-left: 20px;">
+                        <li><strong>ポジティブ要素の増幅 (Amplify the Good)</strong>：対象者が持つ既存の強みや好ましい行動をどう活かすか？（例：若者のデジタルスキルを活用して、高齢農家の販路拡大をどのように促進できるか？）</li>
+                        <li><strong>ネガティブ要素の排除 (Remove the Bad)</strong>：課題を引き起こしている根本的な障害をどう取り除くか？（例：高齢農家の若者に対する不信感を取り除き、安全で段階的な農業インターンシップの機会をどのように構築できるか？）</li>
+                        <li><strong>弱みの強みへの変換 (Turn Weakness to Strength)</strong>：一見マイナスに見える要素を、どう新たな資源に変えるか？（例：若者の「農業の素人」という弱みを、地元農家が「指導者」として活躍し、誇りを持つきっかけにどのように変えられるか？）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Drawer -->
+    <div class="nav-drawer" id="navDrawer">
+        <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+        <div class="nav-drawer-content">
+            <button class="drawer-close-btn" id="drawerClose" aria-label="Close Menu">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <nav class="drawer-nav">
+                <div class="drawer-category-header">🗺️ 挑戰地圖</div>
+                <a href="index.html" class="drawer-sub-item">
+                    <span class="lang-zh">首頁 / 行程指南</span>
+                    <span class="lang-en">Home / Itinerary</span>
+                    <span class="lang-ja">ホーム / ガイド</span>
+                </a>
+                <a href="eight_challenges.html" class="drawer-sub-item">
+                    <span class="lang-zh">八大生存挑戰項目</span>
+                    <span class="lang-en">Eight Challenges Overview</span>
+                    <span class="lang-ja">8大サバイバル課題</span>
+                </a>
+                <a href="members.html" class="drawer-sub-item">
+                    <span class="lang-zh">研究小組成員名單</span>
+                    <span class="lang-en">Research Team Roster</span>
+                    <span class="lang-ja">研究チーム名簿</span>
+                </a>
+
+                <div class="drawer-category-header">🧰 設計工具箱</div>
+                <a href="../design-thinking/design-thinking.html" class="drawer-sub-item">
+                    <span class="lang-zh">設計思考體驗工具箱</span>
+                    <span class="lang-en">Design Thinking Toolbox</span>
+                    <span class="lang-ja">デザイン思考ツールボックス</span>
+                </a>
+                <a href="methodology_guide.html" class="drawer-sub-item active">
+                    <span class="lang-zh">從訪談到 HMW 的方法論</span>
+                    <span class="lang-en">Methodology: Interview to HMW</span>
+                    <span class="lang-ja">インタビューからHMWへの方法論</span>
+                </a>
+                <a href="doraemon_roulette.html" class="drawer-sub-item">
+                    <span class="lang-zh">哆啦A夢道具拉霸機</span>
+                    <span class="lang-en">Doraemon Gadgets Roulette</span>
+                    <span class="lang-ja">ドラえもん道具ルーレット</span>
+                </a>
+
+                <div class="drawer-category-header">🤖 Prompts</div>
+                <a href="prompt_for_ai_desk_research.html" class="drawer-sub-item">
+                    <span class="lang-zh">1. 執行案頭研究</span>
+                    <span class="lang-en">1. Execute Desk Research</span>
+                    <span class="lang-ja">1. デスク研究を実行</span>
+                </a>
+                <a href="prompt_for_voice_to_transcript.html" class="drawer-sub-item">
+                    <span class="lang-zh">2. 語音轉為逐字稿</span>
+                    <span class="lang-en">2. Convert Voice to Transcript</span>
+                    <span class="lang-ja">2. 音声を逐字録に変換</span>
+                </a>
+                <a href="prompt_for_three_language_comparison.html" class="drawer-sub-item">
+                    <span class="lang-zh">3. 轉譯三語與文化備註</span>
+                    <span class="lang-en">3. Translate Trilingual with Notes</span>
+                    <span class="lang-ja">3. 三言語対照翻訳と注釈追加</span>
+                </a>
+                <a href="prompt_for_coding_and_tagging.html" class="drawer-sub-item">
+                    <span class="lang-zh">4. 編碼與標記資料</span>
+                    <span class="lang-en">4. Coding and Tagging Data</span>
+                    <span class="lang-ja">4. コーディングとタグ付け</span>
+                </a>
+                <a href="prompt_for_theme_extraction.html" class="drawer-sub-item">
+                    <span class="lang-zh">5. 提取痛點、期望與維度</span>
+                    <span class="lang-en">5. Extract Pain Points, Hopes</span>
+                    <span class="lang-ja">5. 痛点・期待・次元の抽出</span>
+                </a>
+                <a href="prompt_for_hmw_generation.html" class="drawer-sub-item">
+                    <span class="lang-zh">6. 轉化為 HMW 問題</span>
+                    <span class="lang-en">6. Convert into HMWs</span>
+                    <span class="lang-ja">6. HMW質問に変換</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Force light theme
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+
+        // Hamburger Drawer Menu Controller
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerClose = document.getElementById('drawerClose');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        if (menuToggle && navDrawer) {
+            menuToggle.addEventListener('click', () => navDrawer.classList.add('open'));
+            drawerClose.addEventListener('click', () => navDrawer.classList.remove('open'));
+            drawerOverlay.addEventListener('click', () => navDrawer.classList.remove('open'));
+        }
+
+        // Language Switcher Functionality
+        function switchLang(lang) {
+            document.body.setAttribute('lang-select', lang);
+            
+            // Update active state of buttons
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(lang)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Sync sidebar active styling based on current scroll segment
+            updateSidebarActive();
+        }
+
+        // Sidebar Navigation click highlighting
+        const navLinks = document.querySelectorAll('.nav-list a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Scrollspy for sidebar navigation
+        const sections = document.querySelectorAll('.guide-section');
+        function updateSidebarActive() {
+            let fromTop = window.scrollY + 100;
+            let currentActive = null;
+
+            sections.forEach(section => {
+                if (section.offsetTop <= fromTop) {
+                    currentActive = section.id;
+                }
+            });
+
+            if (currentActive) {
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === '#' + currentActive) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        window.addEventListener('scroll', updateSidebarActive);
+        updateSidebarActive();
+    </script>
+</body>
+</html>
