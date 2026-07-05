@@ -1,0 +1,16 @@
+# Ignore large media and audio/video files
+*.mov
+*.m4a
+*.mp4
+*.mp3
+*.wav
+*.m4v
+
+# Ignore backup folders
+terra2026_backup/
+*backup*
+
+# Ignore OS files
+Thumbs.db
+.DS_Store
+desktop.ini

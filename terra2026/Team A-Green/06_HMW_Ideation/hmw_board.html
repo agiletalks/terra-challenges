@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HMW 創意思考討論看板</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1200px; margin: 40px auto; }
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { color: #0f2a1c; font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; }
+  .header p { color: #78716c; font-size: 0.98rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+  .control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; background: white; padding: 16px 24px; border-radius: 12px; border: 1px solid #e7e5e4; }
+  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; }
+  .btn-export:hover { background: #A04B19; }
+  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 30px; }
+  .theme-title { font-size: 1.15rem; font-weight: 800; color: white; background: #0f2a1c; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; }
+  .cards-list { display: flex; flex-direction: column; gap: 12px; min-height: 50px; }
+  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); border-radius: 12px; padding: 18px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .hmw-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.04); border-color: rgba(22,101,52,0.2); }
+  .hmw-card.dragging { opacity: 0.5; background: #f5f5f4; cursor: grabbing; }
+  .card-content { flex-grow: 1; }
+  .angle-badge { font-size: 0.72em; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+  .badge-barrier { background: #fee2e2; color: #991b1b; }
+  .badge-outcome { background: #dcfce7; color: #166534; }
+  .badge-leverage { background: #dbeafe; color: #1e40af; }
+  .hmw-text { font-size: 0.98rem; line-height: 1.6; color: #1c1917; margin-bottom: 6px; }
+  .hmw-text strong { color: #B35C24; margin-right: 6px; }
+  .original-source { font-size: 0.78rem; color: #78716c; margin-top: 10px; border-top: 1px dashed #e7e5e4; padding-top: 8px; font-weight: 500; }
+  .vote-area { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e7e5e4; border-radius: 20px; padding: 6px 12px; }
+  .vote-change-btn { background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; }
+  .vote-change-btn:hover { background: #e7e5e4; color: #1c1917; }
+  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 42px; justify-content: center; }
+  .vote-heart-icon { color: #e11d48; font-size: 1rem; }
+  .vote-count { font-size: 0.95rem; font-weight: 800; color: #1c1917; }
+  .export-status { font-size: 0.86rem; color: #166534; font-weight: 700; min-height: 1.2em; margin-left: 12px; }
+  @media (max-width: 760px) {
+    body { padding: 14px; }
+    .container { margin: 20px auto; }
+    .control-row { align-items: flex-start; flex-direction: column; gap: 12px; padding: 16px; }
+    .hmw-card { align-items: stretch; flex-direction: column; }
+    .vote-area { align-self: flex-end; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>HMW 創意思考討論看板</h1>
+    <p>以下是由 AI 將多位受訪者的 Coding（痛點/期望/洞察）轉化為 3 種不同設計視角的 HMW 挑戰。請在下方進行拖曳排序與投票，決定小隊下一步的 Ideation 重點！</p>
+  </div>
+
+  <div class="control-row">
+    <div style="font-size: 0.9rem; color: #6b7280; font-weight: 600;">操作說明：上下拖曳卡片進行排序，點擊 +/- 按鈕投票，結束後可按匯出。</div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <button class="btn-export" onclick="exportResults()">匯出討論結果</button>
+      <span class="export-status" id="exportStatus"></span>
+    </div>
+  </div>
+
+  <div id="board"></div>
+</div>
+
+<script>
+const angleLabels = {
+  barrier: "角度 1：克服障礙 / Overcoming Barriers",
+  outcome: "角度 2：創造正面成效 / Positive Outcomes",
+  leverage: "角度 3：藉助優勢 / System Leverage"
+};
+
+const themes = [
+  {
+    title: "#技術妥協與市場差異化 / TechnicalCompromiseDifferentiation / 技術的妥協と市場差別化",
+    cards: [
+      {
+        angle: "barrier",
+        zh: "我們如何協助堅持無添加的小農，在加工技術受限時仍能穩定建立產品信任？",
+        en: "How might we help additive-free smallholders build product trust even when processing capabilities are limited?",
+        ja: "無添加にこだわる小農が加工技術に制約を抱えていても、どのように安定した商品信頼を築けるだろうか？",
+        source: "源自核心洞察：天然無添加理念下的加工技術瓶頸與差異化機會"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓天然無添加的堅持，成為消費者能感受到的便利與安心價值？",
+        en: "How might we turn the commitment to additive-free products into convenience and reassurance that consumers can feel?",
+        ja: "無添加へのこだわりを、消費者が実感できる便利さと安心価値に変えるにはどうすればよいだろうか？",
+        source: "源自核心洞察：天然無添加理念下的加工技術瓶頸與差異化機會"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用液態使用情境、料理習慣與小農故事，放大技術限制帶來的市場差異？",
+        en: "How might we use liquid-use occasions, cooking habits, and smallholder stories to amplify differentiation created by technical constraints?",
+        ja: "液状で使う場面、調理習慣、小農の物語を活かし、技術的制約から生まれる市場差別化をどう広げられるだろうか？",
+        source: "源自核心洞察：天然無添加理念下的加工技術瓶頸與差異化機會"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低無化學添加糖品加工的失敗風險，讓農友不必在天然理念與穩定產出之間二選一？",
+        en: "How might we reduce the failure risk of chemical-free sugar processing so farmers do not have to choose between natural values and reliable output?",
+        ja: "化学添加物を使わない糖加工の失敗リスクを下げ、農家が自然志向と安定生産の二択に迫られないようにするにはどうすればよいだろうか？",
+        source: "源自痛點：缺乏高階熬糖技術，無石灰難以製成固體黑糖塊"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓消費者理解無添加加工的難度，並把這份難度轉化為願意支持的產品價值？",
+        en: "How might we help consumers understand the difficulty of additive-free processing and turn that difficulty into a value worth supporting?",
+        ja: "無添加加工の難しさを消費者に伝え、その難しさを応援したくなる商品価値へ変えるにはどうすればよいだろうか？",
+        source: "源自痛點：缺乏高階熬糖技術，無石灰難以製成固體黑糖塊"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何連結同業經驗、加工知識與小規模設備資源，支持農友維持天然原則？",
+        en: "How might we connect peer experience, processing know-how, and small-scale equipment resources to support farmers in keeping natural principles?",
+        ja: "同業者の経験、加工知識、小規模設備資源をつなぎ、農家が自然志向の原則を守れるようにするにはどうすればよいだろうか？",
+        source: "源自痛點：缺乏高階熬糖技術，無石灰難以製成固體黑糖塊"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低消費者對液態糖蜜不熟悉的使用障礙，讓嘗試變得更容易？",
+        en: "How might we reduce consumers' unfamiliarity with liquid molasses so trying it feels easier?",
+        ja: "液状シロップに不慣れな消費者のハードルを下げ、試しやすくするにはどうすればよいだろうか？",
+        source: "源自期望：改推液態糖蜜，以如同果糖般方便使用創造差異"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓液態糖蜜成為日常料理中方便、自然且有辨識度的甜味選擇？",
+        en: "How might we make liquid molasses a convenient, natural, and distinctive sweetener for everyday cooking?",
+        ja: "液状シロップを日常料理の中で便利で自然、かつ識別しやすい甘味の選択肢にするにはどうすればよいだろうか？",
+        source: "源自期望：改推液態糖蜜，以如同果糖般方便使用創造差異"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何借助果糖般便利的既有心智模型，建立液態糖蜜的新市場位置？",
+        en: "How might we leverage the familiar mental model of HFCS-like convenience to define a new market position for liquid molasses?",
+        ja: "果糖のような便利さという既存の認識を活かし、液状シロップの新しい市場ポジションを築くにはどうすればよいだろうか？",
+        source: "源自期望：改推液態糖蜜，以如同果糖般方便使用創造差異"
+      }
+    ]
+  },
+  {
+    title: "#專業委託與勞動互助網 / ProfessionalDelegationMutualAid / 専門委託と相互扶助",
+    cards: [
+      {
+        angle: "barrier",
+        zh: "我們如何減少小農面對高專業門檻與沉重農務時的孤立感與承擔壓力？",
+        en: "How might we reduce smallholders' isolation and burden when they face high technical thresholds and heavy farm labor?",
+        ja: "高い専門的ハードルや重い農作業に直面する小農の孤立感と負担を、どのように減らせるだろうか？",
+        source: "源自核心洞察：以委託、志工與代耕形成互助求生生態系"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓互助網絡成為小農穩定生產、安心合作與持續經營的力量？",
+        en: "How might we make mutual-aid networks a source of stable production, confident collaboration, and sustainable operation for smallholders?",
+        ja: "相互扶助ネットワークを、小農の安定生産、安心できる協働、継続経営の力にするにはどうすればよいだろうか？",
+        source: "源自核心洞察：以委託、志工與代耕形成互助求生生態系"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何利用同理念小農、教會社群與代工技能，建立可被信任的微型合作系統？",
+        en: "How might we leverage value-aligned farmers, church communities, and contract skills to build a trusted micro-collaboration system?",
+        ja: "同じ理念を持つ小農、教会コミュニティ、請負スキルを活かし、信頼できる小さな協働システムを築くにはどうすればよいだろうか？",
+        source: "源自核心洞察：以委託、志工與代耕形成互助求生生態系"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低醬油釀造的技術與設備門檻，讓小農能保有品質而不被專業限制卡住？",
+        en: "How might we lower the skill and equipment barriers of soy sauce brewing so smallholders can keep quality without being blocked by specialization?",
+        ja: "醤油醸造の技術と設備のハードルを下げ、小農が専門性に行き詰まらず品質を保つにはどうすればよいだろうか？",
+        source: "源自痛點：醬油釀造需要專業技術與設備，自身難以獨立負擔"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓小農即使不親自完成每個加工環節，也能向消費者傳遞完整的品質信心？",
+        en: "How might we help smallholders communicate full quality confidence even when they do not personally complete every processing step?",
+        ja: "小農がすべての加工工程を自分で行わなくても、消費者に十分な品質への信頼を伝えるにはどうすればよいだろうか？",
+        source: "源自痛點：醬油釀造需要專業技術與設備，自身難以獨立負擔"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何借助具備設備與理念共識的專業農友，補足小農無法獨立完成的加工能力？",
+        en: "How might we leverage skilled, value-aligned farming peers with equipment to complement processing capabilities smallholders cannot manage alone?",
+        ja: "設備を持ち理念を共有する専門的な農家仲間を活かし、小農が単独では担えない加工能力を補うにはどうすればよいだろうか？",
+        source: "源自痛點：醬油釀造需要專業技術與設備，自身難以獨立負擔"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低委託代工中的信任風險，讓原料、理念與品質在合作中不被稀釋？",
+        en: "How might we reduce trust risks in outsourced processing so raw materials, values, and quality are not diluted through collaboration?",
+        ja: "委託加工における信頼リスクを下げ、原料、理念、品質が協働の中で薄まらないようにするにはどうすればよいだろうか？",
+        source: "源自期望：交給同理念且具專業技術的非商業小農代工"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓專業委託成為一種讓品質更穩、理念更清楚的合作體驗？",
+        en: "How might we make professional delegation a collaboration experience that strengthens quality and clarifies shared values?",
+        ja: "専門委託を、品質をより安定させ理念をより明確にする協働体験へ変えるにはどうすればよいだろうか？",
+        source: "源自期望：交給同理念且具專業技術的非商業小農代工"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用非商業小農之間的理念共識，建立比一般工廠更有溫度的品質保證？",
+        en: "How might we use shared values among non-commercial smallholders to create a warmer form of quality assurance than conventional factories?",
+        ja: "非商業的な小農同士の理念共有を活かし、一般工場より温度感のある品質保証を築くにはどうすればよいだろうか？",
+        source: "源自期望：交給同理念且具專業技術的非商業小農代工"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何幫助獨自務農且長期虧損的農友，停止把所有風險都壓在自耕模式上？",
+        en: "How might we help farmers suffering losses alone stop placing all risk on an independent farming model?",
+        ja: "単独農業で赤字を抱える農家が、自営農業モデルだけにすべてのリスクを背負わないようにするにはどうすればよいだろうか？",
+        source: "源自痛點：獨自務農虧損嚴重，自耕模式無法維持生計"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓高技能農友找到更穩定的收入節奏，重新看見農業能力的價值？",
+        en: "How might we help highly skilled farmers find steadier income rhythms and rediscover the value of their farming capabilities?",
+        ja: "高い農業スキルを持つ農家が、より安定した収入リズムを見つけ、自分の農業能力の価値を再認識するにはどうすればよいだろうか？",
+        source: "源自痛點：獨自務農虧損嚴重，自耕模式無法維持生計"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何利用農友既有的耕作技巧與在地需求，把個人能力轉化為互助服務？",
+        en: "How might we leverage farmers' existing cultivation skills and local needs to turn individual capabilities into mutual-aid services?",
+        ja: "農家が持つ耕作技術と地域のニーズを活かし、個人の能力を相互扶助サービスに変えるにはどうすればよいだろうか？",
+        source: "源自痛點：獨自務農虧損嚴重，自耕模式無法維持生計"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低從自耕轉向代耕代工時的不確定性，讓農友能安心取得現金流？",
+        en: "How might we reduce uncertainty when shifting from self-farming to contract farming so farmers can secure cash flow with confidence?",
+        ja: "自営農業から代耕・請負作業へ移る際の不確実性を下げ、農家が安心して現金収入を得るにはどうすればよいだろうか？",
+        source: "源自期望：憑藉農業技能轉型代耕、代工以換取現金流"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓代耕代工成為兼具尊嚴、專業認可與生計穩定的農業角色？",
+        en: "How might we make contract farming a role that offers dignity, professional recognition, and livelihood stability?",
+        ja: "代耕・請負作業を、尊厳、専門性の承認、生計の安定を兼ね備えた農業上の役割にするにはどうすればよいだろうか？",
+        source: "源自期望：憑藉農業技能轉型代耕、代工以換取現金流"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何把農友卓越的實作能力、鄰里需求與合作網絡連結成可持續的服務模式？",
+        en: "How might we connect farmers' strong practical abilities, neighborhood needs, and collaboration networks into a sustainable service model?",
+        ja: "農家の優れた実践力、近隣のニーズ、協働ネットワークをつなぎ、持続可能なサービスモデルにするにはどうすればよいだろうか？",
+        source: "源自期望：憑藉農業技能轉型代耕、代工以換取現金流"
+      }
+    ]
+  },
+  {
+    title: "#健康意識與食安教育行銷 / HealthFoodSafetyEducation / 健康意識と食育マーケティング",
+    cards: [
+      {
+        angle: "barrier",
+        zh: "我們如何降低消費者辨識化學合成糖與原始食物來源的認知落差？",
+        en: "How might we reduce consumers' knowledge gap in distinguishing chemically synthesized sugars from original food sources?",
+        ja: "化学合成糖と本来の食べ物の由来を見分ける消費者の認識ギャップを、どのように小さくできるだろうか？",
+        source: "源自核心洞察：以反市場主流作為品牌定位，將農場轉為原始食物體驗場域"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓消費者在理解原始食物後，自然產生對農場品牌的價值認同？",
+        en: "How might we help consumers develop value alignment with a farm brand after understanding original food?",
+        ja: "本来の食べ物を理解した消費者が、農場ブランドへの価値共感を自然に持てるようにするにはどうすればよいだろうか？",
+        source: "源自核心洞察：以反市場主流作為品牌定位，將農場轉為原始食物體驗場域"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用農場場域、自然農法信念與食物故事，讓教育同時成為行銷力量？",
+        en: "How might we use the farm site, natural farming beliefs, and food stories to make education also work as marketing strength?",
+        ja: "農場という場、自然農法への信念、食べ物の物語を活かし、教育をマーケティングの力にもするにはどうすればよいだろうか？",
+        source: "源自核心洞察：以反市場主流作為品牌定位，將農場轉為原始食物體驗場域"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何幫助現代人看見日常飲食中不健康糖分的來源與影響？",
+        en: "How might we help modern consumers see the sources and effects of unhealthy sugars in everyday diets?",
+        ja: "現代の消費者が日常の食生活にある不健康な糖分の由来と影響に気づくにはどうすればよいだろうか？",
+        source: "源自痛點：現代人充斥化學合成糖分，缺乏真正食物來源認知"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓理解真實食物來源，成為消費者願意改變選擇的正向動機？",
+        en: "How might we make understanding real food origins a positive motivation for consumers to change their choices?",
+        ja: "本物の食べ物の由来を理解することを、消費者が選択を変えたくなる前向きな動機にするにはどうすればよいだろうか？",
+        source: "源自痛點：現代人充斥化學合成糖分，缺乏真正食物來源認知"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何利用甘蔗從土地到餐桌的可見過程，補足消費者對糖來源的想像？",
+        en: "How might we leverage the visible journey of sugarcane from field to table to enrich consumers' imagination of where sugar comes from?",
+        ja: "サトウキビが畑から食卓へ届く見えるプロセスを活かし、消費者の糖の由来への想像を補うにはどうすればよいだろうか？",
+        source: "源自痛點：現代人充斥化學合成糖分，缺乏真正食物來源認知"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低大眾理解甘蔗種植與製糖過程的距離感？",
+        en: "How might we reduce the distance people feel from sugarcane growing and sugar production processes?",
+        ja: "一般の人々がサトウキビ栽培と砂糖づくりの過程に感じる距離を縮めるにはどうすればよいだろうか？",
+        source: "源自期望：透過種植甘蔗與體驗活動教育原始糖分的生長與生產"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓原始糖分的體驗帶來好奇、理解與更安心的食物選擇？",
+        en: "How might we make original-sugar experiences create curiosity, understanding, and more confident food choices?",
+        ja: "本来の糖分を体験することで、好奇心、理解、より安心できる食の選択を生み出すにはどうすればよいだろうか？",
+        source: "源自期望：透過種植甘蔗與體驗活動教育原始糖分的生長與生產"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何借助親手種植、觀察與品嘗的連續體驗，讓食安教育更容易被記住？",
+        en: "How might we leverage a connected experience of planting, observing, and tasting to make food-safety education more memorable?",
+        ja: "植える、観察する、味わうという一連の体験を活かし、食の安全教育をより記憶に残るものにするにはどうすればよいだろうか？",
+        source: "源自期望：透過種植甘蔗與體驗活動教育原始糖分的生長與生產"
+      }
+    ]
+  },
+  {
+    title: "#在地資源的機會主義與適應性 / LocalResourceAdaptability / 地域資源の適応的活用",
+    cards: [
+      {
+        angle: "barrier",
+        zh: "我們如何降低農場對外部採購與天候變動的脆弱性？",
+        en: "How might we reduce a farm's vulnerability to external purchasing and weather volatility?",
+        ja: "農場が外部調達や天候変動に左右されやすい状態を、どのように減らせるだろうか？",
+        source: "源自核心洞察：最大化在地資源用途以降低採購成本與氣候風險"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓在地資源成為農場更省力、更穩定、更有特色的營運基礎？",
+        en: "How might we make local resources the basis for farm operations that are easier, steadier, and more distinctive?",
+        ja: "地域資源を、より省力的で安定し、特色ある農場運営の基盤にするにはどうすればよいだろうか？",
+        source: "源自核心洞察：最大化在地資源用途以降低採購成本與氣候風險"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用竹子、甘蔗等既有資源的一物多用特性，創造更具韌性的農場系統？",
+        en: "How might we leverage multipurpose local resources like bamboo and sugarcane to create a more resilient farm system?",
+        ja: "竹やサトウキビなど既存資源の多用途性を活かし、よりレジリエントな農場システムをつくるにはどうすればよいだろうか？",
+        source: "源自核心洞察：最大化在地資源用途以降低採購成本與氣候風險"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何減少農業與體驗活動對外購材料的依賴，避免成本壓縮營運彈性？",
+        en: "How might we reduce farming and experience activities' reliance on purchased materials so costs do not squeeze operational flexibility?",
+        ja: "農業や体験活動が購入資材に依存しすぎず、コストが運営の柔軟性を圧迫しないようにするにはどうすればよいだろうか？",
+        source: "源自痛點：外部採買增加運輸成本與經營負擔，作物易受風雨損害"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓農場在面對風雨與成本壓力時，仍能維持穩定且有品質的體驗？",
+        en: "How might we help farms maintain stable, quality experiences despite storms and cost pressure?",
+        ja: "風雨やコスト圧力に直面しても、農場が安定した質の高い体験を維持するにはどうすればよいだろうか？",
+        source: "源自痛點：外部採買增加運輸成本與經營負擔，作物易受風雨損害"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何借助現場可取得的材料與耐候作物，提升農場對環境變動的適應力？",
+        en: "How might we leverage on-site materials and weather-resilient crops to improve a farm's adaptability to environmental change?",
+        ja: "現場で手に入る素材と耐候性のある作物を活かし、環境変化への農場の適応力を高めるにはどうすればよいだろうか？",
+        source: "源自痛點：外部採買增加運輸成本與經營負擔，作物易受風雨損害"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低就地取材在品質、供應與使用方式上的不確定性？",
+        en: "How might we reduce uncertainty in the quality, supply, and use of locally sourced materials?",
+        ja: "現地調達素材の品質、供給、使い方における不確実性を減らすにはどうすればよいだろうか？",
+        source: "源自期望：就近取材一物多用，選擇耐候作物穩定營運"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓就地取材與耐候作物選擇，成為農場穩定營運與特色體驗的一部分？",
+        en: "How might we make local sourcing and resilient crop choices part of stable operations and distinctive farm experiences?",
+        ja: "現地調達と耐候性作物の選択を、農場の安定運営と特色ある体験の一部にするにはどうすればよいだろうか？",
+        source: "源自期望：就近取材一物多用，選擇耐候作物穩定營運"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何放大地主竹子、甘蔗耐候性與現場材料的組合優勢？",
+        en: "How might we amplify the combined advantages of the landlord's bamboo, sugarcane's resilience, and on-site materials?",
+        ja: "地主の竹、サトウキビの耐候性、現場素材という組み合わせの強みをどう広げられるだろうか？",
+        source: "源自期望：就近取材一物多用，選擇耐候作物穩定營運"
+      }
+    ]
+  },
+  {
+    title: "#農業資本投入的財務與家庭風險 / FarmCapitalFamilyRisk / 農業投資の財務・家族リスク",
+    cards: [
+      {
+        angle: "barrier",
+        zh: "我們如何降低農業試錯造成的財務失血，避免家庭支持被長期風險耗盡？",
+        en: "How might we reduce financial bleeding from agricultural trial and error so family support is not exhausted by long-term risk?",
+        ja: "農業の試行錯誤による資金流出を抑え、長期的なリスクで家族の支援が消耗しないようにするにはどうすればよいだろうか？",
+        source: "源自核心洞察：農業試錯成本高，過度多元化導致虧損與家庭支持崩解"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓農業經營者更早看見可持續的獲利方向，重建家庭對農業投入的信心？",
+        en: "How might we help farm operators see sustainable profit directions earlier and rebuild family confidence in agricultural investment?",
+        ja: "農業経営者が持続可能な収益方向を早く見つけ、農業投資への家族の信頼を取り戻すにはどうすればよいだろうか？",
+        source: "源自核心洞察：農業試錯成本高，過度多元化導致虧損與家庭支持崩解"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用既有技能、外部收入與在地經驗，設計更低風險的農業探索節奏？",
+        en: "How might we leverage existing skills, external income, and local experience to shape a lower-risk rhythm for agricultural exploration?",
+        ja: "既存スキル、外部収入、地域経験を活かし、より低リスクな農業探索のペースをつくるにはどうすればよいだろうか？",
+        source: "源自核心洞察：農業試錯成本高，過度多元化導致虧損與家庭支持崩解"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何避免什麼都想嘗試的多元化策略，演變成無法承受的資本風險？",
+        en: "How might we prevent an everything-at-once diversification strategy from turning into unbearable capital risk?",
+        ja: "何でも試す多角化戦略が、耐えられない資本リスクに変わらないようにするにはどうすればよいだろうか？",
+        source: "源自痛點：過度多元化失敗，賠售房產、損失數百萬並引發家庭反對"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓農友在探索新方向時，仍能維持家庭關係、財務安全與前進感？",
+        en: "How might we help farmers explore new directions while maintaining family relationships, financial safety, and a sense of progress?",
+        ja: "農家が新しい方向を探りながら、家族関係、財務的安全、前進感を保つにはどうすればよいだろうか？",
+        source: "源自痛點：過度多元化失敗，賠售房產、損失數百萬並引發家庭反對"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何利用過往嘗試累積的失敗經驗，幫助農友辨識哪些路線值得收斂？",
+        en: "How might we leverage lessons from past failed attempts to help farmers identify which paths are worth narrowing down?",
+        ja: "過去の失敗経験から得た学びを活かし、農家が絞り込むべき方向を見極めるにはどうすればよいだろうか？",
+        source: "源自痛點：過度多元化失敗，賠售房產、損失數百萬並引發家庭反對"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低尋找獲利模式的盲目試錯，停止無止盡虧損與家庭摩擦？",
+        en: "How might we reduce blind trial and error in searching for profit models to stop endless losses and family friction?",
+        ja: "収益モデルを探す際の手探りの試行錯誤を減らし、終わりのない赤字と家族摩擦を止めるにはどうすればよいだろうか？",
+        source: "源自期望：找到真正獲利的商業模式，停止虧損與家庭摩擦"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓可獲利的農業模式同時帶來現金流、家人安心與經營者信心？",
+        en: "How might we make a profitable farm model bring cash flow, family reassurance, and operator confidence at the same time?",
+        ja: "収益性のある農業モデルが、現金収入、家族の安心、経営者の自信を同時にもたらすにはどうすればよいだろうか？",
+        source: "源自期望：找到真正獲利的商業模式，停止虧損與家庭摩擦"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何結合過去科技業底氣、農業技能與市場回饋，判斷更可持續的營收方向？",
+        en: "How might we combine prior tech-industry resources, farming skills, and market feedback to identify more sustainable revenue directions?",
+        ja: "過去のIT業界での蓄え、農業スキル、市場からの反応を組み合わせ、より持続可能な収益方向を見極めるにはどうすればよいだろうか？",
+        source: "源自期望：找到真正獲利的商業模式，停止虧損與家庭摩擦"
+      }
+    ]
+  },
+  {
+    title: "#從產量向體驗經濟轉型的必然 / ProductionToExperienceEconomy / 生産量から体験経済へ",
+    cards: [
+      {
+        angle: "barrier",
+        zh: "我們如何降低微型農場過度依賴農產銷售所造成的收入不足風險？",
+        en: "How might we reduce the income risk micro-farms face when they rely too heavily on crop sales?",
+        ja: "小規模農場が作物販売に過度に依存することで生じる収入不足リスクを、どのように減らせるだろうか？",
+        source: "源自核心洞察：傳統農產變現不足，場域體驗成為主要收入來源"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓農場體驗成為能支撐生計、傳遞價值且讓參與者想回訪的收入來源？",
+        en: "How might we make farm experiences a revenue source that supports livelihoods, conveys value, and makes participants want to return?",
+        ja: "農場体験を、生計を支え、価値を伝え、参加者が再訪したくなる収入源にするにはどうすればよいだろうか？",
+        source: "源自核心洞察：傳統農產變現不足，場域體驗成為主要收入來源"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用場域、生態與非典型作息，創造農產之外的農場價值？",
+        en: "How might we leverage the site, ecology, and nontraditional rhythms to create farm value beyond crop output?",
+        ja: "場、生態系、非典型的な生活リズムを活かし、作物生産以外の農場価値を生み出すにはどうすればよいだろうか？",
+        source: "源自核心洞察：傳統農產變現不足，場域體驗成為主要收入來源"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何幫助只靠種植難以獲利的農場，突破傳統農業作息與收入模式的限制？",
+        en: "How might we help farms that cannot profit from cultivation alone move beyond traditional farming routines and income models?",
+        ja: "栽培だけでは利益を出しにくい農場が、従来の農業リズムと収入モデルの制約を超えるにはどうすればよいだろうか？",
+        source: "源自痛點：單靠農作物賺不了錢，舊有農業作息無法產生足夠價值"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓農場在作物之外，也能創造足以支持營運的體驗價值？",
+        en: "How might we help farms create experience value beyond crops that is strong enough to support operations?",
+        ja: "農場が作物以外にも、運営を支えられるほどの体験価値を生み出すにはどうすればよいだろうか？",
+        source: "源自痛點：單靠農作物賺不了錢，舊有農業作息無法產生足夠價值"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何借助夜間生態、農場空間與經營者個性，開展更有辨識度的收益機會？",
+        en: "How might we leverage night ecology, farm space, and operator character to develop more distinctive revenue opportunities?",
+        ja: "夜の生態、農場空間、経営者の個性を活かし、より識別しやすい収益機会を広げるにはどうすればよいだろうか？",
+        source: "源自痛點：單靠農作物賺不了錢，舊有農業作息無法產生足夠價值"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低農場轉型生態體驗時，在營收穩定與接待能力上的不確定性？",
+        en: "How might we reduce uncertainty in revenue stability and hosting capacity when farms shift toward ecological experiences?",
+        ja: "農場が生態体験へ転換する際、収益の安定性と受け入れ能力に関する不確実性を下げるにはどうすればよいだろうか？",
+        source: "源自期望：發展生態體驗活動取得讓農場延續的實質收益"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓生態體驗帶來足夠收益，同時保留農場自然與真實的魅力？",
+        en: "How might we make ecological experiences generate enough revenue while preserving the farm's natural and authentic appeal?",
+        ja: "生態体験が十分な収益を生みながら、農場の自然で本物らしい魅力を保つにはどうすればよいだろうか？",
+        source: "源自期望：發展生態體驗活動取得讓農場延續的實質收益"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用夜觀、生物多樣性與場域故事，打造農場可持續的體驗收入？",
+        en: "How might we leverage night observation, biodiversity, and site stories to build sustainable experience revenue for the farm?",
+        ja: "夜間観察、生物多様性、場の物語を活かし、農場の持続可能な体験収入をつくるにはどうすればよいだろうか？",
+        source: "源自期望：發展生態體驗活動取得讓農場延續的實質收益"
+      }
+    ]
+  },
+  {
+    title: "#勞動力波動與門檻的降級妥協 / LaborVolatilityParticipationThreshold / 労働力変動と参加ハードル",
+    cards: [
+      {
+        angle: "barrier",
+        zh: "我們如何降低換工熱潮退去後，農場在人力與客源流失上的壓力？",
+        en: "How might we reduce the pressure farms face from labor and visitor loss after the work-exchange boom fades?",
+        ja: "ワークエクスチェンジブームが去った後、農場が抱える労働力と客層の流出圧力をどう減らせるだろうか？",
+        source: "源自核心洞察：換工熱潮消退後，需降低門檻並改善接待條件"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓更彈性的參與條件與更好的接待，重新吸引人願意留下與回來？",
+        en: "How might we use more flexible participation terms and better hospitality to make people want to stay and return?",
+        ja: "より柔軟な参加条件とより良い受け入れで、人々が滞在し再訪したくなるようにするにはどうすればよいだろうか？",
+        source: "源自核心洞察：換工熱潮消退後，需降低門檻並改善接待條件"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用短期上班族、在地客群與基礎餐食改善，建立新的參與循環？",
+        en: "How might we leverage short-term office workers, local participants, and improved basic meals to build a new participation loop?",
+        ja: "短期参加の会社員、地域の参加者、基本的な食事改善を活かし、新しい参加循環をつくるにはどうすればよいだろうか？",
+        source: "源自核心洞察：換工熱潮消退後，需降低門檻並改善接待條件"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低國際換工人潮減少後，農場日常勞動力不足的衝擊？",
+        en: "How might we reduce the impact of daily labor shortages after international work-exchange participation declines?",
+        ja: "国際ワークエクスチェンジ参加者が減少した後の日常的な労働力不足の影響を、どう小さくできるだろうか？",
+        source: "源自痛點：過去每天爆滿的國際換工榮景不再，勞動力大幅減少"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓農場參與從長期換工，轉化為仍有歸屬感的短期投入？",
+        en: "How might we transform farm participation from long-term work exchange into short-term involvement that still creates belonging?",
+        ja: "農場参加を長期ワークエクスチェンジから、帰属感のある短期参加へ変えるにはどうすればよいだろうか？",
+        source: "源自痛點：過去每天爆滿的國際換工榮景不再，勞動力大幅減少"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何借助本地上班族的週末時間、學習動機與社群連結，補足農場人力缺口？",
+        en: "How might we leverage local office workers' weekend time, learning motivation, and social ties to fill farm labor gaps?",
+        ja: "地元会社員の週末時間、学びたい動機、コミュニティのつながりを活かし、農場の人手不足を補うにはどうすればよいだろうか？",
+        source: "源自痛點：過去每天爆滿的國際換工榮景不再，勞動力大幅減少"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何降低三天以上短期換工的磨合成本，讓農場與參與者都不覺得負擔過重？",
+        en: "How might we reduce the onboarding friction of three-day work exchange so neither farms nor participants feel overloaded?",
+        ja: "三日以上の短期ワークエクスチェンジの立ち上がり負担を減らし、農場側も参加者側も重すぎると感じないようにするにはどうすればよいだろうか？",
+        source: "源自期望：將換工門檻從一個月縮短至三天，吸引短期本地上班族"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓三天短期參與也能帶來學習、貢獻與想再次回來的體驗？",
+        en: "How might we make a three-day participation experience deliver learning, contribution, and the desire to return?",
+        ja: "三日間の短期参加でも、学び、貢献、また戻りたい気持ちを生み出すにはどうすればよいだろうか？",
+        source: "源自期望：將換工門檻從一個月縮短至三天，吸引短期本地上班族"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何運用短天數彈性、城市工作者需求與農場任務切分，創造更容易加入的換工形式？",
+        en: "How might we leverage flexible short stays, urban workers' needs, and divided farm tasks to create easier-to-join work exchange formats?",
+        ja: "短期滞在の柔軟性、都市で働く人のニーズ、農場作業の分割を活かし、参加しやすいワークエクスチェンジ形式をつくるにはどうすればよいだろうか？",
+        source: "源自期望：將換工門檻從一個月縮短至三天，吸引短期本地上班族"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何避免餐食品質成為農場體驗流失客源的關鍵阻力？",
+        en: "How might we prevent meal quality from becoming a key barrier that drives participants away from farm experiences?",
+        ja: "食事の質が農場体験から参加者を遠ざける主要な障壁にならないようにするにはどうすればよいだろうか？",
+        source: "源自痛點：餐食品質不佳，參與者吃不飽或感受不佳，客源不再回流"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓餐食成為參與者感到被照顧、願意推薦與回訪的體驗亮點？",
+        en: "How might we make meals a highlight that makes participants feel cared for, willing to recommend, and eager to return?",
+        ja: "食事を、参加者が大切にされていると感じ、推薦し再訪したくなる体験の魅力にするにはどうすればよいだろうか？",
+        source: "源自痛點：餐食品質不佳，參與者吃不飽或感受不佳，客源不再回流"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何結合在地食材、農場作物與接待流程，補強最基礎卻最影響口碑的餐食體驗？",
+        en: "How might we combine local ingredients, farm crops, and hosting routines to strengthen the basic meal experience that most affects word of mouth?",
+        ja: "地域食材、農場作物、受け入れの流れを組み合わせ、基本的でありながら口コミに大きく影響する食事体験を強化するにはどうすればよいだろうか？",
+        source: "源自痛點：餐食品質不佳，參與者吃不飽或感受不佳，客源不再回流"
+      },
+      {
+        angle: "barrier",
+        zh: "我們如何讓農場正視參與者的基本生理需求，避免好體驗被餐食問題抵消？",
+        en: "How might we help farms address participants' basic physical needs so good experiences are not canceled out by meal problems?",
+        ja: "農場が参加者の基本的な生理的ニーズに向き合い、良い体験が食事問題で打ち消されないようにするにはどうすればよいだろうか？",
+        source: "源自期望：改善餐食體驗以維持基本營運與口碑"
+      },
+      {
+        angle: "outcome",
+        zh: "我們如何讓改善後的餐食支撐場域口碑，並提升參與者對整體體驗的滿意度？",
+        en: "How might we make improved meals support the site's reputation and raise participants' satisfaction with the whole experience?",
+        ja: "改善された食事が場の評判を支え、参加者の全体体験への満足度を高めるにはどうすればよいだろうか？",
+        source: "源自期望：改善餐食體驗以維持基本營運與口碑"
+      },
+      {
+        angle: "leverage",
+        zh: "我們如何利用餐食作為農場價值、在地物產與照顧感的連接點？",
+        en: "How might we use meals as a connection point for farm values, local produce, and a sense of care?",
+        ja: "食事を、農場の価値、地域の産物、ケアされている感覚をつなぐ接点にするにはどうすればよいだろうか？",
+        source: "源自期望：改善餐食體驗以維持基本營運與口碑"
+      }
+    ]
+  }
+];
+
+let draggedCard = null;
+let dragOriginList = null;
+
+function renderBoard() {
+  const board = document.getElementById("board");
+  themes.forEach((theme) => {
+    const section = document.createElement("div");
+    section.className = "theme-section";
+
+    const title = document.createElement("div");
+    title.className = "theme-title";
+    title.textContent = theme.title;
+    section.appendChild(title);
+
+    const list = document.createElement("div");
+    list.className = "cards-list";
+    list.addEventListener("dragover", handleDragOver);
+    list.addEventListener("drop", handleDrop);
+
+    theme.cards.forEach((cardData) => {
+      list.appendChild(createCard(cardData));
+    });
+
+    section.appendChild(list);
+    board.appendChild(section);
+  });
+}
+
+function createCard(cardData) {
+  const card = document.createElement("div");
+  card.className = "hmw-card";
+  card.draggable = true;
+  card.dataset.angle = cardData.angle;
+
+  const content = document.createElement("div");
+  content.className = "card-content";
+
+  const badge = document.createElement("span");
+  badge.className = `angle-badge badge-${cardData.angle}`;
+  badge.textContent = angleLabels[cardData.angle];
+  content.appendChild(badge);
+
+  content.appendChild(createTextRow("中", cardData.zh));
+  content.appendChild(createTextRow("EN", cardData.en));
+  content.appendChild(createTextRow("JA", cardData.ja));
+
+  const source = document.createElement("div");
+  source.className = "original-source";
+  source.textContent = cardData.source;
+  content.appendChild(source);
+
+  const voteArea = document.createElement("div");
+  voteArea.className = "vote-area";
+  voteArea.innerHTML = `
+    <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+    <div class="vote-display-wrapper">
+      <span class="vote-heart-icon">❤️</span>
+      <span class="vote-count">0</span>
+    </div>
+    <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+  `;
+
+  card.appendChild(content);
+  card.appendChild(voteArea);
+
+  card.addEventListener("dragstart", () => {
+    draggedCard = card;
+    dragOriginList = card.parentElement;
+    card.classList.add("dragging");
+  });
+
+  card.addEventListener("dragend", () => {
+    card.classList.remove("dragging");
+    draggedCard = null;
+    dragOriginList = null;
+  });
+
+  return card;
+}
+
+function createTextRow(label, text) {
+  const row = document.createElement("div");
+  row.className = "hmw-text";
+
+  const strong = document.createElement("strong");
+  strong.textContent = label;
+
+  row.appendChild(strong);
+  row.append(`：${text}`);
+  return row;
+}
+
+function handleDragOver(event) {
+  event.preventDefault();
+  const list = event.currentTarget;
+  if (!draggedCard || list !== dragOriginList) return;
+
+  const afterElement = getDragAfterElement(list, event.clientY);
+  if (afterElement == null) {
+    list.appendChild(draggedCard);
+  } else {
+    list.insertBefore(draggedCard, afterElement);
+  }
+}
+
+function handleDrop(event) {
+  event.preventDefault();
+}
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll(".hmw-card:not(.dragging)")];
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset, element: child };
+    }
+    return closest;
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+function adjustVote(button, delta) {
+  const countEl = button.parentElement.querySelector(".vote-count");
+  const nextValue = Math.max(0, Number(countEl.textContent) + delta);
+  countEl.textContent = nextValue;
+}
+
+function exportResults() {
+  const sections = [...document.querySelectorAll(".theme-section")];
+  const lines = ["HMW 創意思考討論結果", `匯出時間：${new Date().toLocaleString()}`, ""];
+
+  sections.forEach((section, sectionIndex) => {
+    lines.push(`${sectionIndex + 1}. ${section.querySelector(".theme-title").textContent}`);
+    const cards = [...section.querySelectorAll(".hmw-card")];
+    cards.forEach((card, cardIndex) => {
+      const votes = card.querySelector(".vote-count").textContent;
+      const badge = card.querySelector(".angle-badge").textContent;
+      const rows = [...card.querySelectorAll(".hmw-text")].map((row) => row.innerText.trim());
+      const source = card.querySelector(".original-source").textContent.trim();
+      lines.push(`  ${cardIndex + 1}. [${votes}票] ${badge}`);
+      rows.forEach((row) => lines.push(`     ${row}`));
+      lines.push(`     ${source}`);
+    });
+    lines.push("");
+  });
+
+  copyText(lines.join("\n"));
+}
+
+function copyText(text) {
+  const status = document.getElementById("exportStatus");
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      status.textContent = "已複製到剪貼簿";
+      window.setTimeout(() => status.textContent = "", 2400);
+    }).catch(() => fallbackCopy(text, status));
+  } else {
+    fallbackCopy(text, status);
+  }
+}
+
+function fallbackCopy(text, status) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
+  status.textContent = "已複製到剪貼簿";
+  window.setTimeout(() => status.textContent = "", 2400);
+}
+
+renderBoard();
+</script>
+</body>
+</html>

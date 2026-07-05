@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談主題維度提煉手札</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 24px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .theme-card { background: white; padding: 24px; border-radius: 20px; box-shadow: 0 4px 12px rgba(15, 42, 28, 0.04); border: 1px solid #e7e5e4; margin-bottom: 24px; display: flex; flex-direction: column; gap: 16px; }
+  @media (min-width: 992px) {
+    .theme-card { flex-direction: row; }
+    .left-panel { width: 35%; border-right: 1px solid #e7e5e4; padding-right: 24px; }
+    .right-panel { width: 65%; padding-left: 24px; }
+  }
+  .theme-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .theme-id { background: #0f2a1c; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; }
+  .theme-name { font-size: 1.25rem; font-weight: 800; color: #0f2a1c; }
+  
+  .tags-cloud { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .sub-tag { font-size: 0.75rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 6px; font-weight: 700; border: 1px solid #e7e5e4; }
+  
+  .insight-box { background: #f5f5f4; border: 1px solid #e7e5e4; padding: 16px; border-radius: 12px; font-size: 0.9rem; line-height: 1.6; }
+  .insight-title { font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .speaker-section { border-bottom: 1px dashed #e7e5e4; padding-bottom: 20px; margin-bottom: 20px; }
+  .speaker-section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .speaker-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .speaker-badge { background: #f5f5f4; color: #1c1917; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
+  .compare-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
+  @media (min-width: 768px) {
+    .compare-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .grid-box { padding: 12px; border-radius: 8px; font-size: 0.88rem; line-height: 1.6; }
+  .box-pain { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+  .box-expect { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+  .quote-container { background: #fafaf9; border: 1px solid #e7e5e4; padding: 16px; border-radius: 10px; font-size: 0.88rem; }
+  .quote-row { margin-bottom: 8px; line-height: 1.5; }
+  .quote-row:last-child { margin-bottom: 0; }
+  .quote-lang { font-size: 0.72rem; font-weight: 800; color: #78716c; margin-bottom: 2px; text-transform: uppercase; }
+  .quote-text { font-style: italic; color: #44403c; }
+  mark { background: #fef08a; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-title">訪談主題維度提煉手札 (Persona Metadata)</div>
+  
+  <!-- 主題 1 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T1</div>
+        <div class="theme-name">#技術妥協與市場差異化</div>
+      </div>
+      <div class="tags-cloud">
+        <span class="sub-tag">拒絕化學添加</span>
+        <span class="sub-tag">技術限制妥協</span>
+        <span class="sub-tag">液態改版</span>
+        <span class="sub-tag">順應使用者</span>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong> 小農在堅持天然無添加的理念下，常受限於加工技術瓶頸；然而，這些技術限制反而促使他們開發出更順應現代使用者習慣（如液態便利性）的差異化產品。</p>
+        <p><strong>EN:</strong> Smallholders committed to natural, additive-free processing often face technical bottlenecks. However, these limitations paradoxically drive them to develop differentiated products that better align with modern user convenience (e.g., liquid forms).</p>
+        <p><strong>JA:</strong> 無添加の理念を貫く小農は、しばしば加工技術の壁に直面する。しかし、その技術的限界が逆説的に、現代の消費者の利便性（液体状など）に適合した差別化商品の開発を促している。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <!-- 受訪者對比 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：加工農友 (Processing Farmer)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 缺乏高階熬糖技術，若不添加石灰化學物，無法順利製成傳統市售的固體黑糖塊。<br>
+            <strong>EN:</strong> Lacks advanced sugar-boiling skills; unable to produce traditional solid brown sugar blocks without adding chemical lime.<br>
+            <strong>JA:</strong> 高度な黒糖煮込み技術が不足しており、石灰（化学物質）を添加しないと市販の固形黒糖を作ることができない。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 順應自身技術限制，改推液態糖蜜，以「如同果糖般方便使用」的訴求創造市場差異。<br>
+            <strong>EN:</strong> Adapt to technical limits by promoting liquid molasses, creating market differentiation through a "convenient as HFCS" appeal.<br>
+            <strong>JA:</strong> 技術的限界を受け入れ、あえて液状シロップ（糖蜜）を推進。「果糖のように使いやすい」というアピールで市場の差別化を図りたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text">你如果沒有很厲害的話，最容易燒焦...<mark>那我的技術不到位，我就用意態（液態）加工了</mark>。因為你要用的時候也是要還原成液態嘛，那乾脆就用這個液態，在市面上跟人家做一個差異。</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">English</div>
+            <div class="quote-text">If you aren't highly skilled, it burns very easily... <mark>Since my technique isn't quite there yet, I went with liquid processing instead</mark>. Because when you want to use it, you have to dissolve it into liquid anyway, so why not just keep it liquid to create a market differentiation.</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">Japanese</div>
+            <div class="quote-text">熟練していないと、すぐに焦げてしまうので...<mark>私の技術はまだそこまで達していないので、あえて「液態（リキッドシロップ）」で加工することにしました</mark>。使う時にはどうせ液体に戻すわけですから、最初から液体のままにして市場で差別化を図ったわけです。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 2 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T2</div>
+        <div class="theme-name">#專業委託與勞動互助網</div>
+      </div>
+      <div class="tags-cloud">
+        <span class="sub-tag">同業小農委託</span>
+        <span class="sub-tag">非商業工廠</span>
+        <span class="sub-tag">教會社群支持</span>
+        <span class="sub-tag">代耕代工轉型</span>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong> 面對高專業門檻或沉重農務，經營者不再單打獨鬥，而是建立信任網絡（如委託專業小農代工、依賴教會志工、轉型代耕），形成微型的互助求生生態系。</p>
+        <p><strong>EN:</strong> Facing high technical barriers or heavy labor, operators shift from working alone to building trust networks (outsourcing to skilled peers, relying on church volunteers, or doing contract farming), forming a micro survival ecosystem.</p>
+        <p><strong>JA:</strong> 高度な専門性や重労働に直面した際、経営者は孤軍奮闘するのではなく、信頼のネットワーク（熟練小農への委託、教会のボランティア、代耕への転換）を築き、互助的な生存エコシステムを形成する。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <!-- 受訪者對比 1 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：加工農友 (Processing Farmer)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 醬油釀造需要專業的技術與特定設備，自身難以獨立負擔與生產。<br>
+            <strong>EN:</strong> Brewing soy sauce requires specialized skills and specific equipment, which is difficult to manage and afford independently.<br>
+            <strong>JA:</strong> 醤油醸造には専門技術と専用設備が必要であり、自力だけで負担・生産するのは困難である。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 將原料交給有相同理念且具備專業技術的「非商業小農」進行代工，確保品質。<br>
+            <strong>EN:</strong> Hand over raw materials to "non-commercial smallholders" who share similar values and possess the expertise to ensure quality.<br>
+            <strong>JA:</strong> 同じ理念を持ち、専門技術を備えた「非商業的なプロの小農」に原料を託し、品質を確保したい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text"><mark>醬油比較專業，要有專業的手法跟設備，所以是委託比較厲害的小農做的</mark>。他不是外面的、一般的那種商業工廠...</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 受訪者對比 2 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：地主李大哥描述阿江 (Mr. Li on A-Jiang)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 獨自務農虧損嚴重（五六百萬），原本的自耕模式已無法維持生計。<br>
+            <strong>EN:</strong> Suffered heavy losses (5-6 million) farming alone; the original independent farming model is no longer financially viable.<br>
+            <strong>JA:</strong> 単独での農業経営で大赤字（5〜6百万元）を出し、従来の自営農業モデルでは生計を立てられなくなった。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 憑藉卓越的農業技能，轉型為他人「代耕、代工」以求生存換取現金流。<br>
+            <strong>EN:</strong> Leverage excellent farming skills to transition into "contract farming and outsourcing" for others to survive and generate cash flow.<br>
+            <strong>JA:</strong> 高い農業スキルを活かし、他人のための「代耕・請負作業」に転換し、現金収入を得て生き残りたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text">對，他現在都搞<mark>代耕、代工</mark>...可是這個一般農業技巧很強的人，還能搞代耕。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 3 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T3</div>
+        <div class="theme-name">#健康意識與食安教育行銷</div>
+      </div>
+      <div class="tags-cloud">
+        <span class="sub-tag">解構化學添加物</span>
+        <span class="sub-tag">回歸原始糖分</span>
+        <span class="sub-tag">原始食物教育</span>
+        <span class="sub-tag">自然農法信念</span>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong> 生產者將對抗市場主流（如死鹹、化學合成的果糖）作為品牌定位的核心，將農場轉變為「原始食物體驗」的教育場域，藉此強化消費者的價值認同。</p>
+        <p><strong>EN:</strong> Producers use their opposition to market mainstream (e.g., harsh saltiness, chemical HFCS) as core brand positioning, transforming farms into educational spaces for "original food experiences" to build consumer value identity.</p>
+        <p><strong>JA:</strong> 生産者は市場の主流（ただ塩辛いものや化学合成の果糖など）への対抗をブランドの核とし、農場を「本来の食体験」の教育の場に変えることで、消費者の価値共感を強化している。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <!-- 受訪者對比 1 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰自然田 (A-Cong)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 現代人充斥著不健康的化學合成糖分（果糖），對真正食物的來源缺乏認知。<br>
+            <strong>EN:</strong> Modern people are surrounded by unhealthy chemically synthesized sugars (HFCS) and lack awareness of where real food comes from.<br>
+            <strong>JA:</strong> 現代人は不健康な化学合成糖（果糖）に囲まれており、本物の食べ物の由来に対する認識が欠如している。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 透過親自種植甘蔗並設計體驗活動，教育大眾認識原始糖分的生長與生產過程。<br>
+            <strong>EN:</strong> By growing sugarcane and designing experiential activities, educate the public about how original sugar grows and is produced.<br>
+            <strong>JA:</strong> 自らサトウキビを育て、体験活動を設計することで、本来の糖分がどのように育ち生産されるかを大衆に教育したい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text">市面上的果糖太多了，那是不健康的。所以才覺得說，那你可以體驗...<mark>真正原始的糖是這樣子種出來的</mark>。</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">English</div>
+            <div class="quote-text">There is too much fructose on the market, which is unhealthy. So I thought visitors could experience... and understand that <mark>real, original sugar is grown in this way</mark>.</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">Japanese</div>
+            <div class="quote-text">市販の果糖は多すぎて健康的ではありません。だから、砂糖がどのように作られるのかを体験してもらい、<mark>本来の砂糖はこうして育てられる</mark>と知ってほしいと思いました。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 4 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T4</div>
+        <div class="theme-name">#在地資源的機會主義與適應性</div>
+      </div>
+      <div class="tags-cloud">
+        <span class="sub-tag">就地取材</span>
+        <span class="sub-tag">農務材料多功能</span>
+        <span class="sub-tag">耐候作物選擇</span>
+        <span class="sub-tag">環境適材適用</span>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong> 農場經營高度仰賴「便利性與環境適應性」，將在地既有資源（如竹子、甘蔗）的用途最大化，同時降低外部採購成本與氣候風險。</p>
+        <p><strong>EN:</strong> Farm management heavily relies on "convenience and environmental adaptability," maximizing the use of existing local resources (like bamboo, sugarcane) to lower external procurement costs and climate risks.</p>
+        <p><strong>JA:</strong> 農場経営は「利便性と環境適応性」に強く依存しており、地域の既存資源（竹やサトウキビなど）の用途を最大化しつつ、外部調達コストや気候リスクを低減している。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <!-- 受訪者對比 1 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰自然田 (A-Cong)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 農業與體驗活動若過度依賴外部採買材料，會增加運輸成本與經營負擔，且作物易受風雨損害。<br>
+            <strong>EN:</strong> Over-reliance on external purchased materials for farming and activities increases transport costs and burdens, and crops are vulnerable to storms.<br>
+            <strong>JA:</strong> 農業や体験活動が外部からの材料調達に依存しすぎると、輸送コストや経営負担が増し、作物も風雨の被害を受けやすくなる。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 選擇就近取材（地主種的竹子）一物多用，並選擇耐候性強的作物（甘蔗）來穩定營運。<br>
+            <strong>EN:</strong> Source materials nearby (landlord's bamboo) for multiple uses, and select weather-resilient crops (sugarcane) to stabilize operations.<br>
+            <strong>JA:</strong> 近くにある素材（地主の竹）を多用途に活用し、耐候性の強い作物（サトウキビ）を選ぶことで運営を安定させたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text">我們目前可以用的資材，就是<mark>這個比較方便</mark>...就近就可以，<mark>現場取材</mark>。不用再去買...甘蔗也是...覺得，<mark>種這個比較耐風雨</mark>。</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">English</div>
+            <div class="quote-text">The materials we can use right now are simply <mark>more convenient</mark>... <mark>source them directly on site</mark>. We do not need to buy things... Sugarcane too... I felt that <mark>it is more resistant to wind and rain</mark>.</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">Japanese</div>
+            <div class="quote-text">今使える資材の中では、これは<mark>いちばん便利</mark>です...<mark>その場で材料を調達できます</mark>。わざわざ買いに行ったり...サトウキビも...<mark>これは風雨に強い</mark>と思いました。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 5 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T5</div>
+        <div class="theme-name">#農業資本投入的財務與家庭風險</div>
+      </div>
+      <div class="tags-cloud">
+        <span class="sub-tag">農業投入高風險</span>
+        <span class="sub-tag">家庭支持轉反對</span>
+        <span class="sub-tag">過度多元化</span>
+        <span class="sub-tag">外部收入支撐</span>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong> 農業試錯成本極高，過度分散風險的「多元化嘗試」往往導致嚴重虧損，進而摧毀家庭支持系統，只能依賴過往科技業的底氣苦撐。</p>
+        <p><strong>EN:</strong> The trial-and-error cost in agriculture is massive. "Over-diversification" often leads to severe financial bleeding, destroying family support systems, leaving farmers to survive only on the cushion of previous tech-industry savings.</p>
+        <p><strong>JA:</strong> 農業の試行錯誤コストは非常に高い。リスク分散を狙った「過度な多角化」は往々にして深刻な赤字を招き、家族の支援を破壊し、過去のIT企業での蓄えに頼らざるを得なくなる。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <!-- 受訪者對比 1 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：地主李大哥描述阿江 (Mr. Li on A-Jiang)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 什麼都想嘗試的過度多元化策略失敗，導致賠售房產、損失數百萬，最終引發妻子的強烈反對。<br>
+            <strong>EN:</strong> A failed strategy of over-diversification led to selling houses, losing millions, and ultimately triggering intense opposition from his wife.<br>
+            <strong>JA:</strong> 何でも試そうとする過度な多角化戦略が裏目に出て、家を売り、数百万元を失い、最終的に妻の強い反対を引き起こした。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 希望能找到真正獲利的商業模式，停止無止盡的虧損與家庭摩擦。<br>
+            <strong>EN:</strong> Hope to find a genuinely profitable business model to stop the endless financial bleeding and family friction.<br>
+            <strong>JA:</strong> 本当に利益の出る事業モデルを見つけ、終わりのない赤字と家族との摩擦を食い止めたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text">他就是在這邊<mark>虧了很多，虧了五、六百萬</mark>。兩棟房子也賣了，所以後來他老婆就非常不支持...他已經走很多的路線，他走過<mark>太多元發展</mark>了。</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">English</div>
+            <div class="quote-text">He <mark>lost a lot here, about five to six million</mark>. He even sold two houses, so later his wife became very unsupportive... He had pursued <mark>too many directions of diversification</mark>.</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">Japanese</div>
+            <div class="quote-text">彼はここで<mark>かなり損をして、五、六百万元ほど失いました</mark>。家も二軒売りました。だから奥さんは後になって強く反対するようになりました...彼は<mark>あまりにも多角的に展開しすぎた</mark>のです。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 6 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T6</div>
+        <div class="theme-name">#從產量向「體驗經濟」轉型的必然</div>
+      </div>
+      <div class="tags-cloud">
+        <span class="sub-tag">體驗成主要收入</span>
+        <span class="sub-tag">夜間生態體驗</span>
+        <span class="sub-tag">商業模式不可行</span>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong> 傳統「日出而作」的農產變現模式已不足以支撐微型農場，經營者被迫打破農務常規（如轉作夜觀活動），將「場域體驗」變為主要收入來源。</p>
+        <p><strong>EN:</strong> Traditional "sunrise farming" crop sales are no longer enough to sustain micro-farms. Operators are forced to break farming norms (e.g., shifting to night ecology tours), making "site experiences" the primary revenue stream.</p>
+        <p><strong>JA:</strong> 伝統的な「日の出と共に働く」作物販売モデルでは小規模農場を維持できない。経営者は農業の常識を打ち破り（夜間観察ツアーなど）、「場の体験」を主たる収益源に変えざるを得なくなっている。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <!-- 受訪者對比 1 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：地主李大哥觀察鄰居 (Mr. Li Observing Neighbors)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 單純靠種植農作物根本賺不了錢，舊有的農業作息（日出而作）無法產生足夠的經濟價值。<br>
+            <strong>EN:</strong> Relying solely on growing crops makes no money; the traditional farming routine (working at sunrise) fails to generate sufficient economic value.<br>
+            <strong>JA:</strong> 単純に作物を育てるだけでは全く儲からず、従来の農業のリズム（日の出と共に働く）では十分な経済価値を生み出せない。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 透過轉型發展生態體驗活動（如夜間觀察），來獲取能讓農場延續的實質收益。<br>
+            <strong>EN:</strong> Shift toward developing ecological experiences (like night observation tours) to secure substantial revenue that keeps the farm alive.<br>
+            <strong>JA:</strong> 生態体験活動（夜間観察など）にシフトすることで、農場を存続させるための実質的な収益を得たい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text">應該是<mark>體驗</mark>。他現在是體驗比較多...我說人家是日出而作...他不是，他是日照三竿，睡到自然醒。然後晚上呢，整夜站（夜觀）。</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">English</div>
+            <div class="quote-text">It should be <mark>experiences</mark>. They do more experience-based activities now... others work at sunrise... But he sleeps until late in the morning and stays up all night instead (night tours).</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">Japanese</div>
+            <div class="quote-text">主には<mark>体験</mark>だと思います。今は体験の方が多いです...人は日の出とともに働き...でも彼は朝遅くまで寝て、夜は一晩中起きています（夜間観察）。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 7 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T7</div>
+        <div class="theme-name">#勞動力波動與門檻的降級妥協</div>
+      </div>
+      <div class="tags-cloud">
+        <span class="sub-tag">人力供需改變</span>
+        <span class="sub-tag">參與門檻彈性化</span>
+        <span class="sub-tag">餐食條件痛點</span>
+        <span class="sub-tag">有機農場吸引力下降</span>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong> 隨著有機農場換工熱潮消退，經營者面臨勞動力與客源流失，必須透過大幅降低參與門檻（天數縮短）與改善基礎接待條件（餐食）來挽留人群。</p>
+        <p><strong>EN:</strong> As the WWOOF/organic farming craze cools, operators face dwindling labor and customer bases, forcing them to drastically lower participation thresholds (shorter stays) and improve basic hospitality (food) to retain people.</p>
+        <p><strong>JA:</strong> 有機農場のワークエクスチェンジブームが去り、経営者は労働力と客層の流出に直面。参加のハードルを大幅に下げ（滞在日数の短縮）、基本的な接客条件（食事）を改善することで人を引き留めざるを得なくなっている。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <!-- 受訪者對比 1 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰自然田 (A-Cong)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 過去每天爆滿的國際換工榮景不再，勞動力供給大幅減少。<br>
+            <strong>EN:</strong> The past boom of fully-booked international work exchange is gone; labor supply has drastically decreased.<br>
+            <strong>JA:</strong> かつての毎日満員だった国際ワークエクスチェンジの活気は失われ、労働力の供給が激減している。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 將換工的門檻從一個月大幅縮減至三天，以彈性吸引短期的本地上班族投入。<br>
+            <strong>EN:</strong> Drastically reduce the work exchange requirement from one month down to three days to flexibly attract short-term local office workers.<br>
+            <strong>JA:</strong> ワークエクスチェンジの条件を一か月から三日間に大幅に短縮し、柔軟性を持たせて短期の地元会社員を惹きつけたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text">我們是希望...因為那時候人多嘛，我們可以規定遠一點，<mark>半個月或一個月以上</mark>。現在是<mark>三天以上</mark>。</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">English</div>
+            <div class="quote-text">We hoped... because there were many people at that time, we could set a longer requirement, <mark>half a month or more than one month</mark>. Now it is <mark>at least three days</mark>.</div>
+          </div>
+          <div class="quote-row">
+            <div class="quote-lang">Japanese</div>
+            <div class="quote-text">以前は人が多かったので、もっと長く条件を決めることができました。<mark>半月、または一か月以上</mark>です。今は<mark>三日以上</mark>です。</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 受訪者對比 2 -->
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：地主李大哥描述流失客源 (Mr. Li on losing customers)</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain">
+            <strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong> 農場體驗提供的餐食品質不佳，導致參與者吃不飽或感受不佳，最終客源不再回流。<br>
+            <strong>EN:</strong> The food provided during farm experiences was poor, leaving participants hungry or dissatisfied, causing them not to return.<br>
+            <strong>JA:</strong> 農場体験で提供される食事の質が悪く、参加者がお腹いっぱいになれず不満を抱き、結果的に客がリピートしなくなった。</div>
+          <div class="grid-box box-expect">
+            <strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong> 必須正視最基礎的生理需求，改善餐食體驗以維持場域的基本營運與口碑。<br>
+            <strong>EN:</strong> Must address basic physiological needs and improve the dining experience to maintain the site's basic operation and reputation.<br>
+            <strong>JA:</strong> 最も基本的な生理的欲求を直視し、食事体験を改善することで、現場の基本運営と口コミを維持しなければならない。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row">
+            <div class="quote-lang">Chinese</div>
+            <div class="quote-text">搞到最後，人又不來了。因為吃的比較好……就是吃，要吃不飽，要吃的又不是很 OK。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

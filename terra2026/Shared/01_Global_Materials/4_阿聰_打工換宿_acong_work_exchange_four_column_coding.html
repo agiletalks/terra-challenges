@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談編碼與標籤化整理手札</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 992px) {
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
+  }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 992px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.78rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #e7e5e4; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-title">阿聰自然田訪談編碼與標籤化整理手札</div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：一開始也不怎麼會想到要用竹子做這個，因為大部分原住民在過去的時候，都是直接做生活用品嗎？喔，這是觀察在地的生活嗎？還是你怎麼想到，就是這些人來的時候，可以做這個活動？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: At first, it may not have been obvious to use bamboo for this. Was it because Indigenous people traditionally made daily-use items this way? Was this inspired by observing local life, or how did you think of turning it into an activity for visitors?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：最初から竹を使ってこれを作ろうと思ったわけではないですよね。昔の原住民族の人たちは生活用品を直接作っていたからですか。これは地元の暮らしを観察して生まれたものですか。それとも、来た人たちにこの活動をしてもらおうと思ったきっかけは何ですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：因為我們目前可以用的資材，就是<mark>這個比較方便</mark>。這個比較方便，<mark>就近就可以，現場取材</mark>。不用再去買，或者從外部大老遠去弄東西。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: The materials we can use right now are simply <mark>more convenient</mark>. They are nearby, so we can <mark>source them directly on site</mark>. We do not need to buy things or bring materials from far away.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：今使える資材の中では、これは<mark>いちばん便利</mark>です。近くにあるので、<mark>その場で材料を調達できます</mark>。わざわざ買いに行ったり、遠くから持ってきたりする必要がありません。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#就地取材 / OnSiteMaterialSourcing / 現地素材の活用</span>
+          <span class="tag">#便利性驅動設計 / ConvenienceDrivenDesign / 利便性に基づく設計</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：了解、了解。你是先有材料，再想要做什麼。包括那個甘蔗也是嗎？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: I see. So you start with the materials you already have, and then think about what can be done with them. Does that include sugarcane too?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：なるほど。先に材料があって、それから何をするかを考えるのですね。サトウキビもそうですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：沒有，甘蔗是因為來這裡的人，遇到這裡很常見的。然後就覺得，<mark>種這個比較耐風雨</mark>。然後又加上市面上的果糖太多了，那是不健康的。所以才覺得說，那你可以體驗，那一次泡糖是怎麼生產的，<mark>真正原始的糖是這樣子種出來的</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: No. Sugarcane came from noticing that people who come here often encounter it locally. I also felt that <mark>it is more resistant to wind and rain</mark>. And there is too much fructose on the market, which is unhealthy. So I thought visitors could experience how sugar is produced, and understand that <mark>real, original sugar is grown in this way</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：いいえ。サトウキビは、ここに来る人たちがこの地域でよく見かけるものだからです。それに、<mark>これは風雨に強い</mark>と思いました。さらに、市販の果糖は多すぎて健康的ではありません。だから、砂糖がどのように作られるのかを体験してもらい、<mark>本来の砂糖はこうして育てられる</mark>と知ってほしいと思いました。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#耐候作物選擇 / WeatherResilientCropChoice / 耐候性作物の選択</span>
+          <span class="tag">#原始食物教育 / OriginalFoodEducation / 本来の食の教育</span>
+          <span class="tag">#健康意識轉化體驗 / HealthAwarenessIntoExperience / 健康意識を体験化する</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：原來這邊的甘蔗，一開始不是本來就在這邊，是你種下去的？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: So the sugarcane here was not originally growing here. You planted it?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：つまり、ここのサトウキビはもともとあったものではなく、あなたが植えたものなのですね。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：對，<mark>我種的</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: Yes, <mark>I planted it</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：はい、<mark>私が植えました</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#主動導入作物 / IntentionalCropIntroduction / 作物の意図的導入</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：然後竹子呢？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: And what about the bamboo?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：では竹はどうですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：竹子是這邊的。竹子是房東種的。他種的特別大支，這個叫梨筍，蠻巨大的。一般外面都是比較小的。<mark>比較小的可以搭我們作物生長的棚架</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: The bamboo is from here. It was planted by the landlord. The bamboo he planted is especially large; it is called li-sun and is quite huge. Smaller bamboo can be used to <mark>build trellises for our crops to grow</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：竹はこの場所にあるものです。大家さんが植えた竹です。特に大きくて、梨筍と呼ばれるもので、とても巨大です。小さい竹は、<mark>作物を育てる棚に使えます</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#既有資源再利用 / ReuseExistingResources / 既存資源の再活用</span>
+          <span class="tag">#農務材料多功能性 / MultifunctionalFarmMaterials / 農業資材の多機能性</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：哇，那它很多用途。除了棚架跟做這個，還可以拿來做什麼？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Wow, it has many uses. Besides trellises and this activity, what else can it be used for?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：すごいですね。用途が多いですね。棚やこの活動以外に、何に使えますか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：還有一種竹子是又粗又硬的，那個會拿去海邊，當那個撈小管，或者是建築上用。<mark>每一種竹子都有它不同的用途</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: There is another kind of bamboo that is thick and hard. It can be taken to the seaside for catching squid, or used in construction. <mark>Each type of bamboo has its own use</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：太くて硬い竹もあります。それは海辺で小管をすくうために使ったり、建築に使ったりします。<mark>竹の種類ごとに、それぞれ違う用途があります</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#材料知識在地化 / LocalizedMaterialKnowledge / 地域に根ざした素材知識</span>
+          <span class="tag">#用途辨識能力 / UseCaseRecognition / 用途を見極める力</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：是因為撈小管需要很長嗎？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Is that because catching squid requires something long?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：小管をすくうには長さが必要だからですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：因為要<mark>耐那個鹽分、耐海水</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: Because it needs to <mark>withstand salt and seawater</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：<mark>塩分や海水に耐える必要がある</mark>からです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#環境適材適用 / MaterialFitForEnvironment / 環境に合った素材選択</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：我看到你那個板子，有可以打工換宿。那天日本人不是來打工嗎？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: I saw on your board that work exchange is available. Weren't the Japanese visitors here for work exchange that day?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：掲示板にワークエクスチェンジができると書いてありました。あの日の日本人は働きに来ていたのではないですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：不是，他們是<mark>我們的教友</mark>，我們教會裡面的年輕人，<mark>一起來幫忙</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: No, they are <mark>members of our church community</mark>. They are young people from our church who <mark>came together to help</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：いいえ、彼らは<mark>私たちの教友</mark>です。教会の若い人たちが、<mark>一緒に手伝いに来てくれました</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#教會社群支持 / ChurchCommunitySupport / 教会コミュニティの支援</span>
+          <span class="tag">#志願協作人力 / VolunteerCollaborativeLabor / 自発的な協働労働</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：一起來幫忙？他們平常教會也會去農場幫忙？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: They came to help together? Do church members usually help at the farm as well?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：一緒に手伝いに来たのですか。普段から教会の人たちは農場を手伝うのですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：對。哇，我們是跟他們講，<mark>自然農法的東西很好</mark>。所以他們也很願意下去。好幾個都是<mark>每天吃自然農法的食物長大的</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: Yes. We tell them that <mark>natural farming is good</mark>. So they are also willing to come down and help. Several of them <mark>grew up eating food from natural farming every day</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：はい。私たちは、<mark>自然農法のものは良い</mark>と伝えています。だから彼らも喜んで来てくれます。何人かは、<mark>毎日自然農法の食べ物を食べて育った</mark>人たちです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#自然農法信念傳遞 / NaturalFarmingBeliefTransmission / 自然農法の信念継承</span>
+          <span class="tag">#飲食經驗形成認同 / FoodExperienceShapesIdentity / 食経験がアイデンティティを形成する</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：謝謝、謝謝你。我要再進去一下。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Thank you. I will go back inside for a moment.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：ありがとうございます。少し中に戻ります。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：有一個是美學院，日本美學院回來的，薪水六年都是在學校……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: One of them came back from a Japanese art institute. For six years, the salary was at the school...</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：一人は日本の美学院から戻ってきた人です。六年間、給料は学校で……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#外部學習背景人脈 / ExternalLearningNetwork / 外部学習背景のつながり</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：沒有，我跟你講，我一個禮拜好像一次，就是他們那樣子，當面、當面、當面。他們的廚房是超大、超漂亮的。我們那個日子可以……等一下下一個年級下去煮，然後請他們煮。只是指導附近的自然農法的食物，提供給他們煮。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: No, let me tell you, I think once a week, face to face like that. Their kitchen is very large and beautiful. On those days, students from the next grade can go cook, and we ask them to cook. We simply guide them and provide nearby natural-farming food for them to cook with.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：いいえ、説明すると、週に一回くらい、対面で行う形です。彼らのキッチンはとても大きくてきれいです。その日は、次の学年の学生が調理に入り、私たちは調理してもらいます。近くの自然農法の食材を提供し、それを使って料理するように指導します。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#自然農食材教學 / NaturalFarmingFoodEducation / 自然農法食材の教育</span>
+          <span class="tag">#料理作為學習場域 / CookingAsLearningSpace / 料理を学びの場にする</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：喔，我知道這個美學院，日本的……每次轉美術館，是我公教派的。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Oh, I know this art institute in Japan... it may be connected to the museum or a religious educational system.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：ああ、日本のその美学院ですね。美術館や宗教教育系統と関係があるところかもしれません。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：你剛剛比較那個打工換宿，剛剛有一個回去。那個當初是怎麼找到的？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: You mentioned work exchange earlier, and someone had just left. How did you find that system in the beginning?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：先ほどワークエクスチェンジの話がありました。ちょうど一人帰った人もいましたね。最初はどうやって見つけたのですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：我有加入一個 <mark>WWOOF 的組織，世界性的換工組織</mark>。它是以有機農場為主。我在 2010 就加入了。所以前五年是高峰期，一年有五千……五千還是五萬……<mark>每天幾乎都是客滿的，暑假是大爆滿，平日也是客滿的</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: I joined <mark>WWOOF, a worldwide work-exchange organization</mark>. It mainly focuses on organic farms. I joined in 2010. The first five years were the peak period. There were five thousand or maybe fifty thousand... <mark>Almost every day was fully booked; summer vacation was completely full, and weekdays were also full</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：私は<mark>WWOOFという世界的なワークエクスチェンジ組織</mark>に加入しました。有機農場を中心とした組織です。2010年に加入しました。最初の五年間がピークでした。一年に五千、あるいは五万……<mark>ほぼ毎日満員で、夏休みは大混雑、平日も満員でした</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#WWOOF國際換工 / WWOOFInternationalWorkExchange / WWOOF国際ワークエクスチェンジ</span>
+          <span class="tag">#有機農場吸引力高峰 / OrganicFarmAttractionPeak / 有機農場の集客ピーク</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：問我兒子才知道。他是我兒子小一到小六的時候，是<mark>全盛時期</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: You would have to ask my son to know exactly. The period from when he was in first grade to sixth grade was <mark>the heyday</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：詳しくは息子に聞かないと分かりません。息子が小学校一年生から六年生の頃が、<mark>全盛期</mark>でした。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#家庭時間軸對照農場發展 / FamilyTimelineFarmDevelopment / 家族の時間軸と農場発展</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：現在就多少年了？你是什麼時候來的？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: How many years has it been now? When did you come here?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：今で何年になりますか。いつここに来たのですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：我 <mark>2010 來</mark>。然後 2011，有一個朋友跟我說這樣的訊息。後來體驗了，我說，欸，<mark>這樣很好耶</mark>。然後就加入那個世界性的換工組織。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: I <mark>came in 2010</mark>. Then in 2011, a friend told me about this information. After experiencing it, I thought, <mark>this is really good</mark>. Then I joined that worldwide work-exchange organization.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：私は<mark>2010年に来ました</mark。そして2011年に、ある友人がその情報を教えてくれました。体験してみて、<mark>これはいいな</mark>と思いました。それで、その世界的なワークエクスチェンジ組織に加入しました。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#朋友引介新模式 / FriendIntroducedNewModel / 友人紹介による新モデル</span>
+          <span class="tag">#體驗後採納 / AdoptionAfterExperience / 体験後の採用</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：懂、懂、懂。所以如果是世界性來的，不見得都是台灣人？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: I see. So because it is worldwide, they are not necessarily Taiwanese?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：なるほど。世界的な組織なので、台湾人とは限らないのですね。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：<mark>台灣很少，而且都是國外的</mark>。就是他們可能很多常常去體驗的。他們有很多小時候就有在 DIY，<mark>他們已經很熟了</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: <mark>There are very few Taiwanese; most are from overseas</mark>. Many of them often go for these kinds of experiences. Many have done DIY since childhood, so <mark>they are already very familiar with it</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：<mark>台湾人は少なく、ほとんどが海外から来た人たち</mark>です。彼らはこうした体験によく参加している人が多いです。子どもの頃からDIYをしている人も多く、<mark>すでに慣れています</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#國際參與者為主 / MostlyInternationalParticipants / 国際参加者中心</span>
+          <span class="tag">#DIY文化背景差異 / DIYCulturalBackgroundDifference / DIY文化背景の違い</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：他們來幫忙，大概都是多長的時間？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: When they come to help, about how long do they usually stay?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：手伝いに来る場合、だいたいどのくらい滞在しますか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：那個組織規定是<mark>每天工作六小時，做六天、休一天</mark>，做六天、休一天。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: The organization’s rule is <mark>six hours of work per day, six days on and one day off</mark>, then six days on and one day off.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：その組織の規定では、<mark>一日六時間働き、六日働いて一日休む</mark>という形です。それを繰り返します。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#換工制度規範 / WorkExchangeRules / ワークエクスチェンジの規定</span>
+          <span class="tag">#勞動與休息節奏 / WorkRestRhythm / 労働と休息のリズム</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：然後大概他會在這待幾個禮拜？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: And how many weeks would they usually stay here?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：それで、だいたい何週間くらいここに滞在しますか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：我們是希望……因為那時候人多嘛，我們可以規定遠一點，<mark>半個月或一個月以上</mark>。現在是<mark>三天以上</mark>。上一個是五天，他是上班族，在台灣是自己上班。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: We hoped... because there were many people at that time, we could set a longer requirement, <mark>half a month or more than one month</mark>. Now it is <mark>at least three days</mark>. The previous person stayed five days; he was an office worker working in Taiwan.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：以前は人が多かったので、もっと長く条件を決めることができました。<mark>半月、または一か月以上</mark>です。今は<mark>三日以上</mark>です。前の人は五日間で、台湾で働いている会社員でした。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#參與門檻彈性化 / FlexibleParticipationThreshold / 参加条件の柔軟化</span>
+          <span class="tag">#人力供需改變 / LaborSupplyDemandShift / 労働力需給の変化</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">訪談者：OK、OK，抱歉打斷一下。是一個美國人下來？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Okay, sorry to interrupt. Was it an American who came down?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：分かりました。少し遮ってすみません。来たのはアメリカ人ですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#脈絡提問 / ContextQuestion / 文脈質問</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：阿聰：下一個洞、下一個……他們說他們要回去加工嗎？還是怎麼樣。就是自己的位置上，把它磨得不會那麼刺，像這個。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: A-Cong: The next hole, the next... They said they would go back to process it, or something like that. At their own spot, they sand it so it is not so prickly, like this.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：阿聰：次の穴、次の……彼らは戻って加工すると言っていたのかな。自分の場所で、これのように、とげが少なくなるように磨くんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#手作加工細節 / HandsOnProcessingDetails / 手作業加工の細部</span>
+          <span class="tag">#體驗中的安全修整 / SafetyFinishingInExperience / 体験中の安全仕上げ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

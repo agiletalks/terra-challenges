@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談編碼與標籤化整理手札</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 992px) {
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
+  }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 992px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.75rem; background: #fefce8; color: #854d0e; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #fde68a; display: block; margin-bottom: 5px; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
+  .remarks { font-size: 0.75rem; background: #f5f5f4; color: #57534e; padding: 8px; border-radius: 6px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-title">訪談編碼與標籤化整理手札</div>
+  
+  <!-- Row 1 -->
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">李大哥：對，他就是在這邊<mark>虧了五、六百萬</mark>。兩棟房子也賣了，所以後來他老婆就<mark>非常不支持</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Mr. Lee: Yeah, he <mark>lost five or six million (NTD)</mark> right here. He even sold two houses, so later on his wife <mark>really didn't support it anymore</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">李さん：そう、彼はここで<mark>500万か600万元くらい損をした</mark>んですよ。家も2軒売ってしまって、だからその後、奥さんが<mark>すごく反対するようになって</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#高額財務損失 / HighFinancialLoss / 多額の経済的損失</span>
+          <span class="tag">#家庭支持系統動搖 / ShakenFamilySupport / 家族のサポートの揺らぎ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">李大哥：欸對，他現在都搞代耕，都搞代工。<mark>就是人家認購這塊地，我幫你做</mark>，然後看你多少錢。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Mr. Lee: Uh, yeah, he's doing custom farming now. <mark>It's like, people subscribe to this plot of land, and I do the work for you</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">李さん：ええ、今は「代耕」をやってますよ。<mark>人がこの土地を認購（オーナー制度）して、私が代わりに耕作をして</mark>、その費用を計算するっていう。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#農業轉型代工模式 / AgriculturalContractModel / 農業の受託モデルへの転換</span>
+          <span class="tag">#認購型耕作服務 / SubscriptionFarming / 認購型農業サービス</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">李大哥：喔……他已經走很多的路線，他<mark>走過太多元發展了</mark>。哎呦，他不只代耕，然後各種……各種一共塊是不是都試出來了。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Mr. Lee: Oh... he's gone down many paths, he's <mark>tried too much diversification</mark>. Gosh, it's not just custom farming, he's tried all kinds of experimental models.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">李さん：ああ……彼は本当に色々なルートを歩んできましたね、<mark>多角化しすぎたというか</mark>。もう、代耕だけじゃなくて、色々な実験的なモデルを試したんじゃないかな。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#經營過度多元化 / ExcessiveDiversification / 過剰な多角化</span>
+          <span class="tag">#創業實驗心態 / EntrepreneurialExperimentation / 起業の試行錯誤</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 4 -->
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">李大哥：所以有的時候話不能亂講。因為<mark>我老婆原住民，我們是客家人</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Mr. Lee: So sometimes you can't just say things carelessly. Because <mark>my wife is Indigenous, and we are Hakka</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">李さん：だから時々、不用意なことは言えなくてね。<mark>妻は原住民（先住民）で、私たちは客家（ハッカ）ですから</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#族群文化敏感度 / EthnicCulturalSensitivity / 族群の文化的感受性</span>
+          <span class="tag">#跨族群婚姻與溝通 / CrossEthnicCommunication / 多文化間コミュニケーション</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

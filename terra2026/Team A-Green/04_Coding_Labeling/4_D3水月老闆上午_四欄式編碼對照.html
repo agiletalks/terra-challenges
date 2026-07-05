@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談編碼與標籤化整理手札</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .meta-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e7e5e4; padding-bottom: 8px; margin-bottom: 12px; }
+  .speaker { font-weight: 700; font-size: 1rem; color: #b35c24; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 992px) {
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
+  }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 992px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.78rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #e7e5e4; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
+  .filler { color: #9ca3af; font-style: italic; text-decoration: underline dotted; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-title">D3 水月老闆上午：訪談編碼與標籤化整理手札</div>
+  
+  <div class="row">
+    <div class="meta-header"><div class="speaker">受訪者：農場主人</div></div>
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">這個是……跟中文字詞，就是「食物」的意涵有關係啦。然後呢，它是有兩個字，自、己、人，這個是人、人類，然後下面是一個良好的狀態，<mark>吃了對的東西，人就會帶個良好的狀態</mark>。好，嗯，所以呢，<mark>雖然我們農場是 2019 年開始，但是呢其實它是因為 2005 年發生了一件事情</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">This is... related to the Chinese characters, you know, the meaning of "food" (食物). And then, it involves parts meaning 'self' and 'people'—well, humanity. And below that represents a good condition. <mark>When people eat the right things, they bring about a good state</mark>. Okay, um, so, <mark>although our farm started in 2019, but actually, it was because of something that happened in 2005</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語 (Japanese)</div>
+        <div class="text">これは……実は中国語の「食物（食べ物）」という言葉の意味に関係しているんですよ。そしてですね、それは「自」と「人」という字から成り立っていて……まあ、人間ですね。その下には良好な状態が表されています。<mark>正しいものを食べれば、人は良好な状態をもたらす</mark>んです。はい、うん、だからですね、<mark>私たちの農場は2019年に始まったんですが、でもね、実は2005年に起きたある出来事がきっかけ</mark>なんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#食物即良好狀態 / FoodAsWellbeing / 食べ物は良好な状態をもたらす</span>
+          <span class="tag">#農場起源於生命事件 / FarmRootedInLifeEvent / 農場は人生の出来事に由来する</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="meta-header"><div class="speaker">受訪者：農場主人</div></div>
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">那個…… 2005 年到了 2015 年，<mark>總共五年的時間，我生病了，然後都找不到原因</mark>。去醫院看病，在三個不同的科別裡面去換醫生，看來看去都找不到原因。直到五年後，2010 年我的一個朋友跟我講說……他以前跟我一樣身體不舒服，醫生都說他沒有病，可是他最近查出來了，但是已經是癌症了。後來才知道了，原來我的身體，中毒了。<mark>我的身體有兩種重金屬毒</mark>，就是一種是叫做汞，是從我們牙齒的補牙的牙材來的；然後第二種叫做<mark>砷，它是從我們食物來的，食物裡面農藥的殘留</mark>。所以有毒，然後就卡在我們身體裡面。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">That... from 2005 to 2010, <mark>for a total of five years, I was sick, and then I just couldn't find the cause</mark>. I went to the hospital, switched doctors across three different departments, looked here and there, but couldn't find the reason. Until five years later, in 2010, a friend of mine told me... he used to feel unwell just like me, and doctors all said he wasn't sick. But he recently found out, and it was already cancer. Later, I finally knew, my body was poisoned. <mark>There were two kinds of heavy metal toxins in my body</mark>. One is called mercury, which came from the dental fillings in my teeth; and then the second one is called <mark>arsenic, which came from our food, the pesticide residue in the food</mark>. So it's toxic, and it just gets stuck in our bodies.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語 (Japanese)</div>
+        <div class="text">あの……2005年から2010年までの<mark>合計5年間、私は病気だったんですが、ずっと原因が分からなかった</mark>んです。病院に行って、3つの異なる診療科で医者を変えて、あちこち診てもらったんですが、原因が見つからなくて。5年後の2010年になって、友人の一人が私に言ったんです……彼も以前の私と同じように体調が悪くて、医者はみんな病気じゃないと言っていたと。でも最近になって判明したんですが、すでにガンになっていたんです。後になってようやく分かりました。私の体は、中毒を起こしていたんです。<mark>私の体には2種類の重金属の毒がありました</mark>。一つは水銀と呼ばれるもので、私たちの歯の詰め物から来たものです。そしてもう一つは<mark>ヒ素と呼ばれ、私たちの食べ物から、つまり食べ物の中の残留農薬から来た</mark>ものです。だから毒があって、それが体の中に溜まってしまっていたんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#長期病因不明 / LongUnexplainedIllness / 長期原因不明の病</span>
+          <span class="tag">#重金屬中毒覺察 / HeavyMetalPoisoningAwareness / 重金属中毒への気づき</span>
+          <span class="tag">#食物污染連結疾病 / FoodPollutionLinkedToIllness / 食の汚染と病の関連</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="meta-header"><div class="speaker">受訪者：農場主人</div></div>
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">然後呢，我們吃下去的食物如果有農藥的汙染，它含有砷，然後因為腸胃蠕動不好所以砷也排不出來，所以那個毒物就越積越多。後來我在醫院檢查的時候醫生告訴我，當我們人覺得不舒服，可是還沒到病變狀態時，是查不出來的，也沒有辦法開藥給我吃。我以前工作非常的忙碌，我是一個新聞記者，然後我三餐都去外面吃。後來我生病了之後去上了排毒的課程，我開始自己找食物、自己煮飯，然後<mark>我發現我找不到乾淨的食物</mark>！所以我才發現說原來我們的食物有很多添加物，生鮮農產品也有農藥汙染，<mark>所以我開始學習農耕</mark>。當我開始找到乾淨的食物之後，我的身體開始慢慢改變，就是三個月過去、半年過去、一年過去……<mark>我的所有的症狀都沒有了，就是身體都恢復健康了</mark>。所以我們中國有一句話叫做「醫食同源」，<mark>醫療跟食物其實是同源的</mark>，最好的醫生就是 number 1 的食物！</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">And then, if the food we eat has pesticide pollution, it contains arsenic, and because of poor gastrointestinal motility, the arsenic cannot be excreted, so the toxins just accumulate more and more. Later when I got checked at the hospital, the doctor told me that when we feel unwell but it hasn't turned into a pathological change, it cannot be detected, and he couldn't prescribe me any medicine. I used to be very busy with work, I was a news reporter, and I ate all my three meals out. After I got sick, I took a detox course. I started looking for my own food, wanting to cook for myself, and then <mark>I realized I couldn't find clean food</mark>! That's when I discovered that our food has many additives, and fresh produce has pesticide pollution, <mark>so I started learning farming</mark>. Once I started finding clean food, my body slowly began to change... I mean, three months passed, half a year, a year... <mark>all my symptoms were gone, just, my body returned to health</mark>. So there is a Chinese saying called "food and medicine share the same origin"; <mark>medical treatment and food are actually from the same source</mark>. The best doctor is the number 1 food!</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語 (Japanese)</div>
+        <div class="text">そしてですね、私たちが食べる食べ物に農薬の汚染があれば、ヒ素が含まれていて、胃腸の動きが悪いせいでヒ素も排出されず、毒物がどんどん蓄積していくんです。後になって病院で検査をした時、医者に言われました。私たちが体調が悪いと感じていても、まだ病変の状態になっていない時は検査では分からず、薬も出せないと。私は以前、仕事がとても忙しくて、ニュース記者をしていて、三食とも外食でした。病気になった後、デトックスのコースに通い、自分で食べ物を探し、自分で料理を始めました。そして、<mark>クリーンな食べ物が見つからないことに気づいた</mark>んです！その時初めて、私たちの食べ物にはたくさんの添加物があり、生鮮農産物にも農薬汚染があることに気づき、<mark>農業を学び始めました</mark>。クリーンな食べ物を見つけ始めてから、私の体はゆっくりと変わり始めました……つまり、3ヶ月が過ぎ、半年が過ぎ、1年が過ぎ……<mark>すべての症状がなくなり、ただ、体が健康を取り戻した</mark>んです。中国には「医食同源」という言葉があり、<mark>医療と食べ物は実は同じ源</mark>なんですよ。最高の医者とは、ナンバーワンの食べ物のことなんです！</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#找不到乾淨食物 / UnableToFindCleanFood / クリーンな食べ物が見つからない</span>
+          <span class="tag">#由疾病走向農耕 / FromIllnessToFarming / 病から農へ</span>
+          <span class="tag">#乾淨食物促成自癒 / CleanFoodAsSelfHealing / クリーンな食による自己回復</span>
+          <span class="tag">#醫食同源信念 / FoodMedicineSameOrigin / 医食同源の信念</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="meta-header"><div class="speaker">受訪者：農場主人</div></div>
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">呃，<mark>我以前當記者，每天都打扮得光鮮亮麗</mark>，穿著套裝踩著高跟鞋，然後化妝噴香水，然後我平常下班我就是去不停刷卡不斷地消費，那就是我以前的生活。後來我是有不得不改變的原因，我從小就在臺北市長大，然後我<mark>花了十幾年的努力才慢慢成為一個農夫</mark>，有辦法在鄉村裡生活。所以呢，其實每一個人都可以，看我可以大家都可以。因為其實我覺得最近不是有地球暖化嗎？氣候變遷我感受得非常清楚。所以我們的農場規模非常的大，有 4.5 公頃將近 5 公頃。呃，我們看起來好像是個生產型的農場，事實上<mark>我們是在透過這個農場實踐自然農法</mark>。那我們通過這個農場的運作，其實是想要做一種自然生活的教育推廣，我們<mark>希望每一個人都具備跟土地一起生活的能力</mark>，我們生活的食衣住行都可以跟自然的生態結合在一起。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Uh, <mark>I used to be a reporter, dressing up glamorously every day</mark>, wearing suits and stepping in high heels, putting on makeup and spraying perfume. After work, I would just continuously swipe my credit card and consume, that was my old life. Later, I had a compelling reason to change. I grew up in Taipei City since I was a child, and I <mark>spent over a decade of effort to slowly become a farmer</mark>, to be able to live in the countryside. So, actually, everyone can do it; if I can do it, everyone can. Because I feel, isn't there global warming recently? I feel climate change very clearly. So our farm is quite large in scale, 4.5 hectares, almost 5 hectares. Uh, we might look like a production-oriented farm, but in fact, <mark>we are implementing natural farming through this farm</mark>. Through the operation of this farm, we actually want to promote natural living education. We <mark>hope everyone has the ability to live with the land</mark>, and our food, clothing, housing, and transportation can all be integrated with natural ecology.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語 (Japanese)</div>
+        <div class="text">ええと、<mark>私は以前記者をしていて、毎日華やかに着飾り</mark>、スーツを着てハイヒールを履き、メイクをして香水をつけていました。仕事が終わればひたすらカードを切って消費し続ける、それが私の以前の生活でした。後になって、私にはどうしても変わらなければならない理由がありました。私は子供の頃から台北市で育ちましたが、<mark>10年以上の努力を費やしてようやく少しずつ農家になり</mark>、田舎で生活できるようになりました。だからですね、実は誰にでもできるんです。私にできるんだから、みんなにもできます。だって、最近地球温暖化があるじゃないですか？気候変動を私はとてもはっきりと感じています。だから私たちの農場の規模はとても大きくて、4.5ヘクタール、約5ヘクタールもあります。ええと、私たちは一見すると生産型の農場のように見えますが、実際には、<mark>この農場を通じて自然農法を実践している</mark>んです。この農場の運営を通じて、実は自然な暮らしの教育・普及活動を行いたいと考えており、<mark>誰もが土地と共に生きる力を身につけ</mark>、生活の衣食住すべてが自然の生態系と結びつくことを願っています。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#都市消費生活轉向 / UrbanConsumerLifeShift / 都市消費生活からの転換</span>
+          <span class="tag">#十年轉型成農夫 / DecadeLongFarmerTransformation / 十年かけた農家への変容</span>
+          <span class="tag">#農場作為自然農法實踐場 / FarmAsNaturalFarmingPracticeSite / 自然農法の実践場としての農場</span>
+          <span class="tag">#土地共生能力教育 / LandLivingCapabilityEducation / 土地と共に生きる力の教育</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="meta-header"><div class="speaker">受訪者：農場主人</div></div>
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">像這邊我們有種水稻、種蓮子，然後種染料，呃，<mark>有吃的、有穿的衣服</mark>。這個是我們種的藍色的染料，等一下你們會看到。然後這個是用蓮蓬染的，還有用各種季節的植物的葉子枝木去植物染。然後呢，這個是<mark>手工礱穀（碾米）的工具</mark>！我們把有稻殼的稻子放進去，然後你看碾一碾，它都會變成米糠。最近世界上到處有戰爭，當<mark>戰爭來臨、沒有石油的時候</mark>，所有的碾米廠沒有電都不能動的時候，<mark>這個東西就成為你們家的必備了</mark>！呃，就是逃生求生的東西。我聽說歐洲人以前在工業革命之前，他們的男士們口袋裡都會隨身帶著一根木湯匙。因為我們時間很有限，我也先告訴你們等一下如果要採蓮蓬的話怎麼採收。你看這個有不同的成熟度，你會發現它這個<mark>蓮蓬跟蓮子有一點點裂縫</mark>的，然後你會看到一圈好像螢光黃色，就代表它已經熟了。那我們剛剛回來，中午會做飯糰，等一下去田裡會有很多泥巴，所以建議你們如果鞋子不防水的話可以拿塑膠袋套著，反正就是…… everything can touch it（什麼都會碰到泥巴啦）！</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Like over here, we grow paddy rice, lotus seeds, and then we grow dyes, uh, <mark>things to eat and clothes to wear</mark>. This is the blue dye we planted, you will see it later. And this one is dyed with lotus seed pods, and there are also plant dyes using leaves and branches from various seasons. And then, this is a <mark>manual rice hulling (milling) tool</mark>! We put the unhulled rice in, and you see, grind it, and it all turns into rice bran. Recently there are wars everywhere in the world. <mark>When war comes and there's no oil</mark>, when all the rice mills have no electricity and can't operate, <mark>this thing becomes a must-have for your home</mark>! Uh, it's a survival tool. I heard that Europeans, before the Industrial Revolution, the men always carried a wooden spoon in their pockets. Because our time is very limited, I'll also tell you first how to harvest lotus seed pods later. Look at this, there are different degrees of ripeness. You'll find that if the <mark>lotus pod and the seeds have a tiny crack</mark>, and you see a circle of fluorescent yellow, it means it's already ripe. Well, we'll make rice balls for lunch, and later there will be a lot of mud in the fields, so I suggest if your shoes aren't waterproof, you can wrap them in plastic bags, anyway... everything can touch it (will get muddy)!</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語 (Japanese)</div>
+        <div class="text">例えばここには、水稲やハスの実を植えていて、それから染料も植えています。ええと、<mark>食べるものも着る服もあります</mark>。これは私たちが植えた青い染料で、後で皆さんも目にするでしょう。そしてこれはハスの殻（花托）で染めたもので、季節ごとの植物の葉や枝を使った草木染めもあります。そしてですね、これは<mark>手動の籾摺り（精米）の道具</mark>です！籾殻のついた稲を入れると、ほら、すりつぶすとすべて米ぬかになります。最近、世界中で戦争が起きています。<mark>戦争が来て石油がなくなった時</mark>、すべての精米所が停電で動かなくなった時、<mark>この道具が皆さんの家の必需品になる</mark>んですよ！ええと、サバイバルのための道具です。聞いたところによると、ヨーロッパ人は産業革命の前、男性たちはいつもポケットに木のスプーンを持ち歩いていたそうです。時間がとても限られているので、後でハスの実（蓮蓬）を摘むならどうやって収穫するかを先に教えておきます。これを見てください、熟成度が違います。この<mark>蓮の殻と実の間にわずかな裂け目</mark>があり、蛍光イエローのような輪が見えたら、それはもう熟しているという意味です。さて、お昼はおにぎりを作りますが、後で畑に行くと泥がたくさんあるので、靴が防水でない場合はビニール袋をかぶせることをお勧めします。とにかく…… everything can touch it（何でも泥だらけになりますよ）！</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#食衣住行的農場循環 / FarmCycleForDailyLiving / 衣食住を支える農場循環</span>
+          <span class="tag">#傳統工具作為韌性技術 / TraditionalToolsAsResilienceTech / レジリエンス技術としての伝統道具</span>
+          <span class="tag">#戰爭能源風險意識 / WarEnergyRiskAwareness / 戦争とエネルギーリスクへの意識</span>
+          <span class="tag">#蓮蓬成熟辨識教學 / LotusPodRipenessTeaching / 蓮蓬の熟度判別教育</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

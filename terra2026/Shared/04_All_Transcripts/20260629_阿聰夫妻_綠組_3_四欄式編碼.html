@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談編碼與標籤化整理手札</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 992px) {
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
+  }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 992px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.78rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #e7e5e4; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-title">Day 2 夫妻連訪：訪談編碼與標籤化整理手札</div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：你的先借我錄好了，先等拿來這邊錄。5 號，好，那我就先問第一個問題囉。這樣有聲音嗎？我已經大聲……借我一下，借我一下。請問我這不是無線的，欸，對，先不要插，先擦，對，先把這個聲音那個……好，OK。你等一下叫頭謀出來跟他們一起。哈，有聲音嗎？有，可以了。好，我就先問第一個問題。（開場調整錄音與現場位置）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Let me borrow yours to record first; wait, bring it over here to record. Number 5, okay, then I'll ask the first question first. Is there sound like this? I'm already speaking loudly... let me borrow it, let me borrow it. This one is not wireless, right? Uh, yes, don't plug it in yet, wipe it first, yes, get this sound, um... okay, OK. Later ask Toumou to come out and join them. Huh, is there sound? Yes, good. Okay, I'll ask the first question first. (Opening adjustments to recording and seating.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：先にあなたのを借りて録音しますね。ちょっと待って、こっちに持ってきて録ります。5番、はい、じゃあ最初の質問から聞きますね。これで音入っていますか？もう大きな声で話しているんですけど……貸して、ちょっと貸して。これはワイヤレスじゃないんですよね、ええ、まだ差さないで、先に拭いて、そう、この音を、あの……はい、OK。あとで頭謀さんを呼んで一緒に入ってもらって。あ、音ありますか？ありますね、できました。では最初の質問をします。（冒頭で録音と現場の位置を調整）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#錄音現場準備 / RecordingSetup / 録音準備</span>
+          <span class="tag">#訪談開場調整 / InterviewOpeningAdjustment / インタビュー開始調整</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：請問前面的那個阿聰夫妻兩人，<mark>你們當初是怎麼想到要走上這條路</mark>，就是<mark>來做農的這一條路</mark>？OK，How did you come up with the idea to be a farmer？你要自己講嗎？簡單講，我先讓他開始講，這樣子。對不起，好，喂喂，好，我知道了。這個朝前面，不然放地上都可以。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: May I ask the couple in front, um, A-Cong and his wife: <mark>how did you first think of taking this path</mark>, I mean, <mark>this path of becoming farmers</mark>? OK, how did you come up with the idea to be a farmer? Do you want to say it yourself? Just say it briefly; I'll let him start first, like that. Sorry, okay, hello hello, okay, I got it. Face this toward the front, or putting it on the floor is fine too.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：前にいらっしゃる、あの、阿聰さんご夫婦にお聞きします。最初に<mark>どうしてこの道を歩もうと思ったのですか</mark>。つまり、<mark>農業をするという道</mark>です。OK, how did you come up with the idea to be a farmer? ご自身で話しますか？簡単にで大丈夫です。まず彼から話してもらう、そんな感じで。すみません、はい、もしもし、はい、わかりました。これは前に向けてください。あるいは床に置いても大丈夫です。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#返鄉務農動機提問 / FarmingMotivationPrompt / 就農動機の問い</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰太太：呃，就是我們本來呢，其實是住在臺北。我們是住在臺北，然後呢，因為阿聰他小時候是在鄉下長大。第二個呢，是因為<mark>都市的節奏太快</mark>，讓他的<mark>身體覺得不舒服、不堪負荷</mark>，所以後來他就很希望有機會可以到鄉下，就是過這樣比較農村的生活。然後另外還有，就是因為他接觸秀明自然農法之後，他覺得這一個農法很好，而且<mark>對人跟對土地都很友善</mark>，所以他想成為農夫，<mark>我們就搬來這裡</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong&#x27;s wife: Uh, so, originally we actually lived in Taipei. We lived in Taipei, and then, because A-Cong grew up in the countryside when he was little. The second thing is that <mark>the pace of the city was too fast</mark>, and <mark>his body felt uncomfortable</mark>, like he couldn't really bear it. So later he really hoped there would be a chance to go to the countryside, just to live that kind of more rural life. And also, because after he came into contact with Shumei Natural Agriculture, he felt this farming method was very good, and very <mark>friendly to both people and the land</mark>. So he wanted to become a farmer, and <mark>we moved here</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さんの妻：ええと、つまり、私たちはもともと台北に住んでいました。台北に住んでいて、それで、阿聰は子どもの頃に田舎で育ったんですね。二つ目は、<mark>都市のリズムが速すぎて</mark>、彼の<mark>身体がしんどくなって</mark>、耐えきれない感じになったことです。だから後になって、田舎に行く機会があればいいなと強く思うようになりました。つまり、そういう農村に近い暮らしをしたかったんです。それからもう一つは、秀明自然農法に出会ってから、この農法はとてもよくて、<mark>人にも土地にもやさしい</mark>と感じたので、農夫になりたいと思い、私たちは<mark>ここへ引っ越してきました</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#都市節奏壓力 / UrbanPaceStress / 都市リズムの負荷</span>
+          <span class="tag">#身體作為轉居訊號 / BodyAsRelocationSignal / 身体が移住のサイン</span>
+          <span class="tag">#友善人與土地 / FriendlyToPeopleAndLand / 人と土地へのやさしさ</span>
+          <span class="tag">#由農法信念驅動遷居 / FarmingBeliefDrivenMove / 農法信念による移住</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：那就先暫停一下，因為我們有日文翻譯，所以我們要聽一下。日文的翻譯先等，稍微整理一下：他們住在臺北，但是因為可能<mark>身體的原因，所以決定來鄉下</mark>。再加上以前的經驗，還有後來接觸到秀明自然農法，覺得<mark>這個方式很適合在南澳</mark>這個地方實行，所以就開始在這裡做這件事情。（現場進行日文翻譯，研究員摘要前段回答）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Then let's pause for a moment, because we have Japanese interpretation, so we need to listen a bit. Please wait for the Japanese interpretation; let me organize it briefly: they lived in Taipei, but because of possible <mark>health reasons, they decided to come to the countryside</mark>. Plus earlier life experiences, and later contact with Shumei Natural Agriculture, they felt this method was <mark>very suitable to practice here in Nan'ao</mark>, so they began doing this work here. (Japanese interpretation on site; the researcher summarizes the previous answer.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：では少し止めます。日本語通訳がありますので、少し聞きましょう。日本語の通訳は少し待ってください。整理すると、彼らは台北に住んでいましたが、<mark>身体の事情もあって田舎に来る</mark>ことにしました。それに以前の経験があり、その後、秀明自然農法に出会って、この方法は<mark>南澳という場所で実践するのにとても合っている</mark>と感じ、ここでこの取り組みを始めた、ということです。（現場で日本語通訳を行い、研究員が前段の回答を要約）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#研究員即時摘要 / ResearcherLiveSynthesis / 研究者の即時要約</span>
+          <span class="tag">#南澳適配性 / NanAoFit / 南澳との適合性</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：好，那我接著再問。剛剛我們聽到的訊息裡面，大家有沒有發現應該要深挖的東西？我找兩個角度來問。第一個是，呃，如果想要接近大自然，或者是要做這樣的生活，<mark>為什麼是在這個地方</mark>？我先問<mark>場地怎麼決定</mark>的。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Okay, then I'll continue asking. From the information we just heard, did everyone notice anything that should be dug into more deeply? I'll ask from two angles. The first is, uh, if you wanted to get close to nature, or live this kind of life, <mark>why was it in this place</mark>? I'll first ask <mark>how the site was decided</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：はい、では続けて質問します。今聞いた内容の中で、皆さん、もっと掘り下げるべきところに気づきましたか。二つの角度から聞いてみます。一つ目は、ええと、自然に近づきたい、あるいはこういう暮らしをしたいと思ったとして、<mark>なぜこの場所だったのか</mark>。まず<mark>場所をどう決めたのか</mark>を聞きます。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#場域選擇追問 / SiteSelectionProbe / 場所選定の深掘り</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰太太：場地這面的呃，第一個呢，因為做秀明自然農法，它需要一個<mark>很乾淨的地方</mark>。乾淨，對。目前<mark>臺灣東部是最乾淨的地方</mark>，東部就是宜蘭，這裡是南澳，再來就花蓮、臺東，這整個東部是最乾淨的。可是呢，因為這裡<mark>離臺北比較近</mark>，我們的<mark>孩子目前都還住在臺北</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong&#x27;s wife: About the site, uh, first, because practicing Shumei Natural Agriculture needs <mark>a very clean place</mark>. Clean, yes. At present, <mark>eastern Taiwan is the cleanest area</mark>. The east means Yilan, here is Nan'ao, and then Hualien and Taitung; this whole eastern region is the cleanest. But, well, because this place is <mark>closer to Taipei</mark>, and our <mark>children are still living in Taipei</mark> now.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さんの妻：場所については、ええと、一つ目は、秀明自然農法をするには、<mark>とても清浄な場所</mark>が必要だからです。清浄、そうです。今の<mark>台湾では東部がいちばん清浄</mark>な場所です。東部というのは宜蘭、ここ南澳、それから花蓮、台東で、この東部全体がいちばん清浄なんです。でも、ここは<mark>台北に比較的近くて</mark>、私たちの<mark>子どもは今も台北に住んでいます</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#潔淨場域需求 / NeedForCleanSite / 清浄な場の必要性</span>
+          <span class="tag">#東部作為潔淨想像 / EasternTaiwanAsClean / 東部の清浄イメージ</span>
+          <span class="tag">#靠近家庭支持網絡 / ProximityToFamilyNetwork / 家族ネットワークへの近さ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：所以我聽到兩個重點，一個是<mark>這裡比較近</mark>，一個是<mark>這裡比較乾淨</mark>，兩個原因。（研究員再次停下來，讓日文翻譯同步說明）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: So I hear two key points: one is that <mark>this place is closer</mark>, and one is that <mark>this place is cleaner</mark>. Two reasons. (The researcher pauses again to allow Japanese interpretation.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：つまり、二つのポイントが聞こえました。一つは<mark>ここが比較的近い</mark>こと、もう一つは<mark>ここが比較的清浄</mark>だということ。この二つの理由ですね。（研究員が再び止め、日本語通訳が説明できるようにする）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#近與淨雙重條件 / NearAndCleanCriteria / 近さと清浄さの二条件</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：那我再接著問。我們剛剛聽到有一個<mark>農法重複出現了三次</mark>，請問叫什麼農法？我們<mark>超級想要知道這是什麼</mark>。OK，那給你這樣子講就可以。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Then I'll continue asking. We just heard one <mark>farming method mentioned three times</mark>. What is that farming method called? We really, <mark>really want to know what it is</mark>. OK, you can explain it like this.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：では続けて聞きます。先ほど、<mark>ある農法が三回出てきました</mark>。それは何という農法ですか。私たちは<mark>それが何なのか、とても知りたい</mark>です。OK、そのように説明してもらえれば大丈夫です。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#關鍵概念追問 / KeyConceptProbe / 重要概念の深掘り</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：<mark>秀明自然農法</mark>。這是<mark>不使用農藥、不使用肥料，也不使用任何有機資材</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: <mark>Shumei Natural Agriculture</mark>. It means <mark>not using pesticides, not using fertilizers, and not using any organic agricultural inputs</mark> either.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：<mark>秀明自然農法</mark>です。これは<mark>農薬を使わず、肥料も使わず、どんな有機資材も使わない</mark>農法です。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#秀明自然農法 / ShumeiNaturalAgriculture / 秀明自然農法</span>
+          <span class="tag">#三不使用原則 / ThreeNoInputPrinciple / 三つの不使用原則</span>
+          <span class="tag">#超越一般有機 / BeyondOrganicInputs / 有機資材も使わない</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：大家知道有機資材是哪一些嗎？不知道。就是它也是農藥，但是它對身體比較不好，可是它可以殺死這些病蟲害。比如說蘇力菌，就是一種菌，一種可以把蟲殺死的菌，蟲吃了就拉肚子，然後就死掉。<mark>不要講太複雜</mark>，因為他還有翻譯，要講簡單一點。手機這個<mark>有機可以用，但是他們是連這個都不用</mark>。（研究員協助把「有機資材」解釋給現場學生與翻譯者）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Does everyone know what organic agricultural inputs are? No? Basically, it can also be a kind of pesticide; it may not be so good for the body, but it can kill pests and diseases. For example, Bacillus thuringiensis, that's a kind of bacterium, a bacterium that can kill insects. The insects eat it, get diarrhea, and then die. Don't explain it too complicatedly, because there is interpretation too, so <mark>keep it simple</mark>. <mark>In organic farming this kind of thing may be allowed, but they don't even use this</mark>. (The researcher helps explain "organic inputs" to students and interpreters.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：皆さん、有機資材がどんなものか知っていますか。知らないですよね。つまり、それも農薬の一種なんです。身体にはあまりよくないかもしれないけれど、病害虫を殺すことができます。たとえば蘇力菌、つまり一種の菌で、虫を殺せる菌です。虫が食べるとお腹を壊して、それで死んでしまう。あまり複雑に話さないでください、通訳もありますから、<mark>簡単に言う必要があります</mark>。<mark>有機農業ではこういうものを使える場合がありますが、彼らはこれすら使いません</mark>。（研究員が「有機資材」を学生と通訳者に説明）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#有機資材界線 / OrganicInputBoundary / 有機資材の境界</span>
+          <span class="tag">#跨語言簡化說明 / SimplifiedForInterpretation / 通訳向け簡略化</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：那我蠻好奇的，這個農法<mark>一開始是怎麼接觸到</mark>的？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Then I'm pretty curious: <mark>how did you first come into contact</mark> with this farming method?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：では、とても気になるのですが、この農法には<mark>最初どうやって出会った</mark>のですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#農法接觸來源 / SourceOfFarmingMethod / 農法との出会い</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：OK，怎麼接觸到？好大的故事。我因為在還沒有下田之前，<mark>在尋找各種農法</mark>。有一次呢，就去賴青松那邊。賴青松老師明天要去那裡，對，但是他以前是我的好同事。他比較早下田，所以他也在種田，我<mark>想要了解他的方式是什麼</mark>。可是我跟他一起下田，然後施肥，吃的是<mark>雞糞肥</mark>，然後就<mark>太重、太臭</mark>。所以我這樣想，我怎麼辦？<mark>這個我也不喜歡</mark>啊。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: OK, how did I come into contact with it? That's a big story. Before I actually went into the fields, I was <mark>searching for all kinds of farming methods</mark>. One time, I went to Lai Ching-song's place. Teacher Lai Ching-song, we're going there tomorrow, yes, but he used to be a good colleague of mine. He went into farming earlier, so he was also growing crops, and I <mark>wanted to understand what his method was</mark>. But when I went into the field with him and applied fertilizer, what we used was <mark>chicken manure fertilizer</mark>, and it was <mark>too heavy, too smelly</mark>. So I thought, what should I do? <mark>I don't like this either</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：OK、どうやって出会ったか、ですね。これは大きな話です。私はまだ田んぼに入る前、<mark>いろいろな農法を探していました</mark>。ある時、賴青松さんのところへ行きました。賴青松先生、明日そこへ行く予定ですよね、そうです。ただ彼は以前、私のよい同僚でした。彼の方が早く農業に入り、作物も育てていたので、<mark>彼のやり方を知りたかった</mark>んです。でも一緒に畑に入って肥料をやると、使っていたのは<mark>鶏糞肥料</mark>で、<mark>重すぎるし、臭すぎる</mark>。それで私は、どうしよう、<mark>これも好きじゃない</mark>な、と思ったんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#主動比較農法 / ActiveFarmingMethodSearch / 農法の能動的探索</span>
+          <span class="tag">#從同儕農夫學習 / PeerFarmerLearning / 同僚農家からの学習</span>
+          <span class="tag">#雞糞肥勞動負擔 / ChickenManureLaborBurden / 鶏糞肥料の労働負荷</span>
+          <span class="tag">#氣味與重量排斥 / OdorAndWeightAversion / 臭さと重さへの抵抗</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：你剛剛說那個叫雞糞肥。因為有機農業裡面，他們可以使用發酵過的雞糞，他們認為雞糞非常營養，所以會使用；但是他覺得那個<mark>又臭又重，所以他不喜歡</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: What you just mentioned is called chicken manure fertilizer. In organic agriculture, they can use fermented chicken manure. They consider chicken manure very nutritious, so they use it; but he felt it was <mark>smelly and heavy, so he didn't like it</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：今おっしゃったものは鶏糞肥料と呼ばれます。有機農業では、発酵させた鶏糞を使うことができます。鶏糞はとても栄養があると考えられているので使うのですが、彼はそれが<mark>臭くて重いと感じ、好きではなかった</mark>んです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#研究員概念澄清 / ConceptClarification / 概念の明確化</span>
+          <span class="tag">#有機肥料的身體成本 / BodilyCostOfOrganicFertilizer / 有機肥料の身体的コスト</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：我這種身材當然是<mark>不堪負荷</mark>嘛，所以就想到，啊，<mark>有沒有更輕鬆的方法</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: With a body like mine, of course I <mark>couldn't really handle that</mark>, you know. So I started thinking, ah, <mark>is there an easier way</mark>?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：私のような体格だと、当然それには<mark>耐えられない</mark>わけですよ。だから、ああ、<mark>もっと楽な方法はないのかな</mark>、と思ったんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#身體限制驅動創新 / BodyLimitsDriveInnovation / 身体的制約が革新を促す</span>
+          <span class="tag">#尋找低負擔農法 / SeekingLowerBurdenMethod / 負担の少ない農法探索</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：OK，了解。<mark>輕鬆</mark>。好，他也是用有機的，跟青松老師那邊，因為他跟阿聰是<mark>以前的同事</mark>。（現場再次穿插日文翻譯）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: OK, understood. <mark>Easier</mark>. Right, that side also used organic methods, at Teacher Ching-song's place, because he and A-Cong <mark>used to be colleagues</mark>. (Japanese interpretation is inserted again on site.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：OK、わかりました。<mark>楽な方法</mark>ですね。はい、青松先生のところも有機の方法を使っていました。彼と阿聰さんは<mark>以前同僚</mark>だったからです。（現場で再び日本語通訳が入る）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#低負擔作為選擇標準 / EaseAsSelectionCriterion / 楽さという選択基準</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：然後現在體驗當中呢，就聊天，剛好不曉得在現場有一位朋友就是說，呃，<mark>淡水有一個老師很奇怪喔，他不使用肥料</mark>。我聽到這三個字，可能跟我<mark>天生反骨</mark>也有關係，我就<mark>很好奇，就去網路上查</mark>了一下。真的有這樣的人，這樣的老師在上這種課，<mark>所以就去參加</mark>。在臺北的淡水。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: Then, during an experience activity, we were just chatting, and by chance someone there said, uh, there's <mark>a teacher in Tamsui who's very strange, he doesn't use fertilizer</mark>. When I heard those three words, maybe because I'm <mark>naturally a bit rebellious</mark>, I <mark>became very curious. So I looked it up online</mark>. There really was such a person, a teacher offering this kind of class, <mark>so I went to join it</mark>. It was in Tamsui, Taipei.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：それから、ある体験の場で話していた時に、たまたま現場にいた友人が、ええと、<mark>淡水に変わった先生がいるよ、その先生は肥料を使わない</mark>んだ、と言ったんです。その三つの言葉を聞いて、たぶん私はもともと<mark>反骨精神がある</mark>からか、<mark>とても興味が湧きました。それでネットで調べて</mark>みたら、本当にそういう人がいて、そういう授業をしている先生がいたので、<mark>参加しに行きました</mark>。台北の淡水です。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#偶遇資訊觸發轉向 / SerendipitousInformationTrigger / 偶然の情報が転機になる</span>
+          <span class="tag">#反骨精神與好奇 / RebelliousCuriosity / 反骨精神と好奇心</span>
+          <span class="tag">#從搜尋到參與 / SearchToParticipation / 検索から参加へ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：所以我剛剛聽到，是跟賴青松老師以前是同事，然後你有先接觸過他那邊用<mark>雞糞，覺得很臭、很重</mark>。後來到淡水去，有<mark>接觸到另外一個老師</mark>。我先再追問前一個，你跟賴青松老師之前是同事，是在哪邊的同事？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: So what I heard just now is that you and Teacher Lai Ching-song used to be colleagues, and you first encountered his use of <mark>chicken manure and felt it was smelly and heavy</mark>. Later, you went to Tamsui and <mark>encountered another teacher</mark>. Let me first follow up on the earlier part: where were you and Teacher Lai Ching-song colleagues?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：つまり、今聞いたところでは、賴青松先生とは以前同僚で、まず彼のところで<mark>鶏糞を使う方法に触れて、それが臭くて重い</mark>と感じた。その後、淡水に行って<mark>別の先生に出会った</mark>、ということですね。まず前の部分をもう少し聞きます。賴青松先生とは、どこで同僚だったのですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#農法轉換節點 / FarmingMethodTransitionPoint / 農法転換の節目</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：呃，<mark>主婦聯盟的共同購買中心</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: Uh, at the <mark>Homemakers Union's collective purchasing center</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：ええと、<mark>主婦聯盟の共同購入センター</mark>です。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#主婦聯盟工作經驗 / HomemakersUnionWorkExperience / 主婦聯盟での職務経験</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：主婦聯盟，<mark>什麼是主婦聯盟</mark>？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: The Homemakers Union, <mark>what is the Homemakers Union</mark>?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：主婦聯盟、<mark>主婦聯盟とは何ですか</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#在地組織脈絡追問 / LocalOrganizationContextProbe / 地域組織文脈の問い</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：主婦聯盟是一個那個，<mark>類似 NGO 的那種購物中心</mark>。它<mark>專門採購友善農家的農產品</mark>，然後之後再販售。跟里仁有一點類似，但是<mark>里仁是宗教的，主婦聯盟是一些媽媽發起</mark>的一個。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: The Homemakers Union is, um, like a kind of <mark>NGO-style shopping center</mark>. It specifically <mark>purchases agricultural products from friendly farmers</mark>, and then resells them. It's a little similar to Leezen, but <mark>Leezen is religious, while the Homemakers Union was started by some mothers</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：主婦聯盟は、あの、<mark>NGOのような買い物センター</mark>みたいなものです。<mark>友善農家の農産物を専門に仕入れて</mark>、その後販売します。里仁と少し似ていますが、<mark>里仁は宗教系で、主婦聯盟はお母さんたちが始めた</mark>ものです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#友善農產通路 / FriendlyFarmProductChannel / 友善農産物の流通</span>
+          <span class="tag">#消費合作社脈絡 / ConsumerCoopContext / 消費者協同組合の文脈</span>
+          <span class="tag">#非宗教媽媽發起 / MotherInitiatedNonReligiousNetwork / 母親発の非宗教ネットワーク</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：所以是主婦聯盟，你們先在那邊是同事。那個時候您在那邊<mark>負責的是哪一類的工作</mark>？OK，開始。從前面一點 rewind。（此處原始錄音轉為研究員向翻譯者補充前文，<mark>未聽見受訪者完整回答</mark>工作內容）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: So it was the Homemakers Union, and you were colleagues there first. At that time, <mark>what kind of work were you responsible for</mark> there? OK, start. Rewind a little from the front. (At this point the recording shifts to the researcher briefing the interpreter; the interviewee's full answer about job duties is <mark>not audible</mark>.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：つまり主婦聯盟で、そこで先に同僚だったわけですね。その時、そこで<mark>どのような仕事を担当</mark>していたのですか。OK、始めましょう。少し前から rewind してください。（この箇所では録音が研究員から通訳者への補足に移り、受訪者の職務内容についての完全な回答は<mark>聞き取れない</mark>）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#職涯角色追問 / CareerRoleProbe / 職務役割の深掘り</span>
+          <span class="tag">#資料缺口 / DataGap / データ欠落</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：我剛剛問這一段，是想要了解這邊是農，但是<mark>前一個轉換的點是什麼</mark>。<mark>主婦聯盟原來也跟農有關</mark>。對，我們剛剛找到這個，你<mark>像挖到寶</mark>喔。好的，那我就接著問，請問後來你們怎麼找到這個地方？或者在這裡之前，有沒有先在別的地方？（研究員說明追問邏輯，接著回到訪談）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: The reason I asked this part just now is that I want to understand: this place is about farming, but <mark>what was the earlier turning point</mark>? It turns out the <mark>Homemakers Union was also connected to agriculture</mark>. Yes, we just found this; it's <mark>like digging up treasure</mark>. Okay, then I'll continue asking: how did you later find this place? Or before coming here, had you first been somewhere else? (The researcher explains the logic of the follow-up and then returns to the interview.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：私が今この部分を聞いたのは、ここは農業の場ですが、<mark>その前の転換点が何だったのか</mark>を知りたかったからです。<mark>主婦聯盟も実は農と関係があった</mark>んですね。そう、今これを見つけました。まるで<mark>宝を掘り当てた</mark>みたいです。では続けて聞きます。その後、どうやってこの場所を見つけたのですか。あるいはここに来る前に、別の場所にいたことはありますか。（研究員が追問の意図を説明し、訪談に戻る）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#轉換點追蹤 / TurningPointTracing / 転換点の追跡</span>
+          <span class="tag">#農業前史 / PreFarmingHistory / 農業以前の履歴</span>
+          <span class="tag">#訪談中發現線索 / InInterviewDiscovery / インタビュー中の発見</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：有。我在沒有來這裡之前，在<mark>全臺灣有流浪四年</mark>。<mark>流浪教師也有，流浪農夫也有</mark>。因為那個年代呢，<mark>要找地不好找</mark>，甚至還沒有開放。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: Yes. Before I came here, I <mark>wandered around Taiwan for four years</mark>. I was also a <mark>wandering teacher, and a wandering farmer</mark> too. Because in that era, <mark>it wasn't easy to find land</mark>; it wasn't even opened up yet.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：あります。ここに来る前、<mark>台湾全体を四年間流浪</mark>していました。<mark>流浪教師でもあり、流浪農夫でもありました</mark>。というのも、その時代は<mark>土地を探すのが難しく</mark>、まだ制度的にも開放されていなかったからです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#四年尋地旅程 / FourYearLandSearchJourney / 四年間の土地探し</span>
+          <span class="tag">#流浪教師與流浪農夫 / WanderingTeacherFarmer / 流浪教師と流浪農夫</span>
+          <span class="tag">#土地取得困難 / DifficultyAccessingLand / 土地取得の困難</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：那個年代是<mark>大概多少年</mark>？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: <mark>Around what year</mark> was that era?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：その時代というのは、<mark>だいたい何年頃</mark>ですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#時間定位追問 / TimelineClarification / 時期の確認</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：15 年前，<mark>2009 年的時候</mark>。那時候<mark>政府的政策還沒有開放</mark>說，你可以<mark>租農地來耕種</mark>。剛好就是隔四年以後，<mark>我在這裡落腳</mark>的時候，大概那個時候有開放。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: Fifteen years ago, <mark>around 2009</mark>. At that time, <mark>government policy had not yet opened up</mark> to say that you could <mark>rent farmland for cultivation</mark>. It just so happened that four years later, <mark>when I settled here</mark>, that was about when it opened up.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：15年前、<mark>2009年の頃</mark>です。当時、<mark>政府の政策では</mark>、<mark>農地を借りて耕作</mark>してよいという形にはまだ開放されていませんでした。ちょうどその四年後、私が<mark>ここに落ち着いた</mark>頃に、だいたい開放されたのだと思います。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#政策未開放時期 / PrePolicyOpeningPeriod / 政策未開放の時期</span>
+          <span class="tag">#租地耕作制度 / FarmlandLeaseCultivation / 農地賃借耕作制度</span>
+          <span class="tag">#落腳與制度同步 / SettlementAlignedWithPolicyChange / 定住と制度変化の一致</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：所以在那個之前，你<mark>去過三個地方</mark>？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: So before that, you had <mark>been to three places</mark>?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：ではその前に、<mark>三つの場所へ行った</mark>ということですか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#尋地範圍確認 / LandSearchScopeCheck / 土地探し範囲の確認</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：我<mark>流浪四年</mark>，我流浪四年，對。也<mark>不只三個地方</mark>，<mark>新竹、淡水</mark>，新竹去了兩次，<mark>西湖、池上</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: I <mark>wandered for four years</mark>, I wandered for four years, yes. And it <mark>wasn't only three places</mark>: <mark>Hsinchu, Tamsui</mark>, I went to Hsinchu twice, <mark>Xihu, Chishang</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：私は<mark>四年間流浪</mark>しました。四年間流浪したんです、はい。<mark>三か所だけではありません</mark>。<mark>新竹、淡水</mark>、新竹には二回行きましたし、<mark>西湖、池上</mark>にも行きました。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#多點移動尋地 / MultiSiteLandSearch / 複数地点での土地探し</span>
+          <span class="tag">#地點清單記憶 / PlaceListMemory / 訪問地リストの記憶</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：大概<mark>四年的時間都在找地</mark>，<mark>找一個適合的地方</mark>，然後最後到這邊。（研究員摘要給翻譯者與現場參與者）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: So for about <mark>four years, you were looking for land</mark>, <mark>looking for a suitable place</mark>, and finally came here. (The researcher summarizes for the interpreter and participants.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：だいたい<mark>四年間、土地を探して</mark>、<mark>適した場所を探して</mark>、最後にここへ来たということですね。（研究員が通訳者と現場参加者に要約）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#尋地歷程摘要 / LandSearchSummary / 土地探し過程の要約</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：那我就接著問，最後到這邊，<mark>為什麼最後選擇是這個地方</mark>？你還記得嗎？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Then I'll continue asking: after finally coming here, <mark>why did you ultimately choose this place</mark>? Do you still remember?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：では続けて聞きます。最後にここに来て、<mark>なぜ最終的にこの場所を選んだ</mark>のですか。覚えていますか。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#最終選址原因 / FinalSiteChoiceReason / 最終選定理由</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">阿聰：我在新竹的時候，<mark>認識這裡的一個朋友</mark>，<mark>太太也是泰雅族</mark>的。那因為他說這邊有很多的地，<mark>很多原住民的地</mark>，所以我們才開始在這邊。不過一開始我不相信，因為我去池上的時候，開車經過，我都看不到田啊。後來他請我下車，下來找找看，哇，<mark>真的四、五百公頃</mark>，就在南澳這個地方。這邊是<mark>原住民保留地</mark>，那邊是<mark>國有地</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">A-Cong: When I was in Hsinchu, I <mark>met a friend from here</mark>; <mark>his wife is also Atayal</mark>. Because he said there was a lot of land here, <mark>a lot of Indigenous land</mark>, that's how we began here. But at first I didn't believe it, because when I went to Chishang and drove past, I couldn't see any fields. Later he asked me to get out of the car and come down to look. Wow, there really were <mark>four or five hundred hectares</mark>, right here in Nan'ao. This side is <mark>Indigenous reserved land</mark>; that side is <mark>state-owned land</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">阿聰さん：新竹にいた時、<mark>ここの友人と知り合いました</mark>。彼の<mark>奥さんもタイヤル族</mark>です。彼が、この辺りには土地がたくさんある、<mark>原住民の土地がたくさんある</mark>と言ったので、私たちはここで始めることになりました。でも最初は信じませんでした。池上へ行った時、車で通り過ぎても田んぼが見えなかったからです。後で彼に車を降りて見てみてと言われて、降りて探してみると、わあ、本当に<mark>四、五百ヘクタール</mark>ありました。ここ南澳という場所に。この辺りは<mark>原住民保留地</mark>で、向こうは<mark>国有地</mark>です。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#在地朋友作為入口 / LocalFriendAsEntryPoint / 地元友人が入口</span>
+          <span class="tag">#泰雅關係網絡 / AtayalRelationalNetwork / タイヤル族の関係ネットワーク</span>
+          <span class="tag">#原住民土地資源 / IndigenousLandResource / 原住民の土地資源</span>
+          <span class="tag">#隱藏田地的發現 / DiscoveringHiddenFields / 見えない田んぼの発見</span>
+          <span class="tag">#保留地與國有地界線 / ReservedAndStateLandBoundary / 保留地と国有地の境界</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：OK，好。因為等一下你們要在每一組去受訪，那我就歸納一下剛剛聽到的東西。原來他們在這邊提供這個服務之前，是<mark>有一段旅程</mark>，像<mark>流浪好幾個地方</mark>；最後選擇這邊，是新竹的朋友，然後還有剛剛一開始說的，<mark>這邊比較近，也比較乾淨</mark>，所以是這個地點。嗯，好，非常感謝。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: OK, good. Because later you will be interviewed by each group, I'll summarize what we just heard. Before they provided this service here, there was <mark>a whole journey</mark>, like <mark>wandering through many places</mark>. The final choice of this place had to do with a friend from Hsinchu, and also what was said at the beginning: this place is <mark>closer and cleaner</mark>, so this became the location. Mm, okay, thank you very much.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：OK、はい。あとで皆さんは各グループで受訪していただくので、今聞いたことを整理します。彼らがここでこのサービスを提供する前には、<mark>一つの旅のような過程</mark>があり、<mark>いくつもの場所を流浪</mark>していました。最終的にここを選んだのは、新竹の友人がいたこと、そして最初に話されたように、ここが<mark>比較的近く、比較的清浄</mark>だったからです。はい、どうもありがとうございます。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#生命旅程式敘事 / LifeJourneyNarrative / 人生の旅としての語り</span>
+          <span class="tag">#選址因素整合 / IntegratedSiteChoiceFactors / 場所選定要因の統合</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：待會呢，這幾桌的朋友會對你們有興趣的話題不一樣。比如說這一桌的朋友非常<mark>關心你們的家庭</mark>。對，沒錯，所以他們非常關心家庭。真的嗎？那我請我兒子來。這一桌的朋友非常關心你們的<mark>黑糖蜜</mark>，就是我們在這邊做的東西，還有加工的東西，這些怎麼形成、到哪邊去賣，他們很想要知道。這一桌的朋友很有興趣的是早上你們帶我們玩的東西，<mark>體驗本身是一個很棒的商品</mark>，所以他們會圍繞著說怎麼想到這個體驗的，還有那個牌子是什麼時候設計出來的。那一桌的朋友可能問得比較跟身分有關，<mark>第二專長</mark>，就是你們其實除了是農以外，別的東西也蠻厲害的。他們會問說，你們怎麼把本來在<mark>城市會的東西應用在這裡</mark>。（研究員安排後續分組訪談主題）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Later, the friends at these tables will each have different topics they are interested in. For example, this table is very <mark>concerned about your family</mark>. Yes, exactly, they really care about family. Really? Then I'll ask my son to come. This table is very interested in your <mark>brown sugar syrup</mark>, the things we make here, and processed products: how these things are formed and where they are sold. They really want to know. This table is interested in what you led us to play with this morning. <mark>The experience itself is a great product</mark>, so they may ask how you came up with this experience, and when that signboard was designed. That table may ask more about identity and <mark>second expertise</mark>; that is, besides farming, you are actually quite good at other things too. They may ask how you <mark>apply things you originally knew in the city here</mark>. (The researcher arranges later group interview topics.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：あとで、このいくつかのテーブルの皆さんは、それぞれ関心のあるテーマが違います。たとえばこのテーブルの人たちは、皆さんの<mark>家族にとても関心</mark>があります。そう、まさに家族に強い関心があります。本当ですか？では息子を呼びましょう。このテーブルの人たちは、皆さんの<mark>黒糖蜜</mark>、つまりここで作っているもの、加工品にとても関心があります。それがどう作られ、どこで売られるのかを知りたがっています。このテーブルの人たちは、今朝皆さんが案内してくれた体験に興味があります。<mark>体験そのものがすばらしい商品</mark>なので、どうやってその体験を思いついたのか、あの看板はいつデザインされたのか、そういう質問をするかもしれません。あちらのテーブルは、身分や<mark>第二の専門性</mark>に関わることを聞くかもしれません。つまり、皆さんは農業以外にもかなり得意なことがあるので、<mark>都市で身につけたものをどうここで応用</mark>しているのか、ということです。（研究員が後続のグループ訪談テーマを配置）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#分組主題設計 / GroupTopicDesign / グループテーマ設計</span>
+          <span class="tag">#家庭作為訪談主題 / FamilyAsInterviewTheme / 家族という訪問テーマ</span>
+          <span class="tag">#加工品商業化 / ProcessedProductCommercialization / 加工品の商品化</span>
+          <span class="tag">#體驗商品化 / ExperienceAsProduct / 体験の商品化</span>
+          <span class="tag">#城市能力轉譯地方 / UrbanSkillsTranslatedLocally / 都市スキルの地域転用</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：待會我們為了<mark>公平</mark>，還有<mark>問到精髓</mark>裡面，等一下分兩個角落，這個角落跟這個角落。一邊的人先主要問，另外一邊可能只會先插嘴，然後<mark>過 10 分鐘之後</mark>就說，換我們的，換我們的，OK 嗎？另外日本朋友，他們對我們的<mark>自然農法也很熟悉</mark>，因為他們就是受這種教育的，所以如果你們有空檔，也可以跟他們聊聊天。他們一個叫頭，一個叫鬆恩。好，那我這個不用，我收走了，謝謝。那我們可能<mark>最多 30 分鐘</mark>好了，大家來問問題喔。（正式訪談前的分組與時間說明）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Researcher: Later, <mark>for fairness</mark> and to <mark>get into the essence</mark> of the questions, we'll split into two corners, this corner and that corner. People on one side will ask mainly first, and the other side may only jump in a little. Then <mark>after ten minutes</mark>, we'll say, our turn, our turn, OK? Also, our Japanese friends are <mark>very familiar with natural farming</mark>, because they received this kind of education, so if you have free time, you can also chat with them. One is called Tou, and one is called Song-en. Okay, I don't need this one; I'll take it away. Thank you. We may do <mark>at most thirty minutes</mark>. Everyone can ask questions. (Grouping and timing instructions before the formal interview.)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：あとで<mark>公平のため</mark>、また<mark>核心まで質問できる</mark>ように、二つの角に分かれます。この角と、あの角です。一方の人たちが先に主に質問して、もう一方は先に少し口を挟む程度かもしれません。そして<mark>10分たったら</mark>、こちらの番です、こちらの番です、と言います。OKですか。それから日本の友人たちは、私たちの<mark>自然農法にもとても詳しい</mark>です。そういう教育を受けているからです。もし空き時間があれば、彼らとも話してみてください。一人は頭さん、一人は鬆恩さんです。はい、これはもう使わないので回収します。ありがとうございます。<mark>最大で30分</mark>くらいにしましょう。皆さん質問してください。（正式な訪談前のグループ分けと時間説明）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#公平訪談安排 / FairInterviewArrangement / 公平な聞き取り設計</span>
+          <span class="tag">#輪替提問機制 / RotatingQuestionMechanism / 質問交代メカニズム</span>
+          <span class="tag">#日本學生自然農法背景 / JapaneseStudentsNaturalFarmingBackground / 日本学生の自然農法背景</span>
+          <span class="tag">#限時訪談 / TimeBoxedInterview / 時間制限付き訪談</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

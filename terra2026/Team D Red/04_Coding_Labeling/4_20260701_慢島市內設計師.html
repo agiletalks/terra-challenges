@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談編碼與標籤化整理手札</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 992px) {
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
+  }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 992px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.78rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #e7e5e4; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
+  .remarks { font-size: 0.8rem; background: #fffbeb; color: #b45309; padding: 8px 12px; border-radius: 6px; border: 1px solid #fde68a; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-title">訪談編碼與標籤化整理手札</div>
+  
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：那就是這邊的。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: That would be from around here.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：それはまあ、こっちの方のですね。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#在地脈絡 / LocalContext / 地域的文脈</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：啊，大哥不好意思，就是我們可能會稍微採訪你一下，可能會稍微錄個音。錄個音之後，OK的嗎？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewer: Ah, sorry to bother you, sir, but like, we might interview you for a bit, and maybe record it slightly. Is it okay if we record it?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：あ、すみません、ちょっとお話を伺ってもよろしいですか、その、少し録音させていただくかもしれません。録音しても大丈夫でしょうか？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#研究知情同意 / InformedConsent / 研究のインフォームドコンセント</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：哦，可以啊。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: Oh, sure.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：お、いいですよ。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#受訪意願建立 / InterviewConsentGranted / インタビュー同意獲得</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：好。那就是因為……我們是，因為我們最後一天要做一個，就是 for 像是很多，因為可能之後，像是在都市青年當中，還是蠻多人會是斜槓生活。那，辦……一半是農民、一半是另外一個，一半是自己的專業職業，也是算是一種斜槓。那我們想說，可能之後會有更多青年，像是因為經過這幾天的體驗，我自己也是有一點羨慕嗎？就是有一點嚮往這種生活。就是如果之後真的有這個機會的話，我是可以，我是會想要就是這樣，真的像是半農半 X 的生活。那，就是您自己本身原本的職業會是什麼？或是專門……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewer: Okay. So, that's because... we are, because on our last day we need to do a, like, for like a lot of, because maybe in the future, like among urban youth, there are still quite a lot of people who will lead a slash life. So, ha... half farmer, half another, half your own professional occupation, which is also considered a kind of slash. So we were thinking, maybe there will be more youth in the future, like after the experience of these past few days, I myself am also a bit envious? Like, I kind of yearn for this kind of life. Like, if there really is a chance in the future, I can, I would want to, like, really live a half-farming, half-X life. So, like, what was your original occupation itself? Or specialized in...</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：はい。それは、あの……私たちは、最終日にちょっとレポートというか、多くの、というのもこれから、例えば都市の若者の間で、やっぱりスラッシュライフ（複業）を送る人が結構増えるかもしれないと思って。その、は……半分は農民で、半分はもう一つの、半分は自分の専門的な仕事というのも、ある種のスラッシュと言えますよね。それで、これからはもっと多くの若者が、例えばここ数日間の体験を通して、私自身もちょっと羨ましいというか、こういう生活に少し憧れを抱くようになりまして。もし将来本当にチャンスがあれば、私はこういう、本当に「半農半X」のような生活をしてみたいんです。それで、あの、ご自身の本来のご職業は何ですか？それとも専門は……</div>
+        <div class="remarks">
+          <strong>Cultural Remarks:</strong><br>
+          EN: "Half-farming, half-X (半農半X)" is a lifestyle concept originally from Japan that gained popularity in Taiwan, where individuals do small-scale farming for self-sustenance while pursuing another professional passion (X).<br>
+          JA: 「半農半X」は日本発祥のライフスタイル概念ですが、台湾の若者の間でも広く浸透しており、自給自足的な小規模農業を行いながら、自身の専門や情熱を注げる別の仕事（X）を持つ生き方を指します。
+        </div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#都市青年斜槓趨勢 / UrbanYouthSlashLifestyleTrend / 都市若者のスラッシュトレンド</span>
+          <span class="tag">#半農半X生活嚮往 / YearningForHalfFarmingHalfX / 半農半Xへの憧れ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：<mark>做設計的</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: <mark>Doing design</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：<mark>デザイン関係です</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#專業背景設計業 / ProfessionalBackgroundInDesign / 専門背景デザイン業</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：設計的？像是平面設計還是……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewer: Design? Like graphic design or...</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：デザイン？グラフィックデザインとか、それとも……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#釐清專業範疇 / ClarifyingProfessionalDomain / 専門領域の明確化</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：<mark>室內室內設計跟建築設計</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: <mark>Interior, interior design and architectural design</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：<mark>インテリア、インテリアデザインと建築デザインです</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#空間設計專業 / SpatialDesignExpertise / 空間デザインの専門性</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：哦，就是像室內設計公司、室內裝潢公司那樣的設計？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewer: Oh, so like the design done in interior design companies or interior renovation companies?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：へえ、インテリアデザイン会社とか、内装工事会社とか、そういうデザインですか？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#行業型態確認 / ConfirmingIndustryType / 業界形態の確認</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：對對對。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: Yeah, yeah, yeah.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：そうそうそう。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#受訪者確認 / RespondentConfirmation / 被験者の確認</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：哦……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewer: Oh...</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：あぁ……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#傾聽與反饋 / ActiveListening / 傾聴と傾注</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：還有<mark>建築相關</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: And also <mark>architecture-related</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：それと<mark>建築関連</mark>も。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#跨足建築領域 / ExtendingToArchitecture / 建築領域への拡張</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：那您是怎麼會就是接觸到說，想要來就是……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewer: Then how did you, you know, come into contact with this and want to come, like...</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：では、どういうきっかけで、その、ここに来てみようと……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#探詢移居契機 / ExploringMigrationTriggers / 移住のきっかけの探究</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：因為其實，<mark>宜蘭它這邊建築設計是一個蠻發達的地方</mark>。那我有<mark>來這邊生活、實習過</mark>，哦，然後就覺得<mark>這邊的環境很適合生活</mark>。那自己本身又做設計的，所以<mark>有計畫搬來這邊</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: Because actually, <mark>architectural design here in Yilan is quite a developed field</mark>. And I've <mark>lived and interned here before</mark>, oh, and then I felt <mark>the environment here is very suitable for living</mark>. Since I do design myself, I <mark>planned to move here</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：というのも、実は<mark>宜蘭は建築デザインが結構盛んな場所</mark>なんですよ。以前、ここに<mark>住んでインターンシップをしたことがあって</mark>、あ、それでここの<mark>環境はとても生活しやすいなと感じた</mark>んです。自分自身もデザインをやっているので、ここに<mark>引っ越してくる計画を立てました</mark>。</div>
+        <div class="remarks">
+          <strong>Cultural Remarks:</strong><br>
+          EN: "Yilan (宜蘭)" is a county in northeastern Taiwan famous for its unique rural landscape and experimental green architecture, making it a hub for creative architectural design.<br>
+          JA: 「宜蘭（ギラン）」は台湾北東部の県で、豊かな自然景観と実験的なグリーン建築（緑建築）で知られており、建築デザインやクリエイティブな人材が集まる先進地となっています。
+        </div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#宜蘭建築設計聚落 / YilanArchitecturalDesignHub / 宜蘭の建築デザインクラスタ</span>
+          <span class="tag">#在地實習與生活經驗 / LocalInternshipAndLivingExperience / 地元インターンと生活経験</span>
+          <span class="tag">#宜蘭環境宜居性 / YilanLivability / 宜蘭の住みやすさ</span>
+          <span class="tag">#移居宜蘭計置 / PlannedMigrationToYilan / 宜蘭への移住計画</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">研究員：搬來這邊？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewer: Move here?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">研究員：ここに引っ越す？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#追問移居行動 / EchoingMigrationIntent / 移住行動の掘り下げ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">受訪者：對。那剛好<mark>身邊的朋友很多都是農業相關的</mark>，當然也有從藝術領域跨到農業，或是各個領域，就像剛剛是生態領域……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Interviewee: Yes. And it just so happened that <mark>many friends around me are involved in agriculture</mark>. Of course, there are also those who crossed over from the arts to agriculture, or from various other fields, like just now, the ecological field...</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">受訪者：ええ。それで、たまたま<mark>周りの友人に農業関係の人が多くて</mark>。もちろん、アートの分野から農業に転身した人もいれば、色々な分野から、例えばさっきの人は生態系の分野から……</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#農業社群人際網絡 / AgriculturalSocialNetwork / 農業コミュニティの人脈</span>
+          <span class="tag">#跨領域轉型農業 / CrossDisciplinaryTransitionToAgri / 異分野から農業への転身</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

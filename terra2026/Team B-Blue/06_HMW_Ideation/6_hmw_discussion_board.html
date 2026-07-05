@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HMW 創意思考討論看板</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1200px; margin: 40px auto; }
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { color: #0f2a1c; font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; }
+  .header p { color: #78716c; font-size: 0.98rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+  .control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; background: white; padding: 16px 24px; border-radius: 12px; border: 1px solid #e7e5e4; gap: 16px; flex-wrap: wrap; }
+  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; }
+  .btn-export:hover { background: #A04B19; }
+  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 30px; }
+  .theme-title { font-size: 1.15rem; font-weight: 800; color: white; background: #0f2a1c; padding: 12px 20px; border-radius: 8px; margin-bottom: 8px; }
+  .theme-note { color: #78716c; font-size: 0.86rem; line-height: 1.6; margin-bottom: 18px; }
+  .cards-list { display: flex; flex-direction: column; gap: 12px; min-height: 50px; }
+  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.08); border-radius: 12px; padding: 18px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .hmw-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.04); border-color: rgba(22,101,52,0.2); }
+  .hmw-card.dragging { opacity: 0.5; background: #f5f5f4; cursor: grabbing; }
+  .card-content { flex-grow: 1; }
+  .angle-badge { font-size: 0.72em; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+  .badge-barrier { background: #fee2e2; color: #991b1b; }
+  .badge-outcome { background: #dcfce7; color: #166534; }
+  .badge-leverage { background: #dbeafe; color: #1e40af; }
+  .hmw-text { font-size: 0.98rem; line-height: 1.6; color: #1c1917; margin-bottom: 6px; }
+  .hmw-text strong { color: #B35C24; margin-right: 6px; }
+  .original-source { font-size: 0.78rem; color: #78716c; margin-top: 10px; border-top: 1px dashed #e7e5e4; padding-top: 8px; font-weight: 500; }
+  .vote-area { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #e7e5e4; border-radius: 20px; padding: 6px 12px; flex-shrink: 0; }
+  .vote-change-btn { background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; }
+  .vote-change-btn:hover { background: #e7e5e4; color: #1c1917; }
+  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 42px; justify-content: center; }
+  .vote-heart-icon { color: #e11d48; font-size: 1rem; }
+  .vote-count { font-size: 0.95rem; font-weight: 800; color: #1c1917; }
+  textarea.export-box { width: 100%; height: 260px; margin-top: 16px; border: 1px solid #d6d3d1; border-radius: 10px; padding: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.82rem; line-height: 1.5; display: none; }
+  @media (max-width: 720px) { .hmw-card { flex-direction: column; align-items: stretch; } .vote-area { align-self: flex-end; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>HMW 創意思考討論看板</h1>
+    <p>以下由「農田變教室的體驗魔法」訪談主題轉化而來。請拖曳排序、使用 +/- 投票，找出最值得發展成新活動企劃的設計挑戰。</p>
+  </div>
+  <div class="control-row">
+    <div style="font-size: 0.9rem; color: #6b7280; font-weight: 600;">操作說明：上下拖曳卡片進行排序，點擊 +/- 按鈕投票，結束後可按匯出。</div>
+    <button class="btn-export" onclick="exportResults()">匯出討論結果</button>
+  </div>
+  <textarea id="exportBox" class="export-box" readonly></textarea>
+
+  <div class="theme-section" data-theme="T1｜#客源入口與預約接觸點">
+    <div class="theme-title">T1｜#客源入口與預約接觸點</div>
+    <div class="theme-note">源自洞察：活動首先要能被看見、理解與預約。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何降低都市旅客在查找、理解與預約農事體驗時的不確定感？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we reduce uncertainty for urban visitors when they search for, understand, and book farm experiences?</div>
+          <div class="hmw-text"><strong>JA</strong>：都市の参加者が農業体験を探し、理解し、予約する際の不確実性をどう減らせるか？</div>
+          <div class="original-source">源自痛點：電話預約、資訊不透明、平台包裝不足</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓農事體驗在旅客還沒到現場前，就已經產生期待感與參與動機？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we create anticipation and motivation before visitors even arrive at the farm?</div>
+          <div class="hmw-text"><strong>JA</strong>：参加者が現地に着く前から期待感と参加意欲を持てるようにするにはどうすればよいか？</div>
+          <div class="original-source">源自期望：清楚活動頁面、主題行程、降低不確定感</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何利用旅行社、臉書與既有客源管道，把活動包裝成容易被選擇的主題行程？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we leverage travel agencies, Facebook, and existing channels to package the activity as an easily chosen themed itinerary?</div>
+          <div class="hmw-text"><strong>JA</strong>：旅行会社、Facebook、既存の集客ルートを活用し、選ばれやすいテーマ型行程にするにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：臉書、旅行社、宜蘭旅遊停靠點</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-section" data-theme="T2｜#短時體驗與深度長住的雙軌產品">
+    <div class="theme-title">T2｜#短時體驗與深度長住的雙軌產品</div>
+    <div class="theme-note">源自洞察：不同旅客有不同時間條件，體驗深度需分層。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓只有兩三小時的旅客，也能完成有趣且有學習感的農事任務？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we help two- to three-hour visitors complete a fun and meaningful farm task?</div>
+          <div class="hmw-text"><strong>JA</strong>：2〜3時間しかない参加者でも、楽しく学びのある農業ミッションを完了できるようにするにはどうすればよいか？</div>
+          <div class="original-source">源自痛點：短時間旅行團難以深入學習</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何設計一套從短時體驗到深度長住都能延伸的農村學習旅程？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we design a rural learning journey that can extend from short visits to long-term stays?</div>
+          <div class="hmw-text"><strong>JA</strong>：短時間体験から長期滞在まで発展できる農村学習の旅をどう設計できるか？</div>
+          <div class="original-source">源自期望：兩三小時、數天、一個月的不同深度</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何把農場、村莊與長住實習資源串成可分級購買的體驗產品？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we connect farms, villages, and internship resources into experience products of different levels?</div>
+          <div class="hmw-text"><strong>JA</strong>：農場、村、長期実習の資源をつなぎ、段階的に購入できる体験商品にするにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：村莊套裝、農莊入口、深度實習</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-section" data-theme="T3｜#在地資源轉譯成低成本活動">
+    <div class="theme-title">T3｜#在地資源轉譯成低成本活動</div>
+    <div class="theme-note">源自洞察：活動不必重裝備，應從現有資源提取可操作內容。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何避免活動過度依賴外購材料與複雜道具，減少農場準備負擔？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we avoid relying on purchased materials and complex props to reduce farm preparation workload?</div>
+          <div class="hmw-text"><strong>JA</strong>：購入材料や複雑な道具への依存を減らし、農場の準備負担を軽くするにはどうすればよいか？</div>
+          <div class="original-source">源自痛點：外購材料、重新規劃會增加成本與複雜度</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓田裡現有的作物、材料與工具，變成旅客覺得好玩、有故事、能帶走的體驗？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we turn existing crops, materials, and tools into experiences that feel fun, story-rich, and take-away friendly?</div>
+          <div class="hmw-text"><strong>JA</strong>：畑にある作物、材料、道具を、楽しく物語があり持ち帰れる体験に変えるにはどうすればよいか？</div>
+          <div class="original-source">源自期望：竹子、甘蔗、飯糰、採收、加工模組</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何建立一套『當季資源盤點』方法，讓農場每季都能快速轉出活動模組？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we create a seasonal resource-mapping method that helps farms quickly generate activity modules?</div>
+          <div class="hmw-text"><strong>JA</strong>：季節ごとの資源棚卸し方法を作り、農場が素早く活動モジュールを生み出せるようにするにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：現有種植資源、就地取材、便利性</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-section" data-theme="T4｜#季節、人力與容量控管">
+    <div class="theme-title">T4｜#季節、人力與容量控管</div>
+    <div class="theme-note">源自洞察：穩定營運需要把作物週期、人力與團體容量制度化。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何避免團體人數、農忙期與教學需求同時壓垮農場人力？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we prevent group size, busy seasons, and teaching needs from overwhelming farm labor?</div>
+          <div class="hmw-text"><strong>JA</strong>：団体人数、農繁期、教育ニーズが同時に農場の人手を圧迫しないようにするにはどうすればよいか？</div>
+          <div class="original-source">源自痛點：超過 30 人難負荷、農忙與體驗搶人力</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓農場在四季都能提供穩定、可預期且品質一致的體驗？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we help farms provide stable, predictable, and consistent experiences across seasons?</div>
+          <div class="hmw-text"><strong>JA</strong>：農場が四季を通じて安定し、予測可能で品質のそろった体験を提供するにはどうすればよいか？</div>
+          <div class="original-source">源自期望：作物錯峰、四季可操作、容量控管</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何用分組輪站、季節菜單與容量上限，把農場接待變成可複製的服務系統？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we use station rotation, seasonal menus, and capacity limits to turn hosting into a replicable service system?</div>
+          <div class="hmw-text"><strong>JA</strong>：グループローテーション、季節メニュー、定員上限を使い、受け入れを再現可能なサービスシステムにするにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：人數控制、季節配置、作物週期</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-section" data-theme="T5｜#身體負荷、氣候與活動難度調節">
+    <div class="theme-title">T5｜#身體負荷、氣候與活動難度調節</div>
+    <div class="theme-note">源自洞察：真實難度要被設計成挑戰，而不是痛苦。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何降低高溫、泥濘與體力負荷對參與意願的影響？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we reduce the impact of heat, mud, and physical load on willingness to participate?</div>
+          <div class="hmw-text"><strong>JA</strong>：暑さ、泥、体力負荷が参加意欲に与える影響をどう減らせるか？</div>
+          <div class="original-source">源自痛點：很熱、採蓮藕太難、初學者挫折</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何把真實農務的困難轉化成可完成、可炫耀、可學習的挑戰？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we turn the difficulty of real farm work into a completable, shareable, and learnable challenge?</div>
+          <div class="hmw-text"><strong>JA</strong>：本物の農作業の難しさを、達成でき、共有したくなり、学びになる挑戦へ変えるにはどうすればよいか？</div>
+          <div class="original-source">源自期望：困難變成可學習挑戰、替代入口</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何利用時段安排、遮蔭補水、室內外切換與任務分級，讓不同體力者都能參與？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we use timing, shade, hydration, indoor-outdoor switching, and task levels so people with different physical capacities can join?</div>
+          <div class="hmw-text"><strong>JA</strong>：時間帯、日陰、水分補給、屋内外の切り替え、任務レベルを使い、体力差のある人も参加できるようにするにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：遮蔭、補水、時段、室內外彈性</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-section" data-theme="T6｜#教育內涵：從好玩走向理解土地">
+    <div class="theme-title">T6｜#教育內涵：從好玩走向理解土地</div>
+    <div class="theme-note">源自洞察：差異化來自把農法、食物與生態轉成可感知學習。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何避免食農體驗只停留在好玩，而讓參與者真正理解土地與農法？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we prevent farm experiences from remaining merely fun and help participants truly understand land and farming methods?</div>
+          <div class="hmw-text"><strong>JA</strong>：農業体験が単なる遊びにとどまらず、参加者が土地と農法を本当に理解できるようにするにはどうすればよいか？</div>
+          <div class="original-source">源自痛點：農法價值抽象、活動易被視為娛樂</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓參與者在完成任務後感覺自己理解了食物來源，也為農田做出貢獻？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we help participants feel they understand food origins and have contributed to the farmland after completing a task?</div>
+          <div class="hmw-text"><strong>JA</strong>：任務を終えた参加者が、食の由来を理解し農地に貢献したと感じられるようにするにはどうすればよいか？</div>
+          <div class="original-source">源自期望：理解農法差異、共同建立生態紀錄</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何結合留種、育苗、拍照、資料庫與物種辨識，把農田變成可互動的教室？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we combine seed saving, seedling raising, photos, databases, and species identification to turn farmland into an interactive classroom?</div>
+          <div class="hmw-text"><strong>JA</strong>：採種、育苗、写真、データベース、種の識別を組み合わせ、農地をインタラクティブな教室にするにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：留種、育苗、生態資料、公民科學</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-section" data-theme="T7｜#加工、帶走成果與五感記憶">
+    <div class="theme-title">T7｜#加工、帶走成果與五感記憶</div>
+    <div class="theme-note">源自洞察：可吃、可帶走、可再次使用的成果能延長體驗記憶。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何避免採收體驗只有辛苦感，而缺少完成感與農產價值理解？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we avoid harvest experiences feeling only exhausting and lacking completion or product value?</div>
+          <div class="hmw-text"><strong>JA</strong>：収穫体験が大変なだけで終わり、達成感や農産物の価値理解が不足しないようにするにはどうすればよいか？</div>
+          <div class="original-source">源自痛點：只採收太辛苦、講解食材不一定有感</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓每位參與者都能吃到、帶走或分享一個與農田有關的成果？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we help every participant eat, take away, or share an outcome connected to the farmland?</div>
+          <div class="hmw-text"><strong>JA</strong>：参加者全員が農地とつながる成果を食べたり、持ち帰ったり、共有したりできるようにするにはどうすればよいか？</div>
+          <div class="original-source">源自期望：蓮藕粉、蘿蔔糕、飯糰、料理學習</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何利用料理、加工與五感體驗，把農法知識轉化成味覺記憶？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we use cooking, processing, and sensory experience to turn farming knowledge into taste memories?</div>
+          <div class="hmw-text"><strong>JA</strong>：料理、加工、五感体験を使い、農法の知識を味覚の記憶に変えるにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：自然農食材、料理場域、可帶走成果</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-section" data-theme="T8｜#在地導引、同伴關係與體驗外溢">
+    <div class="theme-title">T8｜#在地導引、同伴關係與體驗外溢</div>
+    <div class="theme-note">源自洞察：體驗價值常在正式活動外發生，地方關係能放大活動感受。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何降低旅客獨自探索地方時的資訊成本與陌生感？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we reduce information costs and unfamiliarity for visitors exploring the local area?</div>
+          <div class="hmw-text"><strong>JA</strong>：旅行者が地域を探索するときの情報コストと不慣れさをどう減らせるか？</div>
+          <div class="original-source">源自痛點：一般旅客不知道哪些地方值得去</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓參與者從一日遊客轉變成暫時的地方成員？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we help participants shift from one-day visitors to temporary local members?</div>
+          <div class="hmw-text"><strong>JA</strong>：参加者が一日観光客から一時的な地域メンバーへ変わるにはどうすればよいか？</div>
+          <div class="original-source">源自期望：半在地人導引、朋友、自由探索</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何善用在地青年、教會、志工與熟人網絡，分擔接待並創造活動外溢價值？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we leverage local youth, churches, volunteers, and acquaintance networks to share hosting work and create spillover value?</div>
+          <div class="hmw-text"><strong>JA</strong>：地元の若者、教会、ボランティア、知人ネットワークを活用し、受け入れを分担し体験の外側の価値を生むにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：教友、年輕人、志工協作、半在地導引</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-section" data-theme="T9｜#體驗後購買與在地信任轉化">
+    <div class="theme-title">T9｜#體驗後購買與在地信任轉化</div>
+    <div class="theme-note">源自洞察：回購來自對人、土地與生產條件的信任。</div>
+    <div class="cards-list">
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何讓消費者理解小農產品背後的氣候風險與生產不確定性？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we help consumers understand the climate risks and production uncertainty behind smallholder products?</div>
+          <div class="hmw-text"><strong>JA</strong>：消費者が小農商品の背後にある気候リスクと生産の不確実性を理解できるようにするにはどうすればよいか？</div>
+          <div class="original-source">源自痛點：氣候變遷、產量價格不穩、只看商品難理解</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Outcomes</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何把一次農場體驗轉化成長期信任、回購與產地支持？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we turn a one-time farm experience into long-term trust, repurchase, and place-based support?</div>
+          <div class="hmw-text"><strong>JA</strong>：一度の農場体験を、長期的な信頼、再購入、産地支援へ変えるにはどうすればよいか？</div>
+          <div class="original-source">源自期望：拜訪農場、對話、共食共學、產地支持</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / System Leverage</span>
+          <div class="hmw-text"><strong>中</strong>：我們如何利用農場拜訪、故事、會員關係與共同分攤機制，讓參與者成為支持者？</div>
+          <div class="hmw-text"><strong>EN</strong>：How might we use farm visits, stories, membership relationships, and shared-risk mechanisms to turn participants into supporters?</div>
+          <div class="hmw-text"><strong>JA</strong>：農場訪問、物語、会員関係、リスク分担の仕組みを使い、参加者を支援者に変えるにはどうすればよいか？</div>
+          <div class="original-source">源自槓桿：信任農家、實際對話、股東/分攤模式</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper"><span class="vote-heart-icon">❤️</span><span class="vote-count">0</span></div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function adjustVote(button, delta) {
+    const card = button.closest('.hmw-card');
+    const countEl = card.querySelector('.vote-count');
+    let current = parseInt(countEl.textContent, 10) || 0;
+    current = Math.max(0, current + delta);
+    countEl.textContent = current;
+  }
+
+  document.querySelectorAll('.cards-list').forEach(list => {
+    list.addEventListener('dragstart', e => {
+      const card = e.target.closest('.hmw-card');
+      if (!card) return;
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    list.addEventListener('dragend', e => {
+      const card = e.target.closest('.hmw-card');
+      if (card) card.classList.remove('dragging');
+    });
+    list.addEventListener('dragover', e => {
+      e.preventDefault();
+      const dragging = document.querySelector('.hmw-card.dragging');
+      if (!dragging || dragging.parentElement !== list) return;
+      const afterElement = getDragAfterElement(list, e.clientY);
+      if (afterElement == null) {
+        list.appendChild(dragging);
+      } else {
+        list.insertBefore(dragging, afterElement);
+      }
+    });
+  });
+
+  function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.hmw-card:not(.dragging)')];
+    return draggableElements.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+  }
+
+  function cleanText(text) {
+    return text.replace(/\s+/g, ' ').trim();
+  }
+
+  function exportResults() {
+    let output = 'HMW 創意思考討論看板｜投票與排序結果\n';
+    output += '匯出時間：' + new Date().toLocaleString() + '\n\n';
+    document.querySelectorAll('.theme-section').forEach(section => {
+      const title = cleanText(section.querySelector('.theme-title').innerText);
+      output += '## ' + title + '\n';
+      section.querySelectorAll('.hmw-card').forEach((card, index) => {
+        const vote = card.querySelector('.vote-count').innerText;
+        const angle = cleanText(card.querySelector('.angle-badge').innerText);
+        const zh = cleanText(card.querySelectorAll('.hmw-text')[0].innerText);
+        const en = cleanText(card.querySelectorAll('.hmw-text')[1].innerText);
+        const ja = cleanText(card.querySelectorAll('.hmw-text')[2].innerText);
+        const source = cleanText(card.querySelector('.original-source').innerText);
+        output += `${index + 1}. [${vote}票] ${angle}\n   ${zh}\n   ${en}\n   ${ja}\n   ${source}\n`;
+      });
+      output += '\n';
+    });
+    const box = document.getElementById('exportBox');
+    box.style.display = 'block';
+    box.value = output;
+    box.focus();
+    box.select();
+    try {
+      document.execCommand('copy');
+      alert('討論結果已產生並複製到剪貼簿。');
+    } catch (err) {
+      alert('討論結果已產生，請手動複製文字框內容。');
+    }
+  }
+</script>
+</body>
+</html>

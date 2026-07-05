@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談編碼與標籤化整理手札</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
+  .row { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e7e5e4; }
+  .grid-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 992px) {
+    .grid-col { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
+  }
+  .lang-box { border-bottom: 1px dashed #e7e5e4; padding-bottom: 12px; }
+  @media (min-width: 992px) {
+    .lang-box { border-bottom: none; padding-bottom: 0; border-right: 1px solid #e7e5e4; padding-right: 16px; }
+    .lang-box:last-child { border-right: none; padding-right: 0; }
+  }
+  .label { font-size: 0.75rem; font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .text { font-size: 0.95rem; line-height: 1.6; color: #1c1917; }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.78rem; background: #f5f5f4; color: #44403c; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #e7e5e4; }
+  mark { background: #fef08a; padding: 2px 4px; border-radius: 4px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-title">D3 水月下午老闆訪問：訪談編碼與標籤化整理手札</div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">然後這裡面……各位我們這今天感謝您給我們更好的體驗，還有他的團隊，團隊呢在後面，我們就先感謝他嘍。Thank you so much. 那就以鼓勵我們來到這邊啦，覺得有這麼棒的體驗。只要請教你幾個問題，先一個一個來，我的第一個問題想要請教的是，<br>嗯<br>你在現在這個地方，然後你會<mark>怎麼描述你跟你家人的相處的關係</mark>？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">And within this... everyone, we want to thank you today for giving us this wonderful experience, and also thank your team, who&#x27;s right back there, let&#x27;s thank them first. Thank you so much. That&#x27;s what encouraged us to come here, feeling that it&#x27;s such a great experience. I just want to ask you a few questions, one by one. My first question is,<br>well<br>, here in this place you are now, <mark>how would you describe the relationship and how you get along with your family</mark>?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">それからこの中で……皆さん、本日は素晴らしい体験をありがとうございました。あと、後ろにいらっしゃるスタッフのチームの皆さんにも、まずは感謝ですね。Thank you so much. おかげで私たちはここに来ることができて、こんなに素敵な体験ができました。そこで、いくつかお話を伺いたいのですが、一つずつお聞きしてもよろしいでしょうか。最初の質問として、<br>うーん<br>、今あなたが暮らしているこの場所において、<mark>ご家族との関係性や過ごし方をどのように記述（表現）されますか</mark>？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#家庭關係探問 / FamilyRelationshipProbe / 家族関係への問い</span>
+          <span class="tag">#在地生活脈絡 / PlaceBasedLifeContext / 場所に根ざした生活文脈</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">嗯<br>，我們搬來這個地方的時候，就是我跟我的女兒，那我們家庭成員<mark>目前就是我們兩位</mark>。對，我們搬來之前，我的爸爸跟媽媽都已經離開這個世界了，然後我有其他的兄弟姐妹，<br>哎<br>，哥哥跟姐姐，但是他們都有自己的、各自的家庭。對，所以我們家庭人口很單純，就是我跟我女兒。然後我跟我前夫就是離婚了，再來之前離婚，那我們會<mark>離婚跟我生命的轉變有非常密切的關係</mark>，就是……這是一個很特別的過程。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Well<br>, when we moved to this place, it was just me and my daughter, so we are <mark>currently the only two members of our family</mark>. Right, before we moved here, both my father and mother had already passed away, and I have other siblings,<br>uh<br>, an older brother and an older sister, but they have their own, respective families. Right, so our household is very simple, just me and my daughter. And I got divorced from my ex-husband, divorced before coming here, and <mark>our divorce has a very close relationship with the transformation of my life</mark>, it’s just... it was a very special process.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">うーん<br>、私たちがこの場所に引っ越してきた時は、私と娘の二人でした。ですから、<mark>現在の家族構成は私たち二人のみ</mark>ですね。ええ、引っ越してくる前に、私の父と母はすでに他界していまして、他にも兄弟姉妹……<br>ええと<br>、兄や姉がいますが、彼らにはそれぞれ自分の、別々の家庭があります。ですので、我が家の家族構成はとてもシンプルで、私と娘だけなんです。それから、前夫とは離婚をしていまして、ここへ来る前に離婚したのですが、その<mark>離婚と私の人生（生命）の転換には、非常に密接な関係があります</mark>。本当に……これは少し特別なプロセスでした。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#母女核心家庭 / MotherDaughterHousehold / 母娘二人の家族</span>
+          <span class="tag">#離婚與生命轉變 / DivorceLifeTransformation / 離婚と人生転換</span>
+          <span class="tag">#原生家庭支持切斷 / ReducedExtendedFamilySupport / 拡大家族支援の希薄化</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">可以舉例來說嗎？就是……對，我們一塊轉上這個翻譯給你……就先 recap 一次，就是一開始我問的是……對，就是關係，然後媽媽跟我們分享說現在<mark>家庭人口比較簡單</mark>，是她的女兒兩個人，當初是兩個人一起來。當初來到這邊，剛剛有提到<mark>之前的婚姻的事情</mark>。說我們來到這邊跟那個前夫的非常的關係，我要再協調一下。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Could you give us an example? Like... right, let&#x27;s pass this translation over to you... let&#x27;s do a recap first. So at the very beginning, what I asked was... right, about the relationship. Then Mom shared with us that her <mark>household is quite simple now</mark>, just the two of them with her daughter, and they came here together from the start. Coming here just now, you mentioned things about your <mark>previous marriage</mark>. Saying that coming here has a huge relationship with the ex-husband... let me coordinate (phrase) this a bit better.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">例えば、具体的にどういったことでしょうか？……あ、対面でこの部分を通訳しますね……。一度要約（Recap）しますと、最初に私が伺ったのは……そうですね、関係性についてです。そしてお母さんから、<mark>現在の家族構成はシンプル</mark>で娘さんと二人のみであり、当初は二人でここへ来られたというお話を共有していただきました。ここへ来られた経緯として、先ほど<mark>手前の結婚生活のお話</mark>が出ました。ここへ来ることと前夫との深い関係性について、もう少し掘り下げて調整（質問）してみます。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#追問婚姻轉折 / ProbingMaritalTurningPoint / 婚姻転機の深掘り</span>
+          <span class="tag">#家庭結構摘要 / FamilyStructureRecap / 家族構成の要約</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">就是我之前是活在一個<mark>非常都會型的生活</mark>。對，然後我的前夫是一家公司的負責人，然後我也有很好的工作跟收入，然後我們都是……就是<mark>賺很多錢，然後就去消費</mark>這樣子。對。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">It&#x27;s just that I used to live <mark>a very urban-type life</mark>. Right, and my ex-husband was the head of a company, and I also had a very good job and income, and we were both... like, <mark>making a lot of money and then just spending it on consumption</mark>, like that. Right.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">つまり、私は以前、<mark>非常に都会的な生活</mark>を送っていたんです。ええ。前夫はある会社の経営者でしたし、私自身もとても良い仕事と収入を持っていました。私たちは二人とも……要するに、<mark>たくさんお金を稼いで、それを消費する</mark>、というような生活でした。ええ。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#都會消費生活 / UrbanConsumerLifestyle / 都市型消費生活</span>
+          <span class="tag">#高收入高消費 / HighIncomeHighConsumption / 高収入高消費</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">後來我因為生病了之後，我發現……<br>呃<br>就生病了之後，我<mark>一直在尋找自己為什麼生病</mark>。直到 2010 年，生病了五年之後，我才知道自己生病的原因，然後發現這個<mark>食物被污染、土地被污染、環境被污染了</mark>。然後就覺得……就覺得好像<mark>生活必須要有所改變</mark>。那後來很特別的是，2011 年日本發生了 311 大地震，311 大地震的時候，我突然間覺得<mark>人類的生活方式好像哪裡怪怪的</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Later on, because I fell ill, I found out...<br>uh<br>after getting sick, I <mark>kept searching for the reason why I got sick</mark>. It wasn&#x27;t until 2010, five years after falling ill, that I finally knew the cause of my illness, and discovered that <mark>the food was contaminated, the land was contaminated, and the environment was contaminated</mark>. And then I felt... felt like <mark>life just had to change</mark>. And then, what was really unique was that in 2011, the 311 earthquake happened in Japan. At the time of the 311 earthquake, I suddenly felt like <mark>something was... you know, kind of weird about the way human beings live</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">その後、自分が病気になったことで、気づきがあったんです。<br>ええと<br>、病気になってから、私は「<mark>なぜ自分は病気になったんだろう</mark>」とずっとその原因を探し続けていました。2005年に發病して5年が経った2010年になって、ようやく自分が病気になった原因が分かったんです。それは、<mark>食べ物が汚染され、土地が汚染され、環境が汚染されている</mark>ということでした。それで……何か、<mark>生活をどうしても変えなければいけない</mark>、と感じるようになったんです。そんな中、とても象徴的だったのが、2011年の東日本大震災（311大地震）でした。あの震災が起きた時、私は突如として「<mark>人間の生活様式って、どこかおかしいんじゃないか</mark>」と強く感じたんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#疾病作為轉折 / IllnessAsTurningPoint / 病気による転機</span>
+          <span class="tag">#污染覺察 / PollutionAwareness / 汚染への気づき</span>
+          <span class="tag">#311震災觸發反思 / 311TriggeredReflection / 震災による省察</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">想要再請教一下，因為我這一個想要先了解跟家庭有關的。你應該有時候<mark>生病之後，然後一直到來這邊之前</mark>，<mark>那個時候是有小朋友的嗎</mark>？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">I’d like to ask a bit more, because for this part I want to first understand things related to the family. <mark>After you fell ill, and up until before you came here</mark>, <mark>did you have a child at that time</mark>?</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">そこをもう少し伺いたいのですが、まず家族に関わる部分を整理させてください。<mark>病気になられてから、こちらへ移住してくる前</mark>のその当時、<mark>すでにお子さんはいらっしゃったのですか</mark>？</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#家庭時間線釐清 / FamilyTimelineClarification / 家族年表の確認</span>
+          <span class="tag">#子女出生脈絡 / ChildBirthContext / 子どもの誕生文脈</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">對，我生病的時候，我是 <mark>2005 年生病</mark>，<mark>小孩是 2007 年出生</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Yes, when I got sick... <mark>I fell ill in 2005</mark>, and <mark>my child was born in 2007</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">はい、私が<mark>病気になったのが2005年</mark>で、<mark>子供は2007年に生まれました</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#疾病與育兒時間線 / IllnessParentingTimeline / 病気と育児の時系列</span>
+          <span class="tag">#2005到2007轉折 / 2005To2007Transition / 2005年から2007年の転換</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">叫子珊，<mark>叫子珊就好</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Call me Zi-Shan, <mark>just Zi-Shan is fine</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">子珊（ズーシャン）です。<mark>ズーシャンって呼んでくれれば大丈夫</mark>です。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#受訪者自我命名 / SelfNaming / 自己呼称</span>
+          <span class="tag">#女兒主體出場 / DaughterVoiceEmergence / 娘の声の登場</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">哦<br>，就是我生病……2005 開始生病嘛，然後 2007 年小孩出生，然後<mark>我的病就越來越嚴重</mark>。對，所以其實<mark>小孩她也是有遭受的、遭受到一些污染</mark>的。對，然後<br>嗯<br>後來……後來就是 2011 年我發現人的生活、人類的生活怪怪的，然後我就<mark>開始去尋找答案</mark>，然後我就去接受了很多的志工的培訓，去當<mark>環境教育志工、食安推廣志工</mark>。<br>（此時現場夥伴進行英文旁白，語音中斷）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Oh<br>, so my illness... I started getting sick in 2005, right, and then in 2007 the baby was born, and then <mark>my condition got worse and worse</mark>. Right, so actually, the child, <mark>she also suffered... suffered from some of that contamination</mark>. Right, and then<br>uh<br>later... later, it was in 2011 that I found out human life, the way humans live was weird, and then I <mark>started to look for answers</mark>, and I went to receive a lot of volunteer training, to become an <mark>environmental education volunteer and a food safety promotion volunteer</mark>.<br>(At this point, a field partner provides English narration; audio cuts out)</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">あ<br>、つまり2005年に病気が始まって、2007年に子供が生まれたのですが、私の<mark>病状はどんどん悪化</mark>していったんです。ええ。ですから、実は<mark>子供自身も、何というか……ある種の（環境）汚染の影響を受けて</mark>しまっていたんですね。ええ、それで<br>うーん<br>、その後……その後2011年に「人間の生活っておかしいな」と気づいてから、私は<mark>答えを探し始めました</mark>。そして、たくさんのボランティアの研修を受けて、<mark>環境教育ボランティアや、食の安全（食安）推進ボランティア</mark>としての活動を始めたんです。<br>（この時、現場のスタッフが英語で解説を挟み、音声が一時中断）</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#疾病惡化與代際影響 / IllnessAndIntergenerationalImpact / 病気悪化と世代影響</span>
+          <span class="tag">#食安環教志工化 / FoodSafetyEcoVolunteerism / 食安・環境教育ボランティア化</span>
+          <span class="tag">#尋找答案 / SearchingForAnswers / 答えの探求</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">對，現在就要切入重點了。我那時候開始我學了很多的東西，知道<mark>這個世界出問題</mark>，然後我就開始去做教育推廣。<mark>第一個被我教育推廣的就是我前夫</mark>，<mark>他完全說你胡說八道</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Right, now we are getting to the core of it. Back then, I started learning so many things, knowing <mark>this world was in trouble</mark>, and then I started doing educational outreach. <mark>The very first person I tried to educate and promote this to was my ex-husband</mark>, and <mark>he completely said I was talking absolute nonsense</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">ええ、ここからがまさに核心部分ですね。当時、私は多くのことを学び、<mark>この世界が問題を抱えている</mark>と知って、教育啓発活動を始めました。そして、私が<mark>最初にその啓発の対象にしたのが前夫</mark>だったのですが、<mark>彼は完全に「お前はデタラメを言っている（胡説八道）」と一蹴した</mark>んです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#世界出問題的覺醒 / WorldInTroubleAwareness / 世界の問題への覚醒</span>
+          <span class="tag">#親密關係中的否定 / IntimateDismissal / 親密関係での否定</span>
+          <span class="tag">#前夫作為第一受眾 / ExHusbandAsFirstAudience / 前夫が最初の受け手</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">禮（嗯）<br>，那時候<mark>我能做的事情其實很有限</mark>，然後小孩子都會陪我去上課。然後<br>嗯<br>然後其實我發現、發現<mark>這是一個普遍的社會現象，就是大家都不相信</mark>。我剛開始推廣食安的時候大家都不相信，他說<mark>食物怎麼可能有問題呢</mark>？是你的身體比較特別吧。<br>嗯<br>，然後對於環境我記得那時候很印象很深刻，就是我告訴大家地球暖化的事情，大家想說<mark>地球怎麼會暖化呢</mark>？然後沒有這麼嚴重吧。<br>嗯<br>這就是大家的反應。你可以先翻譯。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Well<br>, <mark>what I could do back then was actually very limited</mark>, and the little kid would always accompany me to classes. And<br>uh<br>then I actually found out... found that <mark>this is a widespread social phenomenon, which is that nobody believed it</mark>. When I first started promoting food safety, nobody believed it; they&#x27;d say, &#x27;<mark>How could there be a problem with food</mark>? It&#x27;s probably just that your body is unusually sensitive.&#x27;<br>Yeah<br>, and regarding the environment, I remember very vividly at that time, when I told people about global warming, people thought, &#x27;<mark>How could the Earth be warming up</mark>?&#x27; and &#x27;It can&#x27;t be that serious.&#x27;<br>Mm<br>, that was everyone&#x27;s reaction. You can translate this first.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">うーん<br>、あの時に<mark>私にできたことは、実はとても限られていました</mark>。子供をいつも私の講座や研修に連れて行っていたんです。それに<br>うーん<br>、実はこれが<mark>非常に普遍的な社会現象であることにも気づきました</mark>。つまり、最初は誰も（食の安全の話を）信じてくれないんです。私が食安の普及活動を始めた当初、みんな信じようとせず、「<mark>食べ物に問題があるわけがない</mark>。あなたの体が特別にデリケートなだけでしょ」と言われました。<br>うーん<br>、環境についてもそうで、当時とても印象に残っているのは、私が皆に地球温暖化の話をした時に、「<mark>地球が温暖化するわけがない</mark>、そんな深刻なはずがない」という反応だったことです。<br>うーん<br>、これが皆のリアクションでした。先に（外国の方向けに）通訳してください。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#社會不相信 / SocialDisbelief / 社会的不信</span>
+          <span class="tag">#食安推廣阻力 / FoodSafetyAdvocacyResistance / 食安啓発への抵抗</span>
+          <span class="tag">#氣候議題早期懷疑 / EarlyClimateSkepticism / 気候問題への初期懐疑</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">我……她大概從<mark>三歲開始跟我一起去學自然農法</mark>，然後就上很多課這樣子。但是所以她就是<mark>只負責在旁邊玩</mark>。對。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">I... she <mark>started going with me to learn natural farming from around three years old</mark>, and took a lot of classes like that. But, so she was basically <mark>just responsible for playing around on the side</mark>. Right.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">私……彼女は大体<mark>3歳の頃から私と一緒に自然農法を学びに行って</mark>、たくさんの講座に出ていました。ただ、彼女は<mark>ただ隣で遊んでいるだけ</mark>でしたけどね（笑）。ええ。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#童年參與自然農法 / ChildhoodNaturalFarmingExposure / 幼少期の自然農法接触</span>
+          <span class="tag">#陪伴式學習 / AccompaniedLearning / 同伴的学習</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">喂<br>，請送到 26 號……然後我就……我要 26 號一個外國人去賽，然後我每天我不知道，反正<mark>我就看不到我媽，我不知道她在哪裡</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Hey<br>, please send it to No. 26... and then I... I wanted a foreigner at No. 26 to race, and every day I didn&#x27;t know, anyway <mark>I just couldn&#x27;t see my mom, I had no idea where she was</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">「もしもし、26号に届けてください……」って（笑）。それで私は……私は26号である外国人のところへ行って……何というか、毎日、とにかく<mark>お母さんの姿が見えなくて、お母さんがどこにいるのか全然分からなかった</mark>んです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#母親缺席感 / FeltMaternalAbsence / 母親不在感</span>
+          <span class="tag">#孩童位置不確定 / ChildSpatialUncertainty / 子どもの居場所不安</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">我覺得沒有什麼經典的一些……反正<mark>我媽就只搞她自己的遊戲</mark>。只要來說呢，<mark>她其實不顧家</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">I don&#x27;t think there was anything like a classic day... anyway, <mark>my mom was just wrapped up in her own little game</mark>. To put it simply, <mark>she actually didn&#x27;t take care of the home</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">象徴的な一日というか……要するに、<mark>お母さんは自分のやっている「（農法や食安の）ゲーム」に夢中</mark>だったんです。はっきり言ってしまうと、<mark>お母さんは全然家庭を顧みていませんでした</mark>（笑）。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#行動理想與家庭照顧衝突 / ActivismCareConflict / 行動主義と家庭ケアの衝突</span>
+          <span class="tag">#女兒對母親的批判 / DaughterCritiqueOfMother / 娘による母親批判</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">我就去托嬰的，那大家都在寫卷子，然後我就在那邊，<mark>寫完作業就自己在不知道要幹嘛</mark>。然後那個補習班老師對啊，就是反正他就問我說：『哎，你要不要寫寫看？』然後我就說：『我不要。』他就問我說：『你可以放玩具。』你說：『我不要。』對，反正我就自己在那邊不知道要幹嘛，就玩自己的，然後很無聊。這樣。對，然後我<mark>我媽每天都超晚才回來</mark>。有嗎？有，我這邊被我……之前直接被丟在……你這還跑去日本，然後呢，我就直接被丟在……對，我<mark>直接被丟在那個補習班老師的家裡</mark>，好像有就是<br>嗯<br>寄個幾天吧。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">I was just placed in daycare, where everyone else was working on test papers, and I’d just sit there. <mark>After finishing my homework, I just had nothing to do</mark>. And that cram school teacher, right, he basically asked me, &#x27;Hey, do you want to try writing this paper?&#x27; and I said, &#x27;No, I don&#x27;t.&#x27; Then he asked, &#x27;You can put your toys out,&#x27; and I said, &#x27;No, I don&#x27;t want to.&#x27; Yeah, anyway, I was just there by myself not knowing what to do, playing on my own, so it was so boring. Like that. Right, and <mark>my mom came back super late every single day</mark>. Did you? Yes you did, I was... previously left straight at... you even ran off to Japan, and then, I was straight up dumped at... yeah, I was straight up <mark>dumped at that cram school teacher&#x27;s house</mark>, I think<br>uh<br>stayed there for a few days.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">そう、託児所（学童保育）みたいなところに預けられて、周りのみんなはプリント（試験用紙）を解いているんですけど、私はそこで<mark>宿題を終わらせた後、次に何をすればいいか分からなくて</mark>。そこの塾の先生に「ねえ、これ（別のプリント）も解いてみる？」って聞かれても、私は「嫌だ」って言って。先生が「じゃあオモチャを出して遊んでいいよ」と言っても、私は「嫌だ」って言って。ええ、結局自分一人でそこで何をすればいいか分からず、適当に一人遊びをしていて、すごく退屈でした。そんな感じです。ええ、それに<mark>お母さんは毎日帰りがすごく遅かった</mark>です。え、あったっけ？ありましたよ、私は……前に直接（塾に）置き去りにされて……お母さんは日本に行っちゃって、それで私は直接……そう、<mark>直接その塾の先生の家に数日間預けられた</mark>こともありました。確か。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#安親班孤單經驗 / LonelyAfterSchoolCare / 学童保育での孤独</span>
+          <span class="tag">#母親晚歸 / LateReturningMother / 帰宅の遅い母</span>
+          <span class="tag">#照顧外包 / OutsourcedCare / ケアの外部委託</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">其實我媽很希望我念園藝系，不是農藝相關……好隨便你，只要搖（頭）。然後、然後呢，<mark>我爸呢很主流</mark>啊，他就希望我念什麼<mark>資工、電機</mark>、巴巴拉巴拉，對，他覺得那樣才賺夠錢。然後我的話呢，我是因為我<mark>小時候對昆蟲跟植物，還有兩棲爬蟲類這些就很感興趣</mark>，然後我小時候就想要走研究。所以我後來<mark>決定就是進入台大森林系</mark>，因為它是就是生態領域很不錯的一個……對，一個科系嘛。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Actually, my mom really wanted me to major in Horticulture, not Agronomy related... okay whatever, you just shake your head. And, and then, <mark>my dad is very mainstream</mark>; he wanted me to study things like <mark>Computer Science, Electrical Engineering</mark>, blah blah blah, right, he felt that&#x27;s the only way to make enough money. As for me, it&#x27;s because ever since I was a kid, I&#x27;ve been <mark>super interested in insects, plants, and amphibians or reptiles</mark>, and I wanted to go into research since childhood. So I later <mark>decided to enter NTU Forestry</mark>, because it&#x27;s a very good... right, department in the ecology field.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">実は、お母さんは私に園藝系（園芸学科）に進んでほしかったみたいで、農芸（農学科）系ではなくて……あ、もういいです、お母さんは首を振るだけで（笑）。それで、<mark>お父さんはすごく主流（世間一般的）な考え</mark>の人なので、私に<mark>資工（コンピュータサイエンス）や電機（電気工学）</mark>とか、その辺りに進んでほしいと思っていましたね。その方がお金をたくさん稼げるから、と。でも私の場合は、幼い頃から<mark>昆虫や植物、それから両生類や爬虫類にすごく興味</mark>があって、小さい頃から研究の道に進みたいと思っていたんです。だから最終的に<mark>台大の森林系に入ることを決めました</mark>。あそこは生態学の領域で非常に優れた……ええ、学科ですから。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#父母期待分歧 / DivergentParentalExpectations / 親の期待の相違</span>
+          <span class="tag">#主流高薪科系期待 / MainstreamLucrativeMajorExpectation / 高収入学科への期待</span>
+          <span class="tag">#生態研究志向 / EcologyResearchOrientation / 生態研究志向</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">然後我也有<mark>自己種過一塊，就是一分地的稻</mark>。就是自己育苗、插秧什麼的。對，因為<mark>我跟她的專業不同</mark>啊，然後我可能對稻子某方面的了解可能比她多。那我覺得<mark>我媽比較偏就食物</mark>，她是一個<mark>執行力很強、就是行動派</mark>的。對。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">And I&#x27;ve also <mark>cultivated a plot of land myself, like one &#x27;fen&#x27; of rice paddy</mark>. Doing everything from raising seedlings, transplanting them, and all that. Right, because <mark>my expertise is different from hers</mark>, and I might actually understand certain aspects of rice better than she does. I think <mark>my mom focuses more purely on food</mark>; she has <mark>immense execution power, a total woman of action</mark>. Right.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">それに、私自身も一時期、<mark>自分で1分（台湾の面積単位：約293坪）の田んぼを借りてお米を育てていた</mark>んです。自分で育苗して、田植えをして、というのを全部やりました。ええ、<mark>私とお母さんでは専門領域が違います</mark>し、お米（稲）の特定の側面に関しては、私のほうがお母さんより知識があるかもしれません。<mark>お母さんはどちらかというと「食（フード）」寄り</mark>で、<mark>実行力がものすごく高い、行動派</mark>のタイプですね。ええ。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#母女專業分化 / MotherDaughterExpertiseDifferentiation / 母娘の専門分化</span>
+          <span class="tag">#稻作實作經驗 / RiceCultivationPractice / 稲作実践経験</span>
+          <span class="tag">#食物行動派 / FoodOrientedDoer / 食の行動派</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">嗯<br>那時候會找這個地方，就是她<mark>學校念書的地方，跟這邊有火車站</mark>。都不在，所以我想說上學方便。然後第二個是因為這個<mark>環境比較單純、比較沒有污染</mark>。對，然後<br>呃<br>也是透過朋友的介紹，然後在這邊<mark>找到房子——出租的房子跟出租的土地</mark>。這段過程是這樣。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Well<br>, the reason for picking this place back then was <mark>where her school was, and there&#x27;s a train station here</mark>. Nobody was around, so I thought commuting would be convenient. And secondly, it&#x27;s because the <mark>environment here is simpler, relatively free from pollution</mark>. Right, and<br>uh<br>it was also through a friend&#x27;s introduction that we <mark>found a house here—a rental house and rental land</mark>. That&#x27;s how that whole process went.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">うーん<br>、あの時この場所を選んだのは、<mark>彼女が通う学校へのアクセスが良く、近くに駅があった</mark>からです。当時は（知り合いが）誰もいなかったので、通学の利便性を最優先に考えました。それから二つ目の理由として、この場所は<mark>環境が非常にシンプルで、汚染が比較的少なかった</mark>ことがあります。ええ、それから<br>ええと<br>、友人の紹介もあって、この地で<mark>家（借家）と、それからお借りできる農地を見つけることができました</mark>。最初のプロセスはこのような流れです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#遷居選址條件 / RelocationSiteCriteria / 移住先選定条件</span>
+          <span class="tag">#通學便利 / SchoolCommutingConvenience / 通学利便性</span>
+          <span class="tag">#低污染環境 / LowPollutionEnvironment / 低汚染環境</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">嗯<br>……怎麼想到這些活動？就是<br>呃<br>我<mark>現有的種植的資源裡面去去提取這些剛好可以做的事情</mark>。對，<mark>沒有特別的規劃</mark>。然後像這個飯糰的部分，它就是一個生活上蠻實用的一個、一個幫自己帶便當的方式。對，而且它不用任何的餐具。對，所以它外出……你可以在家裡就用這些東西包一個飯糰，然後帶出門，然後就是很方便，所以它<mark>很實用，然後又很簡單</mark>。你可以……它就是有<mark>四個象限</mark>，然後一個是蔬菜，一個是水果，一個是蛋白質，然後一個是澱粉，就是你喜歡的東西就把它包在一起。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Mm<br>... how did I think of these activities? It&#x27;s just,<br>uh<br>, <mark>taking what could be done directly out of my existing farming resources</mark>. Right, there was <mark>no specific long-term planning</mark>. And like, for the rice ball part, it’s actually a very practical way of packing a lunch for yourself in daily life. Right, and it doesn&#x27;t require any utensils. Right, so when going out... you can just wrap a rice ball at home using these things, then head out, and it&#x27;s just super convenient, so it&#x27;s <mark>very practical and very simple</mark>. You can... it basically has <mark>four quadrants</mark>: one is vegetables, one is fruit, one is protein, and one is starch; you just pack whatever you like together.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">うーん<br>……どうやって思いついたか、ですか。それは、<br>ええと<br>私が<mark>今持っている農業の資源（作物）の中から</mark>、「これならちょうどイベントとして成立するな」という要素を抽出しただけなんです。ええ、<mark>特別な長期計画があったわけではありません</mark>。例えばおにぎりのプログラムに関して言えば、それは日常生活において、自分でお弁当を持っていくための非常に実用的な方法の一つなんです。ええ、それに（厚紙などを使うことで）食器を一切必要としません。ええ、ですから外出する時に、家にあるものでおにぎりをパッと包んでそのまま出かけられる。とても<mark>便利で実用的ですし、何よりシンプル</mark>です。おにぎりの中に<mark>4つの要素（セクション）</mark>——例えば野菜、果物、タンパク質、そして炭水化物（デンプン）を、自分の好きな組み合わせで一緒に包み込むことができるんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#由資源生成活動 / ResourceBasedActivityDesign / 資源起点の活動設計</span>
+          <span class="tag">#生活實用性 / EverydayPracticality / 日常の実用性</span>
+          <span class="tag">#四象限飯糰設計 / FourQuadrantRiceBallDesign / 四象限おにぎり設計</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">呃<br>，我覺得我的蓮子。很……<mark>銷售的方法跟傳統完全不一樣</mark>，是因為蓮子它需要很多人工去把它剝殼。<br>嗯<br>所以呢，我就創了一個<mark>全台灣唯一的、第一個銷售方式</mark>，就是我的蓮子呢是一個<mark>禮盒</mark>，然後裡面是一個一個新鮮的蓮蓬，然後我又給他一個<mark>工具，還有一個說明書</mark>。我告訴他如何、如何利用這個蓮子，因為有的蓮子是生的、有邊（些）比較生一些而比較熟，那你要怎麼吃它、怎麼處理它。然後我要教、教他們那個蓮蓬可以煮成蓮蓬茶，也可以染、染布，所以它可以完全的利用這個東西。所以他們會……等於他、他體驗的、他吃到的<mark>不只是這一個農產品本身</mark>，他還可以知道它的用法，而且<mark>體驗它的一個過程</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Uh<br>, I think my lotus seeds. It&#x27;s... the <mark>marketing method is totally different from the traditional way</mark>, because lotus seeds require an immense amount of manual labor to dehusk.<br>Mm<br>, so that&#x27;s why I created <mark>the very first and only sales method in Taiwan</mark>, where my lotus seeds are sold as a <mark>gift set</mark>. Inside, there are individual fresh lotus seed pods, and I also include a <mark>tool and an instructional guide</mark>. I tell them how, how to make use of these seeds, because some are raw—some are greener while others are riper—and how you should eat them or process them. And I teach, teach them that the seed pod can be brewed into lotus pod tea, or used to dye, dye cloth, so you can completely utilize this whole thing. Consequently, they end up... it means what they experience and eat <mark>isn&#x27;t just the crop itself</mark>; they also get to know its usage and <mark>experience a whole process</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">ええと<br>、やはり「ハスの実（蓮子）」ですね。この<mark>販売方法は従来の市場とは全く異なります</mark>。というのも、ハスの実は外殻を剥くために膨大な手作業（人件費）を必要とするからです。<br>うーん<br>、そこで私は、おそらく<mark>台湾で初となる独自の販売スタイル</mark>を考案しました。ハスの実を「<mark>ギフトボックス（礼盒）</mark>」形式にして、箱の中に新鮮なハスの実（蓮蓬）をそのまま丸ごと入れ、さらに<mark>専用の道具と説明書</mark>を同梱したんです。説明書には、ハスの実の扱い方を書きました。ハスの実には生の状態のもの、少し若いもの、熟しているものなど個体差があるので、それをどう食べ、どう処理すればいいかを教えるためです。さらに、実を取り出した後のハスの花托（蓮蓬）は、煮出して「ハスの実茶」にすることもできますし、草木染め（染布）の染料としても使えます。つまり、一つの資源を完全に使い切ることができる（ホールフードの）提案です。これにより、消費者が体験し、口にするのは<mark>農産物そのものだけでなく</mark>、その使い方や、<mark>一連のプロセスそのものを「体験」</mark>することになるんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#蓮子禮盒創新 / LotusSeedGiftBoxInnovation / ハスの実ギフト革新</span>
+          <span class="tag">#從農產品到體驗流程 / CropToExperienceProcess / 農産物から体験プロセスへ</span>
+          <span class="tag">#全物利用 / WholeResourceUtilization / 資源まるごと活用</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">邊（比）<br>較挫折的……我覺得我<mark>最大的挫折</mark>就是，我們所有的<mark>農產品都過度包裝</mark>。我很希望不要再包裝了。希望例如說我的、我希望我的<mark>米我可以裸賣</mark>，我不要把它包成一個真空包裝，而是我連<mark>現碾</mark>的，然後大家來拿我的米，我覺得這才是我們應該要做的事情。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">The more frustrating part... I think my <mark>biggest frustration</mark> is that all of our <mark>agricultural products are over-packaged</mark>. I truly wish we didn&#x27;t have to package things anymore. For instance, I wish I could <mark>sell my rice completely &#x27;naked&#x27;</mark> (package-free); I don&#x27;t want to pack it into a vacuum pouch. Instead, I want it to be <mark>freshly milled</mark> on the spot, and people just come to bring my rice home. I feel that is what we should really be doing.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">挫折について言えば……私が<mark>最も大きな挫折（課題）</mark>だと感じているのは、<mark>あらゆる農産物が「過剰包装」</mark>されているという現状です。私は、もうこれ以上パッケージをしたくない（包装を無くしたい）と切に願っています。例えば、私のお米に関していえば、真空パックに包装するのではなく、<mark>「裸売り（量り売り）」をしたい</mark>んです。<mark>その場で精米したお米</mark>を、お客さんが容器を持って直接買いに来てくれる。これこそが、私たちが本来あるべき姿（行うべきこと）だと思っています。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#過度包裝挫折 / OverpackagingFrustration / 過剰包装への挫折</span>
+          <span class="tag">#裸賣願景 / PackageFreeSalesVision / 裸売りのビジョン</span>
+          <span class="tag">#現碾米理想 / FreshlyMilledRiceIdeal / その場精米の理想</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-col">
+      <div class="lang-box">
+        <div class="label">中文 (Chinese)</div>
+        <div class="text">嗯<br>，就是需要很多的設備。那其實最主要的也許關鍵不是在真空包裝，而是我<mark>不希望再、再有更多的製造垃圾</mark>。而且其實在<mark>政府也會要求我們必須要貼很多的標示</mark>。那其實我、我的客人他、他並不是一般就是不知對象的人，我是<mark>有明確的一個、一個對象</mark>。例如說他跟我們預售我們的米，然後所以<br>呃<br><mark>他知道我怎麼種的</mark>。對，然後所以我覺得……就不希望再有那些標籤貼紙還有一個塑膠袋，然後我們帶回去之後很快就剪開，然後<mark>塑膠袋又變成一個垃圾</mark>。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">English</div>
+        <div class="text">Um<br>, it just requires a lot of equipment. But actually, the most important key might not be the vacuum packaging itself, but rather that I <mark>don&#x27;t want to create any more trash</mark>. Furthermore, the <mark>government actually requires us to paste many regulatory labels</mark>. But in reality, my customers are not just some anonymous, random public; I have <mark>a very clear, specific group of people</mark>. For instance, they pre-order our rice via community-supported models, and so<br>uh<br><mark>they already know exactly how I grow it</mark>. Right, and that’s why I feel... I just don&#x27;t want those sticker labels and a plastic bag anymore, which we bring home, cut open almost immediately, and then the <mark>plastic bag turns right into piece of garbage</mark>.</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">日本語</div>
+        <div class="text">うーん<br>、そのためには多くの設備が必要になります。ただ、本質的な核心は真空パックの是非そのものではなくて、「<mark>これ以上、ゴミを製造したくない</mark>」という点にあるんです。それに、現在の<mark>政府の規制（法規）では、商品に膨大な項目（食品標示など）のラベルを貼ることが義務付けられています</mark>。ですが、私のお店に来てくださるお客様は、素性の分からない不特定多数の消費者ではありません。私たちは、<mark>誰が相手であるか明確な関係性</mark>を持っています。例えば、事前予約（預售）の形でお米を購入してくださる方々であり、彼らは私が<mark>どのようにこのお米を育てたかを知っています</mark>。ええ。ですから、これ以上プラスチックの袋やラベルシールを増やしたくないんです。家に持ち帰った後にすぐハサミで切り開かれ、その<mark>プラスチック袋が瞬時にただのゴミ</mark>になってしまう、そんな包装はしたくないんです。</div>
+      </div>
+      <div class="lang-box">
+        <div class="label">編碼標籤 (Coding Tags)</div>
+        <div class="tags-container">
+          <span class="tag">#零垃圾追求 / ZeroWasteAspiration / ゼロごみ志向</span>
+          <span class="tag">#法規標示困境 / RegulatoryLabelingDilemma / 表示規制のジレンマ</span>
+          <span class="tag">#信任型預售關係 / TrustBasedPreorderRelationship / 信頼に基づく予約販売関係</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

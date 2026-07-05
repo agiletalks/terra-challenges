@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談主題維度提煉手札｜農事體驗優先版</title>
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1400px; margin: 40px auto; display: flex; flex-direction: column; gap: 24px; }
+  .header-title { text-align: center; color: #0f2a1c; font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
+  .header-subtitle { text-align: center; color: #57534e; font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px; }
+  .theme-card { background: white; padding: 24px; border-radius: 20px; box-shadow: 0 4px 12px rgba(15, 42, 28, 0.04); border: 1px solid #e7e5e4; margin-bottom: 24px; display: flex; flex-direction: column; gap: 16px; }
+  @media (min-width: 992px) {
+    .theme-card { flex-direction: row; }
+    .left-panel { width: 35%; border-right: 1px solid #e7e5e4; padding-right: 24px; }
+    .right-panel { width: 65%; padding-left: 24px; }
+  }
+  .theme-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .theme-id { background: #0f2a1c; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; }
+  .theme-name { font-size: 1.25rem; font-weight: 800; color: #0f2a1c; }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; }
+  .cloud-tag { font-size: 0.75rem; background: #ecfdf5; color: #166534; padding: 5px 8px; border-radius: 999px; border: 1px solid #bbf7d0; font-weight: 700; }
+  .insight-box { background: #f5f5f4; border: 1px solid #e7e5e4; padding: 16px; border-radius: 12px; font-size: 0.9rem; line-height: 1.6; }
+  .insight-title { font-weight: 800; color: #78716c; margin-bottom: 6px; text-transform: uppercase; }
+  .speaker-section { border-bottom: 1px dashed #e7e5e4; padding-bottom: 20px; margin-bottom: 20px; }
+  .speaker-section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .speaker-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .speaker-badge { background: #f5f5f4; color: #1c1917; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
+  .source-badge { color: #78716c; font-size: 0.75rem; }
+  .compare-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
+  @media (min-width: 768px) {
+    .compare-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .grid-box { padding: 12px; border-radius: 8px; font-size: 0.88rem; line-height: 1.6; }
+  .box-pain { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+  .box-expect { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+  .quote-container { background: #fafaf9; border: 1px solid #e7e5e4; padding: 16px; border-radius: 10px; font-size: 0.88rem; }
+  .quote-row { margin-bottom: 8px; line-height: 1.5; }
+  .quote-row:last-child { margin-bottom: 0; }
+  .quote-lang { font-size: 0.72rem; font-weight: 800; color: #78716c; margin-bottom: 2px; text-transform: uppercase; }
+  .quote-text { font-style: italic; color: #44403c; }
+  mark { background: #fef08a; font-weight: 700; padding: 2px 4px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-title">訪談主題維度提煉手札｜農事體驗優先版</div>
+  <div class="header-subtitle">研究焦點：農事體驗。已將新增「賴／陳」訪談併入前版來源；半農半 X、家庭移居、慢島治理等內容僅在能支撐農事體驗設計、接待、學習轉化與服務平台時納入。</div>
+
+  <!-- 主題 1 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T1</div>
+        <div class="theme-name">#在地素材轉化為體驗設計</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">就地取材</span><span class="cloud-tag">作物故事</span><span class="cloud-tag">地方材料知識</span><span class="cloud-tag">低外部成本</span><span class="cloud-tag">素材即教材</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>農事體驗最有力的素材往往不是外部設計出來的，而是田裡、村裡、季節裡本來就存在的作物與材料；體驗設計的關鍵在於把「方便取得」轉譯成「可感知、可操作、可帶走的地方知識」。</p><p><strong>EN:</strong> The strongest materials for farm experiences are often not imported designs, but crops, tools, and resources already present in the field, village, and season. The design task is to turn local availability into tangible, hands-on, memorable knowledge.</p><p><strong>JA:</strong> 農事体験の最も力強い素材は、外から持ち込まれたものではなく、畑・村・季節の中にもともとある作物や資材である。重要なのは「手に入りやすさ」を、感じられ、触れられ、持ち帰れる地域知へと変換することだ。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：阿聰打工換宿 / 自然田訪談</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>如果體驗材料需要外購或遠距取得，會增加成本與準備負擔，也降低地方感。<br>
+            <strong>EN:</strong> If materials must be purchased or brought from far away, preparation costs rise and the experience loses its local sense of place.<br>
+            <strong>JA:</strong> 材料を外から買ったり遠くから運んだりすると、準備負担が増え、地域らしさも弱くなる。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望運用現場既有資材，讓體驗活動自然連結在地生活與農事脈絡。<br>
+            <strong>EN:</strong> Use on-site materials so the activity naturally connects to local life and farming context.<br>
+            <strong>JA:</strong> 現地にある資材を活かし、体験活動を地域生活や農作業の文脈と自然につなげたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">受訪者：阿聰：因為我們目前可以用的資材，就是<mark>這個比較方便</mark>。這個比較方便，<mark>就近就可以，現場取材</mark>。不用再去買，或者從外部大老遠去弄東西。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Interviewee: A-Cong: The materials we can use right now are simply <mark>more convenient</mark>. They are nearby, so we can <mark>source them directly on site</mark>. We do not need to buy things or bring materials from far away.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">受訪者：阿聰：今使える資材の中では、これは<mark>いちばん便利</mark>です。近くにあるので、<mark>その場で材料を調達できます</mark>。わざわざ買いに行ったり、遠くから持ってきたりする必要がありません。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：阿聰打工換宿 / 甘蔗體驗</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>一般消費者看得到甘蔗，卻不一定理解作物選擇、耐候性與糖的來源。<br>
+            <strong>EN:</strong> Visitors may see sugarcane but not understand crop choice, weather resilience, or where sugar comes from.<br>
+            <strong>JA:</strong> 来訪者はサトウキビを見ても、作物選択・耐候性・砂糖の由来までは理解しにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望把耐風雨作物與原始糖生產轉成可親手參與的食物教育。<br>
+            <strong>EN:</strong> Turn resilient crops and traditional sugar production into hands-on food education.<br>
+            <strong>JA:</strong> 風雨に強い作物と本来の砂糖づくりを、手で体験できる食育に変えたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">受訪者：阿聰：沒有，甘蔗是因為來這裡的人，遇到這裡很常見的。然後就覺得，<mark>種這個比較耐風雨</mark>。然後又加上市面上的果糖太多了，那是不健康的。所以才覺得說，那你可以體驗，那一次泡糖是怎麼生產的，<mark>真正原始的糖是這樣子種出來的</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Interviewee: A-Cong: No. Sugarcane came from noticing that people who come here often encounter it locally. I also felt that <mark>it is more resistant to wind and rain</mark>. And there is too much fructose on the market, which is unhealthy. So I thought visitors could experience how sugar is produced, and understand that <mark>real, original sugar is grown in this way</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">受訪者：阿聰：いいえ。サトウキビは、ここに来る人たちがこの地域でよく見かけるものだからです。それに、<mark>これは風雨に強い</mark>と思いました。さらに、市販の果糖は多すぎて健康的ではありません。だから、砂糖がどのように作られるのかを体験してもらい、<mark>本来の砂糖はこうして育てられる</mark>と知ってほしいと思いました。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 2 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T2</div>
+        <div class="theme-name">#農事難度與身體門檻管理</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">體力差異</span><span class="cloud-tag">炎熱日曬</span><span class="cloud-tag">泥濘採收</span><span class="cloud-tag">室內外切換</span><span class="cloud-tag">難度分級</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>農事體驗的價值常來自真實勞動，但真實勞動也帶來氣候、體力與安全門檻；好的體驗不是降低真實性，而是建立觀察、切換與分級機制，讓不同參與者都能安全進入農事現場。</p><p><strong>EN:</strong> The value of farm experiences often comes from real labor, but real labor also brings climate, physical, and safety barriers. Good design does not remove authenticity; it creates observation, switching, and difficulty-level mechanisms so different participants can safely enter the field.</p><p><strong>JA:</strong> 農事体験の価値は本物の労働にあるが、本物であるほど気候・体力・安全のハードルも生まれる。良い設計とは本物らしさを薄めることではなく、観察・切替・難易度調整によって多様な参加者が安全に参加できるようにすることだ。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：體驗者：蔡松恩 / Pei-yun 類型</div><div class="source-badge">來源：Day2 體驗者、Day3 沛勻服務體驗者</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>參與者可能願意嘗試戶外活動，但熱、曬、體力與泥水會快速影響投入程度。<br>
+            <strong>EN:</strong> Participants may be willing to try outdoor activities, but heat, sun, stamina, and mud quickly affect engagement.<br>
+            <strong>JA:</strong> 参加者は屋外活動に前向きでも、暑さ・日差し・体力・泥が関与度に大きく影響する。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望體驗能保留新奇與真實，但可依身體反應調整強度或轉換活動。<br>
+            <strong>EN:</strong> Keep the novelty and authenticity while allowing intensity adjustments or activity changes based on physical response.<br>
+            <strong>JA:</strong> 新鮮さと本物感を保ちつつ、身体反応に応じて強度や活動を調整できることが望ましい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">沛勻：不是，<mark>我會做戶外活動</mark>，但是我好像<mark>無可避免會覺得很熱</mark>……我覺得很熱。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Pei-yun: It is not that <mark>I do</mark> not do outdoor activities. I do, but I inevitably feel that it is <mark>very hot</mark>… I feel very hot.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">沛勻：アウトドア活動をしないわけではありません。<mark>します</mark>。ただ、どうしても暑いと感じてしまいます……<mark>とても暑い</mark>です。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：體驗者觀察者</div><div class="source-badge">來源：Day2 蔡松恩（體驗者）</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>戶外農事若只照固定菜單執行，容易忽略參與者當下體力與反應。<br>
+            <strong>EN:</strong> A fixed activity menu may ignore participants’ real-time stamina and reactions.<br>
+            <strong>JA:</strong> 固定メニューだけで進めると、参加者の体力や反応を見落としやすい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望接待者能觀察參與者反應，在室外農事與室內育苗、加工等活動之間彈性調配。<br>
+            <strong>EN:</strong> Hosts should observe reactions and flexibly switch between outdoor farm work and indoor activities such as seedling care or processing.<br>
+            <strong>JA:</strong> 受け入れ側が反応を観察し、屋外作業と屋内の育苗・加工などを柔軟に切り替えられることが望ましい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">那就是要考量到他的體力。<mark>出去之後他的反應</mark>，有些人可能當天太陽很大，然後我們可能在水田薅草，然後他可能就快受不了。就……<mark>就是要觀察他們，可能去換一下室內，能去育苗之類的</mark>。所以……<mark>它是一個可以彈性調配的內容。</mark></div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">So we have to take his physical strength into consideration. <mark>His reaction after going out</mark>—some people might find the sun really strong that day, and we might be weeding in the muddy paddy field, and he might feel like he cannot stand it. So <mark>you have to observe them, maybe switch to indoor activities, like seedling nursing</mark>. It is <mark>content that can be flexibly adjusted</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">だから、<mark>外に出た後の反応</mark>や体力を考慮する必要があります。日差しが強い日に田んぼで草取りをすると、耐えられない人もいます。だから<mark>彼らを観察して、屋内に切り替えたり、育苗のような活動に変えたりする</mark>必要があります。つまり<mark>柔軟に調整できる内容</mark>なのです。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：張明麗</div><div class="source-badge">來源：水月農莊 / 蓮藕體驗</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>採蓮藕本身難度高，泥土重、位置難判斷，對一般人體驗門檻高。<br>
+            <strong>EN:</strong> Lotus-root harvesting is difficult: heavy mud, hidden roots, and high entry barriers for ordinary visitors.<br>
+            <strong>JA:</strong> 蓮根掘りは泥が重く、場所も分かりにくいため、一般参加者には難易度が高い。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望把困難本身轉化為可教、可感受的體驗，並接到蓮藕粉等加工學習。<br>
+            <strong>EN:</strong> Turn the difficulty itself into a teachable experience and connect it to processing, such as lotus-root starch.<br>
+            <strong>JA:</strong> 難しさそのものを学べる体験に変え、蓮根粉づくりなどの加工学習につなげたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">張明麗：然後<mark>蓮蓬、蓮藕非常難採</mark>，它它在泥土裡，你不知道它在哪裡。然後你那個挖，每一個挖起來都很重，那個土都非常重，因為是濕濕黏黏爛的。好，那挖蓮藕是非常困難的，那個……嗯，但是<mark>也可以來體驗</mark>啊。然後我們可以教大家什麼，<mark>做蓮藕粉</mark>哦。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Zhang Mingli: Harvesting lotus seedpods and <mark>lotus roots is extremely difficult</mark>. They are buried in the mud, and you do not know where they are. Every root is heavy with wet, sticky soil. Still, this <mark>can become an experience</mark>, and we can teach people to make lotus-root starch.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">張明麗：蓮の実や<mark>蓮根を採るのは非常に難しい</mark>です。泥の中にあり、どこにあるかわかりません。湿った粘土が重く、それでも<mark>体験として成立</mark>し、蓮根粉づくりも教えられます。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 3 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T3</div>
+        <div class="theme-name">#季節人力與活動容量配置</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">季節錯峰</span><span class="cloud-tag">人力上限</span><span class="cloud-tag">作物排程</span><span class="cloud-tag">稻作避峰</span><span class="cloud-tag">團體容量</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>農事體驗不是單一活動產品，而是被季節、作物成熟期、人手與接待容量共同限制的服務系統；設計者必須先排農務，再排體驗，才能避免體驗與生產互相消耗。</p><p><strong>EN:</strong> A farm experience is not a standalone activity product; it is a service system constrained by season, crop timing, labor, and group capacity. Designers must schedule farm work first and experiences second to avoid experience delivery draining production.</p><p><strong>JA:</strong> 農事体験は単独の商品ではなく、季節・作物の時期・人手・受入容量に制約されるサービスシステムである。生産と体験が食い合わないよう、まず農務を組み、その上で体験を設計する必要がある。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：Day2 阿聰 Team B 訪談</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>團體人數過多會超過農場人力負荷，影響安全、品質與接待節奏。<br>
+            <strong>EN:</strong> Groups that are too large exceed farm manpower, affecting safety, quality, and hosting rhythm.<br>
+            <strong>JA:</strong> 団体人数が多すぎると農場の人手を超え、安全・品質・受入リズムに影響する。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望把體驗人數控制在可操作範圍內，兼顧互動品質與農務負擔。<br>
+            <strong>EN:</strong> Keep group size within a manageable range to balance interaction quality and farm workload.<br>
+            <strong>JA:</strong> 参加人数を運営可能な範囲に抑え、交流品質と農作業負荷の両方を保ちたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">8 到 30 個，8 到 30 個之間。所以<mark>超過 30 個以上的話，就是等於人力上就比較難負荷嘛</mark>。對對對對。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">8 to 30 people, between 8 and 30. So <mark>if it exceeds 30, then... it is a bit hard to handle in terms of manpower</mark>. Right, right.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">8人から30人、8〜30人の間ですね。ですから<mark>30人を超えてしまうと、どうしてもマンパワー的に対応が難しくなってしまいます</mark>。そうそう。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：張明麗</div><div class="source-badge">來源：水月農莊 / 作物排程</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>如果多種作物同時成熟或撞上稻作收割，農場會同時承受生產與體驗壓力。<br>
+            <strong>EN:</strong> If crops mature simultaneously or overlap with rice harvest, the farm faces combined production and experience pressure.<br>
+            <strong>JA:</strong> 複数作物が同時に成熟したり稲刈りと重なると、生産と体験の負荷が同時に高まる。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望依人力與季節錯開作物，讓採收、加工與體驗形成穩定節奏。<br>
+            <strong>EN:</strong> Stagger crops according to labor and season so harvesting, processing, and experiences form a sustainable rhythm.<br>
+            <strong>JA:</strong> 人手と季節に応じて作物時期をずらし、収穫・加工・体験が安定したリズムになるようにしたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">張明麗：就是我們會<mark>評估我們的人力，還有就是季節</mark>。<mark>每種作物可以錯開</mark>，不然如果同時都在忙，那是不可能的事情。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Zhang Mingli: We <mark>evaluate our labor capacity and the seasons</mark>. <mark>Crops need to be staggered</mark>; if everything gets busy at the same time, it is impossible.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">張明麗：<mark>人手と季節を評価</mark>します。<mark>作物の時期をずら</mark>さなければ、同時に忙しくなると不可能です。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 4 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T4</div>
+        <div class="theme-name">#從觀光景點轉向深度農事體驗</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">景點疲乏</span><span class="cloud-tag">村莊套裝</span><span class="cloud-tag">深度體驗</span><span class="cloud-tag">單日遊</span><span class="cloud-tag">主題遊程</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>體驗者對農事活動的期待正在從「看景點」轉向「進入地方生活與生產現場」；但他們仍需要清楚的套裝、路線與主題包裝，才能把農事體驗放進旅行決策中。</p><p><strong>EN:</strong> Visitors are shifting from sightseeing to entering local life and production scenes. Yet they still need clear packages, routes, and themes to place farm experiences into travel decisions.</p><p><strong>JA:</strong> 参加者の期待は「観光地を見る」ことから、地域の暮らしや生産現場に入ることへ移っている。ただし旅行判断に入れるには、分かりやすいパッケージ・ルート・テーマ化が必要である。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：沛勻（服務體驗者）</div><div class="source-badge">來源：Day3 沛勻服務體驗者</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>單純看景點已經缺乏新鮮感，但農事體驗若缺少包裝與路線，不容易被旅行者主動選擇。<br>
+            <strong>EN:</strong> Sightseeing alone feels less fresh, but farm experiences without packaging or route design are harder for travelers to choose.<br>
+            <strong>JA:</strong> 単なる観光地巡りは新鮮味が薄いが、農事体験もパッケージやルートがないと選ばれにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望以村莊套裝或農莊路線呈現，讓體驗者可以看見更深度的地方內容。<br>
+            <strong>EN:</strong> Present experiences as village packages or farm routes so visitors can access deeper local content.<br>
+            <strong>JA:</strong> 村のパッケージや農場ルートとして提示され、より深い地域内容に触れられることが望ましい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">沛勻：對對對，應該會吧。就是因為、就是畢竟<mark>光看景點就是也已經去過了</mark>，就會想要比較……早就走<mark>比較深度體驗的東西</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Pei-yun: Yes, yes, I probably would. After all, <mark>just visiting sightseeing spots</mark> is something I have already done, so I would want something more… I would move toward <mark>more in-depth experiential things</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">沛勻：はい、そうですね。たぶん探すと思います。結局、<mark>観光地を見るだけならもう行ったことがある</mark>ので、もっと……<mark>より深い体験型のもの</mark>に向かうと思います。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：沛勻（服務體驗者）</div><div class="source-badge">來源：Day3 沛勻服務體驗者</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>單點農場體驗對旅行者來說仍可能太零散，不容易想像整體旅程。<br>
+            <strong>EN:</strong> A single farm activity may feel too fragmented for travelers to imagine a full journey.<br>
+            <strong>JA:</strong> 単発の農場体験だけでは旅行全体を想像しにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望有村莊套裝：先到農莊，再銜接可體驗的活動。<br>
+            <strong>EN:</strong> A village package could first bring visitors to a farm, then connect them to hands-on activities.<br>
+            <strong>JA:</strong> 村のパッケージとして、まず農場へ行き、その後体験につながる形が望ましい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">沛勻：我還有可能會有一個<mark>村莊的套裝</mark>，我可能<mark>先去一個農莊，然後可以體驗</mark>。假設我看到有這個東西，我不會想要再看一下。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Pei-yun: I might also consider a <mark>village package</mark>. I could first <mark>go to a farm and then experience it</mark>. If I saw something like that, I would want to take another look.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">沛勻：<mark>村のパッケージ</mark>のようなものもあり得ます。<mark>まず農場に行って、そこで体験</mark>できる。もしそういうものを見たら、もう一度見てみたいと思います。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：Day2 阿聰 Team B 訪談</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>旅行社需要同主題活動串聯，若體驗定位不清楚，較難被納入遊程。<br>
+            <strong>EN:</strong> Travel agencies need activities under a coherent theme; unclear positioning makes inclusion harder.<br>
+            <strong>JA:</strong> 旅行会社は同じテーマの活動をつなげるため、体験の位置づけが曖昧だと行程に入りにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望農事體驗能以清楚主題被旅行社納入，成為地方農業遊程的一站。<br>
+            <strong>EN:</strong> Have farm experiences clearly themed so agencies can include them as one stop in local agricultural routes.<br>
+            <strong>JA:</strong> 農事体験を明確なテーマで提示し、地域農業ツアーの一地点として組み込みたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">對對，因為那個……你不可能說不同性質的菜道，<mark>通常旅行社會比較找的是同一個主題的活動，讓參加的人來選擇</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Right, right, because that... you cannot really put totally different types of tracks together, <mark>usually travel agencies prefer to find activities with the same theme for participants to choose from</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">そうそう、だってあの……全く性質の違うコースを混ぜるわけにはいかないですからね。<mark>普通、旅行会社は同じテーマの活動を探してきて、参加者に選んでもらう形をとることが多いです</mark>。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 5 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T5</div>
+        <div class="theme-name">#食物加工與產地教育鏈</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">原始食物教育</span><span class="cloud-tag">加工學習</span><span class="cloud-tag">零添加</span><span class="cloud-tag">新鮮加工</span><span class="cloud-tag">從田到餐桌</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>農事體驗若只停在採收，參與者容易把它視為一次活動；若能延伸到加工、健康、添加物、食物來源與味覺教育，就能把一次體驗轉化為消費選擇與生活觀念的改變。</p><p><strong>EN:</strong> If farm experiences stop at harvesting, visitors may see them as one-time activities. When extended to processing, health, additives, food origin, and taste education, they can shift consumption choices and lifestyle beliefs.</p><p><strong>JA:</strong> 農事体験が収穫だけで終わると、一回限りの活動になりやすい。加工・健康・添加物・食の由来・味覚教育へ広げることで、消費選択や生活観の変化につながる。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：張明麗</div><div class="source-badge">來源：水月農莊 / 加工產品</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>食品安全規範與加工能力限制，使農場難以隨意開發加工體驗與商品。<br>
+            <strong>EN:</strong> Food-safety regulations and processing capacity limit what farms can develop.<br>
+            <strong>JA:</strong> 食品安全規制と加工能力の制約により、農場が自由に加工体験や商品を開発するのは難しい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望以自製、零添加、新鮮加工回應股東與家庭對健康食物的需求。<br>
+            <strong>EN:</strong> Meet shareholders’ and families’ needs through self-made, additive-free, freshly processed food.<br>
+            <strong>JA:</strong> 自家製・無添加・新鮮加工によって、株主や家庭の健康的な食へのニーズに応えたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">張明麗：呃，那是<mark>自己做的加工產品</mark>，不是外面買的那種加工產品。……我們就幫我們的股東們做了這種<mark>零添加的米餅</mark>。……那我們……我們做的米餅就是零添加，就是原味，人用最……<mark>最新鮮的方式加工</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Zhang Mingli: These are <mark>processed products we make ourselves</mark>, not outside products. We made <mark>additive-free rice crackers</mark> for shareholders. Ours are original-flavor and <mark>processed in the freshest way</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">張明麗：それは外で買う加工品ではなく、<mark>自分たちで作る加工品</mark>です。株主のために<mark>無添加の米菓</mark>を作りました。私たちは素材の味を<mark>新鮮に加工</mark>します。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：阿聰打工換宿 / 甘蔗與糖</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>市面食品過度加工或添加糖，使消費者難以理解原始食物與健康的關係。<br>
+            <strong>EN:</strong> Overprocessed foods and added sugars make it hard for consumers to understand original food and health.<br>
+            <strong>JA:</strong> 市販食品の過加工や糖の多用により、本来の食物と健康の関係が見えにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>透過甘蔗與製糖體驗，讓人理解糖從作物到食物的原始過程。<br>
+            <strong>EN:</strong> Use sugarcane and sugar-making experiences to show the original path from crop to food.<br>
+            <strong>JA:</strong> サトウキビと砂糖づくり体験を通じて、作物から食べ物になる本来の過程を理解してもらいたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">然後又加上市面上的果糖太多了，那是不健康的。所以才覺得說，那你可以體驗，那一次泡糖是怎麼生產的，<mark>真正原始的糖是這樣子種出來的</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">And there is too much fructose on the market, which is unhealthy. So I thought visitors could experience how sugar is produced, and understand that <mark>real, original sugar is grown in this way</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">さらに、市販の果糖は多すぎて健康的ではありません。だから、砂糖がどのように作られるのかを体験してもらい、<mark>本来の砂糖はこうして育てられる</mark>と知ってほしいと思いました。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 6 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T6</div>
+        <div class="theme-name">#客源管道與預約接待旅程</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">Facebook</span><span class="cloud-tag">旅行社</span><span class="cloud-tag">學校團體</span><span class="cloud-tag">電話預約</span><span class="cloud-tag">數位化落差</span><span class="cloud-tag">顧客旅程</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>農事體驗的服務旅程仍混合了社群曝光、旅行社組團、學校合作與電話預約；痛點不只是有沒有活動，而是從知道、預約、抵達、調整、回訪之間缺少清楚可見的旅程設計。</p><p><strong>EN:</strong> Farm-experience journeys combine social media exposure, travel agencies, school partnerships, and phone reservations. The pain point is not merely whether activities exist, but whether the path from awareness to booking, arrival, adjustment, and return is visible and designed.</p><p><strong>JA:</strong> 農事体験の旅程は、SNS・旅行会社・学校連携・電話予約が混在している。課題は活動の有無だけでなく、認知・予約・来訪・調整・再訪までの流れが見える形で設計されているかである。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：Day2 阿聰 Team B 訪談</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>客源分散在 Facebook、旅行社與團體合作，若缺少整合容易造成接待資訊不穩。<br>
+            <strong>EN:</strong> Customer sources are spread across Facebook, agencies, and groups; without integration, hosting information becomes unstable.<br>
+            <strong>JA:</strong> 客源がFacebook・旅行会社・団体に分散しており、統合されないと受入情報が不安定になる。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望清楚掌握主要客源與合作管道，讓農事體驗能穩定被找到與安排。<br>
+            <strong>EN:</strong> Clarify customer sources and channels so farm experiences can be found and arranged reliably.<br>
+            <strong>JA:</strong> 主要な客源と連携ルートを明確にし、農事体験が安定して見つけられ、手配されるようにしたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">我們大概有兩個部分，<mark>一個是臉書嘛，第二個部分是旅行社</mark>。所以你們有帶團，那最近雄獅旅行社對於地方上的一些農業活動，他們都有在帶，所以等於是他們來宜蘭旅遊，然後其中會排一站這邊這樣子。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">We have roughly two parts, <mark>one is Facebook, and the second part is travel agencies</mark>. Recently Lion Travel has been bringing people to local agricultural activities, so when they come to Yilan, this place is arranged as one stop.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">私たちはだいたい2つのルートがあります。<mark>1つはフェイスブック（Facebook）ですね。それから2つ目は旅行会社です</mark>。最近、雄獅旅行社が地方の農業アクティビティを案内していて、宜蘭旅行の一つのスポットとしてここに立ち寄ります。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：體驗者</div><div class="source-badge">來源：Day2 蔡松恩（體驗者）</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>預約仍以電話為主，線上服務不足，外部使用者難以自行理解與規劃。<br>
+            <strong>EN:</strong> Booking is mainly by phone, with limited online service, making self-planning difficult for outsiders.<br>
+            <strong>JA:</strong> 予約は電話中心でオンラインサービスが不足しており、外部利用者が自分で理解・計画しにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望建立更清楚的線上資訊或預約介面，支援完整顧客旅程。<br>
+            <strong>EN:</strong> Build clearer online information or booking interfaces to support the full customer journey.<br>
+            <strong>JA:</strong> 完整な顧客旅程を支えるため、より分かりやすいオンライン情報や予約導線が望ましい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">不知道，<mark>我看到都是打電話哦。</mark></div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Dunno, <mark>from what I have seen, they all call, you know.</mark></div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">わからないですけど、<mark>私が見ている限りではみんな電話をかけていますよ。</mark></div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：Day2 阿聰 Team B 訪談</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>短天數與住宿型客群比例不同，接待設計若不區分會難以設定服務深度。<br>
+            <strong>EN:</strong> Day-trip and overnight guests need different service depths; mixing them makes design unclear.<br>
+            <strong>JA:</strong> 日帰りと宿泊型の客では必要な深さが異なり、区別しないとサービス設計が曖昧になる。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望依單日遊、住宿、學校實習等客群設計不同體驗深度。<br>
+            <strong>EN:</strong> Design different experience depths for day trips, stays, and school internships.<br>
+            <strong>JA:</strong> 日帰り・宿泊・学校実習など客層ごとに異なる体験深度を設計したい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">有住宿也有，當天來回的都 OK。但是<mark>住宿的……用體驗課的比較少，比較少，他們都旅遊比較多，通常都是當天來體驗的</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Yes, we have accommodation, and day trips are also OK. But <mark>those who stay overnight for experiential courses are quite few. They mostly do general sightseeing; usually they just come for a single-day experience</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">宿泊もありますし、日帰りでもどちらでもOKです。ただ、<mark>宿泊して体験コースを受けるケースは少なめですね。皆さん普通の観光が多くて、大体は日帰りで体験しに来られます</mark>。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 7 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T7</div>
+        <div class="theme-name">#農事體驗作為生態與資料共學</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">公民科學</span><span class="cloud-tag">生態資料</span><span class="cloud-tag">AI辨識</span><span class="cloud-tag">先記錄後辨識</span><span class="cloud-tag">共同資料保存</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>部分農事體驗的核心不只是「好玩」或「採收」，而是把參與者變成地方生態資料的共同建置者；當體驗流程能標準化觀察、記錄與後續辨識，農事現場就會成為公共知識生產場。</p><p><strong>EN:</strong> Some farm experiences are not only about fun or harvest; they turn participants into co-builders of local ecological data. When observation, recording, and later identification are standardized, the farm becomes a site of public knowledge production.</p><p><strong>JA:</strong> 一部の農事体験の核心は「楽しい」「収穫する」だけではなく、参加者を地域生態データの共同構築者にすることにある。観察・記録・後日の同定が標準化されると、農地は公共知を生み出す場になる。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：調漁活動引導者</div><div class="source-badge">來源：半農半 X 之調漁</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>如果活動只被看成娛樂，生態觀察與地方資料累積的價值會被忽略。<br>
+            <strong>EN:</strong> If the activity is seen only as entertainment, ecological observation and local data value are ignored.<br>
+            <strong>JA:</strong> 活動が娯楽だけと見なされると、生態観察や地域データ蓄積の価値が見落とされる。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望借助參與者的力量，把活動轉化為地方生態狀況的共同理解。<br>
+            <strong>EN:</strong> Use participants’ collective effort to turn the activity into shared understanding of local ecology.<br>
+            <strong>JA:</strong> 参加者の力を借りて、活動を地域生態状況の共同理解へ変えたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">受訪者： 所以我想先問大家，今天玩得開心嗎？但是呢，其實啊，這樣子的一個活動，我們<mark>並不定位在一個商業的活動</mark>。更重要的是，我們是想要<mark>借助很多人的力量，來幫助我們了解這裡的生態的狀況</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Interviewee: Did you have fun today? But this kind of activity is <mark>not really positioned as a commercial activity</mark>. More importantly, we want to <mark>borrow the strength of many people to help us understand the ecological condition here</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">回答者：今日は楽しかったですか？でも、こういう活動は、私たちは<mark>商業活動として位置づけているわけではありません</mark>。もっと大事なのは、<mark>多くの人の力を借りて、この場所の生態の状況を理解したい</mark>ということです。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：調漁活動引導者</div><div class="source-badge">來源：半農半 X 之調漁</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>參與者不一定能立即辨識物種，可能因此降低參與資料記錄的信心。<br>
+            <strong>EN:</strong> Participants may not identify species immediately, reducing confidence in data recording.<br>
+            <strong>JA:</strong> 参加者はすぐに種を同定できず、記録への自信を失いやすい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望建立「先記錄、後辨識」流程，讓 AI 與專家補上知識缺口。<br>
+            <strong>EN:</strong> Create a “record first, identify later” process supported by AI and experts.<br>
+            <strong>JA:</strong> 「まず記録し、後で同定する」流れをつくり、AIや専門家が知識の不足を補う。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">受訪者： 我覺得最大的好處是，我可能<mark>不需要馬上知道這是什麼</mark>，因為之後可以再用 <mark>AI 或專家協助辨識</mark>。今天你們把所有移動到的東西拍照上來，所以你們有時候會不知道牠是什麼，<mark>沒有關係，先拍下來</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Interviewee: The biggest benefit is that I may <mark>not need to know immediately what this is</mark>, because later <mark>AI or experts can help identify it</mark>. Sometimes you will not know what it is. <mark>That is okay—just photograph it first</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">回答者：一番大きな利点は、私は<mark>すぐにこれが何かを知らなくてもいい</mark>ということです。あとで<mark>AIや専門家に同定を手伝ってもらえる</mark>からです。分からないこともありますが、<mark>大丈夫です。まず写真を撮ってください</mark>。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 8 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T8</div>
+        <div class="theme-name">#長期實習與打工換宿沉浸</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">長天數停留</span><span class="cloud-tag">與農夫同作息</span><span class="cloud-tag">學校實習</span><span class="cloud-tag">打工換宿</span><span class="cloud-tag">地方沉浸</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>農事體驗可分為「短時段活動」與「長時間沉浸」兩種深度；真正改變參與者理解的，往往不是一次採收，而是跟著農夫作息生活數天到數週，讓勞動節奏、土地關係與生活價值逐漸內化。</p><p><strong>EN:</strong> Farm experiences range from short activities to long-term immersion. What changes understanding is often not one harvest, but living with farmers’ rhythms for days or weeks, internalizing labor rhythm, land relationships, and life values.</p><p><strong>JA:</strong> 農事体験には短時間の活動と長期滞在型の没入がある。理解を変えるのは一度の収穫だけではなく、数日から数週間、農家のリズムで暮らし、労働のリズム・土地との関係・生活価値を内面化することだ。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：Day2 阿聰 Team B 訪談</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>短時間體驗難以讓學生理解農務完整節奏。<br>
+            <strong>EN:</strong> Short experiences make it hard for students to understand full farm rhythms.<br>
+            <strong>JA:</strong> 短時間の体験では農作業全体のリズムを理解しにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>透過學校實習農場合作，讓學生停留 10 到 21 天，進入農夫作息。<br>
+            <strong>EN:</strong> Use school internship partnerships so students stay 10 to 21 days and enter farmers’ routines.<br>
+            <strong>JA:</strong> 学校実習農場との連携で、学生が10〜21日滞在し、農家の生活リズムに入る。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">呃，最近這七八年的轉折就是……<mark>也有接蠻部分是學校的實習農場</mark>。哦，學校他們都會來 10 天。……學校……學校的實習農場，對，<mark>通常會安排學生來這邊實習 10 天到 21 天</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">The turning point in these past 7 or 8 years is... <mark>we also take quite a large part as internship farms for schools</mark>. Schools come for 10 days. <mark>They usually arrange for students to come here for internships lasting 10 to 21 days</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">ここ7、8年の大きな変化としては……<mark>学校の「実習農場」としての受け入れがかなりの部分を占めるようになったこと</mark>です。学校側が10日間の日程で来たりします。<mark>大体は学生をここに集めて、10日〜21日間の実習を組むんです</mark>。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：阿聰師傅 (A-Cong)</div><div class="source-badge">來源：Day2 阿聰 Team B 訪談</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>若實習內容被包裝得太像課程，可能失去真實農務的核心。<br>
+            <strong>EN:</strong> If internships are over-packaged as courses, they may lose the core of real farm work.<br>
+            <strong>JA:</strong> 実習が過度に授業化されると、本物の農作業の核が失われる。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>讓學生與農夫做同樣的工作，以真實作息作為學習內容。<br>
+            <strong>EN:</strong> Let students do the same work as farmers, using real routines as learning content.<br>
+            <strong>JA:</strong> 学生が農家と同じ仕事をし、実際の生活リズムを学習内容にする。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text"><mark>跟你們一樣的作息，你們工作做什麼，那……他們就做什麼</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text"><mark>The exact same routine as yours. Whatever work you do, then... they do exactly that</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text"><mark>皆さんの生活リズムと全く同じです。皆さんがどんな仕事をするにしても、その……彼らも全く同じことをやります</mark>。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：體驗者</div><div class="source-badge">來源：Day2 蔡松恩（體驗者）</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>單日體驗與長期打工換宿的學習深度差異很大，容易被混為同一類活動。<br>
+            <strong>EN:</strong> One-day experiences and week-long work exchanges differ greatly in depth but are often conflated.<br>
+            <strong>JA:</strong> 日帰り体験と一週間単位のワーキングホリデーは深さが大きく異なるが、同一視されやすい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>清楚區分短期體驗與長期沉浸，讓不同需求者選擇適合深度。<br>
+            <strong>EN:</strong> Clearly distinguish short experiences from long immersion so people choose the depth they need.<br>
+            <strong>JA:</strong> 短期体験と長期滞在を明確に分け、ニーズに合った深さを選べるようにする。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">我常常常遇到的是打……因為<mark>他們就不會只有一天，比較長時間，一個禮拜、一個禮拜的時間</mark>， OK。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">I often encounter those on work-hand... because <mark>they will not stay for just one day; it is for a longer time, like a week, week-long periods</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">私がよく見かけるのはワーキングホリデーの人たちですね。だって、<mark>彼らは一日だけじゃなくて、比較的長い時間、一週間とか一週間の単位で滞在しますから</mark>。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 9 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T9</div>
+        <div class="theme-name">#慢島作為農事體驗的信任與公共平台</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">在地信任</span><span class="cloud-tag">股東俱樂部</span><span class="cloud-tag">兩百甲</span><span class="cloud-tag">慢島公司</span><span class="cloud-tag">公共事務平台</span><span class="cloud-tag">開放系統治理</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>慢島的農事體驗不是從觀光商品開始，而是從多年無農藥耕作、直銷、地主信任與社群治理累積而來；服務體驗的背後其實是一個維持地方信任、開放參與與公共對話的平台。</p><p><strong>EN:</strong> Slow Island’s farm experience did not begin as a tourism product. It emerged from years of pesticide-free farming, direct sales, landlord trust, and community governance. Behind the service experience is a platform for local trust, open participation, and public dialogue.</p><p><strong>JA:</strong> 慢島の農事体験は観光商品から始まったのではなく、長年の無農薬栽培・直接販売・地主との信頼・共同体運営から生まれた。サービス体験の背後には、地域信頼・開かれた参加・公共的対話を支えるプラットフォームがある。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：賴青松</div><div class="source-badge">來源：慢島賴老師＆陳老師訪談 2</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>農村打開後，許多新手農夫進入，會產生矛盾、衝突與信任治理問題。<br>
+            <strong>EN:</strong> When the village opens, many beginner farmers enter, creating contradictions, conflicts, and trust-governance issues.<br>
+            <strong>JA:</strong> 農村が開かれると多くの新規就農者が入り、矛盾・衝突・信頼の問題が生まれる。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>慢島需承擔公共平台角色，支撐開放系統中的對話、承諾與共同方向。<br>
+            <strong>EN:</strong> Slow Island needs to act as a public platform supporting dialogue, commitment, and collective direction in an open system.<br>
+            <strong>JA:</strong> 慢島はオープンシステムの中で、対話・コミットメント・共同の方向性を支える公共プラットフォームになる必要がある。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">賴大哥：其實不是。嘿。當時慢島公司成立最主要的一個原因是，當<mark>股東俱樂部已經取得在地信任</mark>，然後<mark>兩百甲已經開始打開農村的大門</mark>，讓有興趣的新手農夫蜂擁而入的時候……已經產生很多的<mark>矛盾、衝突、對立，或者是沒有辦法信任</mark>的狀況。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Mr. Lai: Actually, no. The main reason Slow Island was founded was that the <mark>Shareholders’ Club had already gained local trust</mark>, and the <mark>Two Hundred Jia project had begun to open the door of the rural village</mark>. Many beginner farmers rushed in, creating <mark>contradictions, conflicts, confrontations, and situations where trust could not be established</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">賴さん：実は違います。当時、慢島という会社が設立された一番大きな理由は、<mark>株主クラブがすでに地域の信頼を得ていた</mark>こと、そして<mark>二百甲が農村の扉を開き始めた</mark>ことでした。その結果、多くの<mark>矛盾、衝突、対立、あるいは信頼できない状況</mark>が生まれていました。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：賴青松</div><div class="source-badge">來源：慢島賴老師＆陳老師訪談 2</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>若只用傳統公司或金字塔管理，難以承載開放型農村社群。<br>
+            <strong>EN:</strong> Traditional company or pyramid management cannot carry an open rural community.<br>
+            <strong>JA:</strong> 従来型の会社やピラミッド管理では、開かれた農村コミュニティを支えにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>以公司作為承諾機制與公共平台，讓參與者投入金錢、對話與責任。<br>
+            <strong>EN:</strong> Use the company as a commitment mechanism and public platform where participants invest money, dialogue, and responsibility.<br>
+            <strong>JA:</strong> 会社をコミットメント装置かつ公共プラットフォームとして使い、参加者が資金・対話・責任を持ち寄る。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">賴大哥：所以，<mark>開公司是一個可能的選項</mark>。然後，因為開了公司你必須每個都拿錢出來嘛，那個<mark>承諾很實、很實際</mark>嘛。……這一群人，也必須某種程度去<mark>承擔公共事務的平台的角色</mark>。……<mark>慢島公司其實沒有人支領薪水</mark>，這個它是一個<mark>披著公司外殼的……革命團體</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Mr. Lai: <mark>Starting a company became one possible option</mark>. Once a company is formed, everyone has to put in money, and that makes the <mark>commitment very real and practical</mark>. This group also has to <mark>take on the role of a platform for public affairs</mark>. <mark>No one in Slow Island receives a salary</mark>. It is a <mark>revolutionary group wearing the shell of a company</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">賴さん：<mark>会社をつくることは一つの選択肢</mark>でした。みんながお金を出すので、その<mark>コミットメントは非常に具体的で現実的</mark>になります。この人たちもある程度、<mark>公共的な事柄を担うプラットフォームの役割</mark>を引き受ける必要があります。<mark>慢島の会社では実際には誰も給料を受け取っていません</mark>。これは<mark>会社の外殻をまとった革命団体</mark>なのです。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：賴青松</div><div class="source-badge">來源：慢島賴老師＆陳老師訪談 2</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>無農藥農法若沒有市場與在地信任，地主與地方很難相信田地能被好好守護。<br>
+            <strong>EN:</strong> Without market proof and local trust, landlords and locals may not believe pesticide-free fields can be protected.<br>
+            <strong>JA:</strong> 市場性と地域信頼がなければ、地主や地域住民は無農薬で田を守れるとは信じにくい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>透過股東俱樂部與直銷，證明米能賣出、田能守住、工作是真實的。<br>
+            <strong>EN:</strong> Use the Shareholders’ Club and direct sales to prove rice can be sold, fields protected, and work done sincerely.<br>
+            <strong>JA:</strong> 株主クラブと直接販売を通じて、米が売れ、田が守られ、本気で働いていることを示す。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">「股東俱樂部」是我在20多年前開始建立的一種<mark>直銷組織</mark>。藉此，我們<mark>獲得了留在農村的地主們以及當地人們的信任</mark>，讓大家知道「<mark>即便是不用農藥，也是能好好守護田地的</mark>」、「<mark>而且稻米是真的賣得出去的</mark>」、「<mark>我們是真的有在好好工作的</mark>」。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">The “Shareholders’ Club” was a kind of <mark>direct-sales organization</mark> I began building more than twenty years ago. Through it, we <mark>gained the trust of the landlords and local people</mark>, showing that <mark>even without pesticides, we could properly protect the fields</mark>, that <mark>the rice could truly be sold</mark>, and that <mark>we were genuinely working hard</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">「株主クラブ」は、私が二十年以上前からつくり始めた一種の<mark>直接販売組織</mark>でした。それによって、私たちは<mark>農村に残っていた地主や地元の人々の信頼を得る</mark>ことができ、<mark>農薬を使わなくても田んぼをきちんと守れる</mark>こと、<mark>米は本当に売れる</mark>こと、そして<mark>私たちは本気でしっかり働いている</mark>ことを伝えることができました。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 主題 10 -->
+  <div class="theme-card">
+    <div class="left-panel">
+      <div class="theme-header">
+        <div class="theme-id">T10</div>
+        <div class="theme-name">#土地連結與生活轉化</div>
+      </div>
+      <div class="tag-cloud"><span class="cloud-tag">土地療癒</span><span class="cloud-tag">夢想與手段合一</span><span class="cloud-tag">生命照護</span><span class="cloud-tag">世代和解</span><span class="cloud-tag">人養地地養人</span></div>
+      <div class="insight-box">
+        <div class="insight-title">核心洞察 (Theme Insight)</div>
+        <p><strong>中：</strong>農事體驗最深的轉化不只來自技能學習，而是參與者在照顧作物、承受勞動與面對土地時，重新理解自己的生活、家庭與夢想；土地因此成為身體、關係與人生方向的媒介。</p><p><strong>EN:</strong> The deepest transformation in farm experiences does not come only from skills. By caring for crops, bearing labor, and facing land, participants reinterpret life, family, and dreams. Land becomes a medium for body, relationships, and life direction.</p><p><strong>JA:</strong> 農事体験の最深部の変化は、技能学習だけではない。作物を世話し、労働を引き受け、土地と向き合うことで、参加者は生活・家族・夢を捉え直す。土地は身体・関係・人生の方向を媒介するものになる。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：陳信賢</div><div class="source-badge">來源：慢島賴老師＆陳老師訪談 1</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>從軟體工程轉向務農後，原本以為下田時間不會太長，實際卻發現作物照護需要大量投入。<br>
+            <strong>EN:</strong> After shifting from software engineering to farming, he thought field time would be limited, but crop care required much more effort.<br>
+            <strong>JA:</strong> ソフトウェアエンジニアから農へ移った後、畑にいる時間は短いと思っていたが、作物の世話には多くの力が必要だと分かった。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望透過照顧作物的過程，獲得養成生命的成就與生活重心。<br>
+            <strong>EN:</strong> Gain fulfillment and life focus through caring for living crops.<br>
+            <strong>JA:</strong> 作物という生命を世話する過程から、育てる充実感と生活の軸を得たい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">陳信賢：對，其實以前想說，啊……我去田裡的時間不一定會那麼長。可是真的來、下來務農以後，喔！你的感受<mark>你是在一邊照顧一個生命</mark>。這個生命的<mark>照顧你需要花很多的力氣</mark>的。所以我的時間上其實在田裡是比較多的，對。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Mr. Chen: I thought I might not spend that much time in the fields. But after actually farming, I felt that <mark>I was caring for a living being</mark>, and caring for that life <mark>takes a lot of effort</mark>. So I actually spend more time in the fields.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">（原逐字稿未提供日文對照 / Japanese counterpart not provided in source transcript）</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：賴青松</div><div class="source-badge">來源：慢島賴老師＆陳老師訪談 1</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>移居務農不會讓困難消失，仍要面對收入、家庭、勞動與生活挑戰。<br>
+            <strong>EN:</strong> Moving to farm life does not remove difficulties; income, family, labor, and life challenges remain.<br>
+            <strong>JA:</strong> 農村へ移っても困難は消えず、収入・家族・労働・生活の課題は残る。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望困難的意義轉變：從替別人夢想賣命，轉為為自己的夢想承擔。<br>
+            <strong>EN:</strong> Shift the meaning of difficulty: from struggling for others’ dreams to taking responsibility for one’s own dream.<br>
+            <strong>JA:</strong> 困難の意味を、他人の夢のために働くことから、自分の夢を引き受けることへ変えたい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">賴青松：呃……我覺得它一個很大的差別就是，其實<mark>困難沒有減少</mark>。……原來是在都市過著艱難的生活，<mark>為別人的夢想賣命</mark>；來到這裡，是繼續面對困難的挑戰，但是<mark>那個夢想是自己的</mark>！</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Mr. Lai: The big difference is <mark>not that difficulties decrease</mark>. In the city, people struggle <mark>for someone else’s dream</mark>; here they still face challenges, but <mark>the dream is their own</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">賴さん：大きな違いは、<mark>困難が減るわけではない</mark>ことです。都会では<mark>他人の夢のために戦っていく</mark>。ここでは挑戦は続くけれど、<mark>自分の夢と自分の手段、自分の道が合致している</mark>のです。</div></div>
+        </div>
+      </div><div class="speaker-section">
+        <div class="speaker-header">
+          <div class="speaker-badge">受訪者：賴青松</div><div class="source-badge">來源：慢島賴老師＆陳老師訪談 1</div>
+        </div>
+        <div class="compare-grid">
+          <div class="grid-box box-pain"><strong>痛點 (Pain Point)</strong><br>
+            <strong>中：</strong>青年投入農業常面對父母不理解、學業期待與世代價值差異。<br>
+            <strong>EN:</strong> Young people entering farming often face parental misunderstanding, education expectations, and generational value gaps.<br>
+            <strong>JA:</strong> 若者が農業に入ると、親の不理解・学業期待・世代間の価値差に直面しやすい。</div>
+          <div class="grid-box box-expect"><strong>期望 (Expectation)</strong><br>
+            <strong>中：</strong>希望土地與稻作經驗能成為家庭重新理解彼此、找到歸屬的媒介。<br>
+            <strong>EN:</strong> Let land and rice-growing become a medium for families to understand each other and find belonging.<br>
+            <strong>JA:</strong> 土地と稲作の経験が、家族が互いを理解し、帰属を見つける媒介になることが望ましい。</div>
+        </div>
+        <div class="quote-container">
+          <div class="quote-row"><div class="quote-lang">Chinese</div><div class="quote-text">賴青松：……<mark>媽媽是來挺他的，幫他賣米；爸爸是來找說，你到底什麼時候要、要回去把大學唸完</mark>？……最後……他爸爸跟他講……「……你，<mark>記得割一穗稻子回來，然後告訴他，我們家在台灣找到家了</mark>。」……<mark>人最終是被土地所療癒，然後人要、人養地，地會養你</mark>。</div></div>
+          <div class="quote-row"><div class="quote-lang">English</div><div class="quote-text">Mr. Lai: Her <mark>mother supported her and helped sell rice</mark>, while her father asked when she would return to finish university. Later her father told her: <mark>remember to cut one rice stalk and tell him our family has found a home in Taiwan</mark>. <mark>People are ultimately healed by land; people nourish the land, and the land nourishes people</mark>.</div></div>
+          <div class="quote-row"><div class="quote-lang">Japanese</div><div class="quote-text">賴さん：<mark>お母さんの方はサポートのために</mark>来ました。お父さんは学校を終えるよう求めました。後に父は「お前が作った稲穂を持って帰れ。我々の家、<mark>家がやっと台湾の地に故郷を見つけました</mark>」と言いました。<mark>人間と土地が和解して</mark>、人が土地を養い、土地が人を養うのです。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

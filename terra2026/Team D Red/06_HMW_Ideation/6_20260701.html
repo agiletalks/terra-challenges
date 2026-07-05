@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HMW 創意思考互動討論看板 (How Might We Board)</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; padding: 24px; margin: 0; }
+  .container { max-width: 1300px; margin: 40px auto; }
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { color: #0f2a1c; font-size: 2.2rem; font-weight: 900; margin-bottom: 12px; }
+  .header p { color: #78716c; font-size: 1rem; max-width: 850px; margin: 0 auto; line-height: 1.6; }
+  .control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; background: white; padding: 16px 24px; border-radius: 12px; border: 1px solid #e7e5e4; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+  .control-desc { font-size: 0.9rem; color: #57534e; font-weight: 600; }
+  .btn-export { background: #B35C24; color: white; border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: background 0.2s, transform 0.1s; }
+  .btn-export:hover { background: #A04B19; }
+  .btn-export:active { transform: scale(0.98); }
+  .theme-section { background: white; border: 1px solid #e7e5e4; border-radius: 16px; padding: 24px; margin-bottom: 36px; box-shadow: 0 4px 12px rgba(0,0,0,0.01); }
+  .theme-title { font-size: 1.15rem; font-weight: 800; color: white; background: #0f2a1c; padding: 14px 20px; border-radius: 8px; margin-bottom: 20px; letter-spacing: 0.5px; }
+  .cards-list { display: flex; flex-direction: column; gap: 14px; min-height: 60px; }
+  .hmw-card { background: #FAFDFB; border: 1px solid rgba(22,101,52,0.1); border-radius: 12px; padding: 20px; cursor: grab; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center; gap: 20px; position: relative; }
+  .hmw-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(15,42,28,0.06); border-color: rgba(22,101,52,0.25); }
+  .hmw-card.dragging { opacity: 0.4; background: #f5f5f4; border: 2px dashed #B35C24; cursor: grabbing; }
+  .card-content { flex-grow: 1; }
+  .angle-badge { font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-block; margin-bottom: 12px; }
+  .badge-barrier { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+  .badge-outcome { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+  .badge-leverage { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+  .hmw-text { font-size: 0.98rem; line-height: 1.6; color: #1c1917; margin-bottom: 8px; }
+  .hmw-text:last-of-type { margin-bottom: 0; }
+  .hmw-text strong { color: #B35C24; margin-right: 8px; display: inline-block; width: 24px; }
+  .original-source { font-size: 0.8rem; color: #78716c; margin-top: 12px; border-top: 1px dashed #e7e5e4; padding-top: 10px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+  .original-source::before { content: "💡"; }
+  .vote-area { display: flex; align-items: center; gap: 8px; background: #f5f5f4; border: 1px solid #e7e5e4; border-radius: 24px; padding: 6px 14px; user-select: none; }
+  .vote-change-btn { background: white; border: 1px solid #e7e5e4; border-radius: 50%; width: 30px; height: 30px; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #57534e; transition: all 0.1s; }
+  .vote-change-btn:hover { background: #0f2a1c; color: white; border-color: #0f2a1c; }
+  .vote-display-wrapper { display: flex; align-items: center; gap: 4px; min-width: 44px; justify-content: center; }
+  .vote-heart-icon { color: #e11d48; font-size: 1rem; }
+  .vote-count { font-size: 1rem; font-weight: 800; color: #1c1917; }
+  
+  /* Export Modal */
+  .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+  .modal-content { background: white; padding: 24px; border-radius: 16px; max-width: 800px; width: 100%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .modal-title { font-size: 1.25rem; font-weight: 800; color: #0f2a1c; }
+  .modal-close { font-size: 1.5rem; font-weight: 800; cursor: pointer; color: #78716c; }
+  .modal-close:hover { color: #1c1917; }
+  pre { background: #f5f5f4; padding: 16px; border-radius: 8px; white-space: pre-wrap; word-wrap: break-word; font-family: monospace; font-size: 0.9rem; color: #292524; max-height: 50vh; overflow-y: auto; margin-bottom: 16px; border: 1px solid #e7e5e4; }
+  .btn-copy { background: #0f2a1c; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; transition: background 0.2s; }
+  .btn-copy:hover { background: #163f2a; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>💡 HMW 創意思考互動討論看板 (How Might We Board)</h1>
+    <p>資深設計思考教練引導工具：本看板依據訪談提煉之 7 大核心主題維度，將痛點與期望轉化為黃金區間之 How Might We 設計挑戰。支援<strong>卡片分組內上下拖曳排序</strong>與<strong>單機多人口頭投票計數</strong>，協助團隊高效凝聚共識，開拓跨國創新視野。</p>
+  </div>
+  
+  <div class="control-row">
+    <div class="control-desc">🛠️ 操作引導：在各主題區塊內，上下拖曳卡片即可重新排定優先順序；利用 +/- 按鈕累計團隊投票。討論完成後點擊匯出。</div>
+    <button class="btn-export" onclick="exportResults()">📤 匯出討論結果</button>
+  </div>
+
+  <!-- 主題 1 -->
+  <div class="theme-section">
+    <div class="theme-title">#T1 城鄉移居門檻與人際地緣網絡 / Rural Migration Barriers & Interpersonal Networks / 城郷移住ハードルと地縁関係ネットワーク</div>
+    <div class="cards-list">
+      <!-- 卡片 1-1 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>我們如何降低老農對都市青年的防備心，建立合作的切入點？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we reduce elderly farmers' wariness toward urban youth and establish a starting point for collaboration?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして高齢農家の都會の若者に対する警戒心を和らげ、協力の足掛かりを築くことができるか？</div>
+          <div class="original-source">源自痛點：初入陌生鄉村缺乏在地人際資本，且農村絕無公開的出租告示，老農對外來陌生人具備強烈不信任感。 (受訪者：周媽媽、林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 1-2 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Expectations</span>
+          <div class="hmw-text"><strong>中</strong>我們如何讓外來移居者能一目了然且安心地尋得合適的居住與耕作空間，如同擁有在地熟人引介一般順暢？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we enable external migrants to find suitable living and farming spaces transparently and securely, as smoothly as if introduced by a local contact?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにすれば、外部からの移住者が地元の知人に紹介されたかのようにスムーズに、適切な居住・耕作空間を透明性高く安心して見つけられるようになるか？</div>
+          <div class="original-source">源自期望：希望能打破網際網路公開資訊失靈的黑箱狀態，透過可信任的朋友中介與在地社會網絡建立連結以順利租賃。 (受訪者：周媽媽、林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 1-3 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / Systemic Leverage</span>
+          <div class="hmw-text"><strong>中</strong>我們如何利用具備公信力的在地中介組織作為橋樑，將傳統隱形的非公式人際網絡轉化為可對接新農的開放式社會資本？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we leverage authoritative local intermediary organizations to transform traditional informal network capitals into open, matchable resources for new farmers?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして公信力のある地元の仲介組織をブリッジとして活用し、伝統的で目に見えない非公式ネットワークを新規就農者と接続可能なオープンな社会関係資本へと転換できるか？</div>
+          <div class="original-source">核心洞察：鄉村土地與住宅租賃高度依賴非公式的地緣人際網絡與社會資本引介，主流數位工具在此處完全失靈。</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 2 -->
+  <div class="theme-section">
+    <div class="theme-title">#T2 歷史創傷與制度保障真空 / Historical Trauma & Legal Protection Vacuum / 歴史的トラウマと制度的保障の真空</div>
+    <div class="cards-list">
+      <!-- 卡片 2-1 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>我們如何降低老農地主對於書面契約簽署的恐懼，免除其土地可能被政府或外人奪走的歷史政治創傷？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we mitigate elderly landlords' historical fear of signing written contracts, relieving their anxiety over land dispossession?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして高齢の地主が書面契約を交わすことへの恐怖を和らげ、過去の歴史的・政治的トラウマによる土地没収の不安を解消できるか？</div>
+          <div class="original-source">源自痛點：歷史土地改革留下的集體創傷，導致老農排斥書面契約、全憑毫無法律約束力的口頭協議，地主隨時可突然無預警收回土地。 (受訪者：林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 2-2 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Expectations</span>
+          <div class="hmw-text"><strong>中</strong>我們如何為新農創造一個長期穩定、不懼怕隨時被收回土地的耕作環境，使其能放心投入友善環境的永續經營？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we create a long-term, secure cultivation environment for new farmers, removing the risk of sudden land retraction so they can commit to eco-friendly agriculture?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにすれば、新規就農者が突然の土地回収を恐れることなく、長期的に安定して環境配慮型の持続可能な農業経営に安心して投資できるようになるか？</div>
+          <div class="original-source">源自期望：新農希望能尋求抗風險保障，打破租地沒簽約、只能「鼻子摸一摸」泣訴接受的無法律保障處境。 (受訪者：林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 2-3 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / Systemic Leverage</span>
+          <div class="hmw-text"><strong>中</strong>我們如何引進「共有產權」或「集體購地計畫」等新型組織機制，在不強求老農簽署傳統租約的前提下為產權提供法制保障？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we introduce organizational models like "shared ownership" or "collective land trusts" to institutionally secure farming rights without forcing traditional individual leases on elderly owners?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして「共有財産権」や「集団土地買取計画」といった新たな組織的仕組みを導入し、高齢農家に伝統的な賃貸契約を強要することなく、利用権の制度的保障を提供できるか？</div>
+          <div class="original-source">核心洞察：老農防衛性的生存機制使新農陷入政策法律保障的巨大真空，隨時面臨被收回的脆弱風險，必須建立超越個人口頭信譽的制度化防線。</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 3 -->
+  <div class="theme-section">
+    <div class="theme-title">#T3 推力驅動與生活方式選擇 / Push Factors & Lifestyle Choices / 外部からの推力とライフスタイルの選択</div>
+    <div class="cards-list">
+      <!-- 卡片 3-1 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>我們如何降低移居新農在面臨生命轉折與困頓時的焦慮，協助其將都會壓迫平穩轉化為鄉村扎根的動力？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we ease the anxiety of migrating new farmers facing life transitions, helping them smoothly convert urban pressure into rural root-taking momentum?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして人生の転換期や行き詰まりに直面した移住者の不安を和らげ、都會の抑圧を農村へ定著するための原動力へとスムーズに転換できるか？</div>
+          <div class="original-source">源自痛點：都會生活節奏過度壓迫與窒息，身處都會高所得高消費的慣性生活卻在遭遇重大疾病與食安、生態災難後，陷入嚴重的環境污染焦慮與生命意義虛無。 (受訪者：周媽媽、林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 3-2 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Expectations</span>
+          <div class="hmw-text"><strong>中</strong>我們如何協助移居者在農村實踐完全掌握生活自主權的「做自己」願景，建立與自然和諧共生的低污染生活典範？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we support migrants to manifest their vision of "being themselves" and reclaiming autonomy, establishing a low-pollution living model in harmony with nature?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにすれば、移住者が農村で生活の自主権を完全に掌握する「自分らしくあること」のビジョンを実現し、自然と調和した低汚染のライフスタイルモデルを確立できるか？</div>
+          <div class="original-source">源自期望：徹底翻轉不可持續的都會型人類生活方式，擺脫體制化的社會規訓以「做自己」，將務農視為生命再錨定與主體性選擇的生活出口。 (受訪者：周媽媽、林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 3-3 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / Systemic Leverage</span>
+          <div class="hmw-text"><strong>中</strong>我們如何將新農對綠色生態實踐的狂熱與主體性，轉化為推動在地傳統農業向有機、友善環境轉型的催化劑？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we leverage new farmers' passion for green eco-practices to catalyze the transformation of traditional local agriculture toward organic and eco-friendly models?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして新規就農者の環境配慮型エコ實踐への情熱と主体性をレバレッジとし、地元の伝統的な農業を有機・環境配慮型へと変革する触媒に変えられるか？</div>
+          <div class="original-source">核心洞察：移居農村本質上是一場因都會生活壓迫、個人生命困頓或環境與安全覺醒所引發的「逃離與重組」過程，務農成為這群個體宣告奪回生活自主權的體現。</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 4 -->
+  <div class="theme-section">
+    <div class="theme-title">#T4 兼職生計與低時間成本 / Part-Time Livelihoods & Low Time Costs / 兼業生計と低時間コスト</div>
+    <div class="cards-list">
+      <!-- 卡片 4-1 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>我們如何降低自由接案所帶來的收入延遲焦慮與大量溝通內耗，避免其過度侵佔農耕所需的精神專注力？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we minimize the income delays and excessive communication overhead of freelance work, preventing it from draining the cognitive focus needed for farming?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして請負案件による収入遅延の不安や多大なコミュニケーションの消耗を軽減し、農作業に必要な精神的集中力が過度に奪われるのを防げるか？</div>
+          <div class="original-source">源自痛點：自由接案具備強烈收入延遲與不穩定性，耗費大量溝通成本與心理注意力負荷，且單純轉全職小農生存門檻高，慣性大宗流通嚴重壓榨利潤。 (受訪者：賴大哥、林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 4-2 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Expectations</span>
+          <div class="hmw-text"><strong>中</strong>我們如何讓兼職工作成為一種既能獲得穩定即時收入，又能讓大腦獲得切換與心理調適的「休息」手段？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we structure part-time side gigs to serve as both a steady instant cash flow provider and a refreshing mental reset/rest from farming?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにすれば、アルバイトを「安定した即時収入の獲得手段」と「脳の切り替えや心理的コンディショニングを行う休息」の双方として機能させられるか？</div>
+          <div class="original-source">源自期望：尋得時間短、認知負荷低的定時兼職工作（如安親班陪讀），作為純粹心理調適手段，並依靠「非時間緊迫型」的非同步專業本職交叉獲取收入。 (受訪者：賴大哥、林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 4-3 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / Systemic Leverage</span>
+          <div class="hmw-text"><strong>中</strong>我們如何最大化善用發達的機械化代耕外包體系，將新農從繁重農時中解放出來，全面轉化為「非產量導向」的半農半X生活品味？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we fully leverage the modern mechanized subcontracting system to liberate farmers from labor hours, enabling a truly non-yield-oriented "Half-Farming, Half-X" lifestyle?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして発達した機械化代耕委託システムを最大限に活用し、新規就農者を過度な農作業時間から解放し、「生産量非重視」の半農半Xというライフスタイルへと全面展開できるか？</div>
+          <div class="original-source">核心洞察：現代高度發達的代耕機械化體系大幅解放了農業的勞動時間，使「非產量導向」的半農半X型態在技術上成為可能，移居者依靠非同步專業本職或低認知兼職支持生活。</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 5 -->
+  <div class="theme-section">
+    <div class="theme-title">#T5 原子化個人與社群支持系統 / Atomized Individuals & Community Support / 原子化された個人とコミュニティ支援システム</div>
+    <div class="cards-list">
+      <!-- 卡片 5-1 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>我們如何化解新農在獨自面對單調乏味的體力勞動時的強烈孤獨與浪漫幻滅感？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we alleviate the profound loneliness and romantic disillusionment experienced by new farmers when facing monotonous, exhausting manual labor alone?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして新規就農者が一人で退屈かつ過酷な肉体労働に直面した際の、強烈な孤独感やロマンの幻滅を解消できるか？</div>
+          <div class="original-source">源自痛點：獨自面對無聊疲憊的農村勞動時極度缺乏情感交集支持；且因主觀上極度排斥成立剛性合作社或聽從權威規範，導致社群易生分裂內耗。 (受訪者：林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 5-2 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Expectations</span>
+          <div class="hmw-text"><strong>中</strong>我們如何打造一個既能分享共同話題、在精神上互助共鳴，又絕對不綁架或限制個人行動自由的軟性地緣社群？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we create a flexible, supportive local community that fosters shared dialogue and emotional resonance without restricting individual autonomy and freedom?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにすれば、共通の話題を共有し精神的に支え合える一方で、個人の行動の自由度を絶対に縛ったり制限したりしない緩やかな地縁的コミュニティを構築できるか？</div>
+          <div class="original-source">源自期望：建立軟性的地緣支持系統（如慢島生活的「緩衝」中介），既能在農閒時提供自由發揮、依生命需求彈性對接的社群連結，又不會綁架個人自由度。 (受訪者：林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 5-3 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / Systemic Leverage</span>
+          <div class="hmw-text"><strong>中</strong>我們如何善用「想做自己」的強烈個人主義特質，建立一種「非對稱、異步協作」的趣味交流機制，將強烈的個人特質轉化為豐富的社群多元風景？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we leverage the strong individualistic trait of "being oneself" to develop an asymmetric, asynchronous collaboration mechanism that enriches community diversity?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして「自分らしくありたい」という強い個人主義的特質をレバレッジとし、「非対称・非同期型」のユニークな交流メカニズムを構築することで、個人の強いこだわりをコミュニティの多様な豊かさへと昇華できるか？</div>
+          <div class="original-source">核心洞察：抱持高度個體自主意願的移居者群體在進入高強度勞動現實時易遇幻滅，需要一個軟性的地緣中介社群，這極度考驗著強烈個人主義與集體規範間的微妙動態平衡。</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 6 -->
+  <div class="theme-section">
+    <div class="theme-title">#T6 專業主體性與代際親密拉扯 / Professional Subjectivity & Intergenerational Tensions / 専門的主体性と世代間の親密さの葛藤</div>
+    <div class="cards-list">
+      <!-- 卡片 6-1 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>我們如何修補或安撫子女因童年時期母親深陷社會志業、家庭陪伴實質缺失所留下的放養記憶與孤獨感？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we heal or reconcile the childhood sense of abandonment and loneliness left by a mother's deep involvement in social vocations at the expense of family accompaniment?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして、母親が社会的實踐に沒頭したことで生じた家庭内の陪伴欠如が、子の幼少期に残した「放牧（放養）」の記憶や孤独感を癒やし、和らげることができるか？</div>
+          <div class="original-source">源自痛點：童年時期遭遇體制化托育與短期寄託，長期承受主觀陪伴缺失感與嚴重的孤獨、退屈，面對父母截然衝突的學業期望（農醫園藝 vs 電機資工）時亦曾面臨壓力。 (受訪者：周紫山)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 6-2 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Expectations</span>
+          <div class="hmw-text"><strong>中</strong>我們如何讓兩代人在互不隸屬、各行其是的基礎上，達成一種建立在彼此獨立專業主體性之上的高成熟度受容與平權尊重？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we foster a mature acceptance and mutual respect between generations based on their independent professional subjectivities and healthy non-subordinate boundaries?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにすれば、二世代が互いに従屬せずそれぞれの道を歩む基礎の上で、互いの獨立した専門的主體性に基づいた、高い成熟度を持つ受容と対等な尊重を達成できるか？</div>
+          <div class="original-source">源自期望：在學術上獨立走出生態研究的自身主體道路（如台大森林系），與母親保持健康邊界，僅在偶發與有空擋時提供彈性協助。 (受訪者：周紫山)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 6-3 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / Systemic Leverage</span>
+          <div class="hmw-text"><strong>中</strong>我們如何將子女透過高等教育建立的學術專業（如森林生態研究），轉化為與母親的在地實踐產生「跨代互補、彈性對接」的知識槓桿？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we transform the child's academic expertise developed through higher education into a knowledge lever that complements and elastically connects with the mother's local practice?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして、子が高等教育を通じて確立した學術的専門性（森林生態研究など）をレバレッジとし、母親のローカルな實踐と「世代間補完・弾力的接続」を起こす知識のテコへと転換できるか？</div>
+          <div class="original-source">核心洞察：母親因深陷個人志業導致家庭陪伴實質缺失，然而長大後，子女透過高等教育確立了與母輩不同的專業主體性，在保持個體獨立的基礎上達成了成熟受容與尊重。</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主題 7 -->
+  <div class="theme-section">
+    <div class="theme-title">#T7 少數邊緣群體的地緣安全庇護與逃離空間建構 / Sanctuary Spaces for Marginalized Groups / 少数派周辺グループの安全庇護空間</div>
+    <div class="cards-list">
+      <!-- 卡片 7-1 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-barrier">角度 1：克服障礙 / Overcoming Barriers</span>
+          <div class="hmw-text"><strong>中</strong>我們如何消解特定年代性少數群體因與原生家庭摩擦、或長期處於「不點破不出櫃」壓抑研究所帶來的巨大精神內耗？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we dissolve the heavy emotional exhaustion borne by sexual minorities of specific eras due to family friction and the long-term stress of remaining closeted?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして特定年代の性的マイノリティが原生家庭との摩擦や、長期にわたる「白黒つけない・カミングアウトしない」という抑圧状態によって抱えてきた巨大な精神的消耗を解消できるか？</div>
+          <div class="original-source">源自痛點：特定年代的性少數社群與原生家庭高度摩擦，長期處於「不點破不出櫃」的壓抑默契中，必須承受隱瞞真實自我的巨大精神內耗壓力。 (受訪者：林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 7-2 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-outcome">角度 2：創造正面成效 / Amplifying Expectations</span>
+          <div class="hmw-text"><strong>中</strong>我們如何將農村空間打造成為一個能實現完全人格、經濟與精神獨立的「真實地理安全庇護所」，讓成員在此感到絕對安全？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we cultivate rural spaces into true geographical sanctuaries that offer absolute safety and foster complete personal, economic, and spiritual independence?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにすれば、農村空間を完全な人格的・経済的・精神的自立を実現できる「実質的な地理的安全アジール（庇護所）」へと進化させ、メンバーが絶対的な安心感を得られるようにできるか？</div>
+          <div class="original-source">源自期望：與原生家庭保持適當的地理地緣疏離戰略，在農村建立能實現完全人格、經濟與精神獨立生活的安全網絡。 (受訪者：林鴻文)</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+      <!-- 卡片 7-3 -->
+      <div class="hmw-card" draggable="true">
+        <div class="card-content">
+          <span class="angle-badge badge-leverage">角度 3：藉助優勢 / Systemic Leverage</span>
+          <div class="hmw-text"><strong>中</strong>我們如何善用同質相吸的「磁鐵效應」，透過半農半X的獨立生活型態，建立一個具備強大包容力與互助彈性的異質性次社群聚落？</div>
+          <div class="hmw-text"><strong>EN</strong>How might we leverage the homophilic "magnet effect" through Half-Farming, Half-X lifestyles to build an inclusive, resilient, and mutually supportive sub-community settlement?</div>
+          <div class="hmw-text"><strong>JA</strong>どのようにして「類は友を呼ぶ（同質相吸）」の磁石効果をレバレッジとし、半農半Xという獨立したライフスタイルを通じて、強力な包容力と相互扶助の弾力性を備えた独自のサブコミュニティ集落を形成できるか？</div>
+          <div class="original-source">核心洞察：鄉村自然生態環境超越了都會區純粹物緣對象功能，轉化為社會性邊緣次群體（如特定年代的女同志）避開原生家庭摩擦與壓力的實質地理安全庇護所。</div>
+        </div>
+        <div class="vote-area">
+          <button class="vote-change-btn" onclick="adjustVote(this, -1)">-</button>
+          <div class="vote-display-wrapper">
+            <span class="vote-heart-icon">❤️</span>
+            <span class="vote-count">0</span>
+          </div>
+          <button class="vote-change-btn" onclick="adjustVote(this, 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 導出彈窗 (Export Modal) -->
+<div id="exportModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">📋 匯出討論與投票結果</div>
+      <div class="modal-close" onclick="closeModal()">&times;</div>
+    </div>
+    <pre id="exportText"></pre>
+    <button class="btn-copy" onclick="copyResults()">複製到剪貼簿 (Copy to Clipboard)</button>
+  </div>
+</div>
+
+<script>
+  // 1. 拖曳排序邏輯 (Drag and Drop Implementation)
+  const lists = document.querySelectorAll('.cards-list');
+  
+  lists.forEach(list => {
+    list.addEventListener('dragover', e => {
+      e.preventDefault();
+      const draggingCard = document.querySelector('.dragging');
+      const afterElement = getDragAfterElement(list, e.clientY);
+      if (afterElement == null) {
+        list.appendChild(draggingCard);
+      } else {
+        list.insertBefore(draggingCard, afterElement);
+      }
+    });
+  });
+
+  document.querySelectorAll('.hmw-card').forEach(card => {
+    card.addEventListener('dragstart', () => {
+      card.classList.add('dragging');
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+    });
+  });
+
+  function getDragAfterElement(list, y) {
+    const draggableElements = [...list.querySelectorAll('.hmw-card:not(.dragging)')];
+    
+    return draggableElements.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+  }
+
+  // 2. 投票邏輯 (Voting Logic)
+  function adjustVote(button, amount) {
+    const display = button.parentElement.querySelector('.vote-count');
+    let current = parseInt(display.innerText, 10);
+    current += amount;
+    if (current < 0) current = 0;
+    display.innerText = current;
+  }
+
+  // 3. 數據一鍵導出邏輯 (Export Logic)
+  function exportResults() {
+    let output = "=== HMW 創意思考討論看板結果匯出 ===\n\n";
+    const sections = document.querySelectorAll('.theme-section');
+    
+    sections.forEach(section => {
+      const themeTitle = section.querySelector('.theme-title').innerText;
+      output += `【主題分組】${themeTitle}\n`;
+      output += "--------------------------------------------------\n";
+      
+      const cards = section.querySelectorAll('.hmw-card');
+      if(cards.length === 0) {
+        output += "(此區域目前無卡片)\n";
+      } else {
+        cards.forEach((card, index) => {
+          const badge = card.querySelector('.angle-badge').innerText;
+          const texts = card.querySelectorAll('.hmw-text');
+          const source = card.querySelector('.original-source').innerText;
+          const votes = card.querySelector('.vote-count').innerText;
+          
+          output += `[順位 ${index + 1}] 票數: ❤️ ${votes} | ${badge}\n`;
+          texts.forEach(t => {
+            output += `  ${t.innerText}\n`;
+          });
+          output += `  ${source}\n\n`;
+        });
+      }
+      output += "\n";
+    });
+    
+    document.getElementById('exportText').innerText = output;
+    document.getElementById('exportModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('exportModal').style.display = 'none';
+  }
+
+  function copyResults() {
+    const text = document.getElementById('exportText').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert('已成功複製當前排序與討論結果至剪貼簿！');
+    }).catch(err => {
+      alert('複製失敗，請手動全選預覽框內的文字進行複製。');
+    });
+  }
+
+  // 點擊彈窗外部可關閉彈窗
+  window.onclick = function(event) {
+    const modal = document.getElementById('exportModal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>
