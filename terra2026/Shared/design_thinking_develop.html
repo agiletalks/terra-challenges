@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>城鄉共創與永續食農的發想開發手札（Develop 篇）</title>
+  <meta name="description" content="泰拉學校地之校設計思考創意發想階段，應用A4六格輪流發想與哆啦A夢隨機道具聯想法，突破常軌思維。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f2a1c;
+      --primary-light: #1d3f2d;
+      --secondary: #d97706;
+      --secondary-light: #fef3c7;
+      --bg: #fcfcfb;
+      --card-bg: #ffffff;
+      --text: #1c1917;
+      --text-muted: #78716c;
+      --border: #e7e5e4;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 0;
+      margin: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 100px 24px 120px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--bg);
+      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    }
+
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      background-color: var(--secondary);
+      color: white;
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: inline-block;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #a7f3d0;
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: -50px auto 100px auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .intro-card {
+      background: var(--card-bg);
+      padding: 48px;
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(15, 42, 28, 0.06);
+      border: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    .intro-text {
+      font-size: 1.18rem;
+      color: var(--text);
+      font-weight: 500;
+      margin: 0;
+      text-align: justify;
+    }
+
+    h2 {
+      color: var(--primary);
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin: 56px 0 28px 0;
+      border-left: 6px solid var(--secondary);
+      padding-left: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    p.body-text {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin: 0 0 24px 0;
+      text-align: justify;
+    }
+
+    /* Technique Card Grid */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin: 36px 0;
+    }
+
+    @media (min-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(15, 42, 28, 0.06);
+      border-color: rgba(15, 42, 28, 0.12);
+    }
+
+    .card-num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--secondary);
+      opacity: 0.8;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 0 0 12px 0;
+    }
+
+    .card-text {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* Interactive Simulator styling */
+    .simulator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: 24px;
+      padding: 44px;
+      margin: 48px 0;
+      box-shadow: 0 12px 40px rgba(15, 42, 28, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .simulator-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #15803d, #1d4ed8, #d97706, #b91c1c);
+    }
+
+    .sim-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .sim-tag {
+      background: var(--secondary-light);
+      color: var(--secondary);
+      padding: 4px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: inline-block;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .sim-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 0 0 8px 0;
+    }
+
+    .sim-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .custom-select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background-color: #fafaf9;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .custom-select:focus {
+      border-color: var(--primary);
+      background-color: white;
+      box-shadow: 0 0 0 3px rgba(15, 42, 28, 0.08);
+    }
+
+    .draw-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin: 36px 0;
+      padding: 24px;
+      background-color: #fafaf9;
+      border-radius: 18px;
+      border: 1px dashed var(--border);
+    }
+
+    .draw-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(15, 42, 28, 0.2);
+      font-family: inherit;
+    }
+
+    .draw-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(15, 42, 28, 0.3);
+      background-color: var(--primary-light);
+    }
+
+    .draw-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Result Card animations */
+    .result-card {
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: none;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+      transform: scale(0.95);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .result-card.active {
+      display: block;
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .tool-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .tool-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #eff6ff;
+      border: 2px solid #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .tool-name-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool-jp {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .tool-zh {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .tool-desc {
+      font-size: 1rem;
+      color: var(--text);
+      background: #f1f5f9;
+      border-left: 4px solid #3b82f6;
+      padding: 12px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .prompt-box {
+      background: var(--secondary-light);
+      border: 1px solid #fde68a;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .prompt-label {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .prompt-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #78350f;
+      margin: 0;
+      text-align: justify;
+    }
+
+    .ideas-textarea {
+      width: 100%;
+      height: 120px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      resize: none;
+      transition: all 0.3s ease;
+      margin-bottom: 16px;
+    }
+
+    .ideas-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(15, 42, 28, 0.08);
+    }
+
+    .tool-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .action-btn {
+      font-family: inherit;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+    }
+
+    .action-btn.primary {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .action-btn.primary:hover {
+      background-color: var(--primary-light);
+    }
+
+    /* Animation effects */
+    .spinning {
+      animation: shake 0.15s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(0px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(2px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(2px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    .callout {
+      background: var(--secondary-light);
+      border-left: 4px solid var(--secondary);
+      padding: 28px;
+      border-radius: 12px;
+      margin: 56px 0;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.05);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-content {
+      margin: 0;
+      font-size: 1rem;
+      color: #78350f;
+    }
+
+    .footer-badge {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.85em;
+      color: var(--secondary);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+      background: #fafaf9;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <span class="badge">Develop 篇 (開發發想階段)</span>
+    <h1>突破常軌的創意發散：六格聯想法與哆啦A夢道具的跨文化撞擊</h1>
+    <p class="subtitle">泰拉學校 地之校 Design Thinking 質化研究手札 | 第三篇</p>
+  </div>
+</header>
+
+<main>
+  <div class="intro-card">
+    <p class="intro-text">
+      在 Define（定義）階段，我們成功將複雜的質化訪談編碼收斂，並為四個小組分別確立了極具挑戰性的 HMW（我們該如何）設計問題。然而，定義出好問題只是第一步，隨後而來的 <strong>Develop（發想開發）</strong> 階段，其核心目標是打破常理、拓寬思路。為了防止團隊陷入「直覺式、平庸」的解決方案，本次共學營在發想階段導入了至少兩種獨特的發散技術：限時高壓的 A4 六格輪流發想，以及跨越台日文化疆界的「哆啦A夢道具連想法」。以下是我們在創意的未知水域中，瘋狂發散的實踐紀錄。
+    </p>
+  </div>
+
+  <h2>一、 A4 六格輪流發想：限時高壓下的集體智囊接力</h2>
+  <p class="body-text">
+    當我們面對一個設計挑戰時，大腦往往會先給出最容易想到的「常識型答案」。例如：青年入村門檻高，直覺答案就是「架設網站」或「給予補助」。為了繞過這種思想懶惰，我們採用了「A4 六格輪流發想」法。
+  </p>
+  <p class="body-text">
+    每個小組先將挑選出的 HMW 設計問題，連同其相關的痛點與期望，寫在分成六格的 A4 紙張頂部。隨後，現場播放節奏緊湊的背景音樂，並進行嚴格的計時（每輪僅有 2~3 分鐘）。每個人必須在極短時間內，在自己紙張的第一格寫下初步的解決方向。鐘聲響起，所有人將紙張傳給右手邊的夥伴。
+  </p>
+  <p class="body-text">
+    在第二輪中，參與者不能從零開始，而是必須閱讀上一輪夥伴寫下的點子，在其基礎上延伸、疊加，或是在下一格寫下全新的點子。團隊成員在過程中反覆互相提醒：<strong>「沒有爛點子！」</strong> 在這個高度發散且不允許評判的接力賽中，團隊大腦的防衛機制被高壓與音樂節奏打碎，許多看似荒謬卻極具啟發性的跨界點子在紙張上飛速滋長，為方案的初步成形打下了豐厚的基础。
+  </p>
+
+  <h2>二、 哆啦A夢道具連想法：打破思路框架的跨文化趣味刺激</h2>
+  <p class="body-text">
+    由於本次共學營有許多來自早稻田大學的日本同學參與，我們特地引入了台日雙方都具備強烈文化共鳴的媒介——「哆啦A夢道具大全」，作為創意撞擊的第二種技術：隨機聯想法。
+  </p>
+  <p class="body-text">
+    這種技術本質上是強迫聯想。我們設計了一個隨機道具抽籤的功能，當面臨難解的 HMW 問題時，團隊會按下抽籤。無論抽到哪一個神祕道具（如「記憶吐司」、「翻譯蒟蒻」或「任意門」），小組成員都必須發揮聯想力，說出：<strong>「如何利用這個道具的功能概念，來解決我們眼前的農村挑戰？」</strong>
+  </p>
+  <p class="body-text">
+    這種荒謬的限制反而激發了驚人的側向思考。例如：
+  </p>
+  <ul>
+    <li>針對 <strong>D組（青年入村社會門檻）</strong> 抽到 <strong>「記憶吐司」</strong> 時，團隊發想出：不能只是給青年發硬邦邦的文字指南，而是應該設計一套「入村遊戲卡牌與情境模擬」，讓青年在與村民互動中像吃吐司一樣，在愉悅中內化複雜的租地與地緣人際潛規則。</li>
+    <li>針對 <strong>B組（農事體驗預約與關係延續）</strong> 抽到 <strong>「任意門」</strong> 時，團隊聯想到：任意門的本質是跨越物理空間的瞬間對接。因此，農場的預約不應該是冰冷的線上表單，而是在都市的共學空間或食農合作社中，設立一個「實體任意門展示箱」，將農田的四季縮影、農夫的即時動態窗口直接投射在城市中心，讓都市人在預約前就已「身臨其境」。</li>
+  </ul>
+  <p class="body-text">
+    這種跨文化的連想法，徹底將討論氣氛推向高潮，也讓原本可能顯得嚴肅、卡關的討論，轉化為歡笑與創意不斷爆發的跨國撞擊。
+  </p>
+
+  <h2>三、 哆啦A夢創意聯想沙盒（體驗工具）</h2>
+  <p class="body-text">
+    在共學營現場，我們用程式開發了這個隨機道具抽籤器。現在，您可以選擇任何一組的 HMW 問題，按下按鈕抽籤，嘗試像我們的隊員一樣，強迫自己進行創意的跳躍與撞擊：
+  </p>
+
+  <!-- Interactive Doraemon Simulator Card -->
+  <div class="simulator-card">
+    <div class="sim-header">
+      <span class="sim-tag">Creative Sandbox</span>
+      <h3 class="sim-title">哆啦A夢道具創意聯想器</h3>
+      <p class="sim-sub">模擬營隊現場：抽個道具，逼迫大腦進行側向聯想吧！</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="hmw-select">第一步：選擇你想挑戰的 HMW 問題</label>
+      <select id="hmw-select" class="custom-select">
+        <option value="A">【綠組 A】如何為小農設計品牌工具包以盤點資源、對接顧客並驗證 MVP 價值？</option>
+        <option value="B" selected>【藍組 B】如何整合入口管道並透過分級體驗旅程與集點，延續期待感與體驗深度？</option>
+        <option value="C">【黃組 C】如何結合地理位置與共學理念建立互助托育平台，緩解農忙育兒壓力？</option>
+        <option value="D">【紅組 D】如何將租地、生計與社交潛規則轉譯為三階段入村指南，降低融入門檻？</option>
+      </select>
+    </div>
+
+    <div class="draw-zone">
+      <button id="draw-btn" class="draw-btn" onclick="drawGadget()">開始抽籤 / 道具を引く</button>
+      
+      <!-- Result Panel -->
+      <div id="result-panel" class="result-card">
+        <div class="tool-header">
+          <div class="tool-avatar" id="tool-emoji">🚪</div>
+          <div class="tool-name-group">
+            <span class="tool-jp" id="tool-jp">どこでもドア</span>
+            <h4 class="tool-zh" id="tool-zh">任意門 (Anywhere Door)</h4>
+          </div>
+        </div>
+        <div class="tool-desc" id="tool-desc">
+          跨越地理限制，瞬間移動到想去的地方。
+        </div>
+        <div class="prompt-box">
+          <span class="prompt-label">Brainstorming Prompt / 創意刺激點：</span>
+          <p class="prompt-text" id="tool-prompt">如何打破城鄉之間的物理距離，讓都市的資源與人潮瞬間對接到鄉村農田？</p>
+        </div>
+        
+        <label class="form-label" for="user-idea">第二步：記錄你的連想點子 (Idea)</label>
+        <textarea id="user-idea" class="ideas-textarea" placeholder="在此輸入你在這個道具刺激下想到的解決方案點子..."></textarea>
+        
+        <div class="tool-footer">
+          <button class="action-btn" onclick="clearIdea()">清除</button>
+          <button class="action-btn primary" onclick="copyIdea()">複製創意</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>四、 從瘋狂發散走向方案收斂：踏向 Deliver 的分水嶺</h2>
+  <p class="body-text">
+    「發散」的目的是為了尋找可能性，但設計思考最終必須落地。在六格輪流發想與道具聯想法為我們累積了數百個天馬行空的點子後，小組成員重新回歸理性。
+  </p>
+  <p class="body-text">
+    我們利用便利貼分組，將點子進行「效益 vs. 實施難度」矩陣篩選。剔除掉技術與預算上完全不可行的部分，並將相似的構想進行整併、深化。例如，A組將多個液態糖蜜銷售工具包的點子，聚斂為一套易上手的「甘蔗小農品牌診斷地圖」；B組將任意門的聯想聚斂為「農場與共學教室的雙軌護照卡」。
+  </p>
+  <p class="body-text">
+    這種從**「瘋狂發散（Develop）」** 到 **「嚴謹收斂（Converge）」** 的過程，讓我們的創意既保有突破性，又具備了落地的物理可能性，從而信心十足地邁向設計思考的最後一站——<strong>Deliver（遞交階段）</strong>！
+  </p>
+
+  <div class="callout">
+    <div class="callout-title">下一步：踏向 Deliver (原型遞交階段)</div>
+    <p class="callout-content">
+      隨著創意方案的收斂與整併完成，四個小組正式進入 <strong>Deliver (遞交階段)</strong>！我們將在下一篇手札中，詳細揭曉各組最終打造出來的具體原型（Prototypes）、驗證過程以及在泰拉學校地之校現場進行的落地實測回饋！
+    </p>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Terra Earth School - Waseda & NTHU. All rights reserved.</p>
+  <span class="footer-badge">Design Thinking x Sustainable Food & Agriculture</span>
+</footer>
+
+<script>
+  // Gadgets Database
+  const gadgets = [
+    {
+      emoji: "🚪",
+      zh: "任意門 (Anywhere Door)",
+      jp: "どこでもドア",
+      desc: "跨越地理限制，瞬間移動到想去的地方，消除空間的藩籬。",
+      prompt: "如何打破城鄉之間的物理距離，讓都市的資源、消費者或人潮瞬间與農村生產現場對接？"
+    },
+    {
+      emoji: "🍞",
+      zh: "記憶吐司 (Memory Bread)",
+      jp: "暗記パン",
+      desc: "把想記下來的內容印在吐司上吃下去，就能立刻且完整地記住所有資訊。",
+      prompt: "如何降低青年移居者或遊客學習農事知識、理解地方文化與複雜社交潛規則的認知門檻？"
+    },
+    {
+      emoji: "🍬",
+      zh: "翻譯蒟蒻 (Translation Gummy)",
+      jp: "ほんやくコンニャク",
+      desc: "吃下去後，能聽懂並讀懂世界上所有的語言與文字，跨越交流阻礙。",
+      prompt: "如何消除老農與移居青年、都市旅人與鄉地文化、甚至台日學生之間的理念溝通隔閡？"
+    },
+    {
+      emoji: "🦟",
+      zh: "竹蜻蜓 (Bamboo Copter)",
+      jp: "タケコプター",
+      desc: "戴在頭上即可自由在空中飛翔，從高空鳥瞰地面景象，提供宏觀視野。",
+      prompt: "如果能從高空俯瞰整個農村，能發現什麼平常身處地面未曾注意的空間資源或土地盲點？"
+    },
+    {
+      emoji: "🧣",
+      zh: "時光布 (Time Cloth)",
+      jp: "タイムふろしき",
+      desc: "包裹物體後，可以選擇讓時間倒流使事物變新，或讓時間流逝使事物變舊。",
+      prompt: "如何重現農村珍貴的過去歷史回憶與故事價值，或是加速農作物熟成與品牌的發酵加溫？"
+    },
+    {
+      emoji: "🔦",
+      zh: "縮小燈 (Small Light)",
+      jp: "スモールライト",
+      desc: "用它的光線照射物體，能使物體的體積與重量縮小，便於攜帶與管理。",
+      prompt: "如何將龐大的農村高強度勞動、昂貴的大型機具設備、或複雜的農產技術「縮小」為最精緻、低門檻的形態？"
+    },
+    {
+      emoji: "📢",
+      zh: "放大燈 (Big Light)",
+      jp: "ビッグライト",
+      desc: "用它的光線照射物體，能將物體的體積、產量或規模無限放大。",
+      prompt: "如何把小農微薄的作物產值、或是單次短暫的農事體驗，無限放大其社會聲量與生態價值？"
+    },
+    {
+      emoji: "☎️",
+      zh: "如果電話亭 (What-if Telephone Booth)",
+      jp: "もしもボックス",
+      desc: "撥打電話並說出「如果世界是...」，就能立刻創造一個符合期望的平行世界系統。",
+      prompt: "如果農村的規則完全由你重訂，你會建立一個怎樣顛覆傳統的全新共創生態系或共享機制？"
+    }
+  ];
+
+  function drawGadget() {
+      const btn = document.getElementById('draw-btn');
+      const panel = document.getElementById('result-panel');
+      
+      // Add spinning shake effect
+      btn.innerText = "抽取中 / 抽選中...";
+      btn.disabled = true;
+      btn.classList.add('spinning');
+      panel.style.opacity = '0';
+      
+      setTimeout(() => {
+          // Select random gadget
+          const idx = Math.floor(Math.random() * gadgets.length);
+          const tool = gadgets[idx];
+          
+          // Update DOM
+          document.getElementById('tool-emoji').innerText = tool.emoji;
+          document.getElementById('tool-zh').innerText = tool.zh;
+          document.getElementById('tool-jp').innerText = tool.jp;
+          document.getElementById('tool-desc').innerText = tool.desc;
+          document.getElementById('tool-prompt').innerText = tool.prompt;
+          
+          // Clear text area
+          document.getElementById('user-idea').value = '';
+          
+          // Finish spinning
+          btn.innerText = "重新抽籤 / もう一度引く";
+          btn.disabled = false;
+          btn.classList.remove('spinning');
+          
+          // Show result card
+          panel.classList.add('active');
+          panel.style.opacity = '1';
+      }, 800); // 800ms spin simulation
+  }
+
+  function clearIdea() {
+      document.getElementById('user-idea').value = '';
+  }
+
+  function copyIdea() {
+      const idea = document.getElementById('user-idea').value.trim();
+      const hmwText = document.getElementById('hmw-select').options[document.getElementById('hmw-select').selectedIndex].text;
+      const toolText = document.getElementById('tool-zh').innerText;
+      
+      if (!idea) {
+          alert('請先在輸入框中寫下你的創意點子！');
+          return;
+      }
+      
+      const fullText = `【哆啦A夢創意聯想卡】\n\n📌 挑戰的 HMW：\n${hmwText}\n\n⚡️ 抽到的道具：\n${toolText}\n\n💡 激發的創意點子：\n${idea}`;
+      
+      navigator.clipboard.writeText(fullText).then(() => {
+          alert('創意已複製到剪貼簿！可貼到您的筆記或報告中！');
+      }).catch(err => {
+          console.error('Could not copy text: ', err);
+          alert('複製失敗，請手動選取文字複製。');
+      });
+  }
+</script>
+
+</body>
+</html>
