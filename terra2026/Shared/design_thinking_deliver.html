@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>城鄉共創與永續食農的落地驗證手札（Deliver 篇）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f2a1c;
+      --primary-light: #1d3f2d;
+      --secondary: #d97706;
+      --secondary-light: #fef3c7;
+      --bg: #fcfcfb;
+      --card-bg: #ffffff;
+      --text: #1c1917;
+      --text-muted: #78716c;
+      --border: #e7e5e4;
+      --team-a: #15803d;
+      --team-b: #1d4ed8;
+      --team-c: #b45309;
+      --team-d: #b91c1c;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 0;
+      margin: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 100px 24px 120px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--bg);
+      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    }
+
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      background-color: var(--secondary);
+      color: white;
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: inline-block;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #a7f3d0;
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: -50px auto 100px auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .intro-card {
+      background: var(--card-bg);
+      padding: 48px;
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(15, 42, 28, 0.06);
+      border: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    .intro-text {
+      font-size: 1.18rem;
+      color: var(--text);
+      font-weight: 500;
+      margin: 0;
+      text-align: justify;
+    }
+
+    h2 {
+      color: var(--primary);
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin: 56px 0 28px 0;
+      border-left: 6px solid var(--secondary);
+      padding-left: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    p.body-text {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin: 0 0 24px 0;
+      text-align: justify;
+    }
+
+    /* Photo Gallery */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    @media (max-width: 576px) {
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .photo-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      transition: transform 0.3s;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-caption {
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Showcase Grid */
+    .showcase-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin: 40px 0;
+    }
+
+    .showcase-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 10px 30px rgba(15, 42, 28, 0.04);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .showcase-card {
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+    }
+
+    .showcase-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(15, 42, 28, 0.08);
+      border-color: rgba(15, 42, 28, 0.15);
+    }
+
+    .showcase-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .team-badge {
+      font-size: 0.78rem;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 12px;
+      width: fit-content;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .showcase-card[data-team="A"] { border-left: 8px solid var(--team-a); }
+    .showcase-card[data-team="A"] .team-badge { background-color: var(--team-a); }
+    .showcase-card[data-team="B"] { border-left: 8px solid var(--team-b); }
+    .showcase-card[data-team="B"] .team-badge { background-color: var(--team-b); }
+    .showcase-card[data-team="C"] { border-left: 8px solid var(--team-c); }
+    .showcase-card[data-team="C"] .team-badge { background-color: var(--team-c); }
+    .showcase-card[data-team="D"] { border-left: 8px solid var(--team-d); }
+    .showcase-card[data-team="D"] .team-badge { background-color: var(--team-d); }
+
+    .project-name {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 0 0 8px 0;
+    }
+
+    .hmw-label {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--secondary);
+      margin: 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hmw-quote {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #78350f;
+      background: var(--secondary-light);
+      border-left: 3px solid var(--secondary);
+      padding: 8px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 0 0 20px 0;
+    }
+
+    .project-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0 0 24px 0;
+      text-align: justify;
+    }
+
+    .feature-list {
+      margin: 0 0 24px 0;
+      padding-left: 20px;
+      font-size: 0.95rem;
+    }
+
+    .feature-list li {
+      margin-bottom: 8px;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: inherit;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn.primary {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .btn.primary:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .btn.secondary {
+      background-color: white;
+      color: var(--text);
+    }
+
+    .btn.secondary:hover {
+      background-color: #fafaf9;
+      transform: translateY(-2px);
+    }
+
+    /* Thumbnail Area */
+    .showcase-thumb {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #fafaf9;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 220px;
+    }
+
+    .showcase-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .showcase-thumb:hover img {
+      transform: scale(1.05);
+    }
+
+    .zoom-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 42, 28, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .showcase-thumb:hover .zoom-overlay {
+      opacity: 1;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 42, 28, 0.95);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      cursor: default;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+
+    .lightbox.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-content img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .callout {
+      background: var(--secondary-light);
+      border-left: 4px solid var(--secondary);
+      padding: 28px;
+      border-radius: 12px;
+      margin: 56px 0;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.05);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-content {
+      margin: 0;
+      font-size: 1rem;
+      color: #78350f;
+    }
+
+    .footer-badge {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.85em;
+      color: var(--secondary);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+      background: #fafaf9;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <span class="badge">Deliver 篇 (遞交與驗證)</span>
+    <h1>從實地調研到驚艷落地的數位與實體設計提案</h1>
+    <p class="subtitle">泰拉學校 地之校 Design Thinking 質化研究手札 | 第四篇</p>
+  </div>
+</header>
+
+<main>
+  <div class="intro-card">
+    <p class="intro-text">
+      經歷了 Discover (發散探索) 的深度訪查、Define (收斂定義) 的痛點聚焦，以及 Develop (發想開發) 的創意撞擊後，首屆「泰拉學校—地之校」的跨國共創團隊迎來了最後的終點站——<strong>Deliver (遞交與落地驗證)</strong>。這不是一場只留在紙面上的簡報練習，而是要忠實地把各小組的原創點子，打造成能夠在真實場域運作的 MVP 原型。當我們的解決方案與真實的土地、老農、新青農以及外部體驗者面對面時，學生的成果不僅解答了城鄉共創的關鍵挑戰，更以超乎想像的精緻度與原創力，為地方帶來驚艷的視野。
+    </p>
+  </div>
+
+  <h2>二、 地之校實踐現場：與宜蘭風土的真實交織</h2>
+  <p class="body-text">
+    本篇成果的誕生地橫跨宜蘭員山阿聰自然田、南澳水月農莊以及礁溪佛光大學。以下是學生在田野調研、跨國對話以及成果發表時的代表性實地影像，記錄了最真實的實踐溫度：
+  </p>
+
+  <!-- Photo Gallery representing the Yilan field and presentations -->
+  <div class="photo-grid">
+    <div class="photo-card">
+      <img src="./assets/yilan_field_1.jpg" alt="宜蘭甘蔗與格外品調研現場">
+      <div class="photo-caption">宜蘭員山阿聰自然田的甘蔗種植風土</div>
+    </div>
+    <div class="photo-card">
+      <img src="./assets/yilan_field_2.jpg" alt="小農格外品與熬糖加工技術妥協現場">
+      <div class="photo-caption">手工自然農法熬糖加工的技術探索</div>
+    </div>
+    <div class="photo-card">
+      <img src="./assets/yilan_field_3.jpg" alt="台日跨國團隊實地討論側拍">
+      <div class="photo-caption">早稻田與清大學生進行現場訪查與討論</div>
+    </div>
+    <div class="photo-card">
+      <img src="./assets/yilan_field_4.jpg" alt="地之校成果發表會現場">
+      <div class="photo-caption">地之校成果發表與地方關係人對接現場</div>
+    </div>
+  </div>
+
+  <h2>三、 四大原創成果發布：兼具美感與實用價值的原創提案</h2>
+  <p class="body-text">
+    早稻田與清華大學跨國小組針對地之校所提出的解決方案，皆以驚人的執行力轉化為實作成果。為了呈現最真實、精緻的設計細節，我們擷取了各組原型與簡報中最具代表性的畫面。外部讀者可以直接點擊截圖或下方按鈕，檢視高解析度的原創設計成果：
+  </p>
+
+  <div class="showcase-grid">
+    
+    <!-- Team A (Green) -->
+    <div class="showcase-card" data-team="A">
+      <div class="showcase-info">
+        <div>
+          <span class="team-badge">Team A (綠組) 成果</span>
+          <h3 class="project-name">田路 Toolkit (From Crop to Brand)</h3>
+          <div class="hmw-label">HMW 設計挑戰</div>
+          <p class="hmw-quote">我們該如何為小農設計一套低門檻的品牌工具包，協助他們系統化盤點作物資源、對接顧客地圖，並快速驗證品牌價值的最簡可行產品（MVP）？</p>
+          <p class="project-desc">
+            針對阿聰自然田等小農在加工轉型時的財務與家庭風險，Team A 原創開發了這套精緻的數位品牌輔助診斷工具。網頁包含 7 大核心步驟，從作物的產季與格外品（外觀不佳但安全可食）盤點開始，引導小農進行市場觀察、加工發散，並借鏡國內外地方創生案例，最终設計出專屬故事與市場驗證方案，還能自動輸出初版提案，極具商業推廣與教育引導價值。
+          </p>
+          <ul class="feature-list">
+            <li><strong>作物與格外品盤點</strong>：幫助小農找出原先被浪費的額外剩餘資源。</li>
+            <li><strong>7步驟漸進引導</strong>：內嵌參考案例與重點指引，極易上手。</li>
+            <li><strong>初版提案綜整</strong>：在網頁尾端自動生成可複製與輸出的品牌企劃書。</li>
+          </ul>
+        </div>
+        <div class="action-group">
+          <button class="btn primary" onclick="openLightbox('./assets/team_a_toolkit.png')">🔍 放大檢視原創截圖</button>
+        </div>
+      </div>
+      <div class="showcase-thumb" onclick="openLightbox('./assets/team_a_toolkit.png')">
+        <img src="./assets/team_a_toolkit.png" alt="田路 Toolkit 實機截圖">
+        <div class="zoom-overlay">🔍 放大檢視原圖</div>
+      </div>
+    </div>
+
+    <!-- Team B (Blue) -->
+    <div class="showcase-card" data-team="B">
+      <div class="showcase-info">
+        <div>
+          <span class="team-badge">Team B (藍組) 成果</span>
+          <h3 class="project-name">農村療癒護照 Rural Healing Passport</h3>
+          <div class="hmw-label">HMW 設計挑戰</div>
+          <p class="hmw-quote">我們該如何整合零散的入口管道，並透過分級體驗旅程與集點挑戰，延續旅人對農村日常的期待感與體驗深度？</p>
+          <p class="project-desc">
+            體驗活動如果做成一次性觀光，昂貴的行銷成本就無法轉換為地方的長期支持者。Team B 原創設計的「農村療癒護照」是一套完整的體驗分級與關係維繫系統。透過將農事體驗分為「短期遊客」、「中長期深度體驗」與「長期打工沉浸」三種深度，並搭配療癒護照卡的實體集點印章機制，成功將都市人的「一次性旅遊」轉化為「地方生活型態的延續」，讓人在回城後仍保有對土地的強烈連結。
+          </p>
+          <ul class="feature-list">
+            <li><strong>分級體驗旅程</strong>：降低農事真實勞動的體力與氣候抗性門檻。</li>
+            <li><strong>療癒護照集點</strong>：把「方便取得」的農村自然素材轉譯為感知集點卡。</li>
+            <li><strong>體驗旅程接力</strong>：串接社群、市集與打工換宿，維繫長效認同。</li>
+          </ul>
+        </div>
+        <div class="action-group">
+          <button class="btn primary" onclick="openLightbox('./assets/team_b_passport.png')">🔍 放大檢視簡報預覽</button>
+        </div>
+      </div>
+      <div class="showcase-thumb" onclick="openLightbox('./assets/team_b_passport.png')">
+        <img src="./assets/team_b_passport.png" alt="農村療癒護照簡報預覽">
+        <div class="zoom-overlay">🔍 放大檢視原圖</div>
+      </div>
+    </div>
+
+    <!-- Team C (Yellow) -->
+    <div class="showcase-card" data-team="C">
+      <div class="showcase-info">
+        <div>
+          <span class="team-badge">Team C (黃組) 成果</span>
+          <h3 class="project-name">巢聚 Hub (Nest Gathering Hub)</h3>
+          <div class="hmw-label">HMW 設計挑戰</div>
+          <p class="hmw-quote">我們該如何結合農忙家庭的地理位置與教育理念，建立低門檻的互助托育與共學平台，緩解家長在農忙期間的工作與育兒壓力？</p>
+          <p class="project-desc">
+            農村地理位置分散、托育資源稀缺，且農忙期家長面臨極度時間撕裂。Team C 打造的「巢聚 Hub」是一個支援中/英/日三語的互助共育媒合原型網頁。為了解決信任與孩童安全問題，系統設有獨特的<strong>「熟人圈守門公約」</strong>（必須共同參與線下共學 3 次破冰後，系統才解鎖排班表），並設計去金流的點數銀行（Time Bank）以及保護隱私的安全無痛退出機制，設計極其周密成熟。
+          </p>
+          <ul class="feature-list">
+            <li><strong>三語介面 (中/英/日)</strong>：體現跨國共同學習與跨文化交流情境。</li>
+            <li><strong>熟人圈守門公約</strong>：從實體共學出發，建立高安全性的互助托育。</li>
+            <li><strong>去金流排班點數</strong>：以出力點數代替金錢交易，實現鄰里互助公平出力。</li>
+          </ul>
+        </div>
+        <div class="action-group">
+          <button class="btn primary" onclick="openLightbox('./assets/team_c_demo.png')">🔍 放大檢視原創截圖</button>
+        </div>
+      </div>
+      <div class="showcase-thumb" onclick="openLightbox('./assets/team_c_demo.png')">
+        <img src="./assets/team_c_demo.png" alt="巢聚 Hub 實機截圖">
+        <div class="zoom-overlay">🔍 放大檢視原圖</div>
+      </div>
+    </div>
+
+    <!-- Team D (Red) -->
+    <div class="showcase-card" data-team="D">
+      <div class="showcase-info">
+        <div>
+          <span class="team-badge">Team D (紅組) 成果</span>
+          <h3 class="project-name">半農半X 青年入村生活指南 (Half-Farm Half-X Rural Guide)</h3>
+          <div class="hmw-label">HMW 設計挑戰</div>
+          <p class="hmw-quote">我們該如何將租地、收入策略與地方社交潛規則，轉譯為結構化的三階段入村指南，降低青年移居農村時的社會融入門檻？</p>
+          <p class="project-desc">
+            都市青年移居農村最容易卡關的往往不是種植技術，而是人際地緣網絡與地方潛規則。Team D 製作的「青年入村生活指南」網站，結構化地將入村生活分為「新手準備」、「入村轉換」、「在地扎根」三階段。並在網頁中將複雜的土地租地歷史創傷防衛（如堅持口頭約定）、生計兼職、伴侶關係與地方社交摩擦等隱形門檻轉譯為可互動的「防撞問題庫」，直接串接對應的資源連結與真實案例。
+          </p>
+          <ul class="feature-list">
+            <li><strong>三語定位地圖 (中/英/日)</strong>：利用位置、認同與生活比例釐清當前定位。</li>
+            <li><strong>隱形防撞問題庫</strong>：將租地、收入、伴侶、社群支持等摩擦點透明化。</li>
+            <li><strong>直覺式卡片操作</strong>：每張問題卡均直接連結對應案例，避免純文字閱讀負擔。</li>
+          </ul>
+        </div>
+        <div class="action-group">
+          <button class="btn primary" onclick="openLightbox('./assets/team_d_guide.png')">🔍 放大檢視原創截圖</button>
+        </div>
+      </div>
+      <div class="showcase-thumb" onclick="openLightbox('./assets/team_d_guide.png')">
+        <img src="./assets/team_d_guide.png" alt="半農半X 青年入村生活指南實機截圖">
+        <div class="zoom-overlay">🔍 放大檢視原圖</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>四、 落地驗證與外部評審反饋</h2>
+  <p class="body-text">
+    學生的原創提案在發表會上，直接面對了包括宜蘭在地青農代表、手作職人、生態科學家、立德領導計畫指導老師以及 1221 未來教育發展協會評審的實地檢視。外部關係人對於四組原型的實用性給予了高度的驚艷與肯定：
+  </p>
+  <p class="body-text">
+    「這不是冷冰冰的理論，而是直接針對我們在土地上碰到的日常磨難所設計的。」一位在地農友在發表會後表示。特別是黃組的『熟人守門機制』與紅組的『潛規則防撞指南』，將傳統社會學研究中的複雜人際張力，轉譯為新世代極易理解的數位流程，對外部社群和內部成員都帶來了極大的啟發。
+  </p>
+
+  <div class="callout">
+    <div class="callout-title">成果回顧與反思：Design Thinking 的真正實踐</div>
+    <p class="callout-content">
+      至此，泰拉學校—地之校的 Design Thinking 探索手札全系列完結。從第一步的實地查訪，到最終的高感官數位與實體遞交成果，跨國團隊不禁忠實地記錄了風土，更用「設計」的力量，為城鄉共創與永續食農的複雜網絡，搭起了一座座充滿創造力與美感的橋樑。
+    </p>
+  </div>
+</main>
+
+<!-- Lightbox Modal Container -->
+<div id="lightbox-modal" class="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+    <img id="lightbox-img" src="" alt="高解析度原圖預覽">
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Terra Earth School - Waseda & NTHU. All rights reserved.</p>
+  <span class="footer-badge">Design Thinking x Sustainable Food & Agriculture</span>
+</footer>
+
+<script>
+  function openLightbox(imgSrc) {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      img.src = imgSrc;
+      modal.classList.add('active');
+  }
+
+  function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.remove('active');
+  }
+
+  // Handle ESC key to close lightbox
+  document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+          closeLightbox();
+      }
+  });
+</script>
+
+</body>
+</html>

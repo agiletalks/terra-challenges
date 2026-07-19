@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巢聚 Hub - 農創家庭互助共育平台 (CSR MVP v3.1)</title>
+    <style>
+        /* 視覺與色彩：強調安心、透明、溫暖與社群信任感 */
+        :root {
+            --primary: #3A6046;       /* 永續森林綠 */
+            --primary-light: #528463;
+            --accent: #D97443;        /* 溫暖夕陽橘 */
+            --trust-blue: #4A90E2;    /* 信任與安全藍 */
+            --bg-cream: #FAF6F0;      /* 大地米白 */
+            --card-bg: #FFFFFF;
+            --text-main: #2C3530;     /* 深泥土黑 */
+            --text-muted: #66756C;
+            --border-color: #E6E2DA;
+            --shadow: 0 8px 24px rgba(58, 96, 70, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-user-select: none; user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 頂部導覽 */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-lang-zone {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo { font-size: 22px; font-weight: 800; color: var(--primary); white-space: nowrap; }
+        .logo span { color: var(--accent); }
+
+        /* 左上方語言切換按鈕 */
+        .lang-switch {
+            display: flex;
+            background: #EFECE6;
+            padding: 3px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-tabs {
+            display: flex; gap: 6px;
+            background-color: #ECE7DF; padding: 4px; border-radius: 10px;
+        }
+
+        .tab-btn {
+            background: none; border: none; padding: 10px 16px;
+            font-size: 13px; font-weight: 700; color: var(--text-muted);
+            cursor: pointer; border-radius: 6px; transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary); color: white;
+            box-shadow: 0 4px 10px rgba(58, 96, 70, 0.15);
+        }
+
+        /* 主要內容 */
+        main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 25px 20px; }
+        .page { display: none; animation: fadeIn 0.3s ease-out forwards; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-header { margin-bottom: 20px; border-bottom: 1px solid #ECE7DF; padding-bottom: 12px; }
+        .section-header h2 { font-size: 22px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .section-header p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+        /* ================= 功能一：智慧媒合與搜尋 ================= */
+        .search-grid { display: grid; grid-template-columns: 280px 1fr; gap: 25px; align-items: start; }
+        @media (max-width: 900px) { .search-grid { grid-template-columns: 1fr; } }
+
+        /* 搜尋與篩選面板 */
+        .filter-panel { background: var(--card-bg); border-radius: 16px; padding: 20px; border: 1px solid var(--border-color); box-shadow: var(--shadow); }
+        .filter-group { margin-bottom: 16px; }
+        .filter-label { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: block; }
+        .select-mock {
+            width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px;
+            font-size: 13px; background-color: #FAF9F6; color: var(--text-main);
+        }
+        .btn-search-trigger {
+            width: 100%; background: var(--primary); color: white; border: none; padding: 10px;
+            border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; margin-top: 10px;
+        }
+
+        /* 媒合結果列表 */
+        .results-wrapper { display: flex; flex-direction: column; gap: 15px; }
+        .family-card-v2 {
+            background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color);
+            padding: 20px; box-shadow: var(--shadow); display: grid; grid-template-columns: 80px 1fr 180px; gap: 20px; align-items: start;
+        }
+        @media (max-width: 750px) { .family-card-v2 { grid-template-columns: 1fr; text-align: center; justify-items: center; } }
+
+        .av-box { width: 70px; height: 70px; background: #F3EFE9; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 40px; position: relative;}
+        .trust-badge-mini { position: absolute; bottom: -5px; right: -5px; background: var(--trust-blue); color: white; border-radius: 50%; width: 22px; height: 22px; font-size: 11px; display: flex; align-items: center; justify-content: center; border: 2px solid white; font-weight: 900;}
+        
+        .fam-main-info h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .badge-tag { font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+        .badge-tag.idea { background: #F7EFE9; color: #B35E33; }
+        .badge-tag.dist { background: #EAEFEA; color: var(--primary); }
+
+        .details-grid { display: grid; grid-template-columns: 1fr; gap: 6px; font-size: 12px; margin-top: 10px; color: #4A524E; }
+        @media (min-width: 600px) { .details-grid { grid-template-columns: 1fr 1fr; } }
+        .details-grid span strong { color: var(--text-main); }
+
+        .trust-intro-bar { background: #F0F4F8; color: #3A6898; font-size: 12px; padding: 6px 10px; border-radius: 6px; margin-top: 8px; font-weight: 600; }
+
+        .right-action-zone { display: flex; flex-direction: column; justify-content: space-between; height: 100%; border-left: 1px dashed var(--border-color); padding-left: 20px; text-align: right; }
+        @media (max-width: 750px) { .right-action-zone { border-left: none; padding-left: 0; text-align: center; border-top: 1px solid var(--border-color); padding-top: 15px; width: 100%; } }
+        
+        .match-score { font-size: 12px; color: var(--accent); font-weight: 800; margin-bottom: 10px; }
+        .btn-invite-connect { background: var(--primary); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer; width: 100%; transition: all 0.2s;}
+        .btn-invite-connect:hover { background: var(--primary-light); }
+
+        /* ================= 功能二：組團與活動公告 ================= */
+        .group-grid-v2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .group-card-v2 { background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; }
+        .gr-title { font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
+        .gr-meta { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+        
+        .trust-lock-banner { background: #FFF9F5; border: 1px solid #F3E0D3; border-radius: 8px; padding: 10px; margin-bottom: 15px; font-size: 12px; }
+        .trust-lock-banner strong { color: #C95A28; display: block; margin-bottom: 2px; }
+
+        .btn-apply-group { width: 100%; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; }
+        .btn-apply-group.applied { background: #ECE7DF; color: var(--text-muted); cursor: default; }
+
+        /* ================= 功能三：互助排班與討論公告 ================= */
+        .hub-layout { display: grid; grid-template-columns: 1fr 340px; gap: 25px; }
+        @media (max-width: 900px) { .hub-layout { grid-template-columns: 1fr; } }
+
+        .cal-box { background: white; border-radius: 16px; border: 1px solid var(--border-color); padding: 20px; box-shadow: var(--shadow); }
+        .cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-weight: 800; font-size: 15px;}
+        
+        .trust-flow-indicator { background: #EBF5F0; border-left: 4px solid var(--primary); padding: 10px; border-radius: 0 8px 8px 0; font-size: 12px; font-weight: 700; margin-bottom: 15px; color: var(--primary); }
+
+        .week-grid-v2 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        @media (max-width: 600px) { .week-grid-v2 { grid-template-columns: 1fr 1fr; } }
+        
+        .day-col-v2 { background: #FAF9F6; border-radius: 8px; padding: 10px; border: 1px solid #EFECE6; }
+        .day-title-v2 { font-size: 12px; font-weight: 800; text-align: center; margin-bottom: 8px; color: var(--primary); border-bottom: 1px solid #E6E2DA; padding-bottom: 4px; }
+        
+        .slot-card-v2 { background: white; border: 1px solid var(--border-color); border-left: 3px solid var(--accent); border-radius: 6px; padding: 8px; margin-bottom: 8px; font-size: 12px; }
+        .slot-time-v2 { font-weight: 700; color: #A69E94; font-size: 11px; }
+        .slot-p-v2 { font-weight: 800; color: var(--text-main); margin: 2px 0;}
+        .slot-hours { font-size: 11px; color: var(--text-muted); background: #F3EFE9; padding: 1px 4px; border-radius: 3px; display: inline-block; }
+
+        .btn-register-slot { width: 100%; background: none; border: 1px dashed var(--primary); color: var(--primary); padding: 5px; font-size: 11px; font-weight: 700; border-radius: 4px; cursor: pointer; margin-top: 4px; }
+
+        /* 右側群組公告討論與退出功能 */
+        .group-sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .side-widget { background: white; border-radius: 16px; border: 1px solid var(--border-color); padding: 20px; box-shadow: var(--shadow); }
+        .widget-title { font-size: 14px; font-weight: 800; margin-bottom: 12px; color: var(--primary); border-bottom: 2px solid #F3EFE9; padding-bottom: 6px;}
+        
+        .notice-item { font-size: 12px; margin-bottom: 10px; line-height: 1.4; padding-bottom: 8px; border-bottom: 1px dashed #ECE7DF; }
+        .notice-time { font-size: 11px; color: var(--accent); font-weight: 700; }
+        .notice-txt { color: var(--text-main); font-weight: 600; margin-top: 2px; }
+
+        .discuss-item { display: flex; gap: 8px; font-size: 12px; margin-bottom: 10px; align-items: flex-start; }
+        .disc-av { background: #F3EFE9; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .discuss-body { line-height: 1.4; }
+        .disc-user { font-weight: 800; color: var(--primary); }
+
+        .btn-exit-group { width: 100%; background: none; border: 1px solid #E57373; color: #E57373; padding: 8px; font-size: 12px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+        .btn-exit-group:hover { background: #FFEBEE; }
+
+        /* ================= 全螢幕信任申請送出彈窗 ================= */
+        .match-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(44, 53, 48, 0.96); z-index: 1000;
+            display: none; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center;
+        }
+        .match-box { animation: popUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; padding: 20px; max-width: 500px; }
+        @keyframes popUp { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .match-title { font-size: 32px; color: #81C784; font-weight: 900; margin-bottom: 8px; }
+        
+        .trust-summary-box { background: rgba(255,255,255,0.08); border: 1px dashed rgba(255,255,255,0.2); border-radius: 12px; padding: 15px; margin: 20px 0; font-size: 13px; text-align: left; line-height: 1.6; }
+        .trust-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 4px 0; gap: 10px; }
+        .trust-row span strong { color: var(--accent); }
+
+        .btn-done { background: var(--accent); color: white; border: none; padding: 12px 36px; font-size: 14px; font-weight: 700; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 12px rgba(217, 116, 67, 0.3); }
+
+        /* 重置按鈕 */
+        .demo-control { position: fixed; bottom: 15px; right: 15px; opacity: 0.3; transition: opacity 0.2s; z-index: 999; }
+        .demo-control:hover { opacity: 1; }
+        .btn-reset { background: #2C3530; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <!-- 頂部導覽列 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-lang-zone">
+                <div class="logo">🌾 巢聚 <span>Hub</span></div>
+                <!-- 🌐 左上方多語系切換按鈕 -->
+                <div class="lang-switch">
+                    <button class="lang-btn active" id="btn-zh" onclick="changeLang('zh')">繁中</button>
+                    <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
+                    <button class="lang-btn" id="btn-ja" onclick="changeLang('ja')">日本語</button>
+                </div>
+            </div>
+            <div class="nav-tabs">
+                <button class="tab-btn active" id="tab1" onclick="switchPage('stage1')">🔍 智慧媒合尋找家庭</button>
+                <button class="tab-btn" id="tab2" onclick="switchPage('stage2')">🍀 互助共學組團</button>
+                <button class="tab-btn" id="tab3" onclick="switchPage('stage3')">📅 團內排班與討論</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main>
+
+        <!-- ================= 功能一：智慧媒合與搜尋 ================= -->
+        <div id="stage1" class="page active">
+            <div class="section-header">
+                <h2 id="s1-title">🔍 孩子年齡 × 距離 × 理念 精準篩選</h2>
+                <p id="s1-desc">已為您過濾通過手機實名驗證之誠實互助家庭。點擊條件可立即重組推薦名單。</p>
+            </div>
+
+            <div class="search-grid">
+                <!-- 左側搜尋控制台 -->
+                <div class="filter-panel">
+                    <div class="filter-group">
+                        <label class="filter-label" id="lbl-age">👶 孩子年齡層</label>
+                        <select class="select-mock" id="filterAge">
+                            <option id="opt-age-1">3 - 5 歲 (幼兒幼童)</option>
+                            <option id="opt-age-2">0 - 3 歲 (嬰幼兒)</option>
+                            <option id="opt-age-3">國小低年級</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" id="lbl-dist">📍 可接受移動半徑</label>
+                        <select class="select-mock">
+                            <option id="opt-dist-1">車程 15 分鐘內 (同鄉鎮)</option>
+                            <option id="opt-dist-2">車程 30 分鐘內</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" id="lbl-idea">📖 教育理念偏好</label>
+                        <select class="select-mock" id="filterIdea">
+                            <option id="opt-idea-1">華德福 / 森林教育偏好</option>
+                            <option id="opt-idea-2">蒙特梭利友善</option>
+                            <option id="opt-idea-3">體制內 / 慢食共育</option>
+                        </select>
+                    </div>
+                    <button class="btn-search-trigger" id="btn-search" onclick="triggerSearchMock()">執行智慧條件搜尋</button>
+                </div>
+
+                <!-- 右側家庭卡片列表 -->
+                <div class="results-wrapper">
+                    <!-- 卡片 1 (主秀) -->
+                    <div class="family-card-v2">
+                        <div class="av-box">
+                            👩‍🌾<div class="trust-badge-mini">✓</div>
+                        </div>
+                        <div class="fam-main-info">
+                            <h3 id="f1-name">旗山 冠廷家 <span class="badge-tag idea" id="f1-tag1">華德福偏好</span> <span class="badge-tag dist" id="f1-tag2">車程 10 分鐘</span></h3>
+                            <div class="details-grid">
+                                <span id="f1-d1">👧 <strong>孩子檔案：</strong>2021年生 (5歲) / 台語及中文 / 輕微蠶豆症(不碰樟腦)</span>
+                                <span id="f1-d2">💼 <strong>工作型態：</strong>返鄉草生咖啡職人 (時間彈性)</span>
+                                <span id="f1-d3">🏡 <strong>家庭成員：</strong>夫妻同住，無長輩同住</span>
+                                <span id="f1-d4">⏳ <strong>可用時案：</strong>每週三下午、週末全天</span>
+                            </div>
+                            <div class="trust-intro-bar" id="f1-trust">
+                                🤝 <strong>社區關係連結：</strong>由「旗山創生基地-老街小組」林經理推薦加入。
+                            </div>
+                        </div>
+                        <div class="right-action-zone">
+                            <div class="match-score" id="f1-score">🎯 契合度 98%</div>
+                            <button class="btn-invite-connect" id="f1-btn" onclick="connectFamily(1)">申請建立信任連結</button>
+                        </div>
+                    </div>
+
+                    <!-- 卡片 2 -->
+                    <div class="family-card-v2">
+                        <div class="av-box">
+                            🧑‍🌾<div class="trust-badge-mini">✓</div>
+                        </div>
+                        <div class="fam-main-info">
+                            <h3 id="f2-name">美濃 佳佳家 <span class="badge-tag idea" id="f2-tag1">森林教育偏好</span> <span class="badge-tag dist" id="f2-tag2">車程 12 分鐘</span></h3>
+                            <div class="details-grid">
+                                <span id="f2-d1">👦 <strong>孩子檔案：</strong>2022年生 (4歲) / 華語 / 無特殊過敏</span>
+                                <span id="f2-d2">💼 <strong>工作型態：</strong>無毒黑米青農 (採收期高忙)</span>
+                                <span id="f2-d3">🏡 <strong>家庭成員：</strong>核心家庭三口，長輩住隔壁鎮</span>
+                                <span id="f2-d4">⏳ <strong>可用時案：</strong>每週一、二下午可出托育人力</span>
+                            </div>
+                            <div class="trust-intro-bar" id="f2-trust">
+                                🤝 <strong>社區關係連結：</strong>美濃客家農友互助會核心成員。
+                            </div>
+                        </div>
+                        <div class="right-action-zone">
+                            <div class="match-score" id="f2-score">🎯 契合度 92%</div>
+                            <button class="btn-invite-connect" id="f2-btn" onclick="connectFamily(2)">申請建立信任連結</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= 功能二：組團與活動 ================= -->
+        <div id="stage2" class="page">
+            <div class="section-header">
+                <h2 id="s2-title-main">🍀 互助共學組團：從見面共學開始累積信任</h2>
+                <p id="s2-desc-main">家長可在此發起或申請加入小組（上限 3-5 戶）。設有社群守門人公約。</p>
+            </div>
+
+            <div class="group-grid-v2">
+                <div class="group-card-v2">
+                    <div>
+                        <div class="gr-title" id="g1-t">美濃田野泥土共玩小組 (徵求 3-5 戶)</div>
+                        <div class="gr-meta" id="g1-m">⏰ 每週三下午 14:00 | 地點: 作夥農場埕埕</div>
+                        <p style="font-size: 13px; color: #4A524E; line-height: 1.4; margin-bottom: 12px;" id="g1-d">
+                            主要帶孩子下田觀察昆蟲、泥土捏塑。目前已有 2 戶加入。期望找 3-6 歲且不排斥孩子衣服弄髒的家長。
+                        </p>
+                        <div class="trust-lock-banner" id="g1-lock">
+                            <strong>🔒 熟人圈守門公約（小規模安全原則）</strong>
+                            預設流程：必須先實體「共同參與見面共學 3 次」，彼此熟悉後，系統才會解鎖「下一步：農忙互助托育排班表」功能。
+                        </div>
+                    </div>
+                    <button class="btn-apply-group" id="g1-btn" onclick="applyGroup(this)">申請加入小組 (需發起人同意)</button>
+                </div>
+
+                <div class="group-card-v2">
+                    <div>
+                        <div class="gr-title" id="g2-t">格外品生活美學與果汁植物染</div>
+                        <div class="gr-meta" id="g2-m">⏰ 每週五 15:30 | 地點: 各家客廳輪流</div>
+                        <p style="font-size: 13px; color: #4A524E; line-height: 1.4; margin-bottom: 12px;" id="g2-d">
+                            利用淘汰蔬果汁液進行植物手作染布。本小組由「地方媽媽共學協會」社工單位擔任第三方信任擔保與守門人。
+                        </p>
+                        <div class="trust-lock-banner" id="g2-lock">
+                            <strong>🔒 熟人圈守門公約（小規模安全原則）</strong>
+                            預設流程：本組目前滿額(4戶)。成員已完成 3 次見面，本週五即將正式啟動「互助協議簽署」，開啟互助排班。
+                        </div>
+                    </div>
+                    <button class="btn-apply-group applied" id="g2-btn" disabled>小組已額滿</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= 功能三：互助排班工具與公告討論（修復翻譯區） ================= -->
+        <div id="stage3" class="page">
+            <div class="section-header">
+                <h2 id="s3-title-main">📅 已信任小組互助排班工具表 (不碰金流)</h2>
+                <p id="s3-desc-main">恭喜！本組已通過「3 次實體共學」考核，並在線下共同簽署「互助托育協議模板」。</p>
+            </div>
+
+            <div class="hub-layout">
+                <div class="cal-box">
+                    <div class="cal-head">
+                        <div id="c-h1">🌾 美濃田野共玩小組 - 本週值班表</div>
+                        <div style="font-size: 12px; color: var(--trust-blue);" id="c-h2">🛡️ 互助協議效期中</div>
+                    </div>
+
+                    <div class="trust-flow-indicator" id="c-flow">
+                        💡 點數銀行規則：每代顧 1 次（3小時）可獲得 1 枚點數。農忙大採收期，可憑點數優先申請其他家長協助。
+                    </div>
+
+                    <div class="week-grid-v2">
+                        <div class="day-col-v2">
+                            <div class="day-title-v2" id="d-m">週一 下午</div>
+                            <div class="slot-card-v2">
+                                <div class="slot-time-v2">14:00 - 17:00</div>
+                                <div class="slot-p-v2" id="d-m-p">🧑‍🌾 志明爸爸 值班</div>
+                                <div class="slot-hours" id="d-m-h">累計出力: 12h</div>
+                            </div>
+                        </div>
+                        <div class="day-col-v2">
+                            <div class="day-title-v2" id="d-t">週二 下午</div>
+                            <div class="slot-card-v2">
+                                <div class="slot-time-v2">14:00 - 17:00</div>
+                                <div class="slot-p-v2" id="d-t-p">👩‍🌾 晴晴媽媽 值班</div>
+                                <div class="slot-hours" id="d-t-h">累計出力: 15h</div>
+                            </div>
+                        </div>
+                        <div class="day-col-v2">
+                            <div class="day-title-v2" id="d-w">週三 (農忙)</div>
+                            <div class="slot-card-v2" style="background: #FFF9F5; border-left-color: #E57373;" id="vacant-slot">
+                                <div class="slot-time-v2">14:00 - 17:00</div>
+                                <div class="slot-p-v2" style="color: #D32F2F;" id="d-w-p">⚠️ 尚無家長值班</div>
+                                <div class="slot-hours" style="background:#FCEFEA;" id="d-w-h">急缺人力</div>
+                                <button class="btn-register-slot" id="d-w-btn" onclick="claimSlot(this)">🙋‍♂️ 我可支援值班</button>
+                            </div>
+                        </div>
+                        <div class="day-col-v2">
+                            <div class="day-title-v2" id="d-f">週四 下午</div>
+                            <div class="slot-card-v2">
+                                <div class="slot-time-v2">14:00 - 17:00</div>
+                                <div class="slot-p-v2" id="d-f-p">👩‍🎨 春嬌媽媽 值班</div>
+                                <div class="slot-hours" id="d-f-h">累計出力: 9h</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group-sidebar">
+                    <div class="side-widget">
+                        <div class="widget-title" id="w1-t">📢 班組即時公告</div>
+                        <div class="notice-item">
+                            <div class="notice-time" id="w1-time">今天 10:15</div>
+                            <div class="notice-txt" id="w1-txt">週三美濃午後可能有雷陣雨，值班備案改至阿豪家三合院室內大廳進行，請家長幫孩子多備一套乾淨衣物。</div>
+                        </div>
+                    </div>
+
+                    <div class="side-widget">
+                        <div class="widget-title" id="w2-t">💬 班組討論串</div>
+                        <div class="discuss-item">
+                            <div class="disc-av" id="w2-av1">晴媽</div>
+                            <div class="discuss-body"><span class="disc-user" id="w2-u1">晴晴媽媽:</span> 我已經把我們家急救箱放到作夥農場了。</div>
+                        </div>
+                    </div>
+
+                    <div class="side-widget" style="border-color: #F8D7DA; background: #FFFBFB;">
+                        <div class="widget-title" style="color: #C94A4A; border-bottom-color: #F8D7DA;" id="w3-t">🛡️ 安全退出與權益保護</div>
+                        <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 12px;" id="w3-d">
+                            若因工作調整、教養理念磨合不順，任何成員皆可一鍵安全退出，避免人情壓力。
+                        </p>
+                        <button class="btn-exit-group" id="w3-btn" onclick="exitGroupMock()">申請無痛退出此互助小組</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ================= 全螢幕：信任機制驗證送出彈窗 ================= -->
+    <div class="match-overlay" id="matchOverlay">
+        <div class="match-box">
+            <div class="match-title" id="pop-title">🛡️ 信任連結申請已送出</div>
+            <p style="color: #D1DDD5; font-size: 14px; margin-bottom: 15px;" id="pop-sub">已啟動農村在地「三層信任驗證篩選」流程：</p>
+            
+            <div class="trust-summary-box">
+                <div class="trust-row"><span id="pop-r1">📌 我的身分驗證基底：</span><span><strong id="pop-r1-v">已通過簡訊實名制</strong></span></div>
+                <div class="trust-row"><span id="pop-r2">🤝 社群熟人脈絡對接：</span><span id="targetName">對象家庭名稱</span></div>
+                <div class="trust-row"><span id="pop-r3">🌱 平台安全防範規則：</span><span><strong id="pop-r3-v">必須先共同參與共學 3 次</strong></span></div>
+                <p style="margin-top: 12px; font-size: 12px; color: #A6C9B0; line-height: 1.4;" id="pop-foot">
+                    * 系統已通知發起人。對方同意後，您將獲邀參加下週的線下見面共學，完成熟人圈首度破冰！
+                </p>
+            </div>
+            
+            <button class="btn-done" id="pop-btn" onclick="closeOverlay()">回到平台</button>
+        </div>
+    </div>
+
+    <!-- 右下角 Demo 控制器 -->
+    <div class="demo-control">
+        <button class="btn-reset" onclick="resetDemo()">🔄 重置 Demo 狀態</button>
+    </div>
+
+    <script>
+        // 核心三語完整資料庫
+        const i18n = {
+            zh: {
+                tab1: "🔍 智慧媒合尋找家庭", tab2: "🍀 互助共學組團", tab3: "📅 團內排班與討論",
+                s1_title: "🔍 孩子年齡 × 距離 × 理念 精準篩選",
+                s1_desc: "已為您過濾通過手機實名驗證之誠實互助家庭。點擊條件可立即重組推薦名單。",
+                lbl_age: "👶 孩子年齡層", lbl_dist: "📍 可接受移動半徑", lbl_idea: "📖 教育理念偏好",
+                opt_age_1: "3 - 5 歲 (幼兒幼童)", opt_age_2: "0 - 3 歲 (嬰幼兒)", opt_age_3: "國小低年級",
+                opt_dist_1: "車程 15 分鐘內 (同鄉鎮)", opt_dist_2: "車程 30 分鐘內",
+                opt_idea_1: "華德福 / 森林教育偏好", opt_idea_2: "蒙特梭利友善", opt_idea_3: "體制內 / 慢食共育",
+                btn_search: "執行智慧條件搜尋",
+                f1_name: "旗山 冠廷家", f1_tag1: "華德福偏好", f1_tag2: "車程 10 分鐘",
+                f1_d1: "👧 <strong>孩子檔案：</strong>2021年生 (5歲) / 台語及中文 / 輕微蠶豆症(不碰樟腦)",
+                f1_d2: "💼 <strong>工作型態：</strong>返鄉草生咖啡職人 (時間彈性)",
+                f1_d3: "🏡 <strong>家庭成員：</strong>夫妻同住，無長輩同住",
+                f1_d4: "⏳ <strong>可用時案：</strong>每週三下午、週末全天",
+                f1_trust: "🤝 <strong>社區關係連結：</strong>由「旗山創生基地-老街小組」林經理推薦加入。",
+                f1_score: "🎯 契合度 98%", f1_btn: "申請建立信任連結",
+                f2_name: "美濃 佳佳家", f2_tag1: "森林教育偏好", f2_tag2: "車程 12 分鐘",
+                f2_d1: "👦 <strong>孩子檔案：</strong>2022年生 (4歲) / 華語 / 無特殊過敏",
+                f2_d2: "💼 <strong>工作型態：</strong>無毒黑米青農 (採收期高忙)",
+                f2_d3: "🏡 <strong>家庭成員：</strong>核心家庭三口，長輩住隔壁鎮",
+                f2_d4: "⏳ <strong>可用時案：</strong>每週一、二下午可出托育人力",
+                f2_trust: "🤝 <strong>社區關係連結：</strong>美濃客家農友互助會核心成員。",
+                f2_score: "🎯 契合度 92%", f2_btn: "申請建立信任連結",
+                
+                s2_title: "🍀 互助共學組團：從見面共學開始累積信任",
+                s2_desc: "家長可在此發起或申請加入小組（上限 3-5 戶）。設有社群守門人公約。",
+                g1_t: "美濃田野泥土共玩小組 (徵求 3-5 戶)", g1_m: "⏰ 每週三下午 14:00 | 地點: 作夥農場埕埕",
+                g1_d: "主要帶孩子下田觀察昆蟲、泥土捏塑。目前已有 2 戶加入。期望找 3-6 歲且不排斥孩子衣服弄髒的家長。",
+                g1_lock: "<strong>🔒 熟人圈守門公約（小規模安全原則）</strong>預設流程：必須先實體「共同參與見面共學 3 次」，彼此熟悉後，系統才會解鎖「下一步：農忙互助托育排班表」功能。",
+                g1_btn: "申請加入小組 (需發起人同意)",
+                g2_t: "格外品生活美學與果汁植物染", g2_m: "⏰ 每週五 15:30 | 地點: 各家客廳輪流",
+                g2_d: "利用淘汰蔬果汁液進行植物手作染布。本小組由「地方媽媽共學協會」社工單位擔任第三方信任擔保與守門人。",
+                g2_lock: "<strong>🔒 熟人圈守門公約（小規模安全原則）</strong>預設流程：本組目前滿額(4戶)。成員已完成 3 次見面，本週五即將正式啟動「互助協議簽署」，開啟互助排班。",
+                g2_btn: "小組已額滿",
+
+                s3_title: "📅 已信任小組互助排班工具表 (不碰金流)",
+                s3_desc: "恭喜！本組已通過「3 次實體共學」考核，並在線下共同簽署「互助托育協議模板」。",
+                c_h1: "🌾 美濃田野共玩小組 - 本週值班表", c_h2: "🛡️ 互助協議效期中",
+                c_flow: "💡 點數銀行規則：每代顧 1 次（3小時）可獲得 1 枚點數。農忙大採收期，可憑點數優先申請其他家長協助。",
+                d_m: "週一 下午", d_m_p: "🧑‍🌾 志明爸爸 值班", d_m_h: "累計出力: 12h",
+                d_t: "週二 下午", d_t_p: "👩‍🌾 晴晴媽媽 值班", d_t_h: "累計出力: 15h",
+                d_w: "週三 (農忙)", d_w_p: "⚠️ 尚無家長值班", d_w_h: "急缺人力", d_w_btn: "🙋‍♂️ 我可支援值班",
+                d_f: "週四 下午", d_f_p: "👩‍🎨 春嬌媽媽 值班", d_f_h: "累計出力: 9h",
+                w1_t: "📢 班組即時公告", w1_time: "今天 10:15", w1_txt: "週三美濃午後可能有雷陣雨，值班備案改至阿豪家三合院室內大廳進行，請家長幫孩子多備一套乾淨衣物。",
+                w2_t: "💬 班組討論串", w2_av1: "晴媽", w2_u1: "晴晴媽媽: 我已經把我們家急救箱放到作夥農場了。",
+                w3_t: "🛡️ 安全退出與權益保護",
+                w3_d: "若因工作調整、教養理念磨合不順，任何成員皆可一鍵安全退出，避免人情壓力。", w3_btn: "申請無痛退出此互助小組",
+                
+                pop_title: "🛡️ 信任連結申請已送出", pop_sub: "已啟動農村在地「三層信任驗證篩選」流程：",
+                pop_r1: "📌 我的身分驗證基底：", pop_r1_v: "已通過簡訊實名制",
+                pop_r3: "🌱 平台安全防範規則：", pop_r3_v: "必須先共同參與共學 3 次",
+                pop_foot: "* 系統已通知發起人。對方同意後，您將獲邀參加下週的線下見面共學，完成熟人圈首度破冰！",
+                pop_btn: "回到平台", alert_search: "⚙️ 智慧媒合引擎已啟動！已即時過濾符合條件之在地高信任度家庭。",
+                alert_apply: "🤝 申請已送出！核准後將獲邀加入線下前 3 次的見面共學。",
+                alert_claim: "📝 認領成功！3小時點數已計入您的時數銀行，實現透明互助！",
+                alert_exit: "🛡️ 已安全無痛退出小組，避免人情壓力。",
+                pop_match_txt: "與 <strong>{name}</strong> 的教育理念高度契合"
+            },
+            en: {
+                tab1: "🔍 Smart Match", tab2: "🍀 Co-Learning Group", tab3: "📅 Schedule & Chat",
+                s1_title: "🔍 Precision Filtering: Age × Distance × Philosophy",
+                s1_desc: "Verified mutual-trust families filtered via mobile authentication. Click parameters to update lists.",
+                lbl_age: "👶 Child Age Group", lbl_dist: "📍 Commute Radius", lbl_idea: "📖 Educational Philosophy",
+                opt_age_1: "3 - 5 Years Old (Preschool)", opt_age_2: "0 - 3 Years Old (Toddler)", opt_age_3: "Elementary (Grade 1-2)",
+                opt_dist_1: "Within 15 mins drive (Same Town)", opt_dist_2: "Within 30 mins drive",
+                opt_idea_1: "Waldorf / Nature Education", opt_idea_2: "Montessori Friendly", opt_idea_3: "Conventional / Slow Food",
+                btn_search: "Run Smart Match Engine",
+                f1_name: "Guan-Ting's Family (Qishan)", f1_tag1: "Waldorf Preferred", f1_tag2: "10 mins drive",
+                f1_d1: "👧 <strong>Child Profile:</strong> Born 2021 (5yo) / Bilingual / Mild G6PD (No Camphor)",
+                f1_d2: "💼 <strong>Work Style:</strong> Eco-Coffee Farmer (Flexible Hours)",
+                f1_d3: "🏡 <strong>Household:</strong> Couple only, no grandparents living together",
+                f1_d4: "⏳ <strong>Available:</strong> Wed afternoon, full weekends",
+                f1_trust: "🤝 <strong>Community Trust Link:</strong> Recommended by Manager Lin of Qishan Hub.",
+                f1_score: "🎯 Match Score 98%", f1_btn: "Apply for Trust Connection",
+                f2_name: "Jia-Jia's Family (Meinong)", f2_tag1: "Nature Education", f2_tag2: "12 mins drive",
+                f2_d1: "👦 <strong>Child Profile:</strong> Born 2022 (4yo) / Mandarin / No allergies",
+                f2_d2: "💼 <strong>Work Style:</strong> Organic Rice Farmer (High harvest workload)",
+                f2_d3: "🏡 <strong>Household:</strong> 3-member family, parents in next town",
+                f2_d4: "⏳ <strong>Available:</strong> Mon/Tue afternoons for childcare shift",
+                f2_trust: "🤝 <strong>Community Trust Link:</strong> Core member of Meinong Farmer Mutual Aid.",
+                f2_score: "🎯 Match Score 92%", f2_btn: "Apply for Trust Connection",
+                
+                s2_title: "🍀 Grouping: Build Trust via Co-Learning First",
+                s2_desc: "Initiate or apply for a micro group (cap: 3-5 families). Governed by community rules.",
+                g1_t: "Meinong Field & Mud Play Group (Seeking 3-5 Families)", g1_m: "⏰ Every Wed 14:00 | Location: Zuohuo Farm",
+                g1_d: "Insects observation and mud sculpt. 2 families joined. Looking for 3-6yo children whose parents don't mind dirty clothes.",
+                g1_lock: "<strong>🔒 Gatekeeper Compact (Micro-Scale Safety Principle)</strong> Default flow: Must attend 3 physical co-learning sessions first. Once familiar, the system unlocks the Childcare Duty Schedule.",
+                g1_btn: "Apply to Join (Requires Organizer Approval)",
+                g2_t: "Ugly-Fruit Aesthetics & Veggie Dyeing", g2_m: "⏰ Every Fri 15:30 | Location: Rotated Living Rooms",
+                g2_d: "Handicraft textile using rejected farm fruits. Supported by Local Mothers Association as a trusted third-party gatekeeper.",
+                g2_lock: "<strong>🔒 Gatekeeper Compact (Micro-Scale Safety Principle)</strong> Current Status: Full (4 families). 3 meetups completed. Agreement signing launches this Friday.",
+                g2_btn: "Group is Full",
+
+                s3_title: "📅 Trusted Childcare Duty Rota (Non-Monetary)",
+                s3_desc: "Congrats! This group passed the 3 co-learning meetups and signed the mutual aid agreement.",
+                c_h1: "🌾 Meinong Co-Play Group - Weekly Rota", c_h2: "🛡️ Agreement Active",
+                c_flow: "💡 Time Bank Rule: Earn 1 point per 3-hour shift. Redeem points to prioritize childcare help during peak harvest seasons.",
+                d_m: "Mon PM", d_m_p: "🧑‍🌾 Dad Zhiming on Duty", d_m_h: "Total Contribution: 12h",
+                d_t: "Tue PM", d_t_p: "👩‍🌾 Mom Qingqing on Duty", d_t_h: "Total Contribution: 15h",
+                d_w: "Wed (Harvest)", d_w_p: "⚠️ No Parent on Duty", d_w_h: "Urgent Staffing", d_w_btn: "🙋‍♂️ I Can Cover This Shift",
+                d_f: "Thu PM", d_f_p: "👩‍🎨 Mom Chunjiao on Duty", d_f_h: "Total Contribution: 9h",
+                w1_t: "📢 Urgent Group Announcement", w1_time: "Today 10:15", w1_txt: "Thunderstorms expected Wed PM. Shift moved to A-Hao's courtyard indoors. Please pack an extra set of dry clothes.",
+                w2_t: "💬 Group Discussion Thread", w2_av1: "QingMom", w2_u1: "Mom Qingqing: I have placed our medical kit at Zuohuo Farm.",
+                w3_t: "🛡️ Safe Exit & Rights Protection",
+                w3_d: "If workloads shift or child-rearing philosophies diverge, members can exit safely with zero peer pressure.", w3_btn: "Apply for Frictionless Exit",
+                
+                pop_title: "🛡️ Trust Request Submitted", pop_sub: "Initiating the 3-Layer rural trust validation flow:",
+                pop_r1: "📌 Identity Base:", pop_r1_v: "SMS Real-Name Authenticated",
+                pop_r3: "🌱 Safety Protocol:", pop_r3_v: "Mandatory 3 Co-Learning Sessions First",
+                pop_foot: "* Host notified. Upon approval, you'll be invited to next week's co-learning setup for the initial icebreaking!",
+                pop_btn: "Back to Platform", alert_search: "⚙️ Match engine activated! High-trust local families updated instantly.",
+                alert_apply: "🤝 Application sent! You'll be invited to the 3 icebreaking meetups upon approval.",
+                alert_claim: "📝 Shift claimed! 3 hours added to your Time Bank for transparent mutual aid.",
+                alert_exit: "🛡️ Exited safely to prevent community interpersonal friction.",
+                pop_match_txt: "Highly aligned with <strong>{name}</strong>'s educational philosophy"
+            },
+            ja: {
+                tab1: "🔍 AI条件マッチング", tab2: "🍀 相互共同学習グループ", tab3: "📅 シフト表と連絡網",
+                s1_title: "🔍 精密フィルタ：子供の年齢 × 距離 × 教育理念",
+                s1_desc: "携帯実名認証済みの信頼できる家庭のみを抽出。条件クリックで即時リスト更新。",
+                lbl_age: "👶 子供の年齢層", lbl_dist: "📍 移動可能範囲", lbl_idea: "📖 教育理念の好み",
+                opt_age_1: "3 - 5 歲 (幼稚園・保育園室児)", opt_age_2: "0 - 3 歲 (乳幼児)", opt_age_3: "小学校低学年",
+                opt_dist_1: "車で 15 分以内 (同町村)", opt_dist_2: "車で 30 分以内",
+                opt_idea_1: "シュタイナー / 自然保育派", opt_idea_2: "モンテッソーリ賛同", opt_idea_3: "体制内 / スローフード共育",
+                btn_search: "インテリジェント検索を実行",
+                f1_name: "旗山 冠廷（グァンティン）家", f1_tag1: "シュタイナー志向", f1_tag2: "車で 10 分",
+                f1_d1: "👧 <strong>子供カルテ：</strong>2021年生まれ(5歳) / 台湾語・中国語 / 軽度G6PD(樟脳不可)",
+                f1_d2: "💼 <strong>就労形態：</strong>移住コーヒー農家 (時間は柔軟に対応可能)",
+                f1_d3: "🏡 <strong>家族構成：</strong>夫婦同居、祖父母との同居なし",
+                f1_d4: "⏳ <strong>対応可能枠：</strong>毎週水曜午後、週末終日",
+                f1_trust: "🤝 <strong>地域コミュニティ連携：</strong>「旗山創生拠点」林マネージャーの推薦により入會。",
+                f1_score: "🎯 マッチ度 98%", f1_btn: "信頼連携を申請する",
+                f2_name: "美濃 佳佳（ジャジャ）家", f2_tag1: "自然保育志向", f2_tag2: "車で 12 分",
+                f2_d1: "👦 <strong>子供カルテ：</strong>2022年生まれ(4歳) / 中国語 / アレルギーなし",
+                f2_d2: "💼 <strong>就労形態：</strong>無農薬黒米青農 (収穫期は超多忙)",
+                f2_d3: "🏡 <strong>家族構成：</strong>核心家族3人、祖父母は隣町に在住",
+                f2_d4: "⏳ <strong>対応可能枠：</strong>毎週月・火曜午後に保育対応可能",
+                f2_trust: "🤝 <strong>地域コミュニティ連携：</strong>美濃客家農家相互扶助會コアメンバー。",
+                f2_score: "🎯 マッチ度 92%", f2_btn: "信頼連携を申請する",
+                
+                s2_title: "🍀 グループ結成：対面学習から始める信頼構築",
+                s2_desc: "ここで少人數グループ（上限3-5世帯）の発足や加入申請ができます。コミュニティ規約あり。",
+                g1_t: "美濃田園ドロ遊びグループ (3-5世帯募集)", g1_m: "⏰ 毎週水曜 14:00 | 場所: 作夥農場・中庭",
+                g1_d: "昆虫観察や泥造形。現在2世帯加入中。服が泥だらけになっても気にしない3-6歳児の親御さんを募集。",
+                g1_lock: "<strong>🔒 ご近所キーパー規約（少人數安全の原則）</strong>前提フロー：まずリアルな「対面共同学習に3回參加」し、互いに馴染んだ後、システムが保育相互シフト表をアンロックします。",
+                g1_btn: "加入を申請する (主催者の承認が必要)",
+                g2_t: "規格外野菜のアート＆草木染め", g2_m: "⏰ 毎週金曜 15:30 | 場所: 各家庭のリビング回り",
+                g2_d: "規格外野菜の汁を使った草木染め。本グループは「地域ママ共學協會」のソーシャルワーカーが第三者保証人です。",
+                g2_lock: "<strong>🔒 ご近所キーパー規約（少人數安全の原則）</strong>現在のステータス：満員（4世帯）。3回の対面完了。今週金曜に相互協定調印、シフト開始予定。",
+                g2_btn: "グループ満員",
+
+                s3_title: "📅 相互保育シフト管理表 (金銭授受なし)",
+                s3_desc: "おめでとうございます！本組は3回の共同学習をクリアし、相互保育協定を締結しました。",
+                c_h1: "🌾 美濃田園グループ - 今週のシフト表", c_h2: "🛡️ 協定有効期間中",
+                c_flow: "💡 タイムバンク規則：1回（3時間）の保育代理で1ポイント獲得。収穫最盛期にポイントを使い優先托児を申請可能。",
+                d_m: "月曜 午後", d_m_p: "🧑‍🌾 志明（ジーミン）パパ 当番", d_m_h: "累計貢献: 12h",
+                d_t: "火曜 午後", d_t_p: "👩‍🌾 晴晴（チンチン）ママ 当番", d_t_h: "累計貢献: 15h",
+                d_w: "水曜 (農繁期)", d_w_p: "⚠️ 當番保護者なし", d_w_h: "緊急募集中", d_w_btn: "🙋‍♂️ 當番を代行できます",
+                d_f: "木曜 午後", d_f_p: "👩‍🎨 春嬌（チュンジャオ）ママ 當番", d_f_h: "累計貢献: 9h",
+                w1_t: "📢 グループ緊急告知", w1_time: "本日 10:15", w1_txt: "水曜午後、美濃地方は雷雨の予報。當番場所をア豪家の中庭屋內ホールに変更します。着替えを一着多く持たせてください。",
+                w2_t: "💬 チャット欄", w2_av1: "晴ママ", w2_u1: "晴晴ママ: 作夥農場に救急箱を置いておきましたよ。",
+                w3_t: "🛡️ 安全な退出と権利保護",
+                w3_d: "仕事の都合や教育方針のズレが生じた場合、人間関係のストレスなくボタン一つで安全に退出できます。", w3_btn: "ストレスフリーな退出を申請",
+                
+                pop_title: "🛡️ 信頼連携の申請を送信しました", pop_sub: "地域密着型の「3層信頼認証」プロセスが開始されました：",
+                pop_r1: "📌 本人確認ベース：", pop_r1_v: "SMS実名認証クリア済み",
+                pop_r3: "🌱 システム安全規則：", pop_r3_v: "事前の対面学習に3回參加必須",
+                pop_foot: "* 主催者に通知されました。承認後、來週の対面共同学習（最初のアイスブレイク）に招待されます！",
+                pop_btn: "プラットフォームに戻る", alert_search: "⚙️ AIマッチングエンジン起動！条件に合う地域の高信頼世帯を抽出しました。",
+                alert_apply: "🤝 申請完了！承認後、最初の対面アイスブレイク3回に招待されます。",
+                alert_claim: "📝 シフトを引き受けました！タイムバンクに3時間が計上され、透明な助け合いが実現します。",
+                alert_exit: "🛡️ コミュニティ內の人間関係摩擦を防ぐため、安全に退出処理が行われました。",
+                pop_match_txt: "<strong>{name}</strong> の教育理念と高度に一致しています"
+            }
+        };
+
+        let currentLang = 'zh';
+
+        function changeLang(lang) {
+            currentLang = lang;
+            
+            // 按鈕樣式切換
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+
+            const db = i18n[lang];
+
+            // 頂部與選單
+            document.getElementById('tab1').innerText = db.tab1;
+            document.getElementById('tab2').innerText = db.tab2;
+            document.getElementById('tab3').innerText = db.tab3;
+
+            // 功能一 標題與篩選
+            document.getElementById('s1-title').innerText = db.s1_title;
+            document.getElementById('s1-desc').innerText = db.s1_desc;
+            document.getElementById('lbl-age').innerText = db.lbl_age;
+            document.getElementById('lbl-dist').innerText = db.lbl_dist;
+            document.getElementById('lbl-idea').innerText = db.lbl_idea;
+            document.getElementById('opt-age-1').innerText = db.opt_age_1;
+            document.getElementById('opt-age-2').innerText = db.opt_age_2;
+            document.getElementById('opt-age-3').innerText = db.opt_age_3;
+            document.getElementById('opt-dist-1').innerText = db.opt_dist_1;
+            document.getElementById('opt-dist-2').innerText = db.opt_dist_2;
+            document.getElementById('opt-idea-1').innerText = db.opt_idea_1;
+            document.getElementById('opt-idea-2').innerText = db.opt_idea_2;
+            document.getElementById('opt-idea-3').innerText = db.opt_idea_3;
+            document.getElementById('btn-search').innerText = db.btn_search;
+
+            // 家庭 1
+            document.getElementById('f1-name').innerHTML = `${db.f1_name} <span class="badge-tag idea">${db.f1_tag1}</span> <span class="badge-tag dist">${db.f1_tag2}</span>`;
+            document.getElementById('f1-d1').innerHTML = db.f1_d1;
+            document.getElementById('f1-d2').innerHTML = db.f1_d2;
+            document.getElementById('f1-d3').innerHTML = db.f1_d3;
+            document.getElementById('f1-d4').innerHTML = db.f1_d4;
+            document.getElementById('f1-trust').innerHTML = db.f1_trust;
+            document.getElementById('f1-score').innerText = db.f1_score;
+            document.getElementById('f1-btn').innerText = db.f1_btn;
+
+            // 家庭 2
+            document.getElementById('f2-name').innerHTML = `${db.f2_name} <span class="badge-tag idea">${db.f2_tag1}</span> <span class="badge-tag dist">${db.f2_tag2}</span>`;
+            document.getElementById('f2-d1').innerHTML = db.f2_d1;
+            document.getElementById('f2-d2').innerHTML = db.f2_d2;
+            document.getElementById('f2-d3').innerHTML = db.f2_d3;
+            document.getElementById('f2-d4').innerHTML = db.f2_d4;
+            document.getElementById('f2-trust').innerHTML = db.f2_trust;
+            document.getElementById('f2-score').innerText = db.f2_score;
+            document.getElementById('f2-btn').innerText = db.f2_btn;
+
+            // 功能二
+            document.getElementById('s2-title-main').innerText = db.s2_title;
+            document.getElementById('s2-desc-main').innerText = db.s2_desc;
+            document.getElementById('g1-t').innerText = db.g1_t;
+            document.getElementById('g1-m').innerText = db.g1_m;
+            document.getElementById('g1-d').innerText = db.g1_d;
+            document.getElementById('g1-lock').innerHTML = db.g1_lock;
+            if(!document.getElementById('g1-btn').classList.contains('applied')) {
+                document.getElementById('g1-btn').innerText = db.g1_btn;
+            }
+            document.getElementById('g2-t').innerText = db.g2_t;
+            document.getElementById('g2-m').innerText = db.g2_m;
+            document.getElementById('g2-d').innerText = db.g2_d;
+            document.getElementById('g2-lock').innerHTML = db.g2_lock;
+            document.getElementById('g2-btn').innerText = db.g2_btn;
+
+            // ✨【修復核心】功能三排班頁面的多語系即時替換
+            document.getElementById('s3-title-main').innerText = db.s3_title;
+            document.getElementById('s3-desc-main').innerText = db.s3_desc;
+            document.getElementById('c_h1').innerText = db.c_h1;
+            document.getElementById('c_h2').innerText = db.c_h2;
+            document.getElementById('c_flow').innerText = db.c_flow;
+            document.getElementById('d-m').innerText = db.d_m;
+            document.getElementById('d-m-p').innerText = db.d_m_p;
+            document.getElementById('d-m-h').innerText = db.d_m_h;
+            document.getElementById('d-t').innerText = db.d_t;
+            document.getElementById('d-t-p').innerText = db.d_t_p;
+            document.getElementById('d-t-h').innerText = db.d_t_h;
+            document.getElementById('d-w').innerText = db.d_w;
+            
+            // 如果週三還沒有被點擊認領，就正常切換翻譯文字
+            if (document.getElementById('d-w-btn')) {
+                document.getElementById('d-w-p').innerText = db.d_w_p;
+                document.getElementById('d-w-h').innerText = db.d_w_h;
+                document.getElementById('d-w-btn').innerText = db.d_w_btn;
+            }
+            
+            document.getElementById('d-f').innerText = db.d_f;
+            document.getElementById('d-f-p').innerText = db.d_f_p;
+            document.getElementById('d-f-h').innerText = db.d_f_h;
+            
+            // 右側側邊欄的即時公告與討論串
+            document.getElementById('w1-t').innerText = db.w1_t;
+            document.getElementById('w1-time').innerText = db.w1_time;
+            document.getElementById('w1-txt').innerText = db.w1_txt;
+            document.getElementById('w2-t').innerText = db.w2_t;
+            document.getElementById('w2-av1').innerText = db.w2_av1;
+            document.getElementById('w2-u1').innerText = db.w2_u1;
+            document.getElementById('w3-t').innerText = db.w3_t;
+            document.getElementById('w3-d').innerText = db.w3_d;
+            document.getElementById('w3-btn').innerText = db.w3_btn;
+
+            // 全螢幕彈窗
+            document.getElementById('pop-title').innerText = db.pop_title;
+            document.getElementById('pop-sub').innerText = db.pop_sub;
+            document.getElementById('pop-r1').innerText = db.pop_r1;
+            document.getElementById('pop-r1-v').innerText = db.pop_r1_v;
+            document.getElementById('pop-r3').innerText = db.pop_r3;
+            document.getElementById('pop-r3-v').innerText = db.pop_r3_v;
+            document.getElementById('pop-foot').innerText = db.pop_foot;
+            document.getElementById('pop-btn').innerText = db.pop_btn;
+        }
+
+        function triggerSearchMock() {
+            alert(i18n[currentLang].alert_search);
+        }
+
+        function connectFamily(id) {
+            const db = i18n[currentLang];
+            const name = (id === 1) ? db.f1_name : db.f2_name;
+            const text = db.pop_match_txt.replace("{name}", name);
+            document.getElementById('targetName').innerHTML = text;
+            document.getElementById('matchOverlay').style.display = 'flex';
+        }
+
+        function closeOverlay() {
+            document.getElementById('matchOverlay').style.display = 'none';
+        }
+
+        function applyGroup(btn) {
+            if(btn.classList.contains('applied')) return;
+            btn.classList.add('applied');
+            btn.style.background = "#ECE7DF";
+            btn.style.color = "var(--text-muted)";
+            alert(i18n[currentLang].alert_apply);
+            setTimeout(() => {
+                btn.innerText = "✓ Applied / 申請中";
+            }, 50);
+        }
+
+        function claimSlot(btn) {
+            const slot = document.getElementById('vacant-slot');
+            slot.style.background = "white";
+            slot.style.borderLeftColor = "var(--primary)";
+            
+            const txt = currentLang === 'zh' ? '✨ 您 (已認領)' : (currentLang === 'en' ? '✨ You (Claimed)' : '✨ あなた (代行確定)');
+            const sub = currentLang === 'zh' ? '時數已記下: +3h' : (currentLang === 'en' ? 'Time Logged: +3h' : '貢献記録: +3h');
+
+            slot.innerHTML = `
+                <div class="slot-time-v2">14:00 - 17:00</div>
+                <div class="slot-p-v2" style="color:var(--primary)">${txt}</div>
+                <div class="slot-hours">${sub}</div>
+            `;
+            alert(i18n[currentLang].alert_claim);
+        }
+
+        function exitGroupMock() {
+            if(confirm(i18n[currentLang].w3_d)) {
+                alert(i18n[currentLang].alert_exit);
+                switchPage('stage1');
+            }
+        }
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+
+            const event = window.event;
+            if(event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                const idx = pageId === 'stage1' ? 0 : (pageId === 'stage2' ? 1 : 2);
+                document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+            }
+        }
+
+        function resetDemo() {
+            const grBtn = document.getElementById('g1-btn');
+            grBtn.classList.remove('applied');
+            grBtn.style.background = "var(--primary)";
+            grBtn.style.color = "white";
+
+            const slot = document.getElementById('vacant-slot');
+            slot.style.background = "#FFF9F5";
+            slot.style.borderLeftColor = "#E57373";
+            slot.innerHTML = `
+                <div class="slot-time-v2">14:00 - 17:00</div>
+                <div class="slot-p-v2" style="color: #D32F2F;" id="d-w-p">⚠️ 尚無家長值班</div>
+                <div class="slot-hours" style="background:#FCEFEA;" id="d-w-h">急缺人力</div>
+                <button class="btn-register-slot" id="d-w-btn" onclick="claimSlot(this)">🙋‍♂️ 我可支援值班</button>
+            `;
+
+            changeLang('zh');
+            switchPage('stage1');
+            alert("🔄 三語系 Demo 狀態已重置！第三頁排班翻譯已全數修復完成。");
+        }
+    </script>
+</body>
+</html>

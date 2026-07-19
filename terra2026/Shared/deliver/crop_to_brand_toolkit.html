@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>農產加工品牌 Toolkit｜From Crop to Brand</title>
+<style>
+  :root {
+    color-scheme: light;
+    --leaf: #2f6b45;
+    --leaf-dark: #17452e;
+    --mint: #e9f6df;
+    --sky: #dff3f7;
+    --wheat: #f7cf78;
+    --berry: #c94b5e;
+    --soil: #7a5236;
+    --paper: #fffaf0;
+    --ink: #233025;
+    --muted: #687468;
+    --line: #dfd7c5;
+    --white: #ffffff;
+    --shadow: 0 10px 24px rgba(75, 60, 36, 0.08);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+    color: var(--ink);
+    background:
+      linear-gradient(180deg, rgba(223, 243, 247, 0.72), rgba(255, 250, 240, 0.88) 320px),
+      repeating-linear-gradient(90deg, rgba(47, 107, 69, 0.035) 0 1px, transparent 1px 64px),
+      var(--paper);
+    letter-spacing: 0;
+  }
+
+  button, textarea, input { font: inherit; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .app-shell {
+    width: min(1180px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 22px 0 36px;
+  }
+
+  .masthead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 20px;
+    align-items: end;
+    min-height: 210px;
+    padding: 12px 0 18px;
+  }
+
+  .title-block {
+    min-width: 0;
+  }
+
+  .brand-logo {
+    width: min(610px, 100%);
+    margin-bottom: 14px;
+  }
+
+  .brand-logo svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--leaf-dark);
+    font-size: 4.15rem;
+    line-height: 1.04;
+    font-weight: 950;
+  }
+
+  .subtitle {
+    margin: 12px 0 0;
+    max-width: 720px;
+    color: #4e5f52;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .field-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(122, 82, 54, 0.16);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    background: #f8efd4;
+    aspect-ratio: 16 / 9;
+  }
+
+  .field-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .pretest-panel {
+    margin: 8px 0 18px;
+    border: 1px solid rgba(122, 82, 54, 0.16);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .pretest-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.45fr);
+    gap: 18px;
+    align-items: center;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(90deg, rgba(233, 246, 223, 0.92), rgba(255, 250, 240, 0.88));
+  }
+
+  .pretest-head h2,
+  .summary-head h2 {
+    margin: 0;
+    color: var(--leaf-dark);
+    font-size: 1.35rem;
+    line-height: 1.25;
+    font-weight: 950;
+  }
+
+  .pretest-head p,
+  .summary-head p {
+    margin: 7px 0 0;
+    color: #4e5f52;
+    line-height: 1.65;
+    font-weight: 650;
+  }
+
+  .stage-card {
+    border: 1px solid rgba(47, 107, 69, 0.18);
+    border-radius: 8px;
+    background: #fffdf7;
+    padding: 14px;
+  }
+
+  .stage-label {
+    color: var(--berry);
+    font-size: 0.78rem;
+    font-weight: 950;
+    margin-bottom: 6px;
+  }
+
+  .stage-title {
+    color: var(--leaf-dark);
+    font-size: 1.05rem;
+    line-height: 1.4;
+    font-weight: 950;
+  }
+
+  .stage-note {
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.5;
+    margin-top: 6px;
+    font-weight: 750;
+  }
+
+  .pretest-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 18px 22px 20px;
+  }
+
+  .check-item {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    border: 1px solid rgba(122, 82, 54, 0.14);
+    border-radius: 8px;
+    background: #fffdf7;
+    padding: 12px;
+    cursor: pointer;
+  }
+
+  .check-item:hover {
+    border-color: rgba(47, 107, 69, 0.32);
+    background: #f7fbef;
+  }
+
+  .check-item input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--leaf);
+    margin-top: 2px;
+  }
+
+  .check-title {
+    display: block;
+    color: var(--leaf-dark);
+    font-weight: 950;
+    line-height: 1.35;
+  }
+
+  .check-copy {
+    display: block;
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.45;
+    margin-top: 4px;
+    font-weight: 650;
+  }
+
+  .pretest-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 0 22px 20px;
+  }
+
+  .step-rail-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding: 10px 0 12px;
+    background: linear-gradient(180deg, rgba(255, 250, 240, 0.96), rgba(255, 250, 240, 0.88));
+    backdrop-filter: blur(10px);
+  }
+
+  .rail-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .rail-title {
+    margin: 0;
+    color: var(--leaf-dark);
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  .rail-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+    display: inline-grid;
+    place-items: center;
+    border: 1px solid rgba(47, 107, 69, 0.2);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--leaf-dark);
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    box-shadow: 0 4px 12px rgba(75, 60, 36, 0.06);
+  }
+
+  .icon-btn:hover { background: var(--mint); }
+
+  .step-rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 1fr);
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    padding: 2px 2px 12px;
+    scrollbar-color: rgba(47, 107, 69, 0.32) transparent;
+  }
+
+  .step-card {
+    min-height: 162px;
+    text-align: left;
+    border: 1px solid rgba(122, 82, 54, 0.16);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--ink);
+    padding: 16px;
+    cursor: pointer;
+    scroll-snap-align: start;
+    box-shadow: 0 6px 16px rgba(75, 60, 36, 0.06);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .step-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(75, 60, 36, 0.1);
+  }
+
+  .step-card[aria-pressed="true"] {
+    border-color: rgba(47, 107, 69, 0.58);
+    background: linear-gradient(180deg, #ffffff, #f4fbec);
+    box-shadow: 0 0 0 3px rgba(47, 107, 69, 0.12), 0 12px 22px rgba(75, 60, 36, 0.1);
+  }
+
+  .step-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .step-number {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: var(--white);
+    background: var(--leaf);
+    font-weight: 950;
+    font-size: 0.86rem;
+  }
+
+  .step-icon {
+    font-size: 1.7rem;
+    line-height: 1;
+  }
+
+  .step-card h3 {
+    margin: 0 0 5px;
+    color: var(--leaf-dark);
+    font-size: 1.04rem;
+    line-height: 1.35;
+    font-weight: 950;
+  }
+
+  .step-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    font-weight: 750;
+  }
+
+  .detail-area {
+    display: grid;
+    grid-template-columns: minmax(230px, 0.76fr) minmax(0, 1.6fr);
+    gap: 24px;
+    align-items: start;
+    padding-top: 22px;
+  }
+
+  .detail-aside {
+    position: sticky;
+    top: 210px;
+    border-left: 6px solid var(--wheat);
+    padding: 4px 0 4px 18px;
+  }
+
+  .detail-kicker {
+    color: var(--berry);
+    font-size: 0.82rem;
+    font-weight: 950;
+    margin: 0 0 8px;
+  }
+
+  .detail-aside h2 {
+    margin: 0;
+    color: var(--leaf-dark);
+    font-size: 2.55rem;
+    line-height: 1.08;
+    font-weight: 950;
+  }
+
+  .detail-en {
+    margin: 8px 0 0;
+    color: var(--soil);
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  .purpose {
+    margin: 20px 0 0;
+    color: #44564a;
+    line-height: 1.75;
+    font-weight: 650;
+  }
+
+  .core-thought {
+    margin-top: 20px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: #fff2c5;
+    border: 1px solid rgba(122, 82, 54, 0.14);
+    color: #573f25;
+    line-height: 1.6;
+    font-weight: 850;
+  }
+
+  .detail-panel {
+    border: 1px solid rgba(122, 82, 54, 0.16);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .panel-band {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .panel-section {
+    padding: 22px;
+    min-width: 0;
+  }
+
+  .panel-section + .panel-section {
+    border-left: 1px solid var(--line);
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 12px;
+    color: var(--leaf-dark);
+    font-size: 1rem;
+    font-weight: 950;
+  }
+
+  .section-title .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--berry);
+  }
+
+  .question-list,
+  .output-list,
+  .example-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+
+  .question-list li,
+  .example-list li {
+    position: relative;
+    padding-left: 18px;
+    color: #3f4d43;
+    line-height: 1.55;
+  }
+
+  .question-list li::before,
+  .example-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--leaf);
+  }
+
+  .output-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .output-list li {
+    border: 1px solid rgba(47, 107, 69, 0.2);
+    border-radius: 999px;
+    background: var(--mint);
+    color: var(--leaf-dark);
+    padding: 7px 11px;
+    font-size: 0.85rem;
+    font-weight: 850;
+  }
+
+  .workspace {
+    padding: 22px;
+  }
+
+  .workspace-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .workspace-header h3 {
+    margin: 0;
+    color: var(--leaf-dark);
+    font-size: 1.08rem;
+    font-weight: 950;
+  }
+
+  .save-state {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .template-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .field-label {
+    display: block;
+    color: #3b4e40;
+    font-size: 0.86rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 118px;
+    resize: vertical;
+    border: 1px solid rgba(122, 82, 54, 0.2);
+    border-radius: 8px;
+    background: #fffdf7;
+    color: var(--ink);
+    padding: 12px 13px;
+    line-height: 1.55;
+    outline: none;
+  }
+
+  textarea:focus {
+    border-color: rgba(47, 107, 69, 0.7);
+    box-shadow: 0 0 0 3px rgba(47, 107, 69, 0.12);
+  }
+
+  .copy-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+
+  .text-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(47, 107, 69, 0.24);
+    border-radius: 8px;
+    background: var(--leaf);
+    color: var(--white);
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 900;
+  }
+
+  .text-btn:hover { background: var(--leaf-dark); }
+
+  .text-btn.secondary {
+    background: #fffdf7;
+    color: var(--leaf-dark);
+  }
+
+  .text-btn.secondary:hover {
+    background: var(--mint);
+  }
+
+  .matrix-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 13px;
+  }
+
+  .matrix-tags span {
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: #edf7fa;
+    border: 1px solid rgba(45, 117, 135, 0.16);
+    color: #285969;
+    font-size: 0.84rem;
+    font-weight: 850;
+  }
+
+  .toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 20;
+    transform: translateY(18px);
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 8px;
+    background: var(--leaf-dark);
+    color: var(--white);
+    padding: 12px 14px;
+    box-shadow: var(--shadow);
+    font-weight: 850;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .summary-page {
+    margin-top: 26px;
+    border: 1px solid rgba(122, 82, 54, 0.16);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .summary-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    padding: 22px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(90deg, rgba(255, 242, 197, 0.92), rgba(233, 246, 223, 0.84));
+  }
+
+  .summary-body {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.82fr) minmax(0, 1.4fr);
+    gap: 0;
+  }
+
+  .summary-side {
+    padding: 22px;
+    border-right: 1px solid var(--line);
+  }
+
+  .overall-meter {
+    margin-bottom: 20px;
+  }
+
+  .overall-number {
+    color: var(--leaf-dark);
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 950;
+  }
+
+  .overall-label {
+    color: var(--muted);
+    font-weight: 850;
+    margin-top: 6px;
+  }
+
+  .meter-track {
+    width: 100%;
+    height: 12px;
+    margin-top: 12px;
+    border-radius: 999px;
+    background: #eadfc9;
+    overflow: hidden;
+  }
+
+  .meter-fill {
+    width: 0;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--leaf), #86b86a);
+    transition: width 0.22s ease;
+  }
+
+  .completion-grid {
+    display: grid;
+    gap: 9px;
+  }
+
+  .completion-row {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 52px;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid rgba(122, 82, 54, 0.14);
+    border-radius: 8px;
+    background: #fffdf7;
+    padding: 9px 10px;
+  }
+
+  .completion-row button {
+    border: 0;
+    background: transparent;
+    color: var(--leaf-dark);
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    font-weight: 900;
+    line-height: 1.35;
+  }
+
+  .completion-step {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--mint);
+    color: var(--leaf-dark);
+    font-weight: 950;
+  }
+
+  .completion-percent {
+    color: var(--soil);
+    font-size: 0.86rem;
+    font-weight: 950;
+    text-align: right;
+  }
+
+  .proposal-panel {
+    padding: 22px;
+  }
+
+  .proposal-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .proposal-toolbar h3 {
+    margin: 0;
+    color: var(--leaf-dark);
+    font-size: 1.08rem;
+    font-weight: 950;
+  }
+
+  .proposal-output {
+    min-height: 520px;
+    white-space: pre-wrap;
+  }
+
+  @media (max-width: 900px) {
+    h1 { font-size: 3.25rem; }
+
+    .detail-aside h2 { font-size: 2.2rem; }
+
+    .masthead {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .detail-area {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .detail-aside {
+      position: static;
+    }
+
+    .pretest-head,
+    .summary-head,
+    .summary-body {
+      grid-template-columns: 1fr;
+    }
+
+    .summary-side {
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+    }
+  }
+
+  @media (max-width: 680px) {
+    h1 { font-size: 2.35rem; }
+
+    .detail-aside h2 { font-size: 1.75rem; }
+
+    .app-shell {
+      width: min(100% - 22px, 1180px);
+      padding-top: 14px;
+    }
+
+    .masthead {
+      padding-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+    }
+
+    .rail-toolbar {
+      align-items: flex-start;
+    }
+
+    .pretest-body {
+      grid-template-columns: 1fr;
+      padding: 14px;
+    }
+
+    .pretest-head,
+    .summary-head,
+    .summary-side,
+    .proposal-panel {
+      padding: 16px;
+    }
+
+    .pretest-actions {
+      padding: 0 14px 16px;
+    }
+
+    .step-rail {
+      grid-auto-columns: minmax(196px, 78vw);
+    }
+
+    .panel-band,
+    .template-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .panel-section + .panel-section {
+      border-left: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .workspace-header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .copy-row {
+      justify-content: stretch;
+    }
+
+    .text-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .proposal-toolbar {
+      align-items: stretch;
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+<main class="app-shell">
+  <section class="masthead" aria-labelledby="page-title">
+    <div class="title-block">
+      <div class="brand-logo" role="img" aria-label="田路 Toolkit From Crop to Brand">
+        <svg viewBox="0 0 640 118" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logo-soft-field" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fffaf0"/>
+              <stop offset="0.55" stop-color="#eef7e5"/>
+              <stop offset="1" stop-color="#dff3f7"/>
+            </linearGradient>
+            <filter id="logo-shadow" x="-8%" y="-16%" width="116%" height="132%">
+              <feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#17452e" flood-opacity="0.11"/>
+            </filter>
+          </defs>
+
+          <g filter="url(#logo-shadow)">
+            <path d="M18 75 C76 50, 140 70, 194 52 C258 31, 342 48, 414 39 C501 28, 574 43, 622 24 L622 106 L18 106 Z" fill="url(#logo-soft-field)" opacity="0.92"/>
+            <path d="M20 89 C90 70, 148 91, 214 75 C291 56, 360 74, 430 62 C508 49, 580 62, 622 45 L622 106 L20 106 Z" fill="#e9f6df"/>
+            <path d="M20 100 C82 87, 151 102, 216 91 C296 76, 372 94, 444 80 C520 65, 582 82, 622 68 L622 106 L20 106 Z" fill="#f7cf78" opacity="0.56"/>
+          </g>
+
+          <g transform="translate(27 16)">
+            <path d="M12 2 H68 C76 2, 82 8, 82 16 V72 C82 80, 76 86, 68 86 H12 C4 86,-2 80,-2 72 V16 C-2 8,4 2,12 2 Z" fill="#fffaf0" stroke="#2f6b45" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M40 8 V80" stroke="#2f6b45" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M5 43 H75" stroke="#2f6b45" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M14 30 C26 18, 40 17, 54 29" fill="none" stroke="#8bbf6b" stroke-width="5" stroke-linecap="round"/>
+            <path d="M31 61 C44 49, 58 49, 72 61" fill="none" stroke="#8bbf6b" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="70" cy="16" r="5" fill="#f7cf78"/>
+          </g>
+
+          <text x="126" y="54" fill="#17452e" stroke="#fffaf0" stroke-width="3" paint-order="stroke" font-family="'Hannotate TC', 'Klee', 'Chalkboard SE', 'Marker Felt', 'Noto Sans TC', system-ui, sans-serif" font-size="43" font-weight="900">田路</text>
+          <text x="238" y="54" fill="#2f6b45" stroke="#fffaf0" stroke-width="3" paint-order="stroke" font-family="'Marker Felt', 'Chalkboard SE', 'Comic Sans MS', system-ui, sans-serif" font-size="43" font-weight="900">Toolkit</text>
+          <path d="M130 70 C198 66, 262 75, 330 70 C392 66, 445 71, 510 67" stroke="#dfd7c5" stroke-width="4" stroke-linecap="round"/>
+          <text x="132" y="95" fill="#7a5236" stroke="#fffaf0" stroke-width="2" paint-order="stroke" font-family="'Marker Felt', 'Chalkboard SE', 'Comic Sans MS', system-ui, sans-serif" font-size="22" font-weight="850">From Crop to Brand</text>
+          <path d="M478 91 C502 71, 528 70, 552 91" fill="none" stroke="#8bbf6b" stroke-width="5" stroke-linecap="round"/>
+          <path d="M540 87 C558 73, 578 72, 598 86" fill="none" stroke="#2f6b45" stroke-width="4" stroke-linecap="round" opacity="0.62"/>
+        </svg>
+      </div>
+      <h1 class="sr-only" id="page-title">田路 Toolkit From Crop to Brand</h1>
+      <p class="subtitle">從重新認識作物開始，找到高價值加工方式，連結在地資源與市場需求，讓小農一步一步把農產品轉化為有故事、有特色、可驗證的品牌。</p>
+      <div class="hero-actions">
+        <button class="text-btn" type="button" id="hero-start-test">開始前測</button>
+        <button class="text-btn secondary" type="button" id="hero-open-summary">查看完整度</button>
+      </div>
+    </div>
+    <div class="field-frame" aria-hidden="true">
+      <img class="field-image" src="assets/pastoral-hero.png" alt="">
+    </div>
+  </section>
+
+  <section class="pretest-panel" id="pretest-panel" aria-labelledby="pretest-title">
+    <div class="pretest-head">
+      <div>
+        <h2 id="pretest-title">前測｜目前做到哪一步？</h2>
+        <p>先確認已經擁有的資料，系統會建議從第一個需要補強的步驟開始，不必重做已完成的內容。</p>
+      </div>
+      <div class="stage-card" aria-live="polite">
+        <div class="stage-label">建議起點</div>
+        <div class="stage-title" id="stage-title">從 STEP 1 開始</div>
+        <div class="stage-note" id="stage-note">尚未勾選任何既有資料。</div>
+      </div>
+    </div>
+    <div class="pretest-body" id="pretest-list"></div>
+    <div class="pretest-actions">
+      <button class="text-btn secondary" type="button" id="clear-pretest">清除前測</button>
+      <button class="text-btn" type="button" id="go-suggested-step">前往建議步驟</button>
+    </div>
+  </section>
+
+  <section class="step-rail-wrap" aria-labelledby="workflow-title">
+    <div class="rail-toolbar">
+      <h2 class="rail-title" id="workflow-title">七步驟工作流程</h2>
+      <div class="rail-actions">
+        <button class="icon-btn" type="button" id="rail-prev" aria-label="上一組步驟">‹</button>
+        <button class="icon-btn" type="button" id="rail-next" aria-label="下一組步驟">›</button>
+      </div>
+    </div>
+    <div class="step-rail" id="step-rail" aria-label="Toolkit steps"></div>
+  </section>
+
+  <section class="detail-area" id="detail-area" aria-live="polite">
+    <aside class="detail-aside">
+      <p class="detail-kicker" id="detail-step">STEP 1</p>
+      <h2 id="detail-title">重新認識你的作物</h2>
+      <p class="detail-en" id="detail-en">Crop Discovery</p>
+      <p class="purpose" id="detail-purpose"></p>
+      <div class="core-thought" id="detail-core"></div>
+    </aside>
+
+    <div class="detail-panel">
+      <div class="panel-band">
+        <section class="panel-section" aria-labelledby="questions-title">
+          <h3 class="section-title" id="questions-title"><span class="dot"></span>Toolkit 問題</h3>
+          <ul class="question-list" id="question-list"></ul>
+        </section>
+        <section class="panel-section" aria-labelledby="outputs-title">
+          <h3 class="section-title" id="outputs-title"><span class="dot"></span>這一步會產出</h3>
+          <ul class="output-list" id="output-list"></ul>
+          <div class="matrix-tags" id="matrix-tags"></div>
+        </section>
+      </div>
+
+      <div class="panel-band">
+        <section class="panel-section" aria-labelledby="examples-title">
+          <h3 class="section-title" id="examples-title"><span class="dot"></span>參考例子</h3>
+          <ul class="example-list" id="example-list"></ul>
+        </section>
+        <section class="panel-section" aria-labelledby="next-title">
+          <h3 class="section-title" id="next-title"><span class="dot"></span>判斷重點</h3>
+          <ul class="example-list" id="focus-list"></ul>
+        </section>
+      </div>
+
+      <section class="workspace" aria-labelledby="workspace-title">
+        <div class="workspace-header">
+          <h3 id="workspace-title">我的工作模板</h3>
+          <span class="save-state" id="save-state">已自動暫存</span>
+        </div>
+        <div class="template-grid" id="template-grid"></div>
+        <div class="copy-row">
+          <button class="text-btn" type="button" id="copy-step">⎘ 複製本步內容</button>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="summary-page" id="summary-page" aria-labelledby="summary-title">
+    <div class="summary-head">
+      <div>
+        <h2 id="summary-title">完整度與提案總覽</h2>
+        <p>這裡會依照七個步驟的填寫狀態計算完整度，並把所有模板內容整理成一份可複製的初版提案。</p>
+      </div>
+      <button class="text-btn" type="button" id="copy-proposal">⎘ 複製完整提案</button>
+    </div>
+    <div class="summary-body">
+      <aside class="summary-side">
+        <div class="overall-meter">
+          <div class="overall-number" id="overall-number">0%</div>
+          <div class="overall-label" id="overall-label">尚未開始填寫</div>
+          <div class="meter-track" aria-hidden="true">
+            <div class="meter-fill" id="meter-fill"></div>
+          </div>
+        </div>
+        <div class="completion-grid" id="completion-grid"></div>
+      </aside>
+      <section class="proposal-panel" aria-labelledby="proposal-title">
+        <div class="proposal-toolbar">
+          <h3 id="proposal-title">自動綜整提案</h3>
+          <span class="save-state" id="proposal-state">依目前填寫內容產生</span>
+        </div>
+        <textarea class="proposal-output" id="proposal-output" readonly></textarea>
+      </section>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast">已複製</div>
+
+<script>
+const steps = [
+  {
+    id: 1,
+    icon: "🌱",
+    title: "重新認識你的作物",
+    en: "Crop Discovery",
+    purpose: "找出自己真正擁有的資源，而不是只把它當成單一農產品。",
+    core: "不要只問「我種什麼」，而是問：我真正擁有什麼資源？",
+    questions: ["你的主要作物有哪些？", "一年四季什麼時候最多？", "容易剩下的是哪一種？", "哪些品質最好？", "哪些因為外觀不好而賣不掉？", "哪些最具有地方特色？"],
+    outputs: ["作物資源盤點表", "剩餘資源清單", "在地優勢線索"],
+    tags: ["甜度", "產季", "耐候性", "格外品", "地方特色"],
+    examples: ["甘蔗：高甜度、耐風雨、宜蘭適合種植。", "剩料很多時，可以思考糖蜜、果汁、冰品或體驗材料。"],
+    focus: ["先整理資源，不急著決定產品。", "把賣不掉、剩下、外觀不好但安全可食的部分也列入。"],
+    fields: ["主要作物", "盛產季節與剩餘狀況", "品質特色與在地特色", "可被利用的格外品或剩料"]
+  },
+  {
+    id: 2,
+    icon: "🧺",
+    title: "重新觀察市場需求",
+    en: "Customer Discovery",
+    purpose: "先研究誰需要、為什麼需要，避免做出沒有人想買的加工品。",
+    core: "不要賣作物，要賣需求。",
+    questions: ["誰可能會買？", "他們買的是方便、健康、送禮、體驗、故事，還是文化？", "觀光客需要什麼？", "親子、露營、健康族群或企業禮盒各自重視什麼？", "產品需要好攜帶、好保存，還是好分享？"],
+    outputs: ["顧客需求地圖", "目標客群假設", "購買情境整理"],
+    tags: ["觀光客", "親子", "露營", "健康族群", "送禮市場", "企業禮盒"],
+    examples: ["觀光客想帶回宜蘭特色，所以需要方便攜帶、適合伴手禮。", "健康族群可能在意低添加、原料透明與保存方式。"],
+    focus: ["把「買農產品」翻譯成「完成某個需求」。", "一個作物可以對應多種客群，不必一開始只選一個。"],
+    fields: ["可能客群", "他們真正想要的價值", "購買情境", "最有機會的需求組合"]
+  },
+  {
+    id: 3,
+    icon: "🍯",
+    title: "發散加工可能性",
+    en: "Value Expansion",
+    purpose: "從一種作物至少發想十種加工方式，先大量打開可能性。",
+    core: "不要只有一種答案，先大量發散。",
+    questions: ["這個作物可以變成食品嗎？", "可以變成飲品、甜點或調味料嗎？", "能不能延伸到保養品、教育材料或文創商品？", "可以做成體驗活動或觀光商品嗎？", "哪一些加工方式最能提高價值？"],
+    outputs: ["加工可能性矩陣", "十種以上加工方向", "高價值候選產品"],
+    tags: ["食品", "飲品", "甜點", "保養品", "教育材料", "文創商品", "體驗活動", "觀光商品"],
+    examples: ["米：米酒、米餅、米果、米冰淇淋、米鬆餅粉、米奶、米香、米甜點。", "甘蔗：黑糖、糖漿、果汁、冰棒、發酵飲、甜點、DIY 材料、體驗活動。"],
+    focus: ["先求多，再回頭篩選可行性。", "同時想產品與體驗，價值不一定只在包裝食品。"],
+    fields: ["食品類想法", "飲品與甜點類想法", "體驗、教育或觀光類想法", "最想優先測試的 3 個加工方向"]
+  },
+  {
+    id: 4,
+    icon: "🔎",
+    title: "尋找外部靈感",
+    en: "Inspiration Search",
+    purpose: "借鏡國內外案例與不同產業做法，不需要重新發明所有東西。",
+    core: "不要只找競爭者，更要找不同產業的靈感。",
+    questions: ["日本、韓國、歐洲有沒有類似案例？", "台灣其他縣市、農會或地方創生品牌怎麼做？", "哪些案例可以學？", "哪些可以改善？", "哪些適合放到宜蘭或自己的地方脈絡？", "可以找誰跨領域合作？"],
+    outputs: ["案例與靈感資料庫", "可借鏡做法", "跨領域合作方向"],
+    tags: ["日本案例", "韓國案例", "歐洲案例", "地方創生", "農會案例", "文創品牌", "研究機構"],
+    examples: ["與食品系合作改善配方，與設計系合作包裝，與農改場確認加工可行性。", "把不同產業的體驗設計，轉成農產加工的參訪與 DIY 活動。"],
+    focus: ["案例不是照抄，而是找可轉化的結構。", "記下來源、亮點、可改善處與本地化方式。"],
+    fields: ["找到的案例", "值得學習的做法", "可以改善或本地化的地方", "可能合作對象"]
+  },
+  {
+    id: 5,
+    icon: "🤝",
+    title: "建立地方共創模式",
+    en: "Local Collaboration",
+    purpose: "盤點合作網絡，讓小農不用獨自完成種植、加工、包裝、通路與品牌。",
+    core: "不是自己做全部，而是一起創造價值。",
+    questions: ["附近有哪些小農？", "有沒有加工廠、包裝設計、地方品牌或餐廳？", "農會、學校、研究中心、地方創生團隊能提供什麼？", "政府資源可以如何協助？", "哪些作物可以共同組成地方特色禮盒？"],
+    outputs: ["在地合作網絡圖", "合作角色盤點", "共同品牌或聯名方向"],
+    tags: ["小農", "加工廠", "包裝設計", "餐廳", "學校", "研究中心", "農會", "政府資源"],
+    examples: ["自己的草莓，加上附近蜂蜜與茶葉，組成宜蘭特色禮盒。", "不同小農共同品牌，可以分擔產品開發與通路成本。"],
+    focus: ["把每個合作對象的能力寫清楚。", "先找互補資源，再設計合作產品。"],
+    fields: ["可合作的小農或原料", "加工與設計夥伴", "通路、場域與組織資源", "共創產品或禮盒構想"]
+  },
+  {
+    id: 6,
+    icon: "📜",
+    title: "品牌故事設計",
+    en: "Brand Story",
+    purpose: "把土地、作物、加工理由與顧客價值整理成品牌可以說出口的故事。",
+    core: "品牌不是 Logo，品牌是故事。",
+    questions: ["我們是誰？", "我們種什麼？", "為什麼這樣種？", "這片土地有什麼特色？", "我們希望解決什麼問題？", "加工後帶來什麼價值？", "顧客為什麼會喜歡？"],
+    outputs: ["品牌故事模板", "品牌理念", "產品特色與地方價值"],
+    tags: ["我們是誰", "土地特色", "加工理由", "減少浪費", "顧客價值", "地方價值"],
+    examples: ["因為宜蘭多雨，我們選擇耐候性高的甘蔗，並利用剩餘甘蔗發展加工品。", "讓每一根甘蔗都被完整利用，減少浪費，也創造新的地方價值。"],
+    focus: ["故事要連回真實作物與真實問題。", "不要只寫好聽的形容詞，要說出為什麼值得被買。"],
+    fields: ["我們是誰與土地特色", "作物與種植方式", "想解決的問題", "加工後帶來的顧客價值"]
+  },
+  {
+    id: 7,
+    icon: "🧪",
+    title: "驗證與優化",
+    en: "Prototype & Test",
+    purpose: "先小量試作、測試市場，再依照回饋改良產品與流程。",
+    core: "不要一次做很多，先做小量並持續優化。",
+    questions: ["要先做哪一個 MVP？", "要用試吃、市集、問卷、訪談或社群回饋測試？", "觀察購買率、回購意願還是口味偏好？", "哪些地方需要再次改良？", "加工、品牌、包裝與銷售流程如何留下紀錄？"],
+    outputs: ["MVP 驗證計畫", "測試回饋紀錄", "可複製流程"],
+    tags: ["試吃", "市集販售", "問卷", "訪談", "購買率", "社群回饋", "流程化"],
+    examples: ["先做 30 份試吃包，在市集測試口味、價格與包裝理解度。", "留下加工流程、品牌流程、包裝流程、銷售流程，讓下一次更容易複製。"],
+    focus: ["測試要回答一個明確問題。", "每次改良都要留下原因，而不是只憑感覺換方向。"],
+    fields: ["MVP 產品與測試數量", "測試方式與場域", "要觀察的指標", "下一次優化方向"]
+  }
+];
+
+const pretestItems = [
+  {
+    stepId: 1,
+    title: "已經盤點作物資源",
+    copy: "有主要作物、產季、剩餘量、格外品與地方特色。"
+  },
+  {
+    stepId: 2,
+    title: "已經知道目標需求",
+    copy: "有初步客群、購買情境與顧客真正想要的價值。"
+  },
+  {
+    stepId: 3,
+    title: "已經列出加工方向",
+    copy: "至少有多種食品、飲品、甜點、體驗或觀光商品想法。"
+  },
+  {
+    stepId: 4,
+    title: "已經蒐集案例靈感",
+    copy: "有國內外案例、地方創生案例或可借鏡的跨域做法。"
+  },
+  {
+    stepId: 5,
+    title: "已經找到合作資源",
+    copy: "知道可能合作的小農、加工、設計、餐廳、學校或組織。"
+  },
+  {
+    stepId: 6,
+    title: "已經整理品牌故事",
+    copy: "能說明土地特色、加工理由、想解決的問題與顧客價值。"
+  },
+  {
+    stepId: 7,
+    title: "已經做過測試或驗證",
+    copy: "有小量試作、試吃、市集、問卷、訪談或社群回饋。"
+  }
+];
+
+let activeStep = steps[0];
+const rail = document.getElementById("step-rail");
+const pretestList = document.getElementById("pretest-list");
+const stageTitle = document.getElementById("stage-title");
+const stageNote = document.getElementById("stage-note");
+const detailStep = document.getElementById("detail-step");
+const detailTitle = document.getElementById("detail-title");
+const detailEn = document.getElementById("detail-en");
+const detailPurpose = document.getElementById("detail-purpose");
+const detailCore = document.getElementById("detail-core");
+const questionList = document.getElementById("question-list");
+const outputList = document.getElementById("output-list");
+const exampleList = document.getElementById("example-list");
+const focusList = document.getElementById("focus-list");
+const matrixTags = document.getElementById("matrix-tags");
+const templateGrid = document.getElementById("template-grid");
+const saveState = document.getElementById("save-state");
+const toast = document.getElementById("toast");
+const overallNumber = document.getElementById("overall-number");
+const overallLabel = document.getElementById("overall-label");
+const meterFill = document.getElementById("meter-fill");
+const completionGrid = document.getElementById("completion-grid");
+const proposalOutput = document.getElementById("proposal-output");
+const proposalState = document.getElementById("proposal-state");
+
+function storageKey(stepId, field) {
+  return `crop-to-brand:step-${stepId}:${field}`;
+}
+
+function pretestKey(stepId) {
+  return `crop-to-brand:pretest-${stepId}`;
+}
+
+function loadDraft(stepId, field) {
+  try {
+    return localStorage.getItem(storageKey(stepId, field)) || "";
+  } catch (error) {
+    saveState.textContent = "此瀏覽器未開啟暫存";
+    return "";
+  }
+}
+
+function saveDraft(stepId, field, value) {
+  try {
+    localStorage.setItem(storageKey(stepId, field), value);
+    saveState.textContent = "已自動暫存";
+  } catch (error) {
+    saveState.textContent = "此瀏覽器未開啟暫存";
+  }
+}
+
+function loadPretestValue(stepId) {
+  try {
+    return localStorage.getItem(pretestKey(stepId)) === "true";
+  } catch (error) {
+    return false;
+  }
+}
+
+function savePretestValue(stepId, value) {
+  try {
+    localStorage.setItem(pretestKey(stepId), String(value));
+  } catch (error) {
+    showToast("此瀏覽器未開啟前測暫存");
+  }
+}
+
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function renderCards() {
+  rail.innerHTML = steps.map(step => `
+    <button class="step-card" type="button" data-step="${step.id}" aria-pressed="${step.id === activeStep.id}">
+      <span class="step-meta">
+        <span class="step-number">${step.id}</span>
+        <span class="step-icon" aria-hidden="true">${step.icon}</span>
+      </span>
+      <h3>${step.title}</h3>
+      <p>${step.en}</p>
+    </button>
+  `).join("");
+
+  rail.querySelectorAll(".step-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const next = steps.find(step => step.id === Number(card.dataset.step));
+      setActiveStep(next);
+    });
+  });
+}
+
+function renderPretest() {
+  pretestList.innerHTML = pretestItems.map(item => `
+    <label class="check-item">
+      <input type="checkbox" data-pretest-step="${item.stepId}" ${loadPretestValue(item.stepId) ? "checked" : ""}>
+      <span>
+        <span class="check-title">STEP ${item.stepId}｜${item.title}</span>
+        <span class="check-copy">${item.copy}</span>
+      </span>
+    </label>
+  `).join("");
+
+  pretestList.querySelectorAll("input").forEach(input => {
+    input.addEventListener("change", () => {
+      savePretestValue(Number(input.dataset.pretestStep), input.checked);
+      updatePretestResult();
+      updateCompleteness();
+    });
+  });
+
+  updatePretestResult();
+}
+
+function getPretestState() {
+  const checked = new Set(steps.filter(step => loadPretestValue(step.id)).map(step => step.id));
+  let completedInOrder = 0;
+
+  for (const step of steps) {
+    if (!checked.has(step.id)) break;
+    completedInOrder = step.id;
+  }
+
+  const recommendedStep = steps.find(step => step.id === completedInOrder + 1) || null;
+  const hasLaterData = [...checked].some(stepId => stepId > completedInOrder + 1);
+
+  return { checked, completedInOrder, recommendedStep, hasLaterData };
+}
+
+function updatePretestResult() {
+  const state = getPretestState();
+
+  if (!state.recommendedStep) {
+    stageTitle.textContent = "進入完整度與提案總覽";
+    stageNote.textContent = "七個階段都已標記具備資料，可以直接整理成提案。";
+    return;
+  }
+
+  stageTitle.textContent = `從 STEP ${state.recommendedStep.id} 開始`;
+
+  if (state.completedInOrder === 0) {
+    stageNote.textContent = "尚未勾選任何既有資料。";
+    return;
+  }
+
+  const laterNote = state.hasLaterData ? "後段已有資料，但仍建議先補齊最早缺口。" : "可以跳過已具備資料的前段。";
+  stageNote.textContent = `已具備 STEP 1-${state.completedInOrder} 的連續資料，${laterNote}`;
+}
+
+function renderList(target, items) {
+  target.innerHTML = items.map(item => `<li>${item}</li>`).join("");
+}
+
+function renderTemplate(step) {
+  templateGrid.innerHTML = step.fields.map(field => {
+    const value = loadDraft(step.id, field);
+    return `
+      <label>
+        <span class="field-label">${field}</span>
+        <textarea data-field="${field}" placeholder="寫下你的想法...">${escapeHtml(value)}</textarea>
+      </label>
+    `;
+  }).join("");
+
+  templateGrid.querySelectorAll("textarea").forEach(area => {
+    area.addEventListener("input", () => {
+      saveDraft(step.id, area.dataset.field, area.value);
+      updateCompleteness();
+    });
+  });
+}
+
+function setActiveStep(step) {
+  activeStep = step;
+  detailStep.textContent = `STEP ${step.id}`;
+  detailTitle.textContent = step.title;
+  detailEn.textContent = step.en;
+  detailPurpose.textContent = step.purpose;
+  detailCore.textContent = step.core;
+  renderList(questionList, step.questions);
+  renderList(outputList, step.outputs);
+  renderList(exampleList, step.examples);
+  renderList(focusList, step.focus);
+  matrixTags.innerHTML = step.tags.map(tag => `<span>${tag}</span>`).join("");
+  renderCards();
+  renderTemplate(step);
+  updateCompleteness();
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.setTimeout(() => toast.classList.remove("show"), 1400);
+}
+
+function copyText(text, successMessage) {
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text)
+      .then(() => showToast(successMessage))
+      .catch(() => fallbackCopyText(text, successMessage));
+    return;
+  }
+
+  fallbackCopyText(text, successMessage);
+}
+
+function fallbackCopyText(text, successMessage) {
+  const helper = document.createElement("textarea");
+  helper.value = text;
+  helper.setAttribute("readonly", "");
+  helper.style.position = "fixed";
+  helper.style.left = "-9999px";
+  document.body.appendChild(helper);
+  helper.select();
+
+  try {
+    const copied = document.execCommand("copy");
+    showToast(copied ? successMessage : "瀏覽器未允許複製");
+  } catch (error) {
+    showToast("瀏覽器未允許複製");
+  }
+
+  document.body.removeChild(helper);
+}
+
+function copyActiveStep() {
+  const answers = activeStep.fields.map(field => {
+    const area = [...templateGrid.querySelectorAll("textarea")].find(input => input.dataset.field === field);
+    const value = area ? area.value : loadDraft(activeStep.id, field);
+    return `${field}：${value || "（未填寫）"}`;
+  }).join("\n");
+  const text = [
+    `STEP ${activeStep.id}｜${activeStep.title} / ${activeStep.en}`,
+    `目的：${activeStep.purpose}`,
+    `核心思考：${activeStep.core}`,
+    "",
+    "我的工作模板",
+    answers
+  ].join("\n");
+
+  copyText(text, "已複製本步內容");
+}
+
+function getAnswer(step, field) {
+  const area = activeStep.id === step.id
+    ? [...templateGrid.querySelectorAll("textarea")].find(input => input.dataset.field === field)
+    : null;
+  return area ? area.value.trim() : loadDraft(step.id, field).trim();
+}
+
+function getStepCompletion(step) {
+  const answeredCount = step.fields.filter(field => getAnswer(step, field).length > 0).length;
+  const fieldPercent = Math.round((answeredCount / step.fields.length) * 100);
+  return loadPretestValue(step.id) ? Math.max(100, fieldPercent) : fieldPercent;
+}
+
+function buildProposalText(overallPercent) {
+  const state = getPretestState();
+  const startText = state.recommendedStep
+    ? `建議下一步：從 STEP ${state.recommendedStep.id}「${state.recommendedStep.title}」開始補強。`
+    : "建議下一步：七個步驟皆已標記具備資料，可進入提案修整與實際驗證。";
+
+  const sections = steps.map(step => {
+    const answers = step.fields
+      .map(field => ({ field, value: getAnswer(step, field) }))
+      .filter(answer => answer.value.length > 0);
+    const markedReady = loadPretestValue(step.id);
+
+    if (answers.length === 0 && markedReady) {
+      return `STEP ${step.id}｜${step.title}\n此步驟已於前測標記具備資料，尚未輸入到網站模板。`;
+    }
+
+    if (answers.length === 0) {
+      return `STEP ${step.id}｜${step.title}\n尚未填寫。`;
+    }
+
+    const answerText = answers.map(answer => `${answer.field}：${answer.value}`).join("\n");
+    return `STEP ${step.id}｜${step.title}\n${answerText}`;
+  });
+
+  return [
+    "農產加工品牌提案｜田路 Toolkit",
+    "From Crop to Brand",
+    "",
+    `目前完整度：${overallPercent}%`,
+    startText,
+    "",
+    "一、提案摘要",
+    "透過作物資源盤點、市場需求觀察、加工可能性發散、案例借鏡、地方共創、品牌故事與 MVP 驗證，將農產品轉化為具有地方特色與市場競爭力的加工品牌。",
+    "",
+    "二、七步驟內容",
+    sections.join("\n\n"),
+    "",
+    "三、下一步行動",
+    state.recommendedStep
+      ? `優先完成 STEP ${state.recommendedStep.id} 的工作模板，讓提案資料從目前階段往後推進。`
+      : "整理提案語氣、補入實際數據，並安排下一輪市場測試。"
+  ].join("\n");
+}
+
+function updateCompleteness() {
+  const percents = steps.map(step => getStepCompletion(step));
+  const overallPercent = Math.round(percents.reduce((sum, value) => sum + value, 0) / steps.length);
+
+  overallNumber.textContent = `${overallPercent}%`;
+  meterFill.style.width = `${overallPercent}%`;
+  overallLabel.textContent = overallPercent === 100
+    ? "七個步驟已完整"
+    : overallPercent >= 60
+      ? "提案輪廓已成形"
+      : overallPercent > 0
+        ? "正在累積提案資料"
+        : "尚未開始填寫";
+
+  completionGrid.innerHTML = steps.map((step, index) => `
+    <div class="completion-row">
+      <span class="completion-step">${step.id}</span>
+      <button type="button" data-completion-step="${step.id}">${step.title}</button>
+      <span class="completion-percent">${percents[index]}%</span>
+    </div>
+  `).join("");
+
+  completionGrid.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", () => {
+      jumpToStep(Number(button.dataset.completionStep), true);
+    });
+  });
+
+  proposalOutput.value = buildProposalText(overallPercent);
+  proposalState.textContent = "已依目前內容更新";
+}
+
+function jumpToStep(stepId, shouldScroll) {
+  const step = steps.find(item => item.id === stepId);
+  if (!step) return;
+  setActiveStep(step);
+  if (shouldScroll) {
+    document.getElementById("detail-area").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function goSuggestedStep() {
+  const state = getPretestState();
+  if (!state.recommendedStep) {
+    document.getElementById("summary-page").scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+  jumpToStep(state.recommendedStep.id, true);
+}
+
+function clearPretest() {
+  pretestItems.forEach(item => savePretestValue(item.stepId, false));
+  pretestList.querySelectorAll("input").forEach(input => {
+    input.checked = false;
+  });
+  updatePretestResult();
+  updateCompleteness();
+}
+
+function copyProposal() {
+  copyText(proposalOutput.value, "已複製完整提案");
+}
+
+function drawFieldScene() {
+  const canvas = document.getElementById("field-canvas");
+  if (!canvas) return;
+  const context = canvas.getContext("2d");
+  const width = canvas.width;
+  const height = canvas.height;
+
+  context.clearRect(0, 0, width, height);
+
+  const sky = context.createLinearGradient(0, 0, 0, height * 0.62);
+  sky.addColorStop(0, "#bfe8f5");
+  sky.addColorStop(1, "#fff3c8");
+  context.fillStyle = sky;
+  context.fillRect(0, 0, width, height);
+
+  context.fillStyle = "#f5bd4f";
+  context.beginPath();
+  context.arc(width * 0.82, height * 0.2, 44, 0, Math.PI * 2);
+  context.fill();
+
+  drawCloud(context, width * 0.18, height * 0.2, 1);
+  drawCloud(context, width * 0.46, height * 0.14, 0.72);
+
+  context.fillStyle = "#8fcf89";
+  context.beginPath();
+  context.moveTo(0, height * 0.58);
+  context.bezierCurveTo(width * 0.2, height * 0.38, width * 0.32, height * 0.64, width * 0.5, height * 0.48);
+  context.bezierCurveTo(width * 0.68, height * 0.32, width * 0.82, height * 0.62, width, height * 0.44);
+  context.lineTo(width, height);
+  context.lineTo(0, height);
+  context.closePath();
+  context.fill();
+
+  context.fillStyle = "#5eaa67";
+  context.beginPath();
+  context.moveTo(0, height * 0.72);
+  context.bezierCurveTo(width * 0.2, height * 0.56, width * 0.46, height * 0.8, width * 0.66, height * 0.63);
+  context.bezierCurveTo(width * 0.8, height * 0.51, width * 0.93, height * 0.7, width, height * 0.6);
+  context.lineTo(width, height);
+  context.lineTo(0, height);
+  context.closePath();
+  context.fill();
+
+  context.fillStyle = "#d99a45";
+  context.fillRect(0, height * 0.76, width, height * 0.24);
+
+  const rowColors = ["#6fa85c", "#f2cf71", "#78b765", "#c77f45", "#6fa85c"];
+  for (let i = 0; i < 14; i += 1) {
+    context.fillStyle = rowColors[i % rowColors.length];
+    context.beginPath();
+    context.moveTo(width * (i / 14), height);
+    context.lineTo(width * ((i + 0.42) / 14), height);
+    context.lineTo(width * (0.46 + i * 0.022), height * 0.76);
+    context.lineTo(width * (0.42 + i * 0.022), height * 0.76);
+    context.closePath();
+    context.fill();
+  }
+
+  drawBasket(context, width * 0.12, height * 0.73);
+  drawSprout(context, width * 0.66, height * 0.7);
+  drawSign(context, width * 0.73, height * 0.61);
+}
+
+function drawCloud(context, x, y, scale) {
+  context.fillStyle = "rgba(255, 255, 255, 0.88)";
+  context.beginPath();
+  context.arc(x, y, 20 * scale, 0, Math.PI * 2);
+  context.arc(x + 23 * scale, y - 9 * scale, 27 * scale, 0, Math.PI * 2);
+  context.arc(x + 53 * scale, y, 21 * scale, 0, Math.PI * 2);
+  context.rect(x - 2 * scale, y, 62 * scale, 20 * scale);
+  context.fill();
+}
+
+function drawBasket(context, x, y) {
+  context.strokeStyle = "#7a5236";
+  context.lineWidth = 7;
+  context.beginPath();
+  context.arc(x + 38, y + 10, 28, Math.PI, 0);
+  context.stroke();
+  context.fillStyle = "#a86f3c";
+  context.fillRect(x, y + 10, 78, 46);
+  context.fillStyle = "#f7cf78";
+  for (let i = 0; i < 4; i += 1) {
+    context.beginPath();
+    context.arc(x + 14 + i * 17, y + 13, 11, 0, Math.PI * 2);
+    context.fill();
+  }
+  context.strokeStyle = "rgba(255, 250, 240, 0.42)";
+  context.lineWidth = 2;
+  for (let i = 0; i < 4; i += 1) {
+    context.beginPath();
+    context.moveTo(x + 10 + i * 18, y + 13);
+    context.lineTo(x + 10 + i * 18, y + 54);
+    context.stroke();
+  }
+}
+
+function drawSprout(context, x, y) {
+  context.strokeStyle = "#17452e";
+  context.lineWidth = 7;
+  context.beginPath();
+  context.moveTo(x, y + 40);
+  context.lineTo(x, y - 6);
+  context.stroke();
+  context.fillStyle = "#2f6b45";
+  context.beginPath();
+  context.ellipse(x - 23, y + 6, 25, 13, -0.48, 0, Math.PI * 2);
+  context.fill();
+  context.fillStyle = "#78b765";
+  context.beginPath();
+  context.ellipse(x + 25, y - 2, 27, 14, 0.48, 0, Math.PI * 2);
+  context.fill();
+}
+
+function drawSign(context, x, y) {
+  context.fillStyle = "#7a5236";
+  context.fillRect(x + 38, y + 44, 9, 76);
+  context.fillStyle = "#fffaf0";
+  context.strokeStyle = "#7a5236";
+  context.lineWidth = 4;
+  context.beginPath();
+  context.roundRect(x, y, 86, 52, 8);
+  context.fill();
+  context.stroke();
+  context.fillStyle = "#17452e";
+  context.font = "900 20px system-ui";
+  context.fillText("Toolkit", x + 12, y + 33);
+}
+
+document.getElementById("rail-prev").addEventListener("click", () => {
+  rail.scrollBy({ left: -280, behavior: "smooth" });
+});
+
+document.getElementById("rail-next").addEventListener("click", () => {
+  rail.scrollBy({ left: 280, behavior: "smooth" });
+});
+
+document.getElementById("copy-step").addEventListener("click", copyActiveStep);
+document.getElementById("go-suggested-step").addEventListener("click", goSuggestedStep);
+document.getElementById("clear-pretest").addEventListener("click", clearPretest);
+document.getElementById("copy-proposal").addEventListener("click", copyProposal);
+document.getElementById("hero-start-test").addEventListener("click", () => {
+  document.getElementById("pretest-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+document.getElementById("hero-open-summary").addEventListener("click", () => {
+  document.getElementById("summary-page").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function roundRect(x, y, width, height, radius) {
+    this.beginPath();
+    this.moveTo(x + radius, y);
+    this.lineTo(x + width - radius, y);
+    this.quadraticCurveTo(x + width, y, x + width, y + radius);
+    this.lineTo(x + width, y + height - radius);
+    this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    this.lineTo(x + radius, y + height);
+    this.quadraticCurveTo(x, y + height, x, y + height - radius);
+    this.lineTo(x, y + radius);
+    this.quadraticCurveTo(x, y, x + radius, y);
+    this.closePath();
+  };
+}
+
+window.addEventListener("resize", drawFieldScene);
+renderPretest();
+renderCards();
+setActiveStep(activeStep);
+updateCompleteness();
+drawFieldScene();
+</script>
+</body>
+</html>
