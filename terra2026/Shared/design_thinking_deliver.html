@@ -200,6 +200,7 @@
       gap: 32px;
       transition: all 0.3s;
       position: relative;
+      align-items: center;
     }
 
     @media (min-width: 768px) {
@@ -342,14 +343,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100%;
-      min-height: 220px;
+      width: 100%;
+      height: auto;
     }
 
     .showcase-thumb img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       display: block;
       transition: transform 0.5s;
     }
@@ -613,11 +614,11 @@
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 16px; justify-content: center;">
-        <div class="showcase-thumb" onclick="openLightbox('./assets/team_c_demo_ch.png')" style="min-height: 140px;">
+        <div class="showcase-thumb" onclick="openLightbox('./assets/team_c_demo_ch.png')">
           <img src="./assets/team_c_demo_ch.png" alt="巢聚 Hub 智慧媒合介面">
           <div class="zoom-overlay">🔍 放大檢視介面</div>
         </div>
-        <div class="showcase-thumb" onclick="openLightbox('./assets/team_c_demo_en.png')" style="min-height: 140px;">
+        <div class="showcase-thumb" onclick="openLightbox('./assets/team_c_demo_en.png')">
           <img src="./assets/team_c_demo_en.png" alt="巢聚 Hub 解決方案說明">
           <div class="zoom-overlay">🔍 放大檢視方案</div>
         </div>
