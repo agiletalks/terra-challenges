@@ -195,24 +195,11 @@
       border-radius: 24px;
       padding: 36px;
       box-shadow: 0 10px 30px rgba(15, 42, 28, 0.04);
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 32px;
       transition: all 0.3s;
       position: relative;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .showcase-card {
-        grid-template-columns: 1.2fr 0.8fr;
-      }
-    }
-
-    .showcase-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(15, 42, 28, 0.08);
-      border-color: rgba(15, 42, 28, 0.15);
     }
 
     .showcase-info {
@@ -356,7 +343,7 @@
     }
 
     .showcase-thumb:hover img {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
 
     .zoom-overlay {
@@ -609,19 +596,12 @@
           </ul>
         </div>
         <div class="action-group">
-          <button class="btn primary" onclick="openLightbox('./assets/team_c_demo_ch.png')">🔍 檢視媒合介面</button>
-          <button class="btn primary" onclick="openLightbox('./assets/team_c_demo_en.png')">🔍 檢視方案架構</button>
+          <button class="btn primary" onclick="openLightbox('./assets/team_c_demo_ch.png')">🔍 放大檢視原創截圖</button>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 16px; justify-content: center;">
-        <div class="showcase-thumb" onclick="openLightbox('./assets/team_c_demo_ch.png')">
-          <img src="./assets/team_c_demo_ch.png" alt="巢聚 Hub 智慧媒合介面">
-          <div class="zoom-overlay">🔍 放大檢視介面</div>
-        </div>
-        <div class="showcase-thumb" onclick="openLightbox('./assets/team_c_demo_en.png')">
-          <img src="./assets/team_c_demo_en.png" alt="巢聚 Hub 解決方案說明">
-          <div class="zoom-overlay">🔍 放大檢視方案</div>
-        </div>
+      <div class="showcase-thumb" onclick="openLightbox('./assets/team_c_demo_ch.png')">
+        <img src="./assets/team_c_demo_ch.png" alt="巢聚 Hub 智慧媒合介面">
+        <div class="zoom-overlay">🔍 放大檢視原圖</div>
       </div>
     </div>
 
@@ -665,7 +645,7 @@
   <div class="callout">
     <div class="callout-title">成果回顧與反思：Design Thinking 的真正實踐</div>
     <p class="callout-content">
-      至此，泰拉學校—地之校的 Design Thinking 探索手札全系列完結。從第一步的實地查訪，到最終的高感官數位與實體遞交成果，跨國團隊不禁忠實地記錄了風土，更用「設計」的力量，為城鄉共創與永續食農的複雜網絡，搭起了一座座充滿創造力與美感的橋樑。
+      至此，泰拉學校—地之校的 Design Thinking 探索手札全系列完結。從第一步的實地查訪，到最終的高感官數位與實體遞交成果，跨國團隊不僅忠實地記錄了風土，更用「設計」的力量，為城鄉共創與永續食農的複雜網絡，搭起了一座座充滿創造力與美感的橋樑。
     </p>
   </div>
 </main>
