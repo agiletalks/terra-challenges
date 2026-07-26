@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>?��??�創?�永續�?農�??�地驗�??�札（Deliver 篇�?</title>
+  <title>城鄉共創與永續食農的實地驗證手札（Deliver 篇）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -136,49 +136,6 @@
       color: var(--text);
       margin: 0 0 24px 0;
       text-align: justify;
-    }
-
-    /* Photo Gallery */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 32px 0;
-    }
-
-    @media (max-width: 576px) {
-      .photo-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .photo-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-      transition: transform 0.3s;
-    }
-
-    .photo-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-caption {
-      padding: 12px 16px;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      font-weight: 700;
-      text-align: center;
-      border-top: 1px solid var(--border);
     }
 
     /* Showcase Grid */
@@ -473,76 +430,137 @@
       background: #fafaf9;
       margin-top: 100px;
     }
+
+    /* Polaroid Style Photos */
+    .polaroid-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 40px 0;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .polaroid-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 36px;
+      }
+    }
+    
+    .polaroid-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 12px 24px 12px;
+      box-shadow: 0 4px 20px rgba(15, 42, 28, 0.04);
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .polaroid-card:hover {
+      transform: translateY(-8px) rotate(1deg) !important;
+      box-shadow: 0 16px 36px rgba(15, 42, 28, 0.08);
+      border-color: var(--secondary) !important;
+    }
+    
+    .polaroid-img-wrapper {
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafaf9;
+      margin-bottom: 12px;
+    }
+    
+    .polaroid-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .polaroid-caption {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div class="header-content">
-    <span class="badge">Deliver �?(?�交?��?�?</span>
-    <h1>從實?�調?�到驚艷?�地?�數位�?實�?設�??��?</h1>
-    <p class="subtitle">泰�?學校 ?��???Design Thinking 質�??�究?�札 | 第�?�?/p>
+    <span class="badge">Deliver 篇 (成果階段)</span>
+    <h1>從實地調研到驚艷地之校成果展：四組 MVP 專案發表</h1>
+    <p class="subtitle">泰拉學校 地之校 Design Thinking 成果手札 | 第四篇</p>
   </div>
 </header>
 
 <main>
   <div class="intro-card">
     <p class="intro-text">
-      經歷�?Discover (?�散?�索) ?�深度訪?�、Define (?��?定義) ?��?點�??��?以�? Develop (?�想?�發) ?�創?��??��?，�?屆「泰?�學?�—地之校?��?跨�??�創?��?迎�?了�?後�?終�?站—�?strong>Deliver (?�交?�落?��?�?</strong>?�這�??��??�只?�在紙面上�?簡報練�?，而是要�?實地?��?小�??��??��?子�??�造�??��??��?實場?��?�?My MVP ?��??�當?�們�?�?��?��??��?實�??�地?�老農?�新?�農以�?外部體�??�面對面?��?學�??��??��??�解答�??��??�創?��??��??��??�以超�??��??�精緻度?��??��?，為?�方帶�?驚艷?��??��?    </p>
+      經歷了 Discover (發散探索) 的深度訪談、Define (聚焦定義) 的痛點收斂，以及 Develop (發想開發) 的創意激盪，本屆「泰拉學校—地之校」的跨國共創團隊迎來了最後的終點站——<strong>Deliver (交付落地驗證)</strong>。這一步不只是在紙面上做簡報練習，而是要將實地產出的點子做成低保真或數位原型，在員山老農、南澳青農與佛光大學專家的面前進行面對面測試，驗證方案的可行性。學員們以出色的完整度展現了四組 MVP 設計提案，為地方共創與永續食農注入了新的思維。
+    </p>
   </div>
 
-  <h2>二�??��??�實踐現?��??��??�風?��??�實交�?</h2>
+  <h2>二、 實踐現場：員山、南澳與礁溪的風土交會</h2>
   <p class="body-text">
-    ?��??��??��??�地橫跨宜蘭?�山?�聰?�然?�、�?澳水?�農?�以?��?溪�??�大學。以下是學�??�田?�調?�、跨?��?話以?��??�發表�??�代表性實?�影?��?記�?了�??�實?�實踐溫度�?
+    我們的實踐基地橫跨宜蘭員山阿聰自然田、南澳水月農莊以及礁溪佛光大學。以下是學員在田野調研、跨國對話以及最終發表時的代表性實況，記錄了最真實的實踐溫度：
   </p>
 
-  <!-- Photo Gallery representing the Yilan field and presentations -->
-  <div class="photo-grid">
-    <div class="photo-card">
-      <img src="../assets/yilan_field_1.jpg" alt="宜蘭?��??�格外�?調�??�場">
-      <div class="photo-caption">宜蘭?�山?�聰?�然?��??��?種�?風�?</div>
+  <!-- Polaroid Photo Grid -->
+  <div class="polaroid-container">
+    <div class="polaroid-card" style="transform: rotate(1.5deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第五天/佛光專案發表：同學說明痛點與提案.jpg" alt="佛光專案發表">
+      </div>
+      <p class="polaroid-caption">「最終展示：學員登台進行四組 MVP 專案發表，收獲小農與評審反饋」</p>
     </div>
-    <div class="photo-card">
-      <img src="../assets/yilan_field_2.jpg" alt="小農?��??��??��??�工?�術妥?�現??>
-      <div class="photo-caption">?�工?�然農�??��??�工?��?術探�?/div>
+    <div class="polaroid-card" style="transform: rotate(-1deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第五天/結業證書合照.jpg" alt="結業證書合照">
+      </div>
+      <p class="polaroid-caption">「圓滿結業：台日跨國青年收獲結業證書，共同見證五天實踐結晶」</p>
     </div>
-    <div class="photo-card">
-      <img src="../assets/yilan_field_3.jpg" alt="?�日跨�??��?實地討�??��?">
-      <div class="photo-caption">?�稻?��?清大學�??��??�場訪查?��?�?/div>
-    </div>
-    <div class="photo-card">
-      <img src="../assets/yilan_field_4.jpg" alt="?��??��??�發表�??�場">
-      <div class="photo-caption">?��??��??�發表�??�方?��?人�??�現??/div>
+    <div class="polaroid-card" style="transform: rotate(0.5deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第五天/佛光大學：種樹大合照.jpg" alt="種樹大合照">
+      </div>
+      <p class="polaroid-caption">「綠色交付：親手在佛光大學善耕園種下永續樹苗，為地球留存生機」</p>
     </div>
   </div>
 
-  <h2>三�??�大?�創?��??��?：兼?��??��?實用?�值�??�創?��?</h2>
+  <h2>三、 四大共創提案：兼具社會與實用價值的創新探索</h2>
   <p class="body-text">
-    ?�稻?��?清華大學跨�?小�??��??��??��??�出?�解決方案�??�以驚人?�執行�?轉�??�實作�??�。為了�??��??�實?�精緻�?設�?細�?，�??�已將�?小�??��??�簡?�中?�?�代表性�??��??�接嵌入?��??��??�卡?�中，�??�可?�接?�覽?��??�大?�檢視�?
+    針對實地調研中提煉出的痛點，台日學生團隊跨越語言與學科藩籬，透過敏捷開發的迭代，共創出四組極具巧思的 MVP 方案。點選圖片可放大檢視提案簡報原型：
   </p>
 
   <div class="showcase-grid">
-    
     <!-- Team A (Green) -->
     <div class="showcase-card" data-team="A">
       <div class="showcase-info">
         <div>
-          <span class="team-badge">Team A (綠�?) ?��?</span>
-          <h3 class="project-name">?�路 Toolkit (From Crop to Brand)</h3>
-          <div class="hmw-label">HMW 設�??�戰</div>
-          <p class="hmw-quote">?�們該如�??��?農設計�?套�??�檻�??��?工具?��??�助他們系統�??��?作物資�??��??�顧客地?��?並快?��?證�??�價?��??�簡可行產?��?MVP）�?</p>
+          <span class="team-badge">Team A (綠組) 提案</span>
+          <h3 class="project-name">格外農創工具箱 Extra-Crop Toolkit</h3>
+          <div class="hmw-label">HMW 設計挑戰</div>
+          <p class="hmw-quote">我們該如何平衡小農的日常農務與加工品開發，並建立健全的財務與家庭風險管理，以降低格外品開發的門檻與成本？</p>
           <p class="project-desc">
-            ?��??�聰?�然?��?小農?��?工�??��??�財?��?家庭風險，Team A ?�創?�發了這�?精緻?�數位�??��??�診?�工?�。網?��???7 大核心步驟�?從�??��??�季?�格外�?（�?觀不佳但�??�可食�??��??��?，�?導�?農進�?市場觀察、�?工發???並借鏡?�內外地?�創?��?例�??�终設計出專屬?��??��??��?證方案�??�能?��?輸出?��??��?，極?��?業推�???�育引�??�值�?          </p>
+            針對小農在格外品（即規格外、外觀不佳但安全可食的剩餘農產）開發上面臨的財務與家庭風險，Team A 創思開發了這套精緻的數位化「格外農創診斷工具」。網頁版包含 7 大核心步驟，從「格外作物剩餘資源盤點」引導小農進行市場觀察、加工品研發定位，並借鏡國內外地方創生案例，最終設計出專屬的格外品開發驗證方案。本工具能一鍵輸出診斷報告，極具推廣教育與引導實踐價值。
+          </p>
           <ul class="feature-list">
-            <li><strong>作物?�格外�??��?</strong>：幫?��?農找?��??�被浪費?��?外剩餘�?源�?/li>
-            <li><strong>7步�?漸進�?�?/strong>：內嵌�??��?例�??��??��?，極?��??��?/li>
-            <li><strong>?��??��?綜整</strong>：在網�?尾端?��??��??��?製�?輸出?��??��??�書??/li>
+            <li><strong>作物格外品剩餘評估</strong>：協助小農找出田間被浪費的格外品剩餘資源與價值。</li>
+            <li><strong>7 步驟漸進式引導</strong>：內嵌豐富的案例分析與實作引導，極易上手.</li>
+            <li><strong>診斷報告一鍵輸出</strong>：在網頁尾端自動綜整評估結果，生成 PDF 開發診斷書。</li>
           </ul>
         </div>
       </div>
       <div class="showcase-thumb" onclick="openLightbox('../assets/team_a_toolkit.png')">
-        <img src="../assets/team_a_toolkit.png" alt="?�路 Toolkit 實�??��?">
-        <div class="zoom-overlay">?? 點�??�大檢�?</div>
+        <img src="../assets/team_a_toolkit.png" alt="網路 Toolkit 實機展示">
+        <div class="zoom-overlay">🔍 點選放大檢視</div>
       </div>
     </div>
 
@@ -550,22 +568,23 @@
     <div class="showcase-card" data-team="B">
       <div class="showcase-info">
         <div>
-          <span class="team-badge">Team B (?��?) ?��?</span>
-          <h3 class="project-name">農�??��?護照 Rural Healing Passport</h3>
-          <div class="hmw-label">HMW 設�??�戰</div>
-          <p class="hmw-quote">?�們該如�??��??�散?�入??��?��?並透�??��?體�??��??��?點�??��?延�??�人對農?�日常�??��??��?體�?深度�?/p>
+          <span class="team-badge">Team B (藍組) 提案</span>
+          <h3 class="project-name">農村療癒護照 Rural Healing Passport</h3>
+          <div class="hmw-label">HMW 設計挑戰</div>
+          <p class="hmw-quote">我們該如何透過設計，降低都市旅人進入農村的體驗門檻，並透過關係維繫系統，延續人們對農村日常與土地溫度的深度體驗？</p>
           <p class="project-desc">
-            體�?活�?如�??��?一次性�??��??�貴?��??��??�就?��?轉�??�地?��??��??��??�。Team B ?�創設�??�「農?��??�護?�」是一套�??��?體�??��??��?係維繫系統。透�?將農事�?驗�??�「短?��?客」、「中?��?深度體�??��??�長?��?工�?浸」�?種深度�?並搭?��??�護?�卡?�實體�?點印章�??��??��?將都市人?�「�?次性�??�」�??�為?�地?��?活�??��?延�??��?讓人?��??��?仍�??��??�地?�強?��????          </p>
+            體驗活動往往容易流於一次性消費，難以轉譯為地方的持續關係。Team B 創新設計的「農村療癒護照」是一套關係維繫系統。透過將農村體驗劃分為「短途旅客」、「中度體驗者」與「長期志工共創」等不同深度，並搭配療癒護照、實體集點印章，將都市旅人的「單次消費」轉化為對地方生活的長期關注，讓人回到都市後依然能與地方保持強烈的情感連結。
+          </p>
           <ul class="feature-list">
-            <li><strong>?��?體�??��?</strong>：�?低農事�?實�??��?體�??�氣?��??��?檻�?/li>
-            <li><strong>?��?護照?��?</strong>：�??�方便�?得」�?農�??�然素�?轉譯?��??��?點卡??/li>
-            <li><strong>體�??��??��?</strong>：串?�社群、�??��??�工?�宿，維繫長?��??��?/li>
+            <li><strong>漸進式體驗設計</strong>：降低都市旅人參與農事體驗與鄉野生活的心理門檻。</li>
+            <li><strong>療癒護照實體集點</strong>：透過趣味集點與風土故事卡，讓體驗具象化、儀式化。</li>
+            <li><strong>深度關係維繫</strong>：串聯在地社群、小農與共學工坊，建立長期的支持系統。</li>
           </ul>
         </div>
       </div>
       <div class="showcase-thumb" onclick="openLightbox('../assets/team_b_passport.jpg')">
-        <img src="../assets/team_b_passport.jpg" alt="農�??��?護照簡報?�覽">
-        <div class="zoom-overlay">?? 點�??�大檢�?</div>
+        <img src="../assets/team_b_passport.jpg" alt="農村療癒護照簡報預覽">
+        <div class="zoom-overlay">🔍 點選放大檢視</div>
       </div>
     </div>
 
@@ -573,22 +592,23 @@
     <div class="showcase-card" data-team="C">
       <div class="showcase-info">
         <div>
-          <span class="team-badge">Team C (黃�?) ?��?</span>
-          <h3 class="project-name">巢�? Hub (Nest Gathering Hub)</h3>
-          <div class="hmw-label">HMW 設�??�戰</div>
-          <p class="hmw-quote">?�們該如�?結�?農�?家庭?�地?��?置�??�育?�念，建立�??�檻�?互助?�育?�共學平?��?緩解家長?�農忙�??��?工�??�育?��??��?</p>
+          <span class="team-badge">Team C (黃組) 提案</span>
+          <h3 class="project-name">巢聚 Hub (Nest Gathering Hub)</h3>
+          <div class="hmw-label">HMW 設計挑戰</div>
+          <p class="hmw-quote">我們該如何結合農村家庭的閒置空間與托育觀念，建立低門檻的互助托育與共學平台，緩解家長在農忙與工作間的托育負擔？</p>
           <p class="project-desc">
-            ?��??��??�農?�家庭�?住�???���??��?源�?缺�?農�??��??��?迫�??��?，Team C ?�創?�發了以<strong>?�孩子年�?? 移�?距離 ? ?�育?�念??/strong>?�核心�?精�?媒�?互助?�育平台?��??�學?�簡?��?系統?��??�示�?該方案�??��?大核心�??��?首�???strong>?��??�夥�?(Find People)??/strong>，系統�?依�?孩�?年齡層、�?程移?��?徑�??�德福�?森�??�育等�??��?念�?好�??�慧篩選?��?契�?度家庭�?例�??�山?�廷家�??�度 98%?��?濃佳佳家契�?�?92%）�??�次??strong>?�建立群�?(Form Groups)??/strong>，以 3?? ?�相?��??�念契�??�家庭為一互助?��?，�??�共學�?農�?互助?��??�後是<strong>?��??�調??(Coordinate)??/strong>，透�?輪值�??�日程表?��??�出?��??��?Time Bank）�??��?建�??��?續�??��?流鄰?��??�網絡�?並設?�社?�實�??�薦人�?安全?�?�公約以確�?信任?�隱私�?          </p>
+            針對移居青農家庭面臨的保母資源缺乏與社交孤立問題，Team C 研發了以「孩子年齡、移動距離、托育理念」為核心的互助托育共學平台。該方案包含三大核心機制：首創<strong>「尋找夥伴 (Find People)」</strong>，系統會依據孩子年齡、每日行經路線、森林教育等托育理念，智慧篩選契合度高的家庭（例如：員山小廷家契合度達 98%）；其次是<strong>「建立群組 (Form Groups)」</strong>，以 3 個理念契合的家庭為一互助小組，透過破冰共學建立信任；最後是<strong>「互助協調 (Coordinate)」</strong>，透過輪值表與「時間銀行（Time Bank）」機制，建立鄰里互助網絡，確保安全與隱私。
+          </p>
           <ul class="feature-list">
-            <li><strong>精�?篩選夥伴 (Find People)</strong>：智?�篩?�孩子年齡、�?程�?徑�??�德�?森�??�育等�?念相符�?家庭??/li>
-            <li><strong>?�人?��??�?��? (Form Groups)</strong>：家庭�??��??�共?��??��?下共�?3 次破?��?，系統�?�???�班表�?建�?實�?信任??/li>
-            <li><strong>?��?流�??��???(Coordinate)</strong>：以?��?點數（Time Bank）代?��??�交?��?實現?��?互助，並?��?安全?��??�?��??��?/li>
+            <li><strong>精準篩選夥伴 (Find People)</strong>：智慧篩選孩子年齡、日常通勤路徑與托育理念相符的家庭。</li>
+            <li><strong>家庭群組破冰共學 (Form Groups)</strong>：小組家庭在共學帶領下進行 3 次破冰活動，建立堅實信任。</li>
+            <li><strong>互助時間點數交易 (Coordinate)</strong>：以時間點數（Time Bank）代幣進行托育互助交易，安全且具永續性。</li>
           </ul>
         </div>
       </div>
       <div class="showcase-thumb" onclick="openLightbox('../assets/team_c_demo_ch.png')">
-        <img src="../assets/team_c_demo_ch.png" alt="巢�? Hub ?�慧媒�?介面">
-        <div class="zoom-overlay">?? 點�??�大檢�?</div>
+        <img src="../assets/team_c_demo_ch.png" alt="巢聚 Hub 智慧媒合介面">
+        <div class="zoom-overlay">🔍 點選放大檢視</div>
       </div>
     </div>
 
@@ -596,37 +616,41 @@
     <div class="showcase-card" data-team="D">
       <div class="showcase-info">
         <div>
-          <span class="team-badge">Team D (紅�?) ?��?</span>
-          <h3 class="project-name">?�農?�X ?�年?��??�活?��? (Half-Farm Half-X Rural Guide)</h3>
-          <div class="hmw-label">HMW 設�??�戰</div>
-          <p class="hmw-quote">?�們該如�?將�??�、收?��??��??�方社交潛�??��?轉譯?��?構�??��??�段?��??��?，�?低�?年移居農?��??�社?��??��?檻�?</p>
+          <span class="team-badge">Team D (紅組) 提案</span>
+          <h3 class="project-name">半農半X 青年農村生活指南 (Half-Farm Half-X Rural Guide)</h3>
+          <div class="hmw-label">HMW 設計挑戰</div>
+          <p class="hmw-quote">我們該如何將在地小農租地歷史、兼職機會與地方社交規約轉譯，建構出階段性的引導系統，以降低青年移居農村的社會融入門檻？</p>
           <p class="project-desc">
-            ?��??�年移�?農�??�容�??��??��?往不是種�??�術�??�是人�??�緣網絡?�地?��?規�??�Team D 製�??�「�?年入?��?活�??�」網站�?結�??�地將入?��?活�??�「新?��??�」、「入?��??�」、「在?��??�」�??�段?�並?�網?�中將�??��??�地租地歷史?�傷?��?（�??��???��約�?）、�?計兼?�、伴侶�?係�??�方社交?�擦等隱形�?檻�?譯為?��??��??�防?��?題庫?��??�接串接對�??��?源�???��?實�?例�?          </p>
+            青年移居農村容易面臨的挑戰，往往不是農耕技術，而是人際關係與地方隱形規約。Team D 製作了「青年入村生活指南」網站，將入村生活劃分為「新手期」、「適應期」與「融合期」三個階段，並在網站中將租地眉角、兼職機會、鄰里社交等隱形門檻轉譯為互動式的防雷題庫，直接串接對應的在地資源與真實案例。
+          </p>
           <ul class="feature-list">
-            <li><strong>三�?定�??��? (�?????</strong>：利?��?置、�??��??�活比�??��??��?定�???/li>
-            <li><strong>?�形?��??��?�?/strong>：�?租地?�收?�、伴侶、社群支?��??�擦點透�??��?/li>
-            <li><strong>?�覺式卡?��?�?/strong>：�?張�?題卡?�直?��??對�?案�?，避?��??��??��?負�???/li>
+            <li><strong>三階段融入指南</strong>：依據入村時間提供最適合的生存技能與生活比重建議。</li>
+            <li><strong>隱形門檻趣味轉譯</strong>：將租地合約、兼職機會、社區溝通摩擦等隱形知識視覺化。</li>
+            <li><strong>直覺式卡牌問答</strong>：以卡牌形式提供防雷指南，避免青年因文化摩擦而退縮。</li>
           </ul>
         </div>
       </div>
       <div class="showcase-thumb" onclick="openLightbox('../assets/team_d_guide.png')">
-        <img src="../assets/team_d_guide.png" alt="?�農?�X ?�年?��??�活?��?實�??��?">
-        <div class="zoom-overlay">?? 點�??�大檢�?</div>
+        <img src="../assets/team_d_guide.png" alt="半農半X 青年農村生活指南實機畫面">
+        <div class="zoom-overlay">🔍 點選放大檢視</div>
       </div>
     </div>
 
   </div>
 
-  <h2>?��??�地驗�??��??��?審�?�?/h2>
+  <h2>四、 實地驗證與評審講評</h2>
   <p class="body-text">
-    學�??��??��?案在?�表?��?，直?�面對�??�括宜蘭?�地?�農�?��?��?作職人、�??��?學家?��?德�?導�??��?導老師以�? 1221 ?��??�育?��??��?評審?�實?�檢視。�??��?係人對於?��??��??�實?�性給予�?高度?��??��??��?�?  </p>
+    學員的 MVP 提案在發表會上，直接面對包括宜蘭在地農創工作者、生態科學家、指導老師以及 1221 未來教育發展協會評審的實地檢視。關係人對於提案的真實落地性給予了高度評價。
+  </p>
   <p class="body-text">
-    ?�這�??�冷?�冰?��?論�??�是?�接?��??�們在?�地上碰?��??�常磨難?�設�??�。」�?位在?�農?�在?�表?��?表示?�特?�是黃�??�『�?人�??�機制?��?紅�??�『�?規�??��??��??��?將傳統社?�學?�究中�?複�?人�?張�?，�?譯為?��?�?��?��?�???��?流�?，�?外部社群?�內?��??�都帶�?了極大�??�發??  </p>
+    「這不是冷冰冰的理論，而是直接回應我們在土地上碰到的日常磨難與考驗。」一位在地青農在發表會上表示，特別是「巢聚」的互助托育機制與「生活指南」的防雷手札，將複雜的鄰里關係轉譯為易於操作的點數與指南，為外部社群與在地居民都帶來了極大的啟發。
+  </p>
 
   <div class="callout">
-    <div class="callout-title">?��??�顧?��??��?Design Thinking ?��?�?���?/div>
+    <div class="callout-title">探索與回顧：Design Thinking 實踐結語</div>
     <p class="callout-content">
-      ?�此，泰?�學?�—地之校??Design Thinking ?�索?�札?�系?��?結。�?第�?步�?實地?�訪，到?�終�?高�?官數位�?實�??�交?��?，跨?��??��??��?實地記�?了風?��??�用?�設計」�??��?，為?��??�創?�永續�?農�?複�?網絡，搭起�?一座座?�滿?�造�??��??��?橋�???    </p>
+      至此，泰拉學校地之校的 Design Thinking 質化研究手札系列圓滿落幕。從第一步的實地訪查，到最終的高感官數位與實體方案交付，跨國青年們實地記錄了「風土與設計」的交會，為共創永續食農的複雜網絡，搭起了一座座充滿溫度的溝通橋樑。
+    </p>
   </div>
 </main>
 
@@ -634,7 +658,7 @@
 <div id="lightbox-modal" class="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
   <div class="lightbox-content" onclick="event.stopPropagation()">
-    <img id="lightbox-img" src="" alt="高解?�度?��??�覽">
+    <img id="lightbox-img" src="" alt="高解析度圖片預覽">
   </div>
 </div>
 

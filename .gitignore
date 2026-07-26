@@ -6,6 +6,13 @@
 *.wav
 *.m4v
 
+# Ignore all zip compressed archive files
+*.zip
+
+# Ignore Apple HEIC photo format
+*.HEIC
+*.heic
+
 # Ignore backup folders
 terra2026_backup/
 *backup*

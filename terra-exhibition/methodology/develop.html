@@ -519,6 +519,65 @@
       background: #fafaf9;
       margin-top: 100px;
     }
+  
+    /* Polaroid Style Photos */
+    .polaroid-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 40px 0;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .polaroid-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 36px;
+      }
+    }
+    
+    .polaroid-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 12px 24px 12px;
+      box-shadow: 0 4px 20px rgba(15, 42, 28, 0.04);
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .polaroid-card:hover {
+      transform: translateY(-8px) rotate(1deg) !important;
+      box-shadow: 0 16px 36px rgba(15, 42, 28, 0.08);
+      border-color: var(--secondary) !important;
+    }
+    
+    .polaroid-img-wrapper {
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafaf9;
+      margin-bottom: 12px;
+    }
+    
+    .polaroid-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .polaroid-caption {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
   </style>
 </head>
 <body>
@@ -542,6 +601,29 @@
   <p class="body-text">
     由於本次共學營有許多來自早稻田大學的日本同學參與，我們特地引入了台日雙方都具備強烈文化共鳴的媒介——「哆啦A夢道具大全」，作為創意撞擊的第一種技術：隨機聯想法。
   </p>
+
+  <!-- Polaroid Photo Grid -->
+  <div class="polaroid-container">
+    <div class="polaroid-card" style="transform: rotate(-1.5deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第三天/Leica教稻草編織.jpg" alt="稻草編織工作坊">
+      </div>
+      <p class="polaroid-caption">「動手思考：學員向日本媳婦 Leica 學習稻草編織，激發跨文化共創靈感」</p>
+    </div>
+    <div class="polaroid-card" style="transform: rotate(1deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第四天/慢島：學習做米糕點.jpg" alt="米糕點原型製作">
+      </div>
+      <p class="polaroid-caption">「低保真打樣：親自動手揉捏米糕點，進行米食文化原型設計」</p>
+    </div>
+    <div class="polaroid-card" style="transform: rotate(0.5deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第四天/慢島：日本學生學習魚類普查.JPG" alt="水圳生態普查">
+      </div>
+      <p class="polaroid-caption">「生態探索：日本學生實地進行魚類普查，驗證生態學習原型方案」</p>
+    </div>
+  </div>
+
   <p class="body-text">
     這種技術本質上是強迫聯想。我們設計了一個隨機道具抽籤的功能，當面臨難解的 HMW 問題時，團隊會按下抽籤。無論抽到哪一個神祕道具（如「記憶吐司」、「翻譯蒟蒻」或「任意門」），小組成員都必須發揮聯想力，說出：<strong>「如何利用這個道具的功能概念，來解決我們眼前的農村挑戰？」</strong>
   </p>

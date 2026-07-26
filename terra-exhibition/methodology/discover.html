@@ -380,6 +380,65 @@
       background: #fafaf9;
       margin-top: 100px;
     }
+  
+    /* Polaroid Style Photos */
+    .polaroid-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 40px 0;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .polaroid-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 36px;
+      }
+    }
+    
+    .polaroid-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 12px 24px 12px;
+      box-shadow: 0 4px 20px rgba(15, 42, 28, 0.04);
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .polaroid-card:hover {
+      transform: translateY(-8px) rotate(1deg) !important;
+      box-shadow: 0 16px 36px rgba(15, 42, 28, 0.08);
+      border-color: var(--secondary) !important;
+    }
+    
+    .polaroid-img-wrapper {
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafaf9;
+      margin-bottom: 12px;
+    }
+    
+    .polaroid-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .polaroid-caption {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
   </style>
 </head>
 <body>
@@ -403,6 +462,29 @@
   <p class="body-text">
     在複雜的農村與城鄉生態系中，人是多維且鮮活的。團隊以多維標籤（Tags）的視角切入質化分析，提煉出 11 個原子化的關鍵關係人標籤（包括：<code>#生產者</code>、<code>#在地居民</code>、<code>#在地長者</code>、<code>#第二代</code>、<code>#移居者</code>、<code>#推動者</code>、<code>#研究者</code>、<code>#體驗者</code>、<code>#觀光客</code>、<code>#開拓者</code>、<code>#專業者</code>）。當我們把這些標籤投射在實地訪查的核心關係人身上時，一幅「多重身分交織」的農村全景關係人矩陣便清晰浮現：
   </p>
+
+  <!-- Polaroid Photo Grid -->
+  <div class="polaroid-container">
+    <div class="polaroid-card" style="transform: rotate(-1.5deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第二天/阿聰自然田：訪談阿聰夫婦.jpg" alt="訪談阿聰夫婦">
+      </div>
+      <p class="polaroid-caption">「深度同理：訪談自然田阿聰夫婦，探索食農轉型理念」</p>
+    </div>
+    <div class="polaroid-card" style="transform: rotate(1deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第二天/南澳原生園靜坐：打開五感連結自然.jpg" alt="五感靜坐">
+      </div>
+      <p class="polaroid-caption">「土地感知：在南澳原生園的森林靜坐中開啟覺察雷達」</p>
+    </div>
+    <div class="polaroid-card" style="transform: rotate(-0.5deg);">
+      <div class="polaroid-img-wrapper">
+        <img src="../assets/活動照片/活動照片/第三天/水月農莊：張明麗說明因為生病走向自然農法的故事.jpg" alt="訪談張明麗">
+      </div>
+      <p class="polaroid-caption">「生命交織：傾聽水月農莊張明麗述說走向自然農法的契機」</p>
+    </div>
+  </div>
+
 
   <!-- Stakeholder Intersection Matrix -->
   <div class="matrix-grid">

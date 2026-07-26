@@ -98,13 +98,8 @@
           ]
         },
         quotes: {
-          title: "學員故事與反思金句",
-          subtitle: "（滑鼠懸停或點選卡片查看學員的真心話）",
-          list: [
-            { name: "日本早稻田大學學員", role: "Waseda Team A", quote: "在東京我們只用簡報討論，但在宜蘭我們是直接走進蔗田拔蔗。土地的泥土與老農的笑容，給了我們課本上永遠學不到的真實感。" },
-            { name: "台灣清華大學學員", role: "NTHU Team C", quote: "偏鄉托育資源非常缺，透過出力點數的互助機制能解決實際問題。當小農告訴我們這真的有用時，那是做專案最幸福的時刻。" },
-            { name: "在地小農 阿聰", role: "地方關係人", quote: "學生能用 AI 把我零散的話做成 7 步驟品牌工具，這真的幫忙把我的自然農法故事說得更清楚。年輕人的執行力讓人佩服！" }
-          ]
+          title: "行動者心聲",
+          subtitle: "（點選卡片即可播放學員的深度訪談影片）"
         },
         footer: "© 2026 泰拉學校 地之校 - Waseda & NTHU 跨國共創. All rights reserved."
       },
@@ -146,13 +141,8 @@
           ]
         },
         quotes: {
-          title: "Student Stories & Reflections",
-          subtitle: "(Hover or tap to read their authentic reflections)",
-          list: [
-            { name: "Waseda University Student", role: "Waseda Team A", quote: "In Tokyo, we only discussed with slides, but in Yilan we walked right into cane fields. The soil and the farmers' smiles gave us realism we can't learn in books." },
-            { name: "Tsinghua University Student", role: "NTHU Team C", quote: "Rural childcare is scarce; the time-banking mutual-aid mechanism solved real needs. When farmers told us this helps, that was the happiest moment." },
-            { name: "Local Farmer A-Cong", role: "Local Partner", quote: "Students used AI to organize my words into a 7-step branding tool, showing our natural farming story clearly. The youth's execution is admirable!" }
-          ]
+          title: "Voices of Action",
+          subtitle: "(Click any card to play the student's deep interview video)"
         },
         footer: "© 2026 Terra Earth School - Waseda & NTHU Co-creation. All rights reserved."
       },
@@ -194,13 +184,8 @@
           ]
         },
         quotes: {
-          title: "学生ストーリーと反省の金句",
-          subtitle: "（カードをホバーまたはタップして本音をチェック）",
-          list: [
-            { name: "早稲田大学の学生", role: "Waseda Team A", quote: "東京ではスライドだけで議論していましたが、宜蘭ではサトウキビ畑に直接入りました。土の感触と農家の笑顔は本からは学べないリアルでした。" },
-            { name: "台湾清華大学の学生", role: "NTHU Team C", quote: "農村の保育資源は不足しており、時間銀行 of 相互支援で解決を図りました。農家さんから「本当に役立つ」と言われた時が最高の瞬間でした。" },
-            { name: "地元農家 阿聰さん", role: "ローカルパートナー", quote: "学生たちが私の話をAIで7ステップのブランドツールにまとめてくれ、自然農法が伝わりやすくなりました。若者の実行力には驚かされます！" }
-          ]
+          title: "行動者たちの声",
+          subtitle: "(カードをクリックしてインタビュー動画を再生します)"
         },
         footer: "© 2026 Terra Earth School - Waseda & NTHU Co-creation. All rights reserved."
       }
@@ -209,7 +194,257 @@
     // React Application Code
     const { useState, useEffect } = React;
 
-    function App() {
+    
+
+    // Cinematic quotes data with precise crop coordinates to hide video watermarks and subtitles
+    const quotesData = [
+      {
+        id: "ding_xin_lei",
+        video: "assets/金句/丁芯蕾完成.mov",
+        image: "assets/金句/images/ding_xin_lei.jpg",
+        bgSize: "165%",
+        bgPosition: "12% 28%",
+        name: { zh: "丁芯蕾", en: "Ding Xin-lei", ja: "丁芯蕾" },
+        role: { zh: "台灣清華大學學員", en: "NTHU Student", ja: "清華大学受講生" },
+        frontQuote: {
+          zh: "「這次活動真的很難得，因為很少會有活動是可以讓不同國家的青年進行交流，而且同時又是有這個永續的、在地的事務……」",
+          en: "\"This program is incredibly rare. It's not often that you find an event that brings youth from different countries together to exchange cultures and focus on local sustainability.\"",
+          ja: "「今回の活動は本当に貴重でした。異なる国の若者が集まり、文化交流を行いながら、地域の持続可能性に焦点を當てるイベントは滅多にありません。」"
+        },
+        backTitle: {
+          zh: "【跨文化深度碰撞】體驗台日青年長時間跨國交流，開啟對在地食農永續的全新理解",
+          en: "[Cross-Cultural Spark] Experiencing deep cross-border exchange between Taiwanese and Japanese youth, opening new understandings of local food and agricultural sustainability.",
+          ja: "【異文化の深き交わり】日台の若者による長時間の國際交流を体験し、地域の食農の持続可能性に対する新たな理解を開く。"
+        }
+      },
+      {
+        id: "uesugi_yuji",
+        video: "assets/金句/上杉完成.mov",
+        image: "assets/金句/images/uesugi_yuji.jpg",
+        bgSize: "165%",
+        bgPosition: "85% 28%",
+        name: { zh: "上杉勇司", en: "Uesugi Yuji", ja: "上杉勇司" },
+        role: { zh: "早稻田大學指導老師", en: "Waseda Advisor", ja: "早稲田大学指導教員" },
+        frontQuote: {
+          zh: "「我把大部分的事情都委託給學生們……很高興看著台日學生在田野中一起去面對問題、解決問題。」",
+          en: "\"I delegated most of the tasks to the students. I was so glad to see Taiwanese and Japanese students face and solve problems together in the field.\"",
+          ja: "「私はほとんどのタスクを學生たちに委ねました。日台の學生たちが現場で共に課題に直面し、解決していく姿を見られて本当に嬉しかったです。」"
+        },
+        backTitle: {
+          zh: "【青年共創能量】看見台日青年在田野中直面挑戰並協作解決問題的強大實踐力",
+          en: "[Youth Co-creation Power] Observing the strong practical capabilities of Taiwanese and Japanese youth facing field challenges and collaborating on real solutions.",
+          ja: "【若者の共創エネルギー】フィールドで課題に直面し、協働して解決策を生み出す日台の若者の力強い実践力を目の当たりにする。"
+        }
+      },
+      {
+        id: "igarashi_yuzuki",
+        video: "assets/金句/五十嵐完成.mov",
+        image: "assets/金句/images/igarashi_yuzuki.jpg",
+        bgSize: "165%",
+        bgPosition: "10% 28%",
+        name: { zh: "五十嵐悠月", en: "Igarashi Yuzuki", ja: "五十嵐悠月" },
+        role: { zh: "早稻田大學學員", en: "Waseda Student", ja: "早稲田大学受講生" },
+        frontQuote: {
+          zh: "「這是我第一次學習農業以及如何平衡農務與工作。在宜蘭看著大家用自然農法對待土地，帶給我極大的啟發。」",
+          en: "\"This was my first time learning about agriculture and balancing farming with work. Seeing how people in Yilan practice natural farming was deeply inspiring.\"",
+          ja: "「農業について学び、農作業と仕事のバランスを考えるのはこれが初めてでした。宜蘭で皆さんが自然農法で土地に向き合う姿を見て、大きなインスピレーションを受けました。」"
+        },
+        backTitle: {
+          zh: "【農務與工作的平衡】首次體驗農業與自然農法的啟發，反思人與土地的共生關係",
+          en: "[Balancing Farming & Work] Inspired by a first-time experience with agriculture and natural farming, reflecting on the symbiotic relationship between humans and the land.",
+          ja: "【農作業と仕事の両立】農業と自然農法を初めて体験した啟發から、人間と土地の共生関係を再考する。"
+        }
+      },
+      {
+        id: "diao_wei_cheng",
+        video: "assets/金句/刁完成.mov",
+        image: "assets/金句/images/diao_wei_cheng.jpg",
+        bgSize: "165%",
+        bgPosition: "85% 28%",
+        name: { zh: "刁威程", en: "Diao Wei-cheng", ja: "刁威程" },
+        role: { zh: "台灣清華大學學員", en: "NTHU Student", ja: "清華大学受講生" },
+        frontQuote: {
+          zh: "「我是物理系的理工人，習慣用邏輯去分析。但在森林中閉上雙眼、去感受森林並與自己對話的那一刻，帶給我前所未有的心靈觸動。」",
+          en: "\"As a physics major, I am used to logical analysis. But closing my eyes in the forest, sensing the nature, and having a dialogue with myself touched me in a way I had never experienced.\"",
+          ja: "「私は物理学科の理系脳で、論理的な分析に慣れています。然而、森の中で目を閉じ、自然を感じ、自分と対話した瞬間は、これまでにない深い心の震えを体験しました。」"
+        },
+        backTitle: {
+          zh: "【理工腦的感官覺察】在森林靜坐與自我對話中放下邏輯，開啟前所未有的心靈觸動",
+          en: "[Sensory Awareness of a Logical Mind] Putting aside logic during forest meditation and inner dialogue, unlocking an unprecedented spiritual touching.",
+          ja: "【理系脳の感覚的覚察】森の中での静座と自己対話を通じて論理を脇に置き、これまでにない深い心の震えを体験する。"
+        }
+      },
+      {
+        id: "zhao_lyu",
+        video: "assets/金句/呂珈安招姍姍完成.mov",
+        image: "assets/金句/images/zhao_lyu.jpg",
+        bgSize: "165%",
+        bgPosition: "20% top",
+        name: { zh: "招姍姍 / 呂珈安", en: "Zhao Shan-shan & Lyu Jia-an", ja: "招姍姍・呂珈安" },
+        role: { zh: "台灣清華大學學員", en: "NTHU Students", ja: "清華大学受講生" },
+        frontQuote: {
+          zh: "「早上六點半起床下田，才體會到這其實是農夫的日常。每一位小農的理想和理念傳達，都深刻感動了我們，甚至想來種田了。」",
+          en: "\"Waking up at 6:30 AM to work in the field made us realize this is just the daily routine of a farmer. We were deeply moved by their dedication and farming philosophy.\"",
+          ja: "「朝6時半に起きて田んぼに入ることで、これが農家的日常なのだと実感しました。農家の方々の土地に対する理想と理念に深く感動し、自己たち也農業をやってみたいと思うほどでした。」"
+        },
+        backTitle: {
+          zh: "【走入農夫日常】體驗清晨下田的辛勞與土地溫度，感佩在地小農傳達的偉大理念",
+          en: "[Stepping into a Farmer's Routine] Experiencing the labor and warmth of early morning farming, admiring the great ideas communicated by local organic farmers.",
+          ja: "【農家の日常に入る】早朝の農作業の苦労と土地の溫もりを體驗し、地元の有機農家が伝える偉大な理念に感銘を受ける。"
+        }
+      },
+      {
+        id: "zheng_bo_hong",
+        video: "assets/金句/柏宏完成.mov",
+        image: "assets/金句/images/zheng_bo_hong.jpg",
+        bgSize: "165%",
+        bgPosition: "88% 28%",
+        name: { zh: "鄭伯宏", en: "Zheng Bo-hong", ja: "鄭伯宏" },
+        role: { zh: "台灣清華大學學員", en: "NTHU Student", ja: "清華大学受講生" },
+        frontQuote: {
+          zh: "「我研究所就是在做農業跟土壤，所以這次體驗非常契合我未來的研究。自然農法不傷害土地的理念，概念跟我教授的想法是一致的。」",
+          en: "\"My graduate research focuses on agriculture and soil, so this experience matches my future research perfectly. The concept of natural farming not harming the earth aligns with my professor's thoughts.\"",
+          ja: "「私の大学院の研究テーマは農業と土壌であり、今回の体験は将来の研究に完璧にマッチしました。自然農法の地球を傷つけない概念は、私の教授の考えとも一致しています。」"
+        },
+        backTitle: {
+          zh: "【學術研究與實踐契合】契合土壤與農業研究，從自然農法的理念中獲得未來學術之路的啟發",
+          en: "[Matching Academic Research with Practice] Matching academic studies in soil and agriculture, gaining inspiration for future research from natural farming philosophies.",
+          ja: "【学術研究と実践のマッチ】土壌と農業の研究を合致させ、自然農法の理念から将来の学問の道へのインスピレーションを得る。"
+        }
+      },
+      {
+        id: "xu_bo_feng",
+        video: "assets/金句/柏峯完成.mov",
+        image: "assets/金句/images/xu_bo_feng.jpg",
+        bgSize: "165%",
+        bgPosition: "12% 28%",
+        name: { zh: "徐柏峯", en: "Coach Xu", ja: "徐柏峯" },
+        role: { zh: "引導教練", en: "Agile Coach", ja: "アジャイルコーチ" },
+        frontQuote: {
+          zh: "「我覺得在這次營隊中，很難得的是大學生們真正走入田野，透過敏捷開發的迭代與跨文化協作，在極短時間內就產出成果……」",
+          en: "\"In this camp, it was rare and rewarding to see college students step into the fields, use agile iterations and cross-cultural collaboration, and produce results in a short time.\"",
+          ja: "「このキャンプでは、大学生たちが実際に現場に入り、アジャイル開発のイテレーションと異文化協働を通じて、短期間で成果を出す姿が見られたのが非常に貴重でした。」"
+        },
+        backTitle: {
+          zh: "【敏捷思維導入田野】引導大學生實地調研，以 Scrum 敏捷迭代實現跨文化高效共創",
+          en: "[Agile Thinking in the Field] Guiding students through fieldwork, achieving high-efficiency cross-cultural co-creation via Scrum agile iterations.",
+          ja: "【アジャイル思考 of 現場導入】大学生の現地調査を指導し、Scrumアジャイルイテレーションを通じて異文化間の高効率な共創を実現する。"
+        }
+      },
+      {
+        id: "lai_yu_wen",
+        video: "assets/金句/賴完成.mov",
+        image: "assets/金句/images/lai_yu_wen.jpg",
+        bgSize: "165%",
+        bgPosition: "85% 28%",
+        name: { zh: "賴郁雯", en: "Lai Yu-wen", ja: "賴郁雯" },
+        role: { zh: "計劃主持人", en: "Project Leader", ja: "プロジェクトリーダー" },
+        frontQuote: {
+          zh: "「我們要讓學生真的在一起解決一個問題，這種深度交流是很深的。這也證明了『協作』才是未來解決社會挑戰的方向。」",
+          en: "\"We need to let students solve a real problem together; that kind of exchange runs very deep. It proves that collaboration is the path to solving future social challenges.\"",
+          ja: "「学生たちに実際に共同で課題を解決させることが、深い交流につながります。これこそが、将来の社会的課題を解決するための『協調』の方向性であることを証明しています。」"
+        },
+        backTitle: {
+          zh: "【協作為解決挑戰之路】引導台日學生跨越語言隔閡，驗證協作是解決複雜社會挑戰的最佳途徑",
+          en: "[Collaboration as the Path to Challenges] Guiding students across language barriers, verifying that collaboration is the best path to solving complex social challenges.",
+          ja: "【課題解決 of 道としての協調】日台の学生が言語の壁を越えるよう導き、協調こそが複雜な社会的課題を解決する最善の道であることを検証する。"
+        }
+      }
+    ];
+
+    // Polaroid photos data mapped to each day of the timeline
+    const timelinePhotos = [
+      // Day 1
+      [
+        {
+          src: "assets/活動照片/活動照片/第一天/openspace分組選題.jpg",
+          title: { zh: "Open Space 分組選題", en: "Open Space Grouping", ja: "オープンスペース選題" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第一天/出發前大合影.jpg",
+          title: { zh: "台日青年出發前大合影", en: "Group Photo Before Departure", ja: "出発前の集合写真" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第一天/台日青年永續論壇講者合影.jpg",
+          title: { zh: "論壇講者合影", en: "Forum Speakers Group Photo", ja: "フォーラム登壇者の集合写真" }
+        }
+      ],
+      // Day 2
+      [
+        {
+          src: "assets/活動照片/活動照片/第二天/南澳原生園的覺察課：感受樹根的生命力.jpg",
+          title: { zh: "自然覺察：感受樹根生命力", en: "Sensory: Tree Root Energy", ja: "自然覚察：樹根の生命力を感じる" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第二天/阿聰自然田：採甘蔗.jpg",
+          title: { zh: "自然田體驗：採甘蔗", en: "Harvesting Sugarcane", ja: "自然田体験：サトウキビの収穫" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第二天/台日交流之夜：畫下台灣日本共通的歌曲.jpeg",
+          title: { zh: "台日交流之夜：音樂共鳴", en: "Cultural Night: Music Echoes", ja: "日台交流の夜：音楽の共鳴" }
+        }
+      ],
+      // Day 3
+      [
+        {
+          src: "assets/活動照片/活動照片/第三天/水月農莊：同學穿上雨褲襪子下田採蓮蓬.jpg",
+          title: { zh: "水月農莊：下田採蓮蓬", en: "Harvesting Lotus Seed Pods", ja: "ハスの実の収穫体験" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第三天/慢島：Leica演講.jpg",
+          title: { zh: "慢島生活：Leica 演講分享", en: "Slow Island: Leica's Talk", ja: "スローアイランド：Leicaさんの講演" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第三天/設計思考：晚間在民宿分組討論.jpg",
+          title: { zh: "設計思考：深夜分組討論", en: "Design Thinking: Late Group Work", ja: "デザイン思考：深夜の分組討論" }
+        }
+      ],
+      // Day 4
+      [
+        {
+          src: "assets/活動照片/活動照片/第四天/慢島：調魚大賽體驗.jpg",
+          title: { zh: "慢島生活：釣魚大賽", en: "Slow Island: Fishing Contest", ja: "スローアイランド：釣り大会" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第四天/慢島：體驗自己動手做米糕點.jpg",
+          title: { zh: "手作體驗：做米糕點", en: "Handmaking Rice Cakes", ja: "手作体験：お餅作り" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第四天/慢島：早稻田同學開心體驗釣魚.jpg",
+          title: { zh: "早稻田學員釣魚體驗", en: "Waseda Student Fishing", ja: "早稲田大学受講生の釣り体験" }
+        }
+      ],
+      // Day 5
+      [
+        {
+          src: "assets/活動照片/活動照片/第五天/成果發表徐柏峯老師講評.JPG",
+          title: { zh: "成果發表：徐柏峯教練講評", en: "Final: Coach Xu's Feedback", ja: "成果発表：徐柏峯コーチの講評" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第五天/成果發表：賴青松老師講評.JPG",
+          title: { zh: "成果發表：賴青松老師講評", en: "Final: Teacher Lai's Feedback", ja: "成果発表：賴青松先生の講評" }
+        },
+        {
+          src: "assets/活動照片/活動照片/第五天/營隊圓滿結束後天空的彩雲是蓋婭的恭喜.jpg",
+          title: { zh: "蓋婭的祝福：營隊圓滿彩雲", en: "Blessing of Gaia: Rainbow Clouds", ja: "ガイアの祝福：円満な終わりの彩雲" }
+        }
+      ]
+    ];
+
+function App() {
+      const [activeVideo, setActiveVideo] = useState(null);
+      const [activeImage, setActiveImage] = useState(null);
+
+      useEffect(() => {
+        const handleKeyDown = (e) => {
+          if (e.key === 'Escape') {
+            setActiveVideo(null);
+            setActiveImage(null);
+          }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+      }, []);
       const [lang, setLang] = useState(() => {
         const saved = localStorage.getItem('terra-lang');
         if (saved && translations[saved]) return saved;
@@ -304,6 +539,24 @@
                     <div>
                       <h3 className="font-extrabold text-lg text-[#0F2A1C] group-hover:text-[#B35C24] transition-colors">{item.title} <span className="md:hidden text-xs bg-orange-100 text-[#B35C24] px-2 py-0.5 rounded ml-2">{item.day}</span></h3>
                       <p className="text-stone-600 text-sm md:text-base mt-2 leading-relaxed max-w-3xl">{item.desc}</p>
+                      
+                      {/* Polaroid Photos Grid (Day-specific) */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 max-w-4xl">
+                        {timelinePhotos[idx] && timelinePhotos[idx].map((p, pIdx) => (
+                          <div 
+                            key={pIdx} 
+                            className="bg-white p-3 pb-5 shadow-sm border border-stone-200/50 rounded-xl transform hover:-translate-y-2 hover:rotate-1 hover:shadow-md transition-all duration-300 cursor-zoom-in group/polaroid"
+                            onClick={() => setActiveImage(p.src)}
+                          >
+                            <div className="aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 mb-3 relative">
+                              <img src={p.src} alt={p.title[lang]} className="w-full h-full object-cover transition-transform duration-500 group-hover/polaroid:scale-105" />
+                            </div>
+                            <div className="text-center font-serif text-[10px] sm:text-xs text-stone-500 tracking-wide select-none truncate">
+                              {p.title[lang]}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -333,62 +586,143 @@
             </div>
           </section>
 
-          {/* Photo Gallery Masonry Section */}
-          <section id="stories" className="max-w-7xl mx-auto px-6 py-16 bg-stone-100 border-t border-stone-200 w-full">
-            <div className="text-center mb-16">
-              <span className="text-[#B35C24] font-bold text-xs uppercase tracking-widest">Field Memories</span>
-              <h2 className="text-2xl md:text-4xl font-extrabold text-[#0F2A1C] mt-2">風土光影相片牆</h2>
-              <p className="text-stone-500 text-sm md:text-base mt-2">捕捉宜蘭田野間、跨國討論與發表會的最真實瞬間</p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
-              {[
-                { src: "assets/yilan_field_1.jpg", title: "田野調研", desc: "員山阿蔥自然田的蔗田風光" },
-                { src: "assets/yilan_field_2.jpg", title: "熬糖實作", desc: "手工熬煮甘蔗汁的溫度傳承" },
-                { src: "assets/yilan_field_3.jpg", title: "跨國對話", desc: "早稻田與清華學生的熱烈激盪" },
-                { src: "assets/yilan_field_4.jpg", title: "成果發表", desc: "地之校在佛光大學的精彩發表" }
-              ].map((photo, idx) => (
-                <div key={idx} className="group relative rounded-2xl overflow-hidden shadow-md bg-stone-200 aspect-[4/3] sm:aspect-square md:aspect-auto md:h-72">
-                  <img src={photo.src} alt={photo.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white">
-                    <span className="text-orange-400 text-xs font-bold uppercase tracking-wider">{photo.title}</span>
-                    <p className="text-sm font-semibold mt-1">{photo.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          
 
           {/* Quote Wall (Student Stories) */}
           <section className="max-w-7xl mx-auto px-6 py-16 w-full">
             <div className="text-center mb-16">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-[#0F2A1C]">{t.quotes.title}</h2>
-              <p className="text-stone-500 text-xs md:text-sm mt-2">{t.quotes.subtitle}</p>
+              <span className="text-[#B35C24] font-bold text-xs uppercase tracking-widest">Reflections</span>
+              <h2 className="text-2xl md:text-4xl font-extrabold text-[#0F2A1C] mt-2">{t.quotes.title}</h2>
+              <p className="text-stone-500 text-sm md:text-base mt-2">{t.quotes.subtitle}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {t.quotes.list.map((q, idx) => (
-                <div key={idx} className="flip-card h-64 w-full cursor-pointer">
-                  <div className="flip-card-inner h-full w-full">
-                    {/* Front Side */}
-                    <div className="flip-card-front bg-white border border-stone-200 p-8 flex flex-col justify-between items-center shadow-sm">
-                      <div className="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center text-2xl">👤</div>
-                      <div className="text-center">
-                        <h3 className="font-extrabold text-lg text-[#0F2A1C]">{q.name}</h3>
-                        <span className="text-[#B35C24] text-xs font-semibold">{q.role}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+              {quotesData.map((q, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-white border border-stone-200/60 rounded-3xl p-5 flex flex-col justify-between h-[450px] shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1.5 cursor-pointer relative group overflow-hidden"
+                  onClick={() => setActiveVideo(q)}
+                >
+                  {/* Cinematic Video Screenshot Container (16:9 Aspect Ratio) with Background Image for perfect subtitle/watermark cropping */}
+                  <div 
+                    className="w-full aspect-video rounded-2xl overflow-hidden relative shadow-sm border border-stone-100 flex-shrink-0 bg-stone-100 bg-cover bg-no-repeat transition-all duration-500 group-hover:shadow-md"
+                    style={{
+                      backgroundImage: `url(${q.image})`,
+                      backgroundSize: q.bgSize || '165%',
+                      backgroundPosition: q.bgPosition || 'center 28%'
+                    }}
+                  >
+                    {/* Immersive Play Button Overlay on Hover */}
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/35 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white/95 shadow-md flex items-center justify-center text-[#B35C24] transform scale-90 group-hover:scale-100 transition-all duration-300">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
                       </div>
-                      <div className="text-stone-400 text-xs">Hover to read reflection ➔</div>
                     </div>
-                    {/* Back Side */}
-                    <div className="flip-card-back bg-[#0F2A1C] text-white p-8 flex flex-col justify-center items-center">
-                      <span className="text-4xl text-orange-400 mb-2">“</span>
-                      <p className="text-xs md:text-sm leading-relaxed text-center font-medium italic text-stone-200">{q.quote}</p>
-                    </div>
+                  </div>
+
+                  {/* Speaker Profile Details */}
+                  <div className="flex flex-col items-start mt-4">
+                    <h3 className="font-extrabold text-base md:text-lg text-[#0F2A1C] tracking-wide group-hover:text-[#B35C24] transition-colors line-clamp-1">{q.name[lang]}</h3>
+                    <span className="text-orange-400 text-xs font-bold mt-0.5 block truncate w-full">{q.role[lang]}</span>
+                  </div>
+
+                  {/* Quote Body Area (First-person quote with elegant design) */}
+                  <div className="flex-grow flex flex-col justify-start relative mt-3 pt-3 border-t border-stone-100 overflow-hidden">
+                    <span className="text-4xl text-orange-200/30 font-serif absolute top-1 left-0 select-none">“</span>
+                    <p 
+                      className="text-stone-600 text-xs md:text-sm font-medium leading-relaxed italic pl-6 relative z-10 select-none overflow-y-auto max-h-[130px] pr-1"
+                      style={{ scrollbarWidth: 'thin' }}
+                    >
+                      {q.frontQuote[lang]}
+                    </p>
+                  </div>
+
+                  {/* Bottom Action bar */}
+                  <div className="w-full text-center mt-4 pt-3 border-t border-stone-100 flex items-center justify-center gap-1.5 text-[#0F2A1C] group-hover:text-[#B35C24] transition-colors text-xs font-extrabold">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-orange-400 group-hover:scale-110 transition-transform">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <span>
+                      {lang === 'zh' ? '播放訪談影片' : (lang === 'en' ? 'Play Interview' : '動画を再生')}
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           </section>
+
+          {/* Video Modal Player */}
+          {activeVideo && (
+            <div 
+              className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-8 cursor-zoom-out"
+              onClick={() => setActiveVideo(null)}
+            >
+              {/* Modal Container */}
+              <div 
+                className="relative w-full max-w-4xl aspect-video bg-stone-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10 cursor-default"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button 
+                  className="absolute top-4 right-4 z-50 bg-black/60 hover:bg-[#B35C24] text-white p-2.5 rounded-full transition-colors shadow-lg"
+                  onClick={() => setActiveVideo(null)}
+                  aria-label="Close video"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+
+                {/* Video Content */}
+                <div className="w-full h-full flex items-center justify-center">
+                  {activeVideo.video.includes('youtube.com') || activeVideo.video.includes('youtu.be') ? (
+                    <iframe 
+                      src={activeVideo.video}
+                      className="w-full h-full border-0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <video 
+                      src={activeVideo.video} 
+                      controls 
+                      autoPlay 
+                      className="w-full h-full object-contain"
+                    ></video>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Image Lightbox Modal */}
+          {activeImage && (
+            <div 
+              className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 md:p-8 cursor-zoom-out"
+              onClick={() => setActiveImage(null)}
+            >
+              <button 
+                className="absolute top-4 right-4 z-[110] bg-black/60 hover:bg-[#B35C24] text-white p-2.5 rounded-full transition-colors shadow-lg"
+                onClick={() => setActiveImage(null)}
+                aria-label="Close image"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+              
+              <img 
+                src={activeImage} 
+                alt="Enlarged gallery photo" 
+                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          )}
 
           {/* Partners & Call-to-action */}
           <section id="partners" className="max-w-7xl mx-auto px-6 py-16 border-t border-stone-200 w-full text-center">
