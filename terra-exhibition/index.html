@@ -505,21 +505,52 @@ function App() {
             </div>
           </section>
 
-          {/* Interactive Map Section */}
-          <section id="campaign" className="max-w-7xl mx-auto px-6 py-12 w-full text-center">
-            <div className="mb-12">
-              <span className="text-[#B35C24] font-bold text-xs uppercase tracking-widest">Interactive Map</span>
-              <h2 className="text-2xl md:text-4xl font-extrabold text-[#0F2A1C] mt-2">設計思考共創視覺地圖</h2>
-              <p className="text-stone-500 text-sm md:text-base mt-2">點擊圖中不同區塊（探索、定義、發想、成果）查看詳細方法論</p>
+          {/* Unified Map & Methodology Section */}
+          <section id="methodology" className="max-w-7xl mx-auto px-6 py-16 w-full">
+            <div className="text-center mb-12">
+              <span className="text-[#B35C24] font-bold text-xs uppercase tracking-widest">Co-Creation Map & Methodology Guide</span>
+              <h2 className="text-2xl md:text-4xl font-extrabold text-[#0F2A1C] mt-2">設計思考共創視覺地圖與 AI 方法手札</h2>
+              <p className="text-stone-500 text-sm md:text-base mt-2">點擊地圖上的區塊，或右側卡片，即可閱讀對應階段的設計思考與 AI 協作研究手札</p>
             </div>
-            <div className="map-container bg-white border border-stone-200 rounded-3xl overflow-hidden max-w-5xl mx-auto relative group">
-              <img src="assets/terra-earth-school.png" alt="2026 Terra Earth School Graphic Recording" className="w-full h-auto block" />
-              
-              {/* Interactive hotlinks corresponding to sitemap */}
-              <a href="#methodology" className="absolute top-[35%] left-[20%] w-[12%] h-[20%] border-2 border-dashed border-orange-500/0 hover:border-orange-500/80 bg-orange-500/0 hover:bg-orange-500/10 rounded-full transition-all duration-300 flex items-center justify-center text-orange-600 font-extrabold text-xs opacity-0 hover:opacity-100 shadow-md">Discover ➔</a>
-              <a href="#methodology" className="absolute top-[35%] left-[33%] w-[12%] h-[20%] border-2 border-dashed border-orange-500/0 hover:border-orange-500/80 bg-orange-500/0 hover:bg-orange-500/10 rounded-full transition-all duration-300 flex items-center justify-center text-orange-600 font-extrabold text-xs opacity-0 hover:opacity-100 shadow-md">Define ➔</a>
-              <a href="#methodology" className="absolute top-[35%] left-[58%] w-[12%] h-[20%] border-2 border-dashed border-orange-500/0 hover:border-orange-500/80 bg-orange-500/0 hover:bg-orange-500/10 rounded-full transition-all duration-300 flex items-center justify-center text-orange-600 font-extrabold text-xs opacity-0 hover:opacity-100 shadow-md">Develop ➔</a>
-              <a href="methodology/deliver.html" className="absolute top-[35%] left-[71%] w-[12%] h-[20%] border-2 border-dashed border-orange-500/0 hover:border-orange-500/80 bg-orange-500/0 hover:bg-orange-500/10 rounded-full transition-all duration-300 flex items-center justify-center text-orange-600 font-extrabold text-xs opacity-0 hover:opacity-100 shadow-md">Deliver ➔</a>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto items-stretch">
+              {/* Left Column: Visual Map (7 cols) */}
+              <div className="lg:col-span-7 flex flex-col justify-center">
+                <div className="map-container bg-white border border-stone-200 rounded-3xl overflow-hidden relative group shadow-sm hover:shadow-md transition-all duration-300">
+                  <img src="assets/terra-earth-school.png" alt="2026 Terra Earth School Graphic Recording" className="w-full h-auto block" />
+                  
+                  {/* Interactive hotlinks pointing directly to respective sub-pages */}
+                  <a href="methodology/discover.html" className="absolute top-[35%] left-[20%] w-[12%] h-[20%] border-2 border-dashed border-orange-500/0 hover:border-orange-500/80 bg-orange-500/0 hover:bg-orange-500/10 rounded-full transition-all duration-300 flex items-center justify-center text-orange-600 font-extrabold text-xs opacity-0 hover:opacity-100 shadow-md">Discover ➔</a>
+                  <a href="methodology/define.html" className="absolute top-[35%] left-[33%] w-[12%] h-[20%] border-2 border-dashed border-orange-500/0 hover:border-orange-500/80 bg-orange-500/0 hover:bg-orange-500/10 rounded-full transition-all duration-300 flex items-center justify-center text-orange-600 font-extrabold text-xs opacity-0 hover:opacity-100 shadow-md">Define ➔</a>
+                  <a href="methodology/develop.html" className="absolute top-[35%] left-[58%] w-[12%] h-[20%] border-2 border-dashed border-orange-500/0 hover:border-orange-500/80 bg-orange-500/0 hover:bg-orange-500/10 rounded-full transition-all duration-300 flex items-center justify-center text-orange-600 font-extrabold text-xs opacity-0 hover:opacity-100 shadow-md">Develop ➔</a>
+                  <a href="methodology/deliver.html" className="absolute top-[35%] left-[71%] w-[12%] h-[20%] border-2 border-dashed border-orange-500/0 hover:border-orange-500/80 bg-orange-500/0 hover:bg-orange-500/10 rounded-full transition-all duration-300 flex items-center justify-center text-orange-600 font-extrabold text-xs opacity-0 hover:opacity-100 shadow-md">Deliver ➔</a>
+                </div>
+              </div>
+
+              {/* Right Column: 4 Methodology Stages Cards (5 cols) */}
+              <div className="lg:col-span-5 flex flex-col justify-between gap-4">
+                {t.methodology.stages.map((stage, idx) => (
+                  <a 
+                    key={idx} 
+                    href={stage.link}
+                    className="bg-white border border-stone-200/60 rounded-2xl p-5 flex flex-row items-center gap-4 shadow-sm hover:shadow-md transition-all duration-300 group border-l-4 border-l-[#0F2A1C] hover:border-l-[#B35C24] cursor-pointer"
+                  >
+                    {/* Stage number */}
+                    <div className="w-10 h-10 rounded-full bg-stone-100 group-hover:bg-orange-100 flex items-center justify-center text-stone-500 group-hover:text-[#B35C24] font-black text-sm transition-colors flex-shrink-0">
+                      {idx + 1}
+                    </div>
+                    {/* Stage content */}
+                    <div className="flex-grow min-w-0">
+                      <h3 className="font-extrabold text-sm md:text-base text-[#0F2A1C] group-hover:text-[#B35C24] transition-colors truncate">{stage.title}</h3>
+                      <p className="text-stone-500 text-[11px] md:text-xs leading-relaxed mt-0.5 line-clamp-2">{stage.desc}</p>
+                    </div>
+                    {/* Go arrow */}
+                    <div className="text-stone-400 group-hover:text-[#B35C24] transform group-hover:translate-x-1 transition-all duration-300 flex-shrink-0 text-sm font-black pl-2">
+                      ➔
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -564,27 +595,7 @@ function App() {
             </div>
           </section>
 
-          {/* Methodology Section */}
-          <section id="methodology" className="max-w-7xl mx-auto px-6 py-16 w-full">
-            <div className="text-center mb-16">
-              <span className="text-[#B35C24] font-bold text-xs uppercase tracking-widest">Double Diamond</span>
-              <h2 className="text-2xl md:text-4xl font-extrabold text-[#0F2A1C] mt-2">{t.methodology.title}</h2>
-              <p className="text-stone-500 text-sm md:text-base mt-2">{t.methodology.subtitle}</p>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {t.methodology.stages.map((stage, idx) => (
-                <div key={idx} className="zoom-card bg-white border border-stone-200 rounded-2xl p-6 flex flex-col justify-between shadow-sm relative group overflow-hidden">
-                  <span className="absolute -right-4 -top-4 text-7xl font-black text-stone-100/70 select-none group-hover:text-orange-500/5 transition-colors">{idx + 1}</span>
-                  <div className="relative z-10">
-                    <h3 className="font-black text-lg text-[#0F2A1C] mb-3 group-hover:text-[#B35C24] transition-colors">{stage.title}</h3>
-                    <p className="text-stone-500 text-xs md:text-sm leading-relaxed mb-6">{stage.desc}</p>
-                  </div>
-                  <a href={stage.link} className="bg-[#0F2A1C] hover:bg-[#B35C24] text-white text-center font-bold text-xs py-2 px-4 rounded-lg transition-colors inline-block w-full">閱讀研究手札 ➔</a>
-                </div>
-              ))}
-            </div>
-          </section>
 
           
 
