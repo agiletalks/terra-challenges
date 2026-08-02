@@ -691,7 +691,7 @@ function App() {
                 </button>
 
                 {/* Video Content */}
-                <div className="w-full h-full flex items-center justify-center">
+                <div className="absolute inset-0 w-full h-full flex items-center justify-center">
                   {activeVideo.video.includes('youtube.com') || activeVideo.video.includes('youtu.be') ? (
                     <iframe 
                       src={activeVideo.video}
