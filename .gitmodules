@@ -1,0 +1,3 @@
+[submodule "terra-exhibition"]
+	path = terra-exhibition
+	url = https://github.com/agiletalks/exhibition.git
